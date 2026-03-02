@@ -1,0 +1,9 @@
+/* /blocks/whats-new/editor.css */
+.whats-new-editor { border: 1px dashed #ccc; padding: 16px; border-radius: 6px; }
+.whats-new-editor .wn-editor-head { margin-bottom: 12px; }
+.whats-new-editor .wn-card-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 12px; }
+.whats-new-editor .wn-card-item { padding: 12px; border: 1px solid #e2e2e2; border-radius: 6px; background: #fff; }
+.whats-new-editor .wn-card-toolbar { margin-bottom: 8px; display: flex; justify-content: flex-end; }
+.whats-new-editor .wn-card-fields { display: grid; grid-template-columns: 160px 1fr; gap: 12px; }
+.whats-new-editor .wn-card-thumb img { display: block; width: 100%; height: auto; border-radius: 4px; margin-bottom: 6px; }
+.whats-new-editor .wn-card-actions { margin-top: 12px; }

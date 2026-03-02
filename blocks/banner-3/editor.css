@@ -1,0 +1,61 @@
+/* Editor-only light sugar so the preview looks like the front end */
+
+/* Space & outline */
+.banner-block-editor {
+  position: relative;
+  padding: 8px 0;
+}
+.banner-block-editor > section.hero {
+  outline: 1px dashed rgba(0,0,0,.06);
+  border-radius: 10px;
+  /* Let the hero bleed upward in the canvas without clipping */
+  overflow: visible;
+}
+
+/* Make sure our front-end style variables have sane defaults in editor */
+.banner-block-editor > section.hero {
+  --header-h: 88;
+}
+
+/* Button look in editor (so it doesn't appear unstyled if theme CSS is scoped) */
+.banner-block-editor .btn {
+  display: inline-block;
+  text-decoration: none;
+  border-radius: 14px;
+  padding: .8rem 1.4rem;
+  font-weight: 650;
+  line-height: 1;
+  font-size: 1rem;
+  border: 0;
+}
+.banner-block-editor .btn-custom {
+  background: var(--brand, #962E2A) !important;
+  color: #fff !important;
+  min-width: auto;
+}
+
+/* Media picker thumbnail controls */
+.hero-editor-thumb {
+  position: relative;
+  display: inline-block;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 10px;
+  padding: 6px;
+  background:#fff;
+}
+.hero-editor-thumb img {
+  display: block;
+  max-width: 240px;
+  height: auto;
+  border-radius: 6px;
+}
+.hero-editor-change {
+  margin-top: 6px;
+}
+
+/* Simple grid for numeric bg controls */
+.hero-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}

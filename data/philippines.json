@@ -1,0 +1,258 @@
+{
+    "banners": [
+        {
+            "title": "Discover the Philippines: 7,000+ Islands of Adventure, Flavor, and Culture",
+            "description": "The Philippines is a tropical wonderland made up of more than 7,000 islands, each with its own charm. Whether you're craving beach time, mountain hikes, cultural festivals, or fresh seafood by the ocean, there's something here for every kind of traveler. This guide covers everything you need to know where to go, what to eat, how to save, and how to get around.",
+            "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/hero-banner/beach.png",
+            "hAlign": "left",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Budget-Friendly Tours That Go Beyond the Ordinary",
+            "description": "You don’t need a big budget to explore the Philippines. In fact, it's one of the best places for budget travelers in Southeast Asia. \n\n Local tour operators often run day trips for around ₱3,500 to ₱5,000 ($60 to $90), especially in Palawan and Siargao. Backpacker hostels in Cebu and Bohol offer package deals that include tours and transportation. Book during the off-season (June to September) and you’ll score even better rates. Apps like Klook and KKday are also great for finding deals, sometimes as low as ₱10,000 ($180) for three-day packages.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Safety, Visas, and Smart Traveler Essentials",
+            "description": "Most travelers can stay visa-free for 30 days, but it’s best to check current requirements. The local currency is the Philippine Peso (PHP), and while credit cards are accepted in cities, smaller towns prefer cash. \n\n Health-wise, bring reef-safe sunscreen and bug spray. Tap water isn’t safe to drink, so stick to bottled or filtered water. The country is generally safe, but always keep an eye on your belongings and respect local customs. \n\n For emergencies, dial 117 for police and 911 for medical assistance.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "wide",
+            "title": "Start Your Journey Today. The Philippines Is Waiting",
+            "description": "The Philippines is full of contrasts in the best way. One minute you're exploring coral reefs, the next you're dancing in a street parade. This country isn’t just about beautiful sights. It's about moments, flavors, people, and stories. \n\n So whether you're coming for a week or a month, you’ll find something unforgettable. Learn the Philippines today and start planning the adventure of a lifetime.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": true,
+            "buttonText": "Explore now!",
+            "buttonUrl": "/blogs/"
+        }
+    ],
+    "carousel": [
+        { 
+            "title":"Uncover Iconic Places and Hidden Corners You’ll Never Forget",
+            "intro":"Some places in the Philippines are world-famous. Others? You might not hear about them until you're already there, falling in love with the view.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/carousel/palawan.jpg",
+                    "imageAlt":"Palawan (El Nido & Coron)",
+                    "heading":"Palawan (El Nido & Coron)",
+                    "text":"Limestone cliffs, hidden lagoons, and shipwreck diving in crystal-clear waters."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/carousel/boracay.png",
+                    "imageAlt":"Boracay",
+                    "heading":"Boracay",
+                    "text":"Famous for its soft white sand, vibrant nightlife, and stunning sunsets."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/carousel/cebu.png",
+                    "imageAlt":"Cebu",
+                    "heading":"Cebu",
+                    "text":"A mix of city attractions, colonial sites, waterfalls, and whale sharks."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/carousel/bohol.png",
+                    "imageAlt":"Bohol",
+                    "heading":"Bohol",
+                    "text":"Known for the Chocolate Hills, beautiful beaches, and tiny tarsiers."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                }
+            ]
+        }
+    ],
+    "card-img": {
+        "title": "Must-Try Filipino Dishes That’ll Win You Over in One Bite",
+        "intro": "Filipino food is comfort food. It’s flavorful, a little bold, and always cooked with love.",
+        "data_count": "5",
+        "ctaText": "",
+        "ctaUrl": "",
+        "showReadLink": true,
+        "readLinkText": "",
+        "items": [
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/card-img/adobo.png",
+                "heading": "Adobo",
+                "text": "Savory meat stewed in soy sauce, vinegar, and garlic. Simple, but unforgettable."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/card-img/sinigang.png",
+                "heading": "Sinigang",
+                "text": "A sour soup with pork or fish, often tamarind-based. It’s tangy, warm, and refreshing."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/card-img/lechon.png",
+                "heading": "Lechon",
+                "text": "Whole roasted pig with crispy skin. A celebration favorite."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/card-img/kare-kare.png",
+                "heading": "Kare-Kare",
+                "text": "Peanut stew with oxtail or vegetables, served with salty shrimp paste."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/card-img/halo-halo.png",
+                "heading": "Halo-Halo",
+                "text": "Crushed ice, sweet beans, fruit, jelly, and ice cream all in one cup. It's chaos, but it works."
+            }
+        ]
+    },
+    "img-with-icon-content": [
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Epic Activities You Can’t Miss While You’re Here",
+            "description":"You’ll never run out of things to do here. One day you're island hopping. Next, you're hiking a volcano.",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/img-with-icon-content/epic-activities.png",
+            "items":[
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/icons/island.png",
+                "title":"Island Hopping",
+                "text":"Island hopping is a must in places like El Nido, Coron, and Panglao."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/icons/snorkeling.png",
+                "title":"Snorkeling and Diving",
+                "text":"Snorkeling and diving are world-class. Tubbataha and Apo Island are full of life underwater."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/icons/hiking.png",
+                "title":"Hiking",
+                "text":"Hiking lovers can trek Mt. Pulag or Taal Volcano for epic views."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/icons/wave.png",
+                "title":"Waterfalls",
+                "text":"Waterfalls like Kawasan or Cambugahay are perfect for a cool dip."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/icons/walk.png",
+                "title":"️Cultural walks",
+                "text":"Cultural walks in Vigan or Manila’s Intramuros give you a glimpse into colonial history."
+                },
+
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/icons/night.png",
+                "title":"Markets and Nightlife",
+                "text":"Markets and nightlife vary by region. Boracay has beach parties, while Cebu offers great live music."
+                }
+            ]
+        },
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Pro Tips to Travel Smarter, Lighter, and Better",
+            "description":"A few small tips can make a big difference.",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/img-with-icon-content/pro-tips.png",
+            "items":[
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/icons/jacket.png",
+                "title":"Jacket is a must!",
+                "text":"Pack a light jacket if you’re heading to highland areas like Batanes or Sagada."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/icons/calendar.png",
+                "title":"Don’t over-schedule!",
+                "text":"Don’t over-schedule. Travel can be unpredictable, and sometimes slow."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/icons/signal.png",
+                "title":"Buy a local Sim card",
+                "text":"Buy a local SIM card from Globe or Smart to stay connected."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/icons/map.png",
+                "title":"Download offline maps",
+                "text":"Download offline maps or apps just in case you lose signal in remote areas."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/icons/pray.png",
+                "title":"Learn simple phrases",
+                "text":"Learn simple phrases like “Salamat” (thank you) and “Magkano?” (how much)."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"Sometimes, going with the flow is the best way to travel in the Philippines."
+                }
+            ]
+        }
+    ],
+    "col-text-cards": [
+        {
+            "alignTextCards":"left",
+            "bgMode":"plain",
+            "layoutMode":"single",
+            "headline":"Dive Into Culture: Festivals, Languages, and Timeless Traditions",
+            "subhead":"Filipino culture blends old and new across the islands, with languages like Ilocano, Cebuano, and Chavacano and Spanish, American, and indigenous influences. Expect warm hospitality and festivals like Sinulog and Ati-Atihan. \n\n Filipino culture mixes old and new—regional languages, diverse influences, and warm hospitality—best seen at festivals like Sinulog and Ati-Atihan.",
+            "features":[],
+            "cards":[
+                {
+                    "image":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/col-text-cards/festival.png"
+                }
+            ]
+        },
+        {
+            "alignTextCards":"right",
+            "bgMode":"plain",
+            "layoutMode":"single",
+            "headline":"Easy Ways to Travel Between Islands and Cities",
+            "subhead":"Domestic flights link Manila, Cebu, Davao, Boracay, and Palawan. For shorter routes, ferries and fast boats are common, especially in the Visayas. On land, try jeepneys, tricycles, or buses for a real taste of local life. Ride-hailing apps like Grab (cars) and Angkas (motorbikes) work well in cities. \n\n Getting around might take a little patience, but the views along the way often make it worth it.",
+            "footer": "",
+            "features":[],
+            "cards":[
+                {
+                    "image":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/philippines/col-text-cards/jeep.png"
+                }
+            ]
+        }
+    ]
+}

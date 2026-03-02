@@ -1,0 +1,349 @@
+{
+    "banners": [
+        {
+            "title": "Discover Malaysia: Where Diversity, Flavor, and Nature Unite",
+            "description": "Malaysia is a country that invites exploration. From sky-high cities and tropical beaches to rainforests and food stalls, it’s a place where cultures blend and surprises come easy. If you're planning a Malaysia tour, this guide has everything you need for top places to visit, cultural insights, travel tips, and some seriously good food recommendations.",
+            "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/hero-banner/beach.png",
+            "hAlign": "left",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Budget Tours and Travel Deals That Stretch Your Ringgit",
+            "description": "If you're on a budget, Malaysia delivers. You can find 3-day tours in cities like KL or Penang for under $120, often including guides, hotel stays, and transport. Island tours, like those around Langkawi or the Perhentians, offer great value too. \n\n Backpackers love the eco-travel options in Borneo, and small group tours are available through platforms like Klook, Traveloka, or even your hotel. Book early for the best prices, but don’t worry there are deals year-round.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Culture, Customs, and the Heart of Malaysian Hospitality",
+            "description": "Malaysia is one of Southeast Asia’s most diverse countries, and its culture reflects that. Malay, Chinese, Indian, and Indigenous influences come together in everything from the architecture to the street food. \n\n People celebrate festivals like Hari Raya, Chinese New Year, Deepavali, and Gawai. Respect is important, especially in religious places. Take off your shoes at temples and mosques, dress modestly, and be mindful of local customs. \n\n A simple greeting, like a nod or soft handshake, goes a long way in making a good impression.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "wide",
+            "title": "Start Your Malaysian Journey Today",
+            "description": "Malaysia has a rhythm all its own. You’ll move from bustling city streets to quiet beaches, ancient temples to futuristic towers, all within a few hours' journey. It’s a country full of color, flavor, and people who’ll make you feel at home. \n\n So why wait? Discover Malaysia now and start planning a trip you’ll never forget.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": true,
+            "buttonText": "Explore now!",
+            "buttonUrl": "/blogs/"
+        }
+    ],
+    "carousel": [
+        { 
+            "title":"Top 10 Must-Visit Places for Every Kind of Traveler",
+            "intro":"Big cities, quiet towns, lush mountains, and sunny islands Malaysia has it all. You'll find a little of everything here, whether you're craving adventure, culture, or just a peaceful escape by the sea.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/kuala-lumpur.png",
+                    "imageAlt":"Kuala Lumpur",
+                    "heading":"Kuala Lumpur",
+                    "text":"See the Petronas Towers, shop, eat, and explore the city’s vibrant mix of cultures."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/penang.png",
+                    "imageAlt":"Penang",
+                    "heading":"Penang",
+                    "text":"Known for its street art, colonial charm, and legendary food."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/langkawi.png",
+                    "imageAlt":"Langkawi",
+                    "heading":"Langkawi",
+                    "text":"A beach lover’s dream with waterfalls, cable cars, and duty-free shopping."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/melaka.png",
+                    "imageAlt":"Melaka",
+                    "heading":"Melaka",
+                    "text":"A small historic city with big character and colorful buildings."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                }
+            ]
+        },
+        {
+            "title":"Hidden Treasures: Lesser-Known Spots Worth the Journey",
+            "intro":"Some of the most memorable spots aren’t even on the average itinerary.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/taping.png",
+                    "imageAlt":"Taiping",
+                    "heading":"Taiping",
+                    "text":"A laid-back town with lakes, colonial buildings, and one of Malaysia’s oldest zoos."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/kuala-terengganu.png",
+                    "imageAlt":"Kuala Terengganu",
+                    "heading":"Kuala Terengganu",
+                    "text":"Rich in Malay culture, with a floating mosque and batik markets."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/kota-bharu.png",
+                    "imageAlt":"Kota Bharu",
+                    "heading":"Kota Bharu",
+                    "text":"A traditional northern city where you can dive into local crafts and cuisine."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/belum-rainforest.png",
+                    "imageAlt":"Belum Rainforest",
+                    "heading":"Belum Rainforest",
+                    "text":"Untouched jungle, rare animals, and a peaceful alternative to more touristy parks."
+                }
+            ]
+        },
+        {
+            "title":"Celebrations That Light Up the Streets ",
+            "intro":"If your Malaysia tour lines up with a local festival, you’re in for a treat.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/thaipusam.png",
+                    "imageAlt":"Thaipusam",
+                    "heading":"Thaipusam",
+                    "text":"A dramatic Hindu procession held at Batu Caves, full of music and ritual."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/gawai-dayak.png",
+                    "imageAlt":"Gawai Dayak",
+                    "heading":"Gawai Dayak",
+                    "text":"A harvest celebration among Sarawak’s Indigenous people in June."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/george-town-festival.png",
+                    "imageAlt":"George Town Festival",
+                    "heading":"George Town Festival",
+                    "text":"A full month of arts, culture, and performances in Penang."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/carousel/har-merdeka.png",
+                    "imageAlt":"Hari Merdeka (August 31)",
+                    "heading":"Hari Merdeka (August 31)",
+                    "text":"Malaysia’s Independence Day, marked by parades and fireworks."
+                }
+            ]
+        }
+    ],
+    "card-img": {
+        "title": "Flavors of Malaysia: Top Dishes You Can’t Miss",
+        "intro": "You can't visit Malaysia without eating your way through it. The food here is legendary, and every region has its own flavor.",
+        "data_count": "5",
+        "ctaText": "",
+        "ctaUrl": "",
+        "showReadLink": true,
+        "readLinkText": "",
+        "items": [
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/card-img/nasi-lemak.png",
+                "heading": "Nasi Lemak",
+                "text": "Creamy coconut rice served with spicy sambal, peanuts, egg, and anchovies."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/card-img/laksa.png",
+                "heading": "Laksa",
+                "text": "Spicy, coconut-based noodle soup with prawns and fishcake."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/card-img/char-kway-teow.png",
+                "heading": "Char Kway Teow",
+                "text": "Smoky stir-fried noodles with eggs, bean sprouts, and Chinese sausage."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/card-img/roti-canai.png",
+                "heading": "Roti Canai",
+                "text": "Flaky, buttery flatbread that goes best with curry especially for breakfast."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/card-img/satay.png",
+                "heading": "Satay",
+                "text": "Grilled meat skewers served with rich peanut sauce."
+            }
+        ]
+    },
+    "img-with-icon-content": [
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Top Things to Do: From Rainforest Treks to River Cruises",
+            "description":"Whether you're active or just want to soak up the atmosphere, Malaysia has plenty to keep you busy.",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/img-with-icon-content/top-things.png",
+            "items":[
+                {
+                "icon":"",
+                "title":"Cruise down the Melaka River",
+                "text":"Cruise down the Melaka River at night when the bridges and buildings light up."
+                },
+                {
+                "icon":"",
+                "title":"Snorkel, dive, or just float",
+                "text":"Snorkel, dive, or just float in the waters around Redang or Perhentian Islands."
+                },
+                {
+                "icon":"",
+                "title":"Hike or camp",
+                "text":"Hike or camp in Taman Negara or scale Mount Kinabalu if you're up for a challenge."
+                },
+                {
+                "icon":"",
+                "title":"Eat and shop",
+                "text":"Eat and shop your way through KL’s Jalan Alor, Ipoh’s Concubine Lane, or Penang’s Gurney Drive."
+                },
+                {
+                "icon":"",
+                "title":"Visit temples and mosques",
+                "text":"Visit temples and mosques that reflect Malaysia’s religious diversity."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"There’s really no wrong way to explore, just follow your interests."
+                }
+            ]
+        },
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Smart Travel Tips from Local Experts",
+            "description":"",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/img-with-icon-content/smart-travel.png",
+            "items":[
+                {
+                "icon":"",
+                "title":"Dress modestly",
+                "text":"Dress modestly, especially in rural or religious areas."
+                },
+                {
+                "icon":"",
+                "title":"Avoid public displays",
+                "text":"Avoid public displays of affection in more conservative regions."
+                },
+                {
+                "icon":"",
+                "title":"Carry small bills",
+                "text":"Carry small bills, as many local places don’t take cards."
+                },
+                {
+                "icon":"",
+                "title":"Drink bottled water",
+                "text":"Drink bottled or filtered water, especially outside the cities."
+                },
+                {
+                "icon":"",
+                "title":"Buy a SIM Card",
+                "text":"Buying a SIM card at the airport it’s cheap and makes everything easier."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"Overall, Malaysia is safe, welcoming, and easy to navigate just stay respectful and curious."
+                }
+            ]
+        },
+        {
+            "align":"wide",
+            "position":"right",
+            "title":"How to Travel Around Malaysia with Ease and Confidence",
+            "description":"Traveling in Malaysia is straightforward. English is widely spoken, and transport options are reliable.",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/malaysia/img-with-icon-content/how-to-travel.png",
+            "items":[
+                {
+                "icon":"",
+                "title":"Budget Airlines",
+                "text":"Budget airlines like AirAsia can get you between cities or to island gateways in under an hour."
+                },
+                {
+                "icon":"",
+                "title":"Trains",
+                "text":"Trains are scenic, especially between KL and Penang."
+                },
+                {
+                "icon":"",
+                "title":"Long-distance buses",
+                "text":"Long-distance buses are comfy and cheap."
+                },
+                {
+                "icon":"",
+                "title":"Ferries and speedboats",
+                "text":"Ferries and speedboats connect you to the islands."
+                },
+                {
+                "icon":"",
+                "title":"Grab",
+                "text":"Grab (like Uber) works well in cities."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"If you’re hopping between coasts, plan around the monsoon seasons. East coast islands are best from March to September."
+                }
+            ]
+        }
+    ]
+}

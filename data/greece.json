@@ -1,0 +1,320 @@
+{
+    "banners": [
+        {
+            "title": "Experience Greece: Myths, Sunsets, and a Mediterranean Rhythm of Life",
+            "description": "Greece feels like stepping into living history. From ancient ruins to sunlit islands and mouthwatering cuisine, it’s a destination that blends past and present beautifully. Whether you’re drawn by myth-filled legends, the Mediterranean glow of the Cyclades, or vibrant Athenian streets, this Greece travel guide covers everything from top destinations to local insights and helps you plan a trip that’s both exciting and authentic.",
+            "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/hero-banner/greece-banner.png",
+            "hAlign": "left",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Budget Tours and Island-Hopping Without Breaking the Bank",
+            "description": "You might be surprised at how budget-friendly Greece can be, especially if you plan ahead. \n\n Group tours that include ferry rides, lodging, and guided excursions can cost as low as €500–€700 for a week. Booking during shoulder months like May or September helps avoid high prices and crowds. Platforms such as Ferryhopper, GetYourGuide, and Viator offer packages for small groups, cultural experiences, and island hopping for excellent value. \n\n Last-minute deals or discounted ferry tickets often come up, so keep an eye out and stay flexible in your schedule.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Dive Into Greek Culture: Traditions, Hospitality, and Everyday Joy",
+            "description": "Greek culture is warm, communal, and deeply rooted in heritage. Hospitality philoxenia is a way of life, and sharing food or conversation is a sign of respect. \n\n Religious festivals like Orthodox Easter or local panigiria bring villages alive with music, dancing, and homemade dishes. Greet locals with “Yassas” or “Kalimera” and toast with “Yamas.” In religious sites, dress modestly and be aware of silence in certain areas. \n\n Slow down and let the rhythm of life in Greece guide you. It’s about connection rather than speed.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Getting Around Greece Smoothly and Stress-Free",
+            "description": "Getting around requires planning, but it’s surprisingly flexible with ferry, air, and road options. \n\n Ferry schedules connect most islands; booking early in summer is essential. For longer journeys, domestic flights to Crete or Rhodes save time. Mainland routes are well-served by KTEL buses, and car rentals open up your choice inland. In villages or towns, walk when you can. It's how you notice small details and local rhythms.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "wide",
+            "title": "Discover Greece Today: Ancient Stories, Sun-Warmed Shores, and Soulful Living",
+            "description": "Greece blends timeless beauty with open-hearted hospitality. You’ll stroll among ancient ruins, sail through turquoise waters, and share dishes filled with tradition. Each island, each village, and each meal brings you closer to something meaningful. \n\n Explore Greece today and let the myths, the flavors, and the people lead the way.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": true,
+            "buttonText": "Explore now!",
+            "buttonUrl": "/blogs/"
+        }
+    ],
+    "carousel": [
+        { 
+            "title":"Top 10 Must-See Places That Define Greece’s Spirit",
+            "intro":"These ten spots capture the essence of Greece, offering scenic beauty, cultural depth, and unforgettable experiences.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/carousel-top-10/athens.png",
+                    "imageAlt":"Athens",
+                    "heading":"Athens",
+                    "text":"Rich with ancient history and buzzing city life, cafés, and galleries."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/carousel-top-10/santorini.png",
+                    "imageAlt":"Santorini",
+                    "heading":"Santorini",
+                    "text":"Famed white villages and epic sunsets over volcano-cratered cliffs."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/carousel-top-10/mykonos.png",
+                    "imageAlt":"Mykonos",
+                    "heading":"Mykonos",
+                    "text":"Glamorous beaches, vibrant nightlife, and Cycladic style everywhere."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/carousel-top-10/crete.png",
+                    "imageAlt":"Crete",
+                    "heading":"Crete",
+                    "text":"An island of contrasts: mountain villages, legendary ruins, and stunning beaches."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                }
+            ]
+        }
+    ],
+    "card-img": [
+        {
+            "title": "Greek Cuisine: Five Must-Try Dishes That Define the Culture",
+            "intro": "Eating in Greece is a sensory adventure fresh, flavorful, and always welcoming. Regional dishes offer variety, and most of your best meals will come from tavernas or family-run kitchens.",
+            "data_count": "5",
+            "ctaText": "",
+            "ctaUrl": "",
+            "showReadLink": true,
+            "readLinkText": "",
+            "items": [
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/card-img-greek-cuisine/moussaka.png",
+                    "heading": "Moussaka",
+                    "text": "A hearty classic layered with eggplant, meat, and creamy béchamel sauce."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/card-img-greek-cuisine/souvlaki.png",
+                    "heading": "Souvlaki",
+                    "text": "Simply grilled skewers with pita and tzatziki perfect for lunch or a snack."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/card-img-greek-cuisine/dolmades.png",
+                    "heading": "Dolmades",
+                    "text": "Tender grape leaves filled with rice, herbs, and sometimes meat."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/card-img-greek-cuisine/tzatziki.png",
+                    "heading": "Tzatziki",
+                    "text": "Yogurt-cucumber dip enlivened with garlic fresh and cooling."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/card-img-greek-cuisine/baklava.png",
+                    "heading": "Baklava",
+                    "text": "Flaky pastry layered with honey and nuts rich, sweet, and deeply satisfying."
+                }
+            ]
+        },
+        {
+            "title": "Secret Escapes and Local Treasures You Shouldn’t Miss",
+            "intro": "If you’ve already seen the big sights or crave something more peaceful Greece has plenty of lesser-known treasures.",
+            "data_count": "5",
+            "ctaText": "",
+            "ctaUrl": "",
+            "design":"top",
+            "showReadLink": true,
+            "readLinkText": "",
+            "items": [
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/card-img-secret-escape/milos.png",
+                    "heading": "Milos",
+                    "text": "Geologically stunning with volcanic rocks, moon-shaped beaches, and tranquil scenery."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/card-img-secret-escape/paros.png",
+                    "heading": "Paros",
+                    "text": "Charming without the crowds, ideal for watersports and local tavernas."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/card-img-secret-escape/zagori.png",
+                    "heading": "Zagori",
+                    "text": "Stone-built villages, epic gorges, and mountain trails in northwest Greece."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/card-img-secret-escape/pelion.png",
+                    "heading": "Pelion Peninsula",
+                    "text": "Whisk between hillside villages and quiet beaches on the mainland."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/card-img-secret-escape/kastoria.png",
+                    "heading": "Kastoria",
+                    "text": "Lakeside town with Byzantine churches and traditional streets that feel timeless."
+                }
+            ]
+        }
+    ],
+    "img-with-icon-content": [
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Easy Itineraries to Match Your Travel Style",
+            "description":"Not sure where to begin? These sample routes can simplify your planning and balance pace with exploration.",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/img-with-content/1.png",
+            "items":[
+                {
+                "icon":"",
+                "title":"5-Day Sample",
+                "text":"Start in Athens, spend a day in Santorini, and finish with Mykonos for shopping and beach scenes."
+                },
+                {
+                "icon":"",
+                "title":"Culture Tour",
+                "text":"Begin in Athens, head north to beautiful Meteora, continue to Delphi, and finish in Thessaloniki."
+                },
+                {
+                "icon":"",
+                "title":"7-Day Sample",
+                "text":"Crisscross through Athens, Naxos, Paros, and end in Santorini for a mix of sightseeing and relaxation."
+                },
+                {
+                "icon":"",
+                "title":"Beach Lover Bundle",
+                "text":"Visit Zakynthos, Kefalonia, and Milos for quieter beaches and dramatic coastlines."
+                },
+                {
+                "icon":"",
+                "title":"10-Day Tour",
+                "text":"Explore Crete or Rhodes and return to Athens, with historical stops like Delphi along the way."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"Each itinerary blends iconic highlights with quiet moments, giving you flexibility to wander and rest."
+                }
+            ]
+        },
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Activities That Take You Beyond the Postcards",
+            "description":"These activities help you experience more than just landscapes; they connect you to the heart of Greek life.",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/img-with-content/2.png",
+            "items":[
+                {
+                "icon":"",
+                "title":"Walk Samaria Gorge",
+                "text":"Walk Samaria Gorge in Crete or wander Vikos Gorge for breathtaking views."
+                },
+                {
+                "icon":"",
+                "title":"Visit Delphi or Knossos",
+                "text":"Visit Delphi or Knossos to step directly into history and legend."
+                },
+                {
+                "icon":"",
+                "title":"Catch the Oia sunset",
+                "text":"Catch the Oia sunset on Santorini. You're not the only one, but it’s still magic."
+                },
+                {
+                "icon":"",
+                "title":"Go swimming at Navagio Beach",
+                "text":"Go swimming at Navagio Beach in Zakynthos or Paleokastritsa in Corfu water so vividly blue it seems edited."
+                },
+                {
+                "icon":"",
+                "title":"Island-hop via ferry or boat tour",
+                "text":"Island-hop via ferry or boat tour: Less touristy islands hold the best surprises."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"Each experience blends nature, culture, and story. Your most memorable days often come unplanned."
+                }
+            ]
+        },
+        {
+            "align":"wide",
+            "position":"right",
+            "title":"Essential Tips From Locals and Frequent Travelers",
+            "description":"",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/greece/img-with-content/3.png",
+            "items":[
+                {
+                "icon":"",
+                "title":"Ideal seasons",
+                "text":"Late spring (May–June) or early fall (September) provide warm weather and quieter beaches."
+                },
+                {
+                "icon":"",
+                "title":"Customs",
+                "text":"Avoid showing the soles of your feet. Respect quiet zones in monasteries and churches."
+                },
+                {
+                "icon":"",
+                "title":"Money habits",
+                "text":"Euro is universal and carries small bills. Some mom-and-pop shops don’t accept cards."
+                },
+                {
+                "icon":"",
+                "title":"Packing tip",
+                "text":"Layers are necessary because sea breezes and elevation can bring evening chill, especially in places like Meteora or Pergamum."
+                },
+                {
+                "icon":"",
+                "title":"Language tip",
+                "text":"English is widely spoken, but locals smile when you know a few Greek words like “parakaló” (please) or “efharistó” (thank you)."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"Patience and openness are the best travel companions in Greece."
+                }
+            ]
+        }
+    ]
+}

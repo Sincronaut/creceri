@@ -1,0 +1,269 @@
+{
+    "banners": [
+        {
+            "title": "Singapore Unlocked: A City of Bold Contrasts and Everyday Wonders",
+            "description": "Singapore might be small, but it offers big experiences. From futuristic architecture and lush gardens to world-famous street food and historic neighborhoods, this city-state blends tradition with innovation. Planning a trip here? This guide walks you through everything from top sights to budget tips so you can explore Singapore with ease.",
+            "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/hero-banner/beach.png",
+            "hAlign": "left",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Smart Travel Deals and Combo Passes to See More for Less",
+            "description": "Singapore doesn’t have to be expensive if you plan smart. There are plenty of deals that bundle top sights and help you save. \n\n Combo passes often include Gardens by the Bay, the Singapore Flyer, and the Night Safari at a discounted rate. Hop-on hop-off buses give you a flexible way to explore. For public transport, an MRT tourist pass is a budget-friendly option.  \n\n Prices for guided day tours usually start around SGD 40 to 70, depending on what’s included. Booking online ahead of time? That’s where you’ll often find the best value.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Navigate the City Like a Local with These Transport Tips",
+            "description": "Getting around is easy. Singapore’s public transport is one of the best in the world, clean, safe, and fast. \n\n Grab an EZ-Link card or a Tourist Pass to make bus and MRT rides simple. Most attractions are close to an MRT station, so you won’t need to rely on taxis often. But if you do, apps like Grab are widely used and reliable. \n\n Pro tip: download the MyTransport.SG app to help plan your routes on the go.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "wide",
+            "title": "Plan Your Singapore Trip Today and Experience the Unexpected",
+            "description": "Singapore is a city where the future meets tradition, where temples and skyscrapers share the skyline, and where street food can rival fine dining. Clean, welcoming, and full of surprises—it’s everything a modern traveler could want. \n\n Discover Singapore now and start planning a trip that’s vibrant, diverse, and packed with unforgettable moments.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": true,
+            "buttonText": "Explore now!",
+            "buttonUrl": "/blogs/"
+        }
+    ],
+    "carousel": [
+        { 
+            "title":"Explore Singapore’s Best-Kept Secrets and World-Famous Icons",
+            "intro":"Singapore is packed with things to see, whether you're chasing iconic landmarks or tucked-away spots locals love.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/carousel/marina-bay-sands.png",
+                    "imageAlt":"Marina Bay Sands",
+                    "heading":"Marina Bay Sands",
+                    "text":"Incredible views from the SkyPark, luxury shops, and the famous rooftop pool."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/carousel/gardens-by-the-bay.png",
+                    "imageAlt":"Gardens by the Bay",
+                    "heading":"Gardens by the Bay",
+                    "text":"Home to Supertrees, the Cloud Forest, and a dazzling light show."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/carousel/sentosa-island.png",
+                    "imageAlt":"Sentosa Island",
+                    "heading":"Sentosa Island",
+                    "text":"Beaches, amusement parks, and family-friendly activities."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/carousel/chinatown.png",
+                    "imageAlt":"Chinatown",
+                    "heading":"Chinatown",
+                    "text":"Traditional shops, temples, and unbeatable hawker food."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                }
+            ]
+        },
+        {
+            "title":"Free and Low-Cost Activities That Make a Big Impact",
+            "intro":"Yes, you can enjoy Singapore on a budget. You just have to know where to look.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/carousel/walk-around-marina-bay.png",
+                    "imageAlt":"Walk around Marina Bay",
+                    "heading":"Walk around Marina Bay",
+                    "text":"Walk around Marina Bay and stay for the nightly Spectra light show, it’s free and stunning."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/carousel/wander-through-heritage-districts.png",
+                    "imageAlt":"Wander through heritage districts",
+                    "heading":"Wander through heritage districts",
+                    "text":"Wander through heritage districts like Chinatown, Little India, and Kampong Glam."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/carousel/enjoy-green-spaces.png",
+                    "imageAlt":"Enjoy green spaces",
+                    "heading":"Enjoy green spaces",
+                    "text":"Enjoy green spaces like the Southern Ridges, MacRitchie Reservoir, or Fort Canning Park."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/carousel/visit-museum.png",
+                    "imageAlt":"Visit museums",
+                    "heading":"Visit museums",
+                    "text":"Visit museums like the National Gallery or Asian Civilisations Museum on free-admission days."
+                }
+            ]
+        }
+    ],
+    "card-img": {
+        "title": "Savor the City: Must-Try Dishes from Hawker Stalls to Hidden Gems",
+        "intro": "Eating in Singapore is half the adventure. From hawker stalls to Michelin-starred street food, the variety is endless and delicious.",
+        "data_count": "5",
+        "ctaText": "",
+        "ctaUrl": "",
+        "showReadLink": true,
+        "readLinkText": "",
+        "items": [
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/card-img/hainanese-chicken-rice.png",
+                "heading": "Hainanese Chicken Rice",
+                "text": "Simple, clean flavors with tender chicken and fragrant rice."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/card-img/laksa.png",
+                "heading": "Laksa",
+                "text": "Spicy, coconut-based noodle soup with prawns and fishcake."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/card-img/char-kway.png",
+                "heading": "Char Kway Teow",
+                "text": "Smoky stir-fried noodles with eggs, bean sprouts, and Chinese sausage."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/card-img/chili-crab.png",
+                "heading": "Chili Crab",
+                "text": "A spicy, sweet, finger-licking seafood favorite."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/card-img/satay.png",
+                "heading": "Satay",
+                "text": "Grilled meat skewers served with rich peanut sauce."
+            }
+        ]
+    },
+    "img-with-icon-content": [
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Unique Experiences You Can’t Leave Singapore Without",
+            "description":"There’s always something to do, no matter your mood or budget.",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/img-with-icon-content/unique-experience.png",
+            "items":[
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/icons/boat-ride.png",
+                "title":"Boat ride",
+                "text":"Take a boat ride along the Singapore River and see the skyline from the water."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/icons/bulb.png",
+                "title":"Supertree light show",
+                "text":"Watch the Supertree light show for free at Gardens by the Bay."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/icons/cable-car.png",
+                "title":"Cable car",
+                "text":"Ride the cable car to Sentosa for an overhead view of the island and city."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/icons/movie.png",
+                "title":"Outdoor Movie",
+                "text":"Catch an outdoor movie at Marina Barrage or have a sunset picnic with locals."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/icons/cocktail.png",
+                "title":"Sip a cocktail",
+                "text":"Sip a cocktail at one of Singapore’s rooftop bars 1-Altitude and Ce La Vi are top picks."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"Mix and match these activities for a trip that feels just right."
+                }
+            ]
+        },
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Travel Smarter with These Local Tips and Safety Notes",
+            "description":"",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/singapore/img-with-icon-content/travel-smarter.png",
+            "items":[
+                {
+                "icon":"",
+                "title":"Visit between February and April",
+                "text":"Visit between February and April for pleasant weather and fewer crowds."
+                },
+                {
+                "icon":"",
+                "title":"Laws are strict",
+                "text":"Laws are strict, so avoid littering, jaywalking, or bringing chewing gum."
+                },
+                {
+                "icon":"",
+                "title":"English is widely spoken",
+                "text":"English is widely spoken, making it easy to ask for help or directions."
+                },
+                {
+                "icon":"",
+                "title":"Tipping isn’t expected",
+                "text":"Tipping isn’t expected, but rounding up is appreciated in taxis or at casual restaurants."
+                },
+                {
+                "icon":"",
+                "title":"Incredibly safe",
+                "text":"Singapore is incredibly safe, but still be mindful of personal belongings."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"A little preparation goes a long way and lets you enjoy more of what really matters."
+                }
+            ]
+        }
+    ]
+}

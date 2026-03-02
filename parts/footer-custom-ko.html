@@ -1,0 +1,72 @@
+<footer class="site-footer"> 
+  <div class="footer__inner">
+    <!-- top -->
+    <div class="footer__top">
+      <!-- Brand / blurb / social -->
+      <div class="footer__brand">
+        <span class="brand brand__text">
+          <img
+            class="footer__logo"
+            src="https://creceri.com/wp-content/uploads/2025/10/2-Transparent-scaled-1-scaled.png"
+            alt="Creceri 푸터 로고"
+          />
+        </span>
+
+        <br>
+        <p class="footer__desc">
+          Creceri는 기술, 인사이트, 실제 스토리를 통해 중소기업의 성장을 돕는 지식 허브입니다.
+          전문가 가이드, 실행 가능한 전략, 영감을 주는 사례를 제공합니다.
+        </p>
+
+        <nav class="footer__social" aria-label="소셜 미디어">
+          <a href="#" aria-label="페이스북" class="social social-f"><img src="https://creceri.com/wp-content/uploads/2025/10/f.png" alt="Facebook"></a>
+          <a href="#" aria-label="엑스(트위터)" class="social social-x"><img src="https://creceri.com/wp-content/uploads/2025/10/x.png" alt="X"></a>
+          <a href="#" aria-label="인스타그램" class="social social-i"><img src="https://creceri.com/wp-content/uploads/2025/10/i.png" alt="Instagram"></a>
+          <a href="#" aria-label="유튜브" class="social social-y"><img src="https://creceri.com/wp-content/uploads/2025/10/y.png" alt="YouTube"></a>
+        </nav>
+      </div>
+
+      <!-- Nav columns -->
+      <nav class="footer__nav" aria-label="회사"> 
+        <h3 class="footer__heading">회사</h3><br>
+        <ul>
+          <li><a href="#">홈</a></li>
+          <li><a href="#">소개</a></li>
+          <li><a href="#">테크 스토리</a></li>
+          <li><a href="#">새로운 소식</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer__nav" aria-label="자료실">
+        <h3 class="footer__heading">자료실</h3><br>
+        <ul>
+          <li><a href="#">이커머스 개발</a></li>
+          <li><a href="#">웹사이트 및 CMS 개발</a></li>
+          <li><a href="#">UI/UX 및 앱 디자인</a></li>
+          <li><a href="#">디지털 마케팅</a></li>
+          <li><a href="#">인력 보강 및 팀 확장</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- divider -->
+    <hr class="footer__rule" aria-hidden="true" />
+
+    <!-- bottom -->
+    <div class="footer__bottom">
+      <p style="font-size: 18px !important;"><span class="footer-year"></span> Creceri. 모든 권리 보유</p>
+    </div>
+  </div>
+</footer>
+<script>
+  (function(){
+    const setYear = () => {
+      const els = document.querySelectorAll('.footer-year');
+      const y = new Date().getFullYear();
+      els.forEach(el => el.textContent = y);
+    };
+    if(document.readyState === 'loading'){
+      document.addEventListener('DOMContentLoaded', setYear, {once:true});
+    } else { setYear(); }
+  })();
+</script>

@@ -1,0 +1,66 @@
+.cta-card {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 10px 10px 20px;
+	border-radius: 12px;
+	color: #962E2A;
+	max-width: 85%;
+
+	/* Center the entire section horizontally */
+	margin: 0 auto 60px !important; /* Adds bottom margin (60px can be adjusted as needed) */
+
+	/* Ensure spacing isn't overridden by parent containers */
+	position: relative;
+	z-index: 1;
+}
+
+.strong_data{
+	font-size:20px !important;
+	font-weight:500  !important;
+}
+.span_desc{
+	font-size:18px !important;
+	font-weight:400  !important;
+}
+.cta-card__container {
+	max-width: 900px;
+	width: 100%;
+	margin: 0 auto; /* Centers inner content if needed */
+}
+.cta-card__title {
+	font-size: 36px;
+	padding-top: 20px;
+	color: #962E2A;
+	margin-bottom: 1rem;
+	line-height: 1.2;
+}
+.cta-card__actions {
+	margin-top: 1.5rem;
+}
+.cta-card__intro {
+	color: #333;
+	line-height: 1.6;
+	font-size: 18px;
+	font-weight:400;
+	margin-bottom: 1.5rem;
+}
+
+.cta-card__actions .cta-card__button {
+	display: inline-block;
+	padding: 0.6rem 1.25rem;
+	background-color: #8b1f11;
+	color: #fff;
+	border-radius: 6px;
+	font-weight: 600;
+	text-decoration: none;
+	transition: background-color 0.25s ease;
+}
+.cta-card__actions .cta-card__button:hover {
+	background-color: #a52a1c;
+	transform: translateY(-2px);
+}
+.cta-card__actions .cta-card__button:hover {
+	background-color: #a52a1c;
+}

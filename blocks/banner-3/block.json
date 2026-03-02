@@ -1,0 +1,262 @@
+{
+  "apiVersion": 2,
+  "name": "child/banner-3",
+  "title": "Child • Banner",
+  "category": "design",
+  "icon": "cover-image",
+  "margin-top": "0px",
+  "margin-right": "0px",
+  "margin-bottom": "0px",
+  "keywords": [
+    "hero",
+    "banner",
+    "landing"
+  ],
+  "description": "Hero banner with responsive brand/line/lead, CTA or Search, artwork sizing, and background controls.",
+  "supports": {
+    "anchor": true,
+    "html": false,
+    "align": false
+  },
+  "style": "banner3-style",
+  "editorStyle": "banner3-editor-style",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php",
+  "attributes": {
+    "anchor": {
+      "type": "string",
+      "default": ""
+    },
+    "className": {
+      "type": "string",
+      "default": ""
+    },
+    "brand": {
+      "type": "string",
+      "default": "Creceri"
+    },
+    "brandSize": {
+      "type": "number",
+      "default": 0
+    },
+    "line": {
+      "type": "string",
+      "default": "E-commerce, UX,<br>and Digital Knowledge"
+    },
+    "lead": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonType": {
+      "type": "string",
+      "enum": [
+        "Button",
+        "Search"
+      ],
+      "default": "Button"
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Explore"
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": "#explore"
+    },
+    "buttonClass": {
+      "type": "string",
+      "default": "btn btn-custom text-white"
+    },
+    "image": {
+      "type": "object",
+      "default": {}
+    },
+    "imagePosition": {
+      "type": "string",
+      "enum": [
+        "left",
+        "right"
+      ],
+      "default": "right"
+    },
+    "imageLocation": {
+      "type": "string",
+      "enum": [
+        "top",
+        "center",
+        "bottom"
+      ],
+      "default": "center"
+    },
+    "imageSize": {
+      "type": "string",
+      "enum": [
+        "s",
+        "m",
+        "l",
+        "xl"
+      ],
+      "default": "l"
+    },
+    "imageFlip": {
+      "type": "string",
+      "enum": [
+        "none",
+        "mirror"
+      ],
+      "default": "none"
+    },
+    "textAlign": {
+      "type": "string",
+      "enum": [
+        "auto",
+        "left",
+        "center",
+        "right"
+      ],
+      "default": "auto"
+    },
+    "textScale": {
+      "type": "number",
+      "default": 1
+    },
+    "imgShadow": {
+      "type": "string",
+      "enum": [
+        "On",
+        "Off"
+      ],
+      "default": "On"
+    },
+    "bgStatus": {
+      "type": "string",
+      "enum": [
+        "On",
+        "Off"
+      ],
+      "default": "Off"
+    },
+    "bgSpot": {
+      "type": "string",
+      "enum": [
+        "left",
+        "right",
+        "top",
+        "bottom"
+      ],
+      "default": "left"
+    },
+    "bgAngle": {
+      "type": "number",
+      "default": 230
+    },
+    "bgSpotW": {
+      "type": "number",
+      "default": 1200
+    },
+    "bgSpotH": {
+      "type": "number",
+      "default": 600
+    },
+    "bgSpotX": {
+      "type": "number",
+      "default": 20
+    },
+    "bgSpotY": {
+      "type": "number",
+      "default": 50
+    },
+    "bgSpotXPx": {
+      "type": "number",
+      "default": 0
+    },
+    "bgSpotYPx": {
+      "type": "number",
+      "default": 0
+    },
+    "bgSpotFade": {
+      "type": "number",
+      "default": 60
+    },
+    "bgLeft": {
+      "type": "string",
+      "default": "#cee6f2"
+    },
+    "bgMid": {
+      "type": "string",
+      "default": "#f1f7fb"
+    },
+    "bgRight": {
+      "type": "string",
+      "default": "#e3867d"
+    },
+    "bleedOffset": {
+      "type": "number",
+      "default": 88
+    },
+    "uiScale": {
+      "type": "number",
+      "default": 1
+    },
+    "artWMin": {
+      "type": "number",
+      "default": 520
+    },
+    "artWVW": {
+      "type": "number",
+      "default": 45
+    },
+    "artWMax": {
+      "type": "number",
+      "default": 820
+    },
+    "artScale": {
+      "type": "number",
+      "default": 1
+    },
+    "artYPx": {
+      "type": "number",
+      "default": 0
+    },
+    "btnMinW": {
+      "type": "number",
+      "default": 180
+    },
+    "brandMin": {
+      "type": "number",
+      "default": 40
+    },
+    "brandFluidVW": {
+      "type": "number",
+      "default": 6
+    },
+    "brandMax": {
+      "type": "number",
+      "default": 80
+    },
+    "lineMin": {
+      "type": "number",
+      "default": 22
+    },
+    "lineFluidVW": {
+      "type": "number",
+      "default": 2.8
+    },
+    "lineMax": {
+      "type": "number",
+      "default": 50
+    },
+    "leadMin": {
+      "type": "number",
+      "default": 16
+    },
+    "leadFluidVW": {
+      "type": "number",
+      "default": 1.15
+    },
+    "leadMax": {
+      "type": "number",
+      "default": 22
+    }
+  }
+}

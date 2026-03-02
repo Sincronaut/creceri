@@ -1,0 +1,52 @@
+{
+  "apiVersion": 3,
+  "name": "child/just-list",
+  "version": "1.4.0",
+  "title": "Choice Compare",
+  "category": "widgets",
+  "icon": "columns",
+  "description": "Comparison cards with per-card and first-column bullet overrides, item descriptions, and optional CTA.",
+  "textdomain": "vite-ttf-child-creceri",
+
+  "style": "file:./style.css",
+  "editorStyle": "file:./editor.css",
+  "render": "file:./render.php",
+
+  "supports": {
+    "align": ["wide", "full"],
+    "anchor": true,
+    "html": false,
+    "color": { "gradients": true, "background": true, "text": false },
+    "spacing": { "margin": ["top", "bottom"], "padding": true }
+  },
+
+  "attributes": {
+    "title": { "type": "string", "default": "When to Choose CMS vs. Custom Development" },
+    "description": { "type": "string", "default": "" },
+
+    "cards": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "heading": { "type": "string" },
+          "items": { "type": "array" },
+          "ctaText": { "type": "string" },
+          "ctaUrl": { "type": "string" },
+          "bulletStyle": { "type": "string", "enum": ["inherit","none","circle","check"], "default": "inherit" }
+        }
+      }
+    },
+
+    "bulletStyle": { "type": "string", "enum": ["circle","check"], "default": "circle" },
+    "firstColumnBulletStyle": { "type": "string", "enum": ["inherit","none","circle","check"], "default": "inherit" },
+    "showCta": { "type": "boolean", "default": true },
+
+    "gradient": { "type": "string", "default": "" },
+    "background": { "type": "string", "default": "" },
+    "align": { "type": "string" },
+    "className": { "type": "string" },
+    "anchor": { "type": "string" }
+  }
+}

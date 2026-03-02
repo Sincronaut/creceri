@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "child/subscribe",
+  "title": "Subscribe",
+  "description": "Newsletter signup section with image-or-code toggle.",
+  "category": "widgets",
+  "icon": "email",
+  "textdomain": "ai-blocks",
+  "supports": { "html": false, "anchor": true, "inserter": true },
+  "attributes": {
+    "variant":         { "type": "string", "enum": ["code", "image"], "default": "code" },
+
+    "sectionId":       { "type": "string", "default": "subscribe" },
+
+    "subhead":         { "type": "string", "default": "Stay Updated with the Latest in Technology" },
+    "title":           { "type": "string", "default": "Digital innovation doesn’t wait — keep pace with tools, platforms, and ideas." },
+    "kicker":          { "type": "string", "default": "Our blogs track platforms, design, marketing, and development so you don’t have to." },
+
+    "bullets": {
+      "type": "array",
+      "default": "",
+      "items": { "type": "object", "properties": { "text": { "type": "string" } } }
+    },
+
+    "formHeading":     { "type": "string", "default": "Want updates delivered directly to you?" },
+    "namePlaceholder": { "type": "string", "default": "Name" },
+    "emailPlaceholder":{ "type": "string", "default": "Email" },
+    "buttonText":      { "type": "string", "default": "Send Me Updates" },
+    "disclaimer":      { "type": "string", "default": "No spam, just insights and trends." },
+    "formAction":      { "type": "string", "default": "#" },
+    "formMethod":      { "type": "string", "default": "post" },
+
+    "image": {
+      "type": "object",
+      "default": {
+        "src": "",
+        "alt": "",
+        "loading": "lazy",
+        "decoding": "async"
+      }
+    }
+  },
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

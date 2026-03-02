@@ -1,0 +1,74 @@
+<footer class="site-footer"> 
+  <div class="footer__inner">
+    <!-- top -->
+    <div class="footer__top">
+      <!-- Brand / blurb / social -->
+      <div class="footer__brand">
+        <span class="brand brand__text">
+          <img
+            class="footer__logo"
+            src="https://creceri.com/wp-content/uploads/2025/10/2-Transparent-scaled-1-scaled.png"
+            alt="Creceri Footer Logo"
+          />
+        </span>
+
+        <br>
+        <p class="footer__desc">
+          Creceri is a knowledge hub dedicated to helping SMEs grow through
+          technology, insights, and real-world stories. We provide expert guides,
+          actionable strategies, and inspiring case studies.
+        </p>
+
+        <nav class="footer__social" aria-label="Social media">
+          <a href="#" aria-label="Facebook" class="social social-f"><img src="https://creceri.com/wp-content/uploads/2025/10/f.png" alt="Facebook"></a>
+          <a href="#" aria-label="X (Twitter)" class="social social-x"><img src="https://creceri.com/wp-content/uploads/2025/10/x.png" alt="X"></a>
+          <a href="#" aria-label="Instagram" class="social social-i"><img src="https://creceri.com/wp-content/uploads/2025/10/i.png" alt="Instagram"></a>
+          <a href="#" aria-label="YouTube" class="social social-y"><img src="https://creceri.com/wp-content/uploads/2025/10/y.png" alt="YouTube"></a>
+        </nav>
+      </div>
+
+      <!-- Nav columns -->
+      <nav class="footer__nav" aria-label="Company"> 
+        <h3 class="footer__heading">Company</h3><br>
+        <ul>
+          <li><a href="/home">Home</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/stories">Tek Stories</a></li>
+          <li><a href="/whats-new">What's New</a></li>
+          <li><a href="/blogs/">Blogs</a></li>
+        </ul>
+      </nav>
+
+      <nav class="footer__nav" aria-label="Resources">
+        <h3 class="footer__heading">Resources</h3><br>
+        <ul>
+          <li><a href="/ecommerce-development">E-commerce Development</a></li>
+          <li><a href="/website-cms-development">Website &amp; CMS Development</a></li>
+          <li><a href="/ui-ux-design">UI/UX &amp; App Design</a></li>
+          <li><a href="/digital-marketing">Digital Marketing</a></li>
+          <li><a href="/team-extension">Staffing and Team Extension</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- divider -->
+    <hr class="footer__rule" aria-hidden="true" />
+
+    <!-- bottom -->
+    <div class="footer__bottom">
+      <p style="font-size: 18px !important;"><span class="footer-year"></span> Creceri. All rights reserved</p>
+    </div>
+  </div>
+  <script>
+    (function(){
+      const setYear = () => {
+        const els = document.querySelectorAll('.footer-year');
+        const y = new Date().getFullYear();
+        els.forEach(el => el.textContent = y);
+      };
+      if(document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', setYear, {once:true});
+      } else { setYear(); }
+    })();
+  </script>
+</footer>

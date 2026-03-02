@@ -1,0 +1,35 @@
+{
+  "apiVersion": 2,
+  "name": "child/card-check",
+  "title": "Content About (Who We Are)",
+  "category": "child",
+  "icon": "admin-users",
+  "description": "Two-column section with flexible image alignment, descriptive text, and bullet list.",
+  "textdomain": "vite-ttf-child-creceri",
+  "attributes": {
+    "title": { "type": "string" },
+    "intro1": { "type": "string" },
+    "intro2": { "type": "string" },
+    "intro3": { "type": "string" },
+    "intro4": { "type": "array", "default": [] },
+    "contentTag": { "type": "string" },
+    "image": {
+      "type": "object",
+      "default": {
+        "src": "/wp-content/themes/vite-ttf-child-creceri/assets/images/about/about.png",
+        "alt": "Abstract red circles illustration"
+      }
+    },
+    "reverse": { "type": "boolean", "default": false },
+    "sectionId": { "type": "string", "default": "who-we-are" },
+    "btnName": { "type": "string" },
+    "btnUrl": { "type": "string" },
+    "btnClass": { "type": "string" },
+    "bullets": {
+      "type": "array",
+      "default": []
+    }
+  },
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}

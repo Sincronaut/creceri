@@ -1,0 +1,132 @@
+/* Section shell */
+.cms-benefits {
+  background: linear-gradient(180deg, #e9f3f7 0%, #ffffff 60%);
+  padding: 56px 16px 80px;
+}
+
+.cms-benefits__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cms-benefits__tag {
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #b12a2a;
+  text-align: center;
+  margin: 0 0 8px;
+}
+
+.cms-benefits__title {
+  text-align: center;
+  color: #b12a2a;
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 28px;
+}
+
+.cms-benefits__intro {
+  text-align: center;
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0 0 18px;
+}
+
+.cms-benefits__subhead {
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 10px 0 24px;
+  color: #1c1c1c;
+}
+
+/* Grid system */
+.cms-benefits__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(240px, 1fr));
+  gap: 28px;
+  justify-content: center;
+}
+
+/* Card */
+.benefit {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 22px rgba(15, 27, 40, 0.08);
+  padding: 26px 24px;
+  text-align: center;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+
+.benefit__icon {
+  width: 75px;
+  height: 75px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #b12a2a;
+}
+
+.benefit__icon > img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.benefit__icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.benefit__icon-count {
+  font-weight: 700;
+  font-size: 1rem;
+  display: inline-flex;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(177, 42, 42, 0.1);
+  color: #b12a2a;
+}
+
+.benefit__heading {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 6px;
+  color: #222;
+}
+
+.benefit__copy {
+  margin: 0;
+  font-size:20px;
+  line-height: 1.5;
+  color: #4a4a4a;
+}
+
+.cms-benefits__cta {
+  margin-top: 36px;
+  text-align: center;
+}
+
+/* Center the last card on its own row */
+.benefit--wide {
+  grid-column: 1 / -1;
+  max-width: 520px;
+  justify-self: center;
+}
+
+/* Responsive guardrails */
+@media (max-width: 720px) {
+  .cms-benefits__grid {
+    grid-template-columns: 1fr;
+  }
+  .benefit--wide {
+    max-width: none;
+    justify-self: stretch;
+  }
+}

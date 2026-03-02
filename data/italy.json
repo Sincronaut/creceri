@@ -1,0 +1,312 @@
+{
+    "banners": [
+        {
+            "title": "Explore Italy: Timeless Cities, Tasting Tables, and Stories Around Every Corner",
+            "description": "Italy has a way of pulling you in. Maybe it’s the timeless art, the sound of church bells in the morning, or the first bite of fresh pasta at a family-run trattoria. Whether you’re here for the history, the food, or just the views, Italy tours offer something for every traveler. This guide walks you through the highlights, from must-see cities to local tips that make your trip even better.",
+            "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/hero-banner/italy-banner.jpg",
+            "hAlign": "left",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Affordable Tour Packages That Maximize Every Euro",
+            "description": "You don’t need a luxury budget to see the best of Italy. Many group tours start around €70 per day and cover transport, accommodation, and guided visits. Want more flexibility? Rail passes and self-guided packages offer great value too. \n\n Pro tip: Browse platforms like TourRadar and GetYourGuide for skip-the-line deals and seasonal discounts. Travel in spring or fall for lower prices and fewer crowds.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Everyday Culture That Brings Italy to Life",
+            "description": "Italy is full of small customs that shape daily life. Meals are slow and social. Coffee is quick and often standing. Family is central, and conversations get loud in the best way. \n\n Greet people with “Buongiorno,” dress modestly when visiting churches, and remember that most stores close mid-afternoon for a break. Festivals like Carnival, Easter processions, and Ferragosto offer a deeper look at Italy’s traditions and celebrations. \n\n Traveling with curiosity and a little respect makes everything smoother and more fun.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "wide",
+            "title": "Begin Your Italian Journey. One Piazza, One Plate at a Time",
+            "description": "Italy isn’t just a destination. It’s a mosaic of sights, sounds, and sensations. One day you’re standing in the shadow of the Colosseum. Next, you're sipping wine as the sun sets behind terracotta rooftops. \n\n Explore Italy today, and let every espresso, train ride, and vineyard view become part of your story.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": true,
+            "buttonText": "Explore now!",
+            "buttonUrl": "/blogs/"
+        }
+    ],
+    "carousel": [
+        { 
+            "title":"Top 10 Italian Cities to Spark Your Wanderlust",
+            "intro":"If you’re building your first itinerary or just want the essentials, these cities are the perfect place to start.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/carousel-top-10/rome.jpg",
+                    "imageAlt":"Rome",
+                    "heading":"Rome",
+                    "text":"Ancient ruins, Vatican treasures, espresso bars, and a sense of grandeur."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/carousel-top-10/venice.jpg",
+                    "imageAlt":"Venice",
+                    "heading":"Venice",
+                    "text":"Wandering canals, hidden piazzas, and gondolas floating past crumbling facades."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/carousel-top-10/florence.jpg",
+                    "imageAlt":"Florence",
+                    "heading":"Florence",
+                    "text":"Renaissance art, creamy gelato, and views from the top of the Duomo."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/carousel-top-10/milan.jpg",
+                    "imageAlt":"Milan",
+                    "heading":"Milan",
+                    "text":"A stylish mix of fashion, design, and historic cathedrals."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                }
+            ]
+        }
+    ],
+    "card-img": [
+        {
+            "title": "Essential Italian Dishes to Savor Like a Local",
+            "intro": "Asking anyone who’s been eating in Italy is half the experience. Each region has its specialties, and yes, pizza and pasta are just the beginning.",
+            "data_count": "5",
+            "ctaText": "",
+            "ctaUrl": "",
+            "showReadLink": true,
+            "readLinkText": "",
+            "design":"left",
+            "items": [
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/card-img-essential-italian/carbonara.jpg",
+                    "heading": "Pasta Carbonara",
+                    "text": "Creamy, rich, and Roman to the core."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/card-img-essential-italian/margherita.jpg",
+                    "heading": "Margherita Pizza",
+                    "text": "Naples does it best: simple, fresh, and unforgettable."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/card-img-essential-italian/risotto.jpg",
+                    "heading": "Risotto alla Milanese",
+                    "text": "Golden saffron risotto, silky and flavorful."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/card-img-essential-italian/lasagna.jpg",
+                    "heading": "Lasagna",
+                    "text": "Baked layers of comfort, especially in Bologna."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/card-img-essential-italian/tiramisu.jpg",
+                    "heading": "Tiramisu",
+                    "text": "Light, creamy, and just the right amount of coffee kick."
+                }
+            ]
+        },
+        {
+            "align":"wide",
+            "variant":"gradient-sand",
+            "title":"Italy’s Hidden Gems: Go Beyond the Tourist Trail",
+            "intro":"Italy’s big cities are unforgettable, but the real magic often happens in the quieter corners.",
+            "data_count":"5",
+            "ctaText":"View more",
+            "ctaUrl":"/tek-stories",
+            "cols":{"xs":1,"sm":2,"lg":3},
+            "showReadLink": true,
+            "design":"top",
+            "animation": "On",
+            "items": [
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/card-img-italy-hidden-gem/matera.jpg",
+                    "heading": "Matera",
+                    "text": "A surreal city of cave dwellings and stone churches."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/card-img-italy-hidden-gem/lecce.jpg",
+                    "heading": "Lecce",
+                    "text": "Southern Italy’s “Florence” with fewer tourists and plenty of charm."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/card-img-italy-hidden-gem/trento.jpg",
+                    "heading": "Trento",
+                    "text": "Mountain air, clean streets, and Austrian-Italian fusion."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/card-img-italy-hidden-gem/bolzano.jpg",
+                    "heading": "Bolzano",
+                    "text": "Where the Alps meet cappuccinos, and trails start right outside town."
+                },
+                {
+                    "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/card-img-italy-hidden-gem/orvieto.jpg",
+                    "heading": "Orvieto",
+                    "text": "A hilltop Umbrian town with an underground maze and Gothic cathedral."
+                }
+            ]
+        }
+    ],
+    "img-with-icon-content": [
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Sample Itineraries to Fit Your Pace and Passion",
+            "description":"Planning can feel overwhelming, but it doesn’t have to be. Here are a few sample routes to match your style and timeframe.",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/img-with-content/1.jpg",
+            "items":[
+                {
+                "icon":"",
+                "title":"5 Days: Rome, Florence, and Pisa",
+                "text":"Great for first-timers."
+                },
+                {
+                "icon":"",
+                "title":"Wine & Food Tour",
+                "text":"Visit Tuscany and Emilia-Romagna with time in Siena and Bologna."
+                },
+                {
+                "icon":"",
+                "title":"7 Days: Venice, Verona, Milan, and Lake Como",
+                "text":"Northern charm and city highlights."
+                },
+                {
+                "icon":"",
+                "title":"Scenic Coast & Islands",
+                "text":"Travel from the Amalfi Coast to Capri and Cinque Terre."
+                },
+                {
+                "icon":"",
+                "title":"️10 Days: Naples to Venice",
+                "text":"Explore south to north with stops in Rome and Florence."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"Each one balances city sights with downtime and local flavor."
+                }
+            ]
+        },
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Iconic Activities That Turn Your Tour Into a Story",
+            "description":"Looking to make your tour more than just a sightseeing checklist? Mix in these experiences for a richer trip",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/img-with-content/2.jpg",
+            "items":[
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/icons/vespa.png",
+                "title":"Vespa Ride",
+                "text":"Explore the rolling Tuscan hills in style."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/icons/boat.png",
+                "title":"Lake Como Ferry",
+                "text":"Cruise past villas with stunning mountain views."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/icons/pasta.png",
+                "title":"Pasta Class",
+                "text":"Learn to craft authentic Italian pasta in Rome or Florence."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/icons/wine.png",
+                "title":"Vineyard Visit",
+                "text":"Sample local wines straight from the source."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/icons/boots.png",
+                "title":"Cinque Terre Hike",
+                "text":"Trek coastal trails and cool off with a swim."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"The best memories often come from the unplanned stops along the way."
+                }
+            ]
+        },
+        {
+            "align":"wide",
+            "position":"right",
+            "title":"Travel Smart: Practical Tips From the Ground",
+            "description":"",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/img-with-content/3.jpg",
+            "items":[
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/icons/bag.png",
+                "title":"Travel light",
+                "text":"cobblestone streets and stairs don’t mix well with heavy luggage."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/icons/plate.png",
+                "title":"Eat late",
+                "text":"most locals dine around 8 p.m. or later."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/icons/speak.png",
+                "title":"Speak a little Italian",
+                "text":"even a few words go a long way."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/icons/avoid.png",
+                "title":"Avoid high seasons",
+                "text":"May, June, September, and October offer better weather and fewer crowds."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/italy/icons/cash.png",
+                "title":"Carry cash",
+                "text":"especially in small towns or markets."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"You don’t need to plan every moment. Just have a solid base, then let Italy do the rest."
+                }
+            ]
+        }
+    ]
+}

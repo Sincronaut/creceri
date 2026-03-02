@@ -1,0 +1,33 @@
+{
+  "apiVersion": 3,
+  "name": "child/card-expirience",
+  "title": "Section · Card Image Animation",
+  "category": "widgets",
+  "description": "Section with heading, intro, and animated image cards.",
+  "icon": "screenoptions",
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "title": { "type": "string", "default": "" },
+    "intro": { "type": "string", "default": "" },
+    "items": { "type": "array", "default": [] },
+
+    "design": { "type": "string", "enum": ["left","top"], "default": "left" },
+
+    "contentAlign": { "type": "string", "enum": ["left", "center", "right"], "default": "center" },
+
+    "showReadLink": { "type": "boolean", "default": true },
+    "readLinkText": { "type": "string", "default": "Learn more" },
+
+    "showArrows": { "type": "boolean", "default": true },
+    "showIndicators": { "type": "boolean", "default": true },
+
+    "dataIndex": { "type": "number", "default": 0 },
+    "dataKey": { "type": "string", "default": "card-img" }
+  },
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}

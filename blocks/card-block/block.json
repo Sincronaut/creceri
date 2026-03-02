@@ -1,0 +1,40 @@
+{
+  "apiVersion": 2,
+  "name": "child/card-block",
+  "title": "Card Block",
+  "category": "design",
+  "icon": "screenoptions",
+  "description": "Server-rendered card grid with title, intro, and items.",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "intro": {
+      "type": "string",
+      "default": ""
+    },
+    "items": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object"
+      }
+    }
+  },
+  "supports": {
+    "anchor": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "style": "file:./style.css",
+  "editorStyle": "card-block-editor-style",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

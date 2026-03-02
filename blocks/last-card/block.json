@@ -1,0 +1,36 @@
+{
+  "apiVersion": 3,
+  "name": "child/last-card",
+  "title": "CTA Gradient Card",
+  "category": "widgets",
+  "description": "A full-width CTA card with title, description, and a button.",
+  "icon": "megaphone",
+  "supports": {
+    "align": ["wide", "full"],
+    "html": false
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "intro": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonText": {
+      "type": "string",
+      "default": ""
+    },
+    "buttonUrl": {
+      "type": "string",
+      "default": ""
+    },
+    "gradient": {
+      "type": "string",
+      "default": "linear-gradient(90deg, #e5b19c 0%, #cde3ef 100%)"
+    }
+  },
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}

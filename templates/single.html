@@ -1,0 +1,651 @@
+<body style="background:
+      radial-gradient(1200px 320px at 65% -120px, #f7efee 0%, rgba(247,239,238,0) 55%),
+      linear-gradient(90deg, var(--bg-left), var(--bg-right));">
+
+  <style>
+    :root {
+      --bg-left: #fff7f6;
+      --bg-right: #ffffff;
+
+      /* optional: reuse brand */
+      --brand: #962E2A;
+    }
+
+    .has-global-padding {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+    }
+
+    .page-bg {
+      background:
+        radial-gradient(1200px 320px at 65% -120px, #f7efee 0%, rgba(247, 239, 238, 0) 55%),
+        linear-gradient(90deg, var(--bg-left), var(--bg-right));
+    }
+
+    /* Layout */
+    .container {
+      margin-inline: auto;
+      padding-inline: 20px;
+    }
+
+    .title-row {
+      margin-top: 30px;
+      padding-left: 100px;
+    }
+
+    .meta-row {
+      margin-top: 6px;
+      color: #8a8a8a;
+      font-size: 13px;
+    }
+
+  .content-row {
+    margin-top: 22px;
+    padding-inline: 0 20px;
+    overflow: visible;
+  }
+
+    .tags-row {
+      margin-top: 14px;
+    }
+
+    .nav-row {
+      margin-top: 28px;
+    }
+
+    .related-row {
+      margin-top: 36px;
+    }
+
+    /* Hero */
+    .post-hero {
+      margin-top: 18px;
+    }
+
+    .hero-media {
+      position: relative;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .hero-image {
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 14px;
+    }
+
+    /* Background artwork bottom-left */
+    .card-bg {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      z-index: 1;
+      width: min(32%, 280px);
+      height: auto;
+      display: block;
+      pointer-events: none;
+    }
+
+    .hero-image {
+      aspect-ratio: 11/6 !important;
+    }
+
+    /* Author chip */
+    .chip-wrap {
+      position: absolute;
+      left: 14px;
+      bottom: 14px;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      gap: 12px;
+    }
+
+    .chip-dot {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #d9d9d9;
+      box-shadow: 0 0 0 2px #ffffffaa;
+    }
+
+    .wp-block-post-author__byline {
+      display: none;
+    }
+
+    .author-name .wp-block-post-author__name {
+      font-weight: 700;
+      color: #8c2626;
+      display: block;
+    }
+
+    .author-chip {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+      line-height: 0.6;
+    }
+
+    .chip-date {
+      font-size: 12px;
+      opacity: .85;
+      margin-top: 0;
+    }
+
+    /* Breadcrumb (Rank Math) */
+    .breadcrumb,
+    .rank-math-breadcrumb {
+      margin: 10px 0 0;
+      font-size: 18px;
+      color: #8c2626;
+    }
+
+    .rank-math-breadcrumb a {
+      color: #353434;
+      text-decoration: none;
+    }
+
+    .rank-math-breadcrumb .separator {
+      margin: 0 .4rem;
+      opacity: .7;
+      color: #353434;
+    }
+
+  /* Title */
+  .post-title {
+    font-size: 45px;
+    line-height: 1.2;
+    margin: 6px 0 0;
+  }
+
+    /* Terms */
+    .post-cats a,
+    .post-tags a {
+      display: inline-block;
+      background: #f2e9e8;
+      color: #a24f42;
+      padding: 6px 10px;
+      border-radius: 999px;
+      margin-left: 8px;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    /* Content */
+    .wp-block-post-content>* {
+      max-width: auto;
+      margin-inline: auto;
+    }
+
+    .wp-block-post-content p {
+      line-height: 1.75;
+    }
+
+  /* Nav */
+  .nav-prev a,
+  .nav-next a {
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  /* Article layout with TOC */
+  .article-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 300px;
+    gap: 40px;
+    align-items: start;
+    overflow: visible;
+  }
+
+  .article-body {
+    min-width: 0;
+  }
+
+  .toc {
+    position: sticky;
+    position: -webkit-sticky;
+    top: 100px;
+    align-self: start;
+    width: 280px;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 14px 16px;
+    box-shadow: 0 8px 22px rgba(0, 0, 0, .05);
+    max-height: calc(100vh - 160px);
+    overflow: auto;
+    z-index: 2;
+  }
+
+  .toc.is-fixed {
+    position: fixed;
+    
+    right: max(24px, calc((100vw - 1280px) / 2));
+  }
+
+  .toc.at-bottom {
+    position: sticky;
+    top: auto;
+  }
+
+  .toc__title {
+    font-weight: 700;
+    color: #962E2A;
+    margin-bottom: 10px;
+    font-size: 14px;
+    letter-spacing: .01em;
+    text-transform: uppercase;
+  }
+
+  .toc__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 8px;
+    font-size: 16px;
+    line-height: 1.35;
+  }
+
+  .toc__item a {
+    color: #333;
+    text-decoration: none;
+  }
+
+  .toc__item--h2 a {
+    padding-left: 14px;
+    display: block;
+    border-left: 2px solid #e8d3cf;
+  }
+
+  .toc__item a:hover,
+  .toc__item a:focus {
+    color: #962E2A;
+    text-decoration: underline;
+  }
+
+  /* Related (if used) */
+  .related-card {
+    background: #fff;
+    border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, .05);
+    }
+
+    .related-title {
+      margin: 10px 0 4px;
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    .last {
+      text-transform: capitalize !important;
+    }
+
+    /* === Floating actions (back-to-top + share) === */
+  .floating-actions {
+    position: fixed;
+    inset-block-end: 24px;
+    inset-inline-end: 24px;
+    z-index: 999;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: repeat(2, auto);
+    gap: 10px;
+    align-items: center;
+    justify-items: center;
+    width: max-content;
+    pointer-events: none;
+  }
+
+    .floating-actions .fab {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--brand, #962E2A);
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
+      transition: transform .15s ease, opacity .15s ease;
+      pointer-events: auto;
+    }
+
+    .floating-actions .fab:hover {
+      transform: translateY(-1px);
+    }
+
+    .back-to-top {
+      display: none;
+    }
+
+    .back-to-top.show {
+      display: inline-flex;
+    }
+
+    .share-toggle {
+      background: var(--brand, #962E2A);
+    }
+
+  .share-menu {
+    grid-column: 1 / 4;
+    grid-row: 1 / 2;
+    display: none;
+    flex-direction: row;
+    gap: 10px;
+    pointer-events: auto;
+  }
+
+  .share-menu.open {
+    display: flex;
+  }
+
+  .floating-actions.share-open .share-menu {
+    display: flex;
+  }
+
+  .share-toggle {
+    grid-column: 4 / 5;
+    grid-row: 1 / 2;
+  }
+
+  .back-wrapper {
+    grid-column: 4 / 5;
+    grid-row: 2 / 3;
+  }
+
+    .share-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: none;
+      background: var(--brand, #962E2A);
+      color: #fff;
+      box-shadow: 0 6px 18px rgba(0,0,0,.16);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+    }
+
+    .share-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    @media (max-width: 991px) {
+      .author-name {
+        font-size: 14px;
+      }
+
+      .wp-block-heading {
+        font-size: clamp(24px, 5vw, 28px);
+      }
+
+      .chip-dot {
+        width: 40px;
+        height: 40px;
+      }
+
+      .article-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: relative;
+        top: auto;
+        max-height: none;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .card-bg {
+        position: absolute;
+        left: 10;
+        bottom: 10;
+        z-index: 1;
+        width: 230px;
+        height: auto;
+        display: block;
+        pointer-events: none;
+      }
+
+      .wp-block-group {
+        padding: 0px 10px 0px !important;
+      }
+    }
+  </style>
+
+  <!-- wp:template-part {"slug":"header-custom-main"} /-->
+
+  <!-- wp:group {"tagName":"main","className":"alignfull page-bg"} -->
+  <main class="wp-block-group alignfull page-bg">
+
+    <!-- Breadcrumb -->
+    <!-- wp:group {"className":"container meta-row"} -->
+    <div class="wp-block-group container meta-row">
+      <!-- wp:shortcode -->[rank_math_breadcrumb]<!-- /wp:shortcode -->
+    </div>
+    <!-- /wp:group -->
+
+    <!-- Hero -->
+    <!-- wp:group {"className":"post-hero container"} -->
+    <div class="wp-block-group post-hero container">
+      <!-- wp:group {"className":"hero-media"} -->
+      <div class="wp-block-group hero-media">
+
+        <!-- Featured image -->
+        <!-- wp:post-featured-image {"isLink":false,"aspectRatio":"16/6","style":{"border":{"radius":"14px"}},"className":"hero-image"} /-->
+
+        <!-- Background artwork -->
+        <img class="card-bg" src="https://creceri.com/wp-content/uploads/2025/11/author.png" alt=""
+          aria-hidden="true" />
+
+        <!-- Author chip -->
+        <div class="chip-wrap">
+          <span class="chip-dot" aria-hidden="true"></span>
+          <div class="author-chip">
+            <span class="author-name">
+              <!-- wp:post-author {"showAvatar":false,"isLink":false,"byline":" "} /-->
+            </span>
+            <span class="chip-date">
+              <!-- wp:post-date {"format":"F j, Y","isLink":false} /-->
+            </span>
+          </div>
+        </div>
+
+      </div>
+      <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
+
+  <!-- Content -->
+  <!-- wp:group {"className":"content-row container"} -->
+  <div class="wp-block-group content-row container">
+      <div class="article-grid">
+        <div class="article-body">
+          <!-- wp:post-content {"layout":{"type":"constrained"}} /-->
+        </div>
+        <aside class="toc" aria-label="Table of contents">
+          <div class="toc__title">On this page</div>
+          <nav class="toc__nav">
+            <ol class="toc__list"></ol>
+          </nav>
+        </aside>
+      </div>
+  </div>
+  <!-- /wp:group -->
+
+    <!-- wp:group {"className":"nav-row container"} -->
+    <div class="wp-block-group nav-row container">
+    </div>
+    <!-- /wp:group -->
+
+    <!-- wp:child/slide-gallery {
+            "title":"Related Blogs",
+            "content":" ",
+            "backgroundType":"none"
+     } /-->
+
+  </main>
+  <!-- /wp:group -->
+
+  <!-- wp:template-part {"slug":"footer-custom"} /-->
+
+  <!-- Floating actions -->
+  <div class="floating-actions">
+    <div class="share-menu" aria-label="Share menu">
+      <button class="share-btn share-copy" title="Copy link" aria-label="Copy link">🔗</button>
+      <button class="share-btn share-x" title="Share to X" aria-label="Share to X">X</button>
+      <button class="share-btn share-in" title="Share to LinkedIn" aria-label="Share to LinkedIn">in</button>
+    </div>
+    <button type="button" class="fab share-toggle" aria-label="Share">⋯</button>
+    <div class="back-wrapper">
+      <button type="button" class="fab back-to-top" aria-label="Back to top">↑</button>
+    </div>
+  </div>
+
+  <script>
+    // simple scroll-to-top behavior + TOC builder
+    document.addEventListener('DOMContentLoaded', function () {
+      const backBtn = document.querySelector('.back-to-top');
+      const shareToggle = document.querySelector('.share-toggle');
+      const shareMenu = document.querySelector('.share-menu');
+      const fabWrap = document.querySelector('.floating-actions');
+      const copyBtn = document.querySelector('.share-copy');
+      const shareX = document.querySelector('.share-x');
+      const shareIn = document.querySelector('.share-in');
+
+      // show/hide based on scroll position
+      const toggleFloating = () => {
+        const show = window.scrollY > 300;
+        backBtn?.classList.toggle('show', show);
+        shareToggle?.classList.toggle('show', show);
+      };
+      window.addEventListener('scroll', toggleFloating, { passive: true });
+      toggleFloating();
+
+      // smooth scroll to top
+      backBtn?.addEventListener('click', function () {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+
+      // share toggle
+      shareToggle?.addEventListener('click', () => {
+        shareMenu?.classList.toggle('open');
+        fabWrap?.classList.toggle('share-open');
+      });
+
+      // close share when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!shareMenu || !shareToggle || !fabWrap) return;
+        const target = e.target;
+        if (shareMenu.contains(target) || shareToggle.contains(target)) return;
+        shareMenu.classList.remove('open');
+        fabWrap.classList.remove('share-open');
+      });
+
+      // share helpers
+      const pageUrl = encodeURIComponent(window.location.href);
+      const pageTitle = encodeURIComponent(document.title);
+
+      copyBtn?.addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(window.location.href);
+          copyBtn.textContent = '✔';
+          setTimeout(() => (copyBtn.textContent = '🔗'), 1200);
+        } catch (_) {
+          copyBtn.textContent = '…';
+          setTimeout(() => (copyBtn.textContent = '🔗'), 1200);
+        }
+      });
+
+      shareX?.addEventListener('click', () => {
+        const url = `https://twitter.com/intent/tweet?text=${pageTitle}&url=${pageUrl}`;
+        window.open(url, '_blank');
+      });
+
+      shareIn?.addEventListener('click', () => {
+        const url = `https://www.linkedin.com/sharing/share-offsite/?url=${pageUrl}`;
+        window.open(url, '_blank');
+      });
+
+      // Build TOC from h1/h2
+      const tocList = document.querySelector('.toc__list');
+      const toc = document.querySelector('.toc');
+      const grid = document.querySelector('.article-grid');
+      const content = document.querySelector('.article-body .wp-block-post-content');
+      if (tocList && toc && grid && content) {
+        const slugify = (str) => str.toLowerCase()
+          .trim()
+          .replace(/[^a-z0-9\s-]/g, '')
+          .replace(/\s+/g, '-')
+          .replace(/-+/g, '-');
+
+        const headings = content.querySelectorAll('h1, h2');
+        headings.forEach((h, idx) => {
+          if (!h.textContent.trim()) return;
+          if (!h.id) {
+            const base = slugify(h.textContent) || `section-${idx + 1}`;
+            let id = base, n = 1;
+            while (document.getElementById(id)) {
+              id = `${base}-${n++}`;
+            }
+            h.id = id;
+          }
+          const li = document.createElement('li');
+          li.className = `toc__item toc__item--${h.tagName.toLowerCase()}`;
+          const a = document.createElement('a');
+          a.href = `#${h.id}`;
+          a.textContent = h.textContent;
+          li.appendChild(a);
+          tocList.appendChild(li);
+        });
+
+        // hide empty TOC
+        if (!tocList.children.length) {
+          tocList.closest('.toc')?.classList.add('is-empty');
+        }
+
+        // Sticky/fixed fallback
+        const updateToc = () => {
+          const tocRect = toc.getBoundingClientRect();
+          const scrollY = window.scrollY || window.pageYOffset;
+
+          const start = content.offsetTop - 120;
+          const stop = content.offsetTop + content.offsetHeight - tocRect.height - 40;
+
+          if (scrollY > start && scrollY < stop) {
+            toc.classList.add('is-fixed');
+            toc.classList.remove('at-bottom');
+          } else if (scrollY >= stop) {
+            toc.classList.remove('is-fixed');
+            toc.classList.add('at-bottom');
+          } else {
+            toc.classList.remove('is-fixed');
+            toc.classList.remove('at-bottom');
+          }
+        };
+
+        window.addEventListener('scroll', updateToc, { passive: true });
+        window.addEventListener('resize', updateToc);
+        updateToc();
+      }
+    });
+  </script>
+</body>

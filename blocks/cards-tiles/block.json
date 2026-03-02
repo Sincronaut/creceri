@@ -1,0 +1,64 @@
+{
+  "apiVersion": 3,
+  "name": "child/cards-tiles",
+  "title": "Cards Tiles",
+  "category": "widgets",
+  "description": "Grid of feature cards with optional taglines, intros, and CTA.",
+  "icon": "screenoptions",
+  "supports": {
+    "html": false,
+    "anchor": true,
+    "inserter": true,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "contentTag": { "type": "string", "default": "" },
+    "title": {
+      "type": "string",
+      "default": "Why Does a CMS Matter for Your Website?"
+    },
+    "intro": { "type": "string", "default": "" },
+    "intro1": { "type": "string", "default": "" },
+    "intro2": { "type": "string", "default": "" },
+    "listHeading": { "type": "string", "default": "" },
+    "sectionId": { "type": "string", "default": "" },
+    "padding_left": { "type": "string", "default": "" },
+    "padding_right": { "type": "string", "default": "" },
+    "background": { "type": "string", "default": "" },
+    "reverse": { "type": "boolean", "default": false },
+    "listMode": { "type": "string", "default": "features" },
+    "btnName": { "type": "string", "default": "" },
+    "btnUrl": { "type": "string", "default": "#" },
+    "btnClass": { "type": "string", "default": "btn btn-custom" },
+    "features": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "icon": { "type": "string" },
+          "title": { "type": "string" },
+          "desc": { "type": "string" },
+          "variant": { "type": "string" }
+        }
+      }
+    },
+    "image": {
+      "type": "object",
+      "default": {
+        "src": "",
+        "alt": ""
+      },
+      "properties": {
+        "src": { "type": "string" },
+        "alt": { "type": "string" },
+        "width": { "type": "number" },
+        "height": { "type": "number" },
+        "loading": { "type": "string", "enum": ["lazy", "eager"] },
+        "decoding": { "type": "string", "enum": ["async", "sync", "auto"] }
+      }
+    }
+  },
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}

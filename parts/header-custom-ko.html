@@ -1,0 +1,504 @@
+<style>
+*,*::before,*::after{ box-sizing:border-box; }
+
+:root {
+  --brand:#962E2A; --ink:#1f2328; --muted:#6b6f75;
+  --rose-500:#962E2A; --rose-100:#F5E8E6;
+  --card:#962E2A; --panel:#962E2A; --radius:14px;
+  --shadow:0 6px 18px rgba(149,46,42,.08), 0 2px 6px rgba(17,24,39,.06);
+  --rail-gap:14px;
+
+  --height-desktop:380px; --height-mobile:220px;
+  --expanded:64%; --collapsed:9%;
+  --fs-h2:32px; --fs-h3:22px; --fs-body:16px;
+
+  --bg-start:#f6e3d6; --bg-end:#962E2A; --card-bg:#962E2A;
+  --text:#1f2937; --accent:#c0392b; --gap:24px; --card-h:360px;
+  --topbar-h:0px;
+
+  --header-bg:transparent;
+  --header-bg-scrolled:#962E2A;
+
+  --hover-accent:#FFA318;
+
+  /* Logo sizing tokens */
+  --logo-max-w: 280px;
+  --logo-h-desktop: clamp(34px, 5.2vw, 58px);
+  --logo-h-tablet:  clamp(30px, 6.2vw, 52px);
+  --logo-h-mobile:  clamp(26px, 8.8vw, 44px);
+  --logo-h-scrolled: clamp(30px, 4.4vw, 52px);
+}
+
+body{
+  margin:0;
+  font:500 16px/1.3 system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial,"Noto Sans","Inter";
+  padding-top:var(--header-h,64px);
+}
+
+/* CTA */
+.btn-pill{
+  min-width: clamp(160px, 28vw, 260px);
+  width: auto !important;
+  --c-start:#962E2A !important; --c-end:#FFA318 !important;
+  text-decoration:none;
+  background-image:linear-gradient(90deg,var(--c-start) 0 50%,var(--c-end) 50% 100%) !important;
+  background-size:200% 100% !important; background-position:left center !important;
+  background-color:var(--c-start) !important; color:#fff !important;
+  border:0 !important; padding:.75rem 1.25rem !important; border-radius:999px !important; cursor:pointer !important;
+  transition:background-position .35s ease,color .35s ease,box-shadow .2s ease,transform .2s ease !important;
+  font-size:18px !important; font-weight:650 !important;
+}
+.btn-pill:hover{ background-position:right center !important; color:#000 !important; box-shadow:0 6px 16px rgba(0,0,0,.15) !important; transform:translateY(-1px) !important; }
+.btn-pill:focus-visible{ outline:none !important; box-shadow:0 0 0 3px rgba(255,163,24,.45),0 6px 16px rgba(0,0,0,.15) !important; }
+@media (prefers-reduced-motion:reduce){ .btn-pill{ transition:none !important; } }
+.btn-pill:active{ transform:translateY(1px); }
+
+/* Header */
+.main-header{
+  position:fixed; inset:0 0 auto 0; z-index:1000;
+  border-bottom:1px solid transparent; box-shadow:none;
+  padding:0 100px; font-size:18px;
+  background-color:var(--header-bg,transparent);
+  color:var(--brand);
+}
+.main-header:not(.is-ready){ transition:none !important; box-shadow:none !important; border-bottom-color:transparent !important; }
+
+/* Scroll (desktop only) */
+.main-header.is-scrolled{
+  background-color:var(--header-bg-scrolled) !important;
+  border-bottom-color:rgba(0,0,0,.06) !important;
+  box-shadow:0 8px 20px rgba(0,0,0,.15) !important;
+  color:#fff;
+}
+
+.main-header.is-scrolled .main-header__brand-text{ color:#fff; }
+.main-header.is-scrolled .main-header__nav-link,
+.main-header.is-scrolled .main-header__nav-button{ color:#fff; transition:color .3s ease, background-color .3s ease; }
+
+/* Active pill flip */
+.main-header .main-header__nav-link.active,
+.main-header .main-header__nav-button.is-active{
+  background:var(--brand); color:#fff; border-radius:10px; padding:8px 16px;
+}
+.main-header.is-scrolled .main-header__nav-link.active,
+.main-header.is-scrolled .main-header__nav-button.is-active{
+  background:#fff; color:var(--brand);
+}
+.main-header.is-scrolled .main-header__nav-link:hover,
+.main-header.is-scrolled .main-header__nav-button:hover{ background:rgba(255,255,255,.15); color:#fff; }
+
+/* Hero-on-top */
+body:has(.hero--bleed-top) .main-header{ background-color:transparent; border-bottom-color:transparent; box-shadow:none; color:var(--brand); }
+body:has(.hero--bleed-top) .main-header.is-scrolled{ background-color:var(--header-bg-scrolled) !important; color:#fff; }
+
+/* Inner */
+.main-header__inner{
+  max-width:1500px; margin:0 auto; padding:14px 20px;
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px;
+}
+
+/* Brand */
+.main-header__brand{ display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--brand); font-weight:600; }
+
+/* Responsive logo — key change */
+.main-header__brand-text{ margin-left:0 !important; display:block; }
+.main-header__brand-logo{
+  display:block;
+  height:var(--logo-h-desktop);
+  width:auto;
+  max-width:var(--logo-max-w);
+  object-fit:contain;
+  image-rendering:auto;
+}
+.main-header.is-scrolled .main-header__brand-logo{
+  height:var(--logo-h-scrolled);
+}
+
+/* Tablet / Mobile logo sizing + layout */
+@media (max-width:1328px){
+  .main-header{ padding:0 50px !important; font-size:15px; }
+  .main-header__nav-list{ gap:10px !important; }
+  .main-header__brand-logo{ height:var(--logo-h-tablet); max-width:calc(var(--logo-max-w) - 20px); }
+}
+@media (max-width:1050px){
+  .main-header{ padding:0 !important; font-size:15px; }
+  .main-header__nav-list{ gap:10px !important; }
+  .main-header__brand-logo{ height:var(--logo-h-tablet); max-width:calc(var(--logo-max-w) - 20px); }
+}
+@media (max-width:1004px){
+  .main-header,
+  .main-header.is-scrolled,
+  body:has(.hero--bleed-top) .main-header,
+  body:has(.hero--bleed-top) .main-header.is-scrolled{
+    background:#fff !important; border-bottom:1px solid rgba(0,0,0,.06) !important; box-shadow:none !important; color:var(--brand) !important;
+  }
+  .main-header__inner{ grid-template-columns:1fr auto; grid-auto-rows:auto; transition:none !important; background:#fff !important; padding:0 !important; }
+
+  /* Mobile logo size */
+  .main-header__brand-logo{ height:var(--logo-h-mobile); max-width:calc(var(--logo-max-w) - 40px); }
+}
+
+/* Nav */
+.main-header__nav{ grid-column:3; justify-self:end; }
+.main-header__nav-list{ list-style:none; margin:0; padding:0; display:flex; align-items:center; gap:28px; flex-wrap:nowrap; }
+.main-header__nav-link,.main-header__nav-button{
+  text-decoration:none; color:var(--brand); font-weight:520;
+  padding:8px 12px; border-radius:10px; display:inline-flex; align-items:center; gap:6px;
+  border:0; background:transparent; cursor:pointer; white-space:nowrap; position:relative;
+}
+.main-header__dropdown{ position:relative; }
+
+/* Focus */
+.main-header__nav-link:focus-visible,.main-header__submenu a:focus-visible{
+  background:rgba(150,46,42,.12); color:var(--brand);
+  outline:2px solid rgba(138,58,51,.4); outline-offset:2px;
+}
+.main-header__nav-button:focus-visible{ outline:2px solid rgba(138,58,51,.5); outline-offset:2px; }
+
+/* Submenu */
+.main-header__caret{ width:10px; height:10px; display:inline-block; transition:transform .2s ease; }
+.main-header__submenu{
+  position:absolute; left:0; top:100%;
+  background:#fff; border:1px solid #eee; border-radius:12px; padding:8px; margin:0; list-style:none; box-shadow:0 12px 28px rgba(0,0,0,.08);
+  display:none; z-index:1001;
+}
+.main-header__submenu a{ display:block; padding:10px 12px; border-radius:8px; text-decoration:none; color:var(--brand); position:relative; }
+
+/* Desktop hover open + checkbox fallback */
+@media (hover:hover){
+  .main-header__dropdown:hover>.main-header__submenu,
+  .main-header__dropdown:focus-within>.main-header__submenu{ display:block; }
+}
+.main-header__sub-toggle:checked + .main-header__nav-button + .main-header__submenu{ display:block; }
+
+/* Underline */
+.main-header__nav-link::after,.main-header__nav-button::after,.main-header__submenu a::after{
+  content:""; position:absolute; left:8px; right:8px; bottom:4px; height:2px; background:var(--hover-accent); border-radius:2px;
+  transform:scaleX(0); transform-origin:left center; opacity:0; transition:transform .25s ease, opacity .25s ease;
+}
+@media (hover:hover){
+  .main-header__nav-link:hover::after,.main-header__nav-button:hover::after,.main-header__submenu a:hover::after{ transform:scaleX(1); opacity:1; }
+}
+.main-header__nav-link:focus-visible::after,.main-header__nav-button:focus-visible::after,.main-header__submenu a:focus-visible::after{ transform:scaleX(1); opacity:1; }
+
+/* A11y resets */
+:where(a,button,.main-header__nav-link,.main-header__nav-button,.main-header__submenu a,.main-header__menu-toggle,.btn-pill):focus,
+:where(a,button,.main-header__nav-link,.main-header__nav-button,.main-header__submenu a,.main-header__menu-toggle,.btn-pill):active{ outline:none !important; border:none !important; box-shadow:none !important; }
+:where(a,button,.main-header__nav-link,.main-header__nav-button,.main-header__submenu a,.main-header__menu-toggle,.btn-pill):focus-visible{ outline:2px solid rgba(255,163,24,.60); outline-offset:2px; }
+button::-moz-focus-inner{ border:0; }
+:where(a,button,.main-header__nav-link,.main-header__nav-button,.main-header__submenu a,.main-header__menu-toggle,.btn-pill){ -webkit-tap-highlight-color:transparent; }
+
+/* Burger + mobile nav */
+.main-header__menu-toggle{ justify-self:end; display:none; cursor:pointer; border:1px solid transparent; background:transparent; border-radius:10px; padding:8px 10px; transition:background-color .2s ease,border-color .2s ease; }
+.main-header__menu-toggle:focus-visible{ outline:2px solid rgba(150,46,42,.6); outline-offset:2px; }
+.main-header__icon{ width:24px; height:24px; display:block; }
+.main-header__sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+.main-header.is-scrolled .main-header__menu-toggle{ border-color:rgba(0,0,0,.06); }
+
+@media (max-width:954px){
+  .main-header__menu-toggle{ display:block; grid-column:2; grid-row:1; z-index:2; }
+  .main-header__nav{ grid-column:1 / -1; grid-row:2; width:100%; display:none; margin:0; padding:0; background:#fff !important; color:var(--brand) !important; }
+  .main-header.is-open .main-header__nav{ display:block; border-top:1px solid rgba(0,0,0,.06); box-shadow:0 8px 20px rgba(0,0,0,.06); background:#fff !important; color:var(--brand) !important; margin:0; padding:0; }
+  .main-header__nav-list{ flex-direction:column; align-items:flex-start; gap:0; padding:0; width:100%; }
+  .main-header__nav-list>li{ width:100%; }
+  .main-header__nav-link,.main-header__nav-button{ width:100%; padding:12px 20px; color:var(--brand) !important; background:transparent !important; }
+  .main-header.is-open .main-header__nav-link.active,
+  .main-header.is-open .main-header__nav-button.is-active{ background:#fff !important; color:var(--brand) !important; }
+  .main-header__dropdown .main-header__submenu{ position:static; display:none; border:0; box-shadow:none; padding:0; margin:0; }
+  .main-header__sub-toggle:checked + .main-header__nav-button + .main-header__submenu{ display:block; }
+  .main-header__sub-toggle:checked + .main-header__nav-button .main-header__caret{ transform:rotate(180deg); }
+}
+
+/* Motion nicety */
+@media (prefers-reduced-motion:no-preference){
+  .main-header__submenu{ transition:opacity .15s ease, transform .15s ease; transform:translateY(4px); }
+  .main-header__dropdown:hover>.main-header__submenu{ opacity:1; transform:none; }
+}
+
+/* Top utility (optional) */
+.top-utility{ position:fixed; top:0; left:0; right:0; z-index:1001; background:#f7f9fc; color:var(--ink); border-bottom:1px solid rgba(0,0,0,.06); transform:translateY(-100%); opacity:0; transition:transform .2s ease, opacity .2s ease; }
+.topbar-visible .top-utility{ transform:translateY(0); opacity:1; }
+.top-utility__inner{ max-width:1500px; margin:0 auto; padding:8px 20px; display:grid; grid-template-columns:1fr auto; align-items:center; gap:12px; }
+.top-utility__left{ display:flex; align-items:center; gap:22px; font:500 13px/1.2 system-ui,-apple-system,Segoe UI,Roboto,sans-serif; color:#394150; }
+.top-utility__right{ display:flex; align-items:center; gap:10px; }
+.top-utility__social a{ display:inline-flex; align-items:center; justify-content:center; width:28px; height:28px; border-radius:6px; background:#fff; border:1px solid rgba(0,0,0,.06); color:#1877f2; text-decoration:none; }
+
+/* Active underline suppression */
+.main-header__nav-link.active::after,
+.main-header__nav-button.is-active::after,
+.main-header__submenu a.active::after{ transform:scaleX(0) !important; opacity:0 !important; }
+
+/* Optional submenu widths */
+.width_menu{ min-width:320px; }
+.width_menu_lang{ min-width:150px !important; }
+</style>
+
+<header class="main-header" role="banner">
+  <div class="main-header__inner">
+    <!-- Brand (use English href by default; JS rewrites on KO pages) -->
+    <a class="brand main-header__brand" href="/home/" data-route="home">
+      <span class="brand-text main-header__brand-text">
+        <img
+          class="brand-logo main-header__brand-logo"
+          src="https://creceri.com/wp-content/uploads/2025/10/2-Transparent-scaled-1-scaled.png"
+          data-logo-default="https://creceri.com/wp-content/uploads/2025/10/2-Transparent-scaled-1-scaled.png"
+          data-logo-scrolled="https://creceri.com/wp-content/uploads/2025/10/CRECERI-LOGO-1-finale_Artboard-3-scaled-2.png"
+          alt="Creceri"
+        >
+      </span>
+    </a>
+
+    <button class="main-header__menu-toggle" type="button" aria-expanded="false" aria-controls="main-menu">
+      <span class="main-header__sr-only">메뉴</span>
+      <svg class="main-header__icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M3 6h18v2H3zM3 11h18v2H3zM3 16h18v2H3z"/>
+      </svg>
+    </button>
+
+    <nav id="main-menu" class="main-header__nav" aria-label="Main">
+      <ul class="main-header__nav-list">
+        <li><a class="main-header__nav-link" href="/home/" data-route="home">홈</a></li>
+        <li><a class="main-header__nav-link" href="/about/" data-route="about">소개</a></li>
+
+        <li class="main-header__dropdown">
+          <input class="main-header__sub-toggle" id="main-header-guides" type="checkbox" hidden>
+          <label class="main-header__nav-button" for="main-header-guides">가이드 및 인사이트
+            <svg class="main-header__caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M0 3h10L5 8z" fill="currentColor"/></svg>
+          </label>
+          <ul class="main-header__submenu width_menu">
+            <li><a href="/ecommerce-development/" data-route="ecom">이커머스 개발</a></li>
+            <li><a href="/website-cms-development/" data-route="cms">웹사이트 및 CMS 개발</a></li>
+            <li><a href="/ui-ux-design/" data-route="uiux">UX/UI 및 앱 디자인</a></li>
+            <li><a href="/digital-marketing/" data-route="mkt">디지털 마케팅</a></li>
+            <li><a href="/team-extension/" data-route="team">인력 보강 및 팀 확장</a></li>
+          </ul>
+        </li>
+
+        <li><a class="main-header__nav-link" href="/stories" data-route="stories">테크 스토리</a></li>
+        <li><a class="main-header__nav-link" href="/whats-new" data-route="whatsnew">새로운 소식</a></li>
+        <li><a class="main-header__nav-link" href="/contact-us/" data-route="contact">문의하기</a></li>
+
+        <!-- Language -->
+        <li class="main-header__dropdown main-header__nav-lang">
+          <input class="main-header__sub-toggle" id="main-header-lang" type="checkbox" hidden>
+          <label class="main-header__nav-button" for="main-header-lang">
+            🌐 언어
+            <svg class="main-header__caret" viewBox="0 0 10 10" aria-hidden="true"><path d="M0 3h10L5 8z" fill="currentColor"/></svg>
+          </label>
+          <ul class="main-header__submenu main-header__lang-menu width_menu_lang">
+            <li><a href="#" data-lang="en"><img src="https://creceri.com/wp-content/uploads/2025/10/Animated-Flag-USA.gif" style="width:25px;" alt="English flag"> 영문</a></li>
+            <li><a href="#" data-lang="ko"><img src="https://creceri.com/wp-content/uploads/2025/10/Animated-Flag-South-Korea.gif" style="width:25px;" alt="Korean flag"> 한국어</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+(function () {
+  const header = document.querySelector('.main-header');
+  if (!header) return;
+
+  const burger     = header.querySelector('.main-header__menu-toggle');
+  const brandImg   = header.querySelector('.main-header__brand-logo');
+  const langToggle = header.querySelector('#main-header-lang');
+  const langLinks  = header.querySelectorAll('.main-header__lang-menu [data-lang]');
+
+  const DEFAULT_LANG = 'en';
+  const NON_DEFAULTS = ['ko']; // extend if more non-default locales
+
+  // Canonical route map. Edit once, reuse everywhere.
+  const I18N_ROUTES = {
+    home:     { en: '/home/',                     ko: '/ko/home-ko/' },
+    about:    { en: '/about/',                    ko: '/ko/about-ko/' },
+    ecom:     { en: '/ecommerce-development/',    ko: '/ko/ecommerce-development-ko/' },
+    cms:      { en: '/website-cms-development/',  ko: '/ko/website-cms-development-ko/' },
+    uiux:     { en: '/ui-ux-design/',             ko: '/ko/ui-ux-design-ko/' },
+    mkt:      { en: '/digital-marketing/',        ko: '/ko/digital-marketing-ko/' },
+    team:     { en: '/team-extension/',           ko: '/ko/team-extension-ko/' },
+    stories:  { en: '/stories',                   ko: '/ko/stories-ko/' },
+    whatsnew: { en: '/whats-new',                 ko: '/ko/whats-new-ko/' },
+    contact:  { en: '/contact-us/',               ko: '/ko/contact-us-ko/' }
+  };
+
+  /* ---------- Layout, scroll, logo ---------- */
+  function setHeaderHeight(){
+    const headerH = header.getBoundingClientRect().height || 64;
+    document.documentElement.style.setProperty('--header-h', headerH + 'px');
+  }
+  function onScroll(){
+    const isMobile = window.matchMedia('(max-width: 870px)').matches;
+    if (isMobile) {
+      header.classList.remove('is-scrolled');
+      if (brandImg) {
+        const def = brandImg.getAttribute('data-logo-default');
+        if (def && brandImg.src !== def) brandImg.src = def;
+      }
+      return;
+    }
+    const scrolled = window.scrollY > 2;
+    header.classList.toggle('is-scrolled', scrolled);
+
+    if (brandImg) {
+      const targetSrc = scrolled
+        ? brandImg.getAttribute('data-logo-scrolled')
+        : brandImg.getAttribute('data-logo-default');
+      if (targetSrc && brandImg.src !== targetSrc) brandImg.src = targetSrc;
+    }
+  }
+  function onToggle(){
+    const open = !header.classList.contains('is-open');
+    header.classList.toggle('is-open', open);
+    if (burger) burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  }
+
+  /* ---------- i18n helpers ---------- */
+  function stripLangPrefix(pathname){
+    const re = new RegExp('^/(?:' + NON_DEFAULTS.join('|') + ')(?=/|$)', 'i');
+    const stripped = (pathname || '/').replace(re, '');
+    return stripped || '/';
+  }
+  function getPathLang(pathname){
+    const m = (pathname || '').match(/^\/([a-z]{2})(?=\/|$)/i);
+    const code = m ? m[1].toLowerCase() : DEFAULT_LANG;
+    return NON_DEFAULTS.includes(code) ? code : DEFAULT_LANG;
+  }
+  function getCurrentLang(){ return getPathLang(location.pathname); }
+
+  function resolveRouteByPath(pathname){
+    const path = (pathname || '/').replace(/\/{2,}/g,'/').toLowerCase();
+    for (const key in I18N_ROUTES){
+      const en = I18N_ROUTES[key].en.toLowerCase().replace(/\/{2,}/g,'/');
+      const ko = I18N_ROUTES[key].ko.toLowerCase().replace(/\/{2,}/g,'/');
+      if (path === en || path.startsWith(en.endsWith('/') ? en : en + '/')) return key;
+      if (path === ko || path.startsWith(ko.endsWith('/') ? ko : ko + '/')) return key;
+    }
+    return null;
+  }
+
+  function buildTargetUrl(lang){
+    const key = resolveRouteByPath(location.pathname);
+    if (key && I18N_ROUTES[key] && I18N_ROUTES[key][lang]){
+      return location.origin + I18N_ROUTES[key][lang] + location.search + location.hash;
+    }
+    // Fallback: add/remove leading locale
+    const pathNoLang = stripLangPrefix(location.pathname);
+    let newPath = (lang === DEFAULT_LANG) ? pathNoLang : ('/' + lang + (pathNoLang === '/' ? '/' : pathNoLang));
+    newPath = newPath.replace(/\/{2,}/g, '/');
+    return location.origin + newPath + location.search + location.hash;
+  }
+
+  /* ---------- Link rewriting ---------- */
+  function isInternalHref(href){
+    if (!href || /^#|mailto:|tel:/i.test(href)) return false;
+    try { return new URL(href, location.origin).origin === location.origin; } catch { return false; }
+  }
+
+  function rewriteInternalLinksTo(lang){
+    const anchors = header.querySelectorAll('a[href]');
+    anchors.forEach(a => {
+      if (a.closest('.main-header__lang-menu')) return; // skip language menu entries
+      const raw = a.getAttribute('href');
+      if (!isInternalHref(raw)) return;
+
+      const key = a.dataset.route;
+      if (key && I18N_ROUTES[key] && I18N_ROUTES[key][lang]) {
+        a.setAttribute('href', I18N_ROUTES[key][lang]);
+        return;
+      }
+
+      // Fallback: locale prefix strategy
+      const url = new URL(raw, location.origin);
+      const normalized = stripLangPrefix(url.pathname);
+      url.pathname = (lang === DEFAULT_LANG) ? normalized : ('/' + lang + (normalized === '/' ? '/' : normalized));
+      url.pathname = url.pathname.replace(/\/{2,}/g, '/');
+      a.setAttribute('href', url.pathname + url.search + url.hash);
+    });
+  }
+
+  /* ---------- Active state ---------- */
+  function normalizePathname(pathname){
+    const stripped = stripLangPrefix(pathname || '/').replace(/\/+$/,'');
+    return (stripped || '/').toLowerCase();
+  }
+  function isRootAlias(path){ return path === '/' || path === '/home' || path === '/home/'; }
+  function pathMatches(linkPath, currentPath){
+    if (isRootAlias(linkPath) && isRootAlias(currentPath)) return true;
+    if (linkPath === currentPath) return true;
+    if (linkPath !== '/' && currentPath.startsWith(linkPath + '/')) return true;
+    return false;
+  }
+  function syncNavActiveState(){
+    const links = header.querySelectorAll('.main-header__nav-list a[href]');
+    const currentPath = normalizePathname(location.pathname);
+    let activeLink = null;
+
+    links.forEach(link => {
+      const rawHref = link.getAttribute('href');
+      if (!isInternalHref(rawHref)){ link.classList.remove('active'); return; }
+      let linkPath = null;
+      try {
+        const url = new URL(rawHref, location.origin);
+        linkPath = normalizePathname(url.pathname);
+      } catch(e){ link.classList.remove('active'); return; }
+
+      if (pathMatches(linkPath, currentPath)){ link.classList.add('active'); activeLink = link; }
+      else { link.classList.remove('active'); }
+    });
+
+    header.querySelectorAll('.main-header__nav-button').forEach(btn => btn.classList.remove('is-active'));
+    if (activeLink){
+      const dropdown = activeLink.closest('.main-header__dropdown');
+      const trigger = dropdown && dropdown.querySelector('.main-header__nav-button');
+      if (trigger){ trigger.classList.add('is-active'); }
+    }
+  }
+
+  /* ---------- Wire-up ---------- */
+  window.addEventListener('load', () => {
+    const currentLang = getCurrentLang();
+
+    // Ensure visible nav reflects locale in URL
+    rewriteInternalLinksTo(currentLang);
+
+    // Layout + state
+    setHeaderHeight();
+    onScroll();
+    syncNavActiveState();
+
+    // Language menu affordance
+    langLinks.forEach(a => {
+      const code = (a.dataset.lang || '').toLowerCase();
+      a.classList.toggle('is-active', code === currentLang);
+      a.setAttribute('aria-current', code === currentLang ? 'true' : 'false');
+    });
+  });
+
+  window.addEventListener('resize', () => { setHeaderHeight(); onScroll(); });
+  window.addEventListener('orientationchange', () => { setHeaderHeight(); onScroll(); });
+  window.addEventListener('scroll', onScroll, { passive:true });
+
+  if (burger) burger.addEventListener('click', onToggle);
+
+  // Language switch: persist + redirect via route map
+  if (langLinks.length){
+    langLinks.forEach(a => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
+        const lang = (a.dataset.lang || '').toLowerCase();
+        if (!lang) return;
+        try { document.cookie = "site_lang=" + lang + "; Max-Age=31536000; path=/"; } catch(_){}
+        if (langToggle) langToggle.checked = false;
+        location.assign(buildTargetUrl(lang));
+      });
+    });
+  }
+
+  // Bootstrap
+  setHeaderHeight();
+  onScroll();
+  syncNavActiveState();
+  requestAnimationFrame(() => header.classList.add('is-ready'));
+})();
+</script>

@@ -1,0 +1,39 @@
+.title_card{
+  font-size: 36px !important;
+  font-weight: 700 !important;
+  color: #962e2a !important;
+}
+
+.cc4-columns{ display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin:10px 0 6px; }
+@media (max-width:780px){ .cc4-columns{ grid-template-columns:1fr; } }
+
+/* Title styling */
+.who-we-are .title_card{
+  font-size:36px !important;
+  font-weight:700 !important;
+  color:#962e2a !important;
+}
+
+/* Right-align the CTA within the content column */
+.cc4-cta.feature-cta{ align-self:flex-end !important; text-align:right; margin-top:12px; margin-left:auto; }
+.cc4-cta .btn-custom{ margin-left:auto; display:inline-flex; align-items:center; }
+
+/* Inline header row with CTA on the right */
+.cc4-headrow{ display:flex; align-items:center; justify-content:space-between; gap:16px; }
+.cc4-cta-inline .btn-custom{ display:inline-flex; align-items:center; }
+@media (max-width:780px){
+  .cc4-headrow{ flex-direction:column; align-items:flex-start; gap:10px; }
+}
+
+/* Benefits area with floating CTA centered vertically */
+.cc4-benefits{ position:relative; }
+.cc4-cta-float{ text-align:right; margin-top:12px; }
+@media (min-width:980px){
+  .cc4-cta-float{ position:absolute; right:0; top:50%; transform:translateY(-50%); margin-top:0; }
+}
+
+/* Force equal column heights for image/content in this block */
+.who-we-are__inner{ align-items:stretch !important; }
+.who-we-are .content{ align-self:stretch !important; }
+.who-we-are .image{ align-items:stretch !important; align-self:stretch !important; }
+.who-we-are .image img{ height:100% !important; width:100% !important; max-width:100% !important; object-fit:cover; }

@@ -1,0 +1,83 @@
+{
+  "apiVersion": 3,
+  "name": "child/blog-content",
+  "title": "Blog Content Sections",
+  "category": "widgets",
+  "icon": "media-document",
+  "description": "Repeatable sections for long-form articles: section_1 (text + subsections) and section_2 (video embed).",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "inserter": true
+  },
+  "attributes": {
+    "section": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "design": { "type": "string", "default": "section_1" },
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "intro": { "type": "string" },
+          "ul": {
+            "type": "array",
+            "default": [],
+            "items": { "type": "string" }
+          },
+          "subsection": {
+            "type": "array",
+            "default": [],
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": { "type": "string" },
+                "sub_title": { "type": "string" },
+                "title": { "type": "string" },
+                "text": { "type": "string" },
+                "ul": {
+                  "type": "array",
+                  "default": [],
+                  "items": { "type": "string" }
+                }
+              }
+            }
+          },
+          "link": { "type": "string" }
+        }
+      }
+    }
+  },
+  "render": "file:./render.php",
+  "style": "file:./style.css",
+  "editorScript": "blog-content-editor",
+  "example": {
+    "attributes": {
+      "section": [
+        {
+          "design": "section_1",
+          "title": "Section 11:  Lorem Ipsum Dolor",
+          "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur. Sed posuere consectetur est at lobortis.",
+          "subsection": [
+            {
+              "sub_title": "Section 1:  Lorem Ipsum Dolor",
+              "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean lacinia bibendum nulla sed consectetur.",
+              "ul": [
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Integer posuere erat a ante venenatis dapibus posuere velit aliquet.",
+                "Aenean lacinia bibendum nulla sed consectetur."
+              ]
+            }
+          ]
+        },
+        {
+          "design": "section_2",
+          "title": "Section 11:  Lorem Ipsum Dolor",
+          "intro": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+          "link": "https://www.youtube.com/embed/b36AdPgXWvk"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,56 @@
+{
+  "apiVersion": 3,
+  "name": "child/card-blocks-2",
+  "title": "E-commerce Development Flow",
+  "category": "widgets",
+  "icon": "feedback",
+  "description": "Phased e-commerce delivery with optional connector lines and flexible descriptions.",
+  "supports": {
+    "html": false,
+    "inserter": true,
+    "align": ["wide", "full"],
+    "anchor": true
+  },
+  "attributes": {
+    "sectionId": { "type": "string", "default": "ecom-dev" },
+    "className": { "type": "string", "default": "" },
+
+    "title": { "type": "string", "default": "What is E-commerce development?" },
+    "description": { "type": "string", "default": "" },
+    "lede": { "type": "string", "default": "" },
+
+    "lineStatus": { "type": "string", "default": "On", "enum": ["On", "Off"] },
+
+    "items": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "type": { "type": "string", "enum": ["phase", "connector"], "default": "phase" },
+          "title": { "type": "string" },
+          "label": { "type": "string" },
+          "desc": {
+            "type": ["string", "array"],
+            "default": "",
+            "items": { "type": "string" }
+          },
+          "position": { "type": "string" },
+          "img": {
+            "type": "object",
+            "properties": {
+              "src": { "type": "string" },
+              "alt": { "type": "string" },
+              "width": { "type": "number" },
+              "height": { "type": "number" },
+              "loading": { "type": "string", "enum": ["lazy", "eager"], "default": "lazy" },
+              "decoding": { "type": "string", "enum": ["async", "auto"], "default": "async" }
+            }
+          }
+        }
+      }
+    }
+  },
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}

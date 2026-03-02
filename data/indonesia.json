@@ -1,0 +1,245 @@
+{
+    "banners": [
+        {
+            "title": "Discover Why Indonesia Should Be Your Next Adventure",
+            "description": "Indonesia is made up of over 17,000 islands, each with its own charm. You can wander through ancient temples, relax on powdery beaches, or dive into some of the richest reefs in the world. Cities buzz with energy, markets overflow with flavors, and traditions run deep. If you’re dreaming of a destination that offers variety and unforgettable experiences, Indonesia belongs at the top of your list.",
+            "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/hero-banner/indonesia-banner.png",
+            "hAlign": "left",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Dive Into Indonesian Culture and Tradition",
+            "description": "Indonesia’s culture is shaped by hundreds of ethnic groups and centuries of tradition. While most of the country is Muslim, Bali is predominantly Hindu, and Christian and Buddhist communities thrive as well. Festivals like Nyepi in Bali, Eid al-Fitr, and Waisak are celebrated across the islands and are fascinating to witness. \n\n You’ll also discover how much pride Indonesians take in their art. Batik textiles, wayang shadow puppetry, and gamelan music are just a few expressions of the country’s creative heritage. A friendly “Selamat Pagi” (good morning) goes a long way when greeting locals, and modest clothing is appreciated when visiting temples or rural communities.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Sample Itinerary Ideas for Indonesia",
+            "description": "7-Day Highlights Trip \n Spend your first three days in Bali exploring Ubud, beaches, and temples. Fly to Yogyakarta for two days to visit Borobudur and Prambanan, then wrap up with Komodo Island for dragon trekking and diving. \n\n 14-Day Deeper Exploration \n Add Lombok’s beaches, the Gili Islands’ coral reefs, or Sumatra’s Lake Toba to your trip for a richer mix of experiences. It’s easy to customize based on whether you’re seeking more culture, relaxation, or adventure.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "wide",
+            "title": "Plan Your Trip: Experience Indonesia Now",
+            "description": "Indonesia is a world of its own, filled with breathtaking islands, vibrant culture, and endless adventure. Whether you want to dive in Raja Ampat, explore Java’s temples, or simply watch the sun go down over Bali, there’s something here for you. \n\n Ready to plan your journey and start building an itinerary you’ll never forget?",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": true,
+            "buttonText": "Explore now!",
+            "buttonUrl": "/blogs/"
+        }
+    ],
+    "carousel": [
+        { 
+            "title":"Top Places to Visit in Indonesia: Must-See Islands and Attractions",
+            "intro":"Here are the destinations you’ll want to add to your travel plans:",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/carousel-top-places/bali.png",
+                    "imageAlt":"Bali",
+                    "heading":"Bali",
+                    "text":"Golden beaches, lush rice terraces, temples like Uluwatu and Tanah Lot."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/carousel-top-places/yogyakarta-central-java.png",
+                    "imageAlt":"Yogyakarta & Central Java",
+                    "heading":"Yogyakarta & Central Java",
+                    "text":"Cultural heart of Indonesia with Borobudur and Prambanan temples."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/carousel-top-places/komado-island.png",
+                    "imageAlt":"Komodo Island",
+                    "heading":"Komodo Island",
+                    "text":"Home to Komodo dragons and world-class diving spots."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/carousel-top-places/jakarta.png",
+                    "imageAlt":"Jakarta",
+                    "heading":"Jakarta",
+                    "text":"Urban energy, colonial heritage in Kota Tua, vibrant food and nightlife."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                }
+            ]
+        },
+        {
+            "title":"When Is the Best Time to Visit Indonesia?",
+            "intro":"There’s really no bad time to visit Indonesia, but the seasons can shape your trip.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":3 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/carousel-when-best/dry-season.png",
+                    "imageAlt":"Dry Season (May–September)",
+                    "heading":"Dry Season (May–September)",
+                    "text":"The most popular time with plenty of sunshine and ideal conditions for hiking, diving, and exploring."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/carousel-when-best/wet-season.png",
+                    "imageAlt":"Wet Season (October–April)",
+                    "heading":"Wet Season (October–April)",
+                    "text":"Rain showers are common, but landscapes are green and crowds thin out."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/carousel-when-best/festivals.png",
+                    "imageAlt":"Festivals",
+                    "heading":"Festivals",
+                    "text":"Timing your trip around Nyepi, Waisak, or Ramadan can add a unique cultural dimension."
+                }
+            ]
+        }
+    ],
+    "card-img": {
+        "title": "The Best Foods in Indonesia You Have to Try",
+        "intro": "Indonesia’s cuisine is a feast of bold flavors and local ingredients. These dishes are must-tries:",
+        "data_count": "5",
+        "ctaText": "",
+        "ctaUrl": "",
+        "showReadLink": true,
+        "readLinkText": "",
+        "items": [
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/card-img-best-food/nasi-goreng.png",
+                "heading": "Nasi Goreng",
+                "text": "Classic fried rice, usually topped with a runny fried egg."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/card-img-best-food/rendang.png",
+                "heading": "Rendang",
+                "text": "Spicy beef simmered for hours in coconut milk and fragrant spices."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/card-img-best-food/satay.png",
+                "heading": "Satay (Sate)",
+                "text": "Marinated meat skewers served with peanut sauce, popular across the country."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/card-img-best-food/gado-gado.png",
+                "heading": "Gado-Gado",
+                "text": "A fresh mix of vegetables and tofu drizzled with peanut dressing."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/card-img-best-food/bakso.png",
+                "heading": "Bakso",
+                "text": "Hearty meatball soup, often served by street vendors and in local eateries."
+            }
+        ]
+    },
+    "img-with-icon-content": [
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Expert Travel Tips and Guides",
+            "description":"",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/img-with-content/3.png",
+            "items":[
+                {
+                "title":"Visa",
+                "text":"Most travelers can get a 30-day visa-on-arrival, which can be extended once."
+                },
+                {
+                "title":"Safety",
+                "text":"Be aware of petty theft in busy spots and follow local customs for a smoother trip."
+                },
+                {
+                "title":"Currency",
+                "text":"The Indonesian Rupiah (IDR) is used everywhere, and cash is essential outside big cities."
+                },
+                {
+                "title":"Connectivity",
+                "text":"Local SIM cards are cheap and easy to find if you need data while traveling."
+                },
+                {
+                "title":"Transport",
+                "text":"Domestic flights and ferries make island-hopping straightforward, and Grab (ride-hailing) is handy in urban areas."
+                }
+            ]
+        }
+    ],
+    "col-text-cards": [
+        {
+            "alignTextCards":"left",
+            "bgMode":"plain",
+            "layoutMode":"single",
+            "headline":"Top Things to Do in Indonesia Beyond Sightseeing",
+            "subhead":"Indonesia is full of experiences you’ll remember long after you leave. Dive or snorkel in Raja Ampat, the Gili Islands, or Komodo National Park for underwater scenes that rival anywhere on earth. Hike a volcano like Mount Bromo, Mount Rinjani, or Ijen Crater for sunrise views that are worth every step. \n\n If you enjoy culture, temple tours in Bali and Central Java are a must. Nature lovers can search for orangutans in Sumatra and Borneo or trek through national parks filled with unique wildlife. For something more laid back, browse Ubud’s art markets or shop for Batik in Bandung.",
+            "features":[],
+            "cards":[
+                {
+                    "image":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/img-with-content/1.png"
+                }
+            ]
+        },
+        {
+            "alignTextCards":"right",
+            "bgMode":"plain",
+            "layoutMode":"single",
+            "headline":"Budget and Travel Costs: What to Expect",
+            "subhead":"Indonesia is a country where you can travel comfortably on almost any budget.",
+            "footer": "If you’re flexible with dates, traveling during the low season from January to April or October to November can save you money. Domestic airlines and ferries are reliable for island-hopping and can help stretch your budget further.",
+            "features":[
+                { "icon":"💰", "title":"Budget", "desc":"$25–$50 USD per day will cover guesthouses, street food, and buses." },
+                { "icon":"💼", "title":"Mid-Range", "desc":"$60–$120 USD per day gets you boutique hotels, ferries, and domestic flights." },
+                { "icon":"💎", "title":"Luxury", "desc":"$150+ USD per day allows for resorts, private guides, and fine dining." }
+            ],
+            "cards":[
+                {
+                    "image":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/indonesia/img-with-content/2.png"
+                }
+            ]
+        }
+    ]
+}

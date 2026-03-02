@@ -1,0 +1,241 @@
+
+  <style>
+    :root { --gap: .75rem; --radius: 10px; --border: 1px solid #e7e7e7; }
+    body { margin: 0; font: 14px/1.45 system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:#fafafa;}
+    .ssp { max-width: 1040px; margin: 24px auto; padding: 0 16px; }
+    .ssp__controls { display:flex; flex-wrap:wrap; gap: var(--gap); align-items: center; background:#fff; border: var(--border); border-radius: var(--radius); padding: .75rem; }
+    .ssp__controls label { display:flex; flex-direction: column; font-weight:600; }
+    .ssp__controls select, .ssp__controls button { padding:.55rem .7rem; border:1px solid #d7d7d7; border-radius:8px; background:#fff; }
+    .ssp__controls button { cursor:pointer; }
+    .ssp__switch { display:flex; align-items:center; gap:.4rem; font-weight:600; }
+    .ssp__status { margin:.8rem 0; color:#555; }
+    .ssp__grid { display:grid; grid-template-columns: repeat(auto-fill, minmax(280px,1fr)); gap: var(--gap); }
+    .ssp__card { background:#fff; border: var(--border); border-radius: var(--radius); padding:.85rem; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    .ssp__card h3 { margin:.1rem 0 .35rem; font-size:1rem; }
+    .ssp__fixture { border-top:1px dashed #eee; padding-top:.5rem; margin-top:.5rem; }
+    .ssp__line { display:flex; justify-content:space-between; gap:.5rem; font-size:.92rem; color:#444; }
+    .ssp__teams { font-weight:700; margin-top:.25rem; display:flex; gap:.4rem; align-items:center; }
+    .ssp__venue { color:#666; font-size:.85rem; margin-top:.25rem;}
+    .ssp__foot { margin-top:1rem; color:#777; font-size:.85rem;}
+    .ssp__muted { opacity:.65; }
+  </style>
+<body>
+  <div class="ssp" id="ssp"
+       data-api-key="1"     
+       data-preview="true"  
+  >
+    <div class="ssp__controls">
+      <label>Country
+        <select id="country"></select>
+      </label>
+      <label>Sport
+        <select id="sport">
+          <option value="Soccer">Football</option>
+          <option value="Basketball">Basketball</option>
+          <option value="Volleyball">Volleyball</option>
+        </select>
+      </label>
+      <label class="ssp__switch">
+        <input type="checkbox" id="majorOnly" checked />
+        Major leagues only
+      </label>
+      <label class="ssp__switch">
+        <input type="checkbox" id="previewToggle" />
+        Preview (no API)
+      </label>
+      <button id="load">Load</button>
+    </div>
+
+    <div class="ssp__status" id="status">Ready. Choose parameters and click Load.</div>
+    <div id="results" class="ssp__grid"></div>
+    <div class="ssp__foot">
+      <div>Live data source: TheSportsDB. Demo key = <code>1</code>. Coverage varies by sport/country.</div>
+      <div class="ssp__muted">Tip: “Football” is <b>Soccer</b> in the API.</div>
+    </div>
+  </div>
+  <script>
+  (function(){
+    const el = (id) => document.getElementById(id);
+    const root = document.getElementById('ssp');
+    const statusEl = el('status');
+    const resultsEl = el('results');
+    const countrySel = el('country');
+    const sportSel = el('sport');
+    const loadBtn = el('load');
+    const majorOnlyEl = el('majorOnly');
+    const previewEl = el('previewToggle');
+
+    const API_KEY_DEFAULT = (root.dataset.apiKey || '1').trim();
+    const SEA_COUNTRIES = [
+      "Philippines","Indonesia","Malaysia","Singapore","Thailand",
+      "Vietnam","Cambodia","Laos","Myanmar","Brunei","Timor-Leste"
+    ];
+
+    // Initialize UI
+    SEA_COUNTRIES.forEach(c => {
+      const o = document.createElement('option'); o.value=c; o.textContent=c; countrySel.appendChild(o);
+    });
+    countrySel.value = "Philippines";
+    previewEl.checked = (root.dataset.preview || 'true') === 'true';
+    sportSel.value = 'Volleyball'; // default per your ask
+
+    // Heuristic filter for "major" domestic leagues per region
+    const MAJOR_RX = [
+      /Premier\b/i, /Super\b League/i, /League\s?1\b/i, /Liga\s?1\b/i,
+      /Thai League/i, /V\.?League/i, /Singapore Premier League/i,
+      /Malaysia Super League/i, /Philippine Football League|PFL/i,
+      /PBA\b|ASEAN Basketball League|ABL\b|IBL\b/i,
+      /PVL|Premier Volleyball/i, /Proliga/i, /Spikers'? Turf/i
+    ];
+
+    const isMajor = (lg) => MAJOR_RX.some(rx => rx.test(lg?.strLeague || ''));
+
+    const escapeHtml = (s='') => s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[m]));
+    const fmtWhen = (ev) => {
+      const ts = ev.strTimestamp || (ev.dateEvent ? `${ev.dateEvent}T${ev.strTime||'00:00:00Z'}` : null);
+      const d = ts ? new Date(ts) : null;
+      return d && !isNaN(d) ? d.toLocaleString([], {dateStyle:'medium', timeStyle:'short'}) : (ev.dateEvent || '');
+    };
+
+    const fetchJson = async (url) => {
+      const r = await fetch(url, {headers: {'Accept':'application/json'}});
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    };
+
+    // Preview data (no network)
+    const sampleLeagues = (country, sport) => {
+      const base = `${country} ${sport}`;
+      return [
+        { idLeague: "PH-001", strLeague: `${base} Premier League`, strSport: sport },
+        { idLeague: "PH-002", strLeague: `${base} Cup`, strSport: sport }
+      ];
+    };
+    const sampleEvents = (leagueId) => {
+      const now = Date.now();
+      const mk = (i) => {
+        const d = new Date(now + i*864e5);
+        return {
+          strHomeTeam: 'Team A', strAwayTeam:'Team B',
+          dateEvent: d.toISOString().slice(0,10),
+          strTime: d.toISOString().slice(11,19),
+          strTimestamp: d.toISOString(),
+          strVenue: 'National Stadium'
+        };
+      };
+      return [mk(1), mk(3), mk(7)];
+    };
+
+    // Data adapters (TheSportsDB)
+    const leaguesByCountrySport = async (apiKey, country, sport) => {
+      const url = `https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(apiKey)}/search_all_leagues.php?c=${encodeURIComponent(country)}&s=${encodeURIComponent(sport)}`;
+      const data = await fetchJson(url);
+      return (data && (data.countrys || data.countries || [])) || [];
+    };
+    const eventsNextByLeague = async (apiKey, leagueId) => {
+      const url = `https://www.thesportsdb.com/api/v1/json/${encodeURIComponent(apiKey)}/eventsnextleague.php?id=${encodeURIComponent(leagueId)}`;
+      const data = await fetchJson(url);
+      return (data && data.events) || [];
+    };
+
+    const renderLeagueCard = (league, events) => {
+      const header = `<h3>${escapeHtml(league.strLeague || 'League')}</h3>`;
+      const fixtures = events.slice(0, 10).map(ev => `
+        <div class="ssp__fixture">
+          <div class="ssp__line">
+            <div>${escapeHtml(fmtWhen(ev))}</div>
+            <div class="ssp__muted">${escapeHtml(league.strSport || '')}</div>
+          </div>
+          <div class="ssp__teams">
+            <span>${escapeHtml(ev.strHomeTeam || '')}</span>
+            <span>vs</span>
+            <span>${escapeHtml(ev.strAwayTeam || '')}</span>
+          </div>
+          ${ev.strVenue ? `<div class="ssp__venue">${escapeHtml(ev.strVenue)}</div>` : ''}
+        </div>
+      `).join('');
+      return `<article class="ssp__card">${header}${fixtures || '<div class="ssp__muted">No upcoming events.</div>'}</article>`;
+    };
+
+    const setStatus = (msg) => { statusEl.textContent = msg; };
+
+    // Optional: disable sport choices that have zero leagues for the selected country
+    async function auditSportsAvailability(country, apiKey, preview) {
+      const map = { Soccer: true, Basketball: true, Volleyball: true };
+      if (preview) return map;
+      const checks = Object.keys(map).map(async sp => {
+        try {
+          const leagues = await leaguesByCountrySport(apiKey, country, sp);
+          map[sp] = leagues.length > 0;
+        } catch { map[sp] = true; } // fail-open
+      });
+      await Promise.all(checks);
+      // enable/disable options
+      Array.from(sportSel.options).forEach(opt => {
+        opt.disabled = !map[opt.value];
+      });
+      // if current is disabled, switch to first enabled
+      if (sportSel.options[sportSel.selectedIndex]?.disabled) {
+        const firstEnabled = Array.from(sportSel.options).find(o => !o.disabled);
+        if (firstEnabled) sportSel.value = firstEnabled.value;
+      }
+    }
+
+    countrySel.addEventListener('change', () => {
+      auditSportsAvailability(countrySel.value, API_KEY_DEFAULT, previewEl.checked);
+    });
+
+    async function load() {
+      const apiKey = API_KEY_DEFAULT;
+      const preview = previewEl.checked;
+      const country = countrySel.value;
+      const sport = sportSel.value;
+      const majorOnly = majorOnlyEl.checked;
+
+      resultsEl.innerHTML = '';
+      setStatus('Loading…');
+
+      try {
+        let leagues = preview
+          ? sampleLeagues(country, sport)
+          : await leaguesByCountrySport(apiKey, country, sport);
+
+        if (majorOnly) leagues = leagues.filter(isMajor);
+        if (!leagues.length) {
+          setStatus('No leagues found for this configuration.');
+          return;
+        }
+
+        // Pull upcoming events per league (parallel with soft throttle)
+        let rendered = 0;
+        const batches = [];
+        const concurrency = 4;
+        for (let i = 0; i < leagues.length; i += concurrency) {
+          batches.push(leagues.slice(i, i + concurrency));
+        }
+        for (const batch of batches) {
+          const cards = await Promise.all(batch.map(async lg => {
+            try {
+              const ev = preview ? sampleEvents(lg.idLeague) : await eventsNextByLeague(apiKey, lg.idLeague);
+              rendered += ev.length || 0;
+              return renderLeagueCard(lg, ev || []);
+            } catch (e) {
+              return renderLeagueCard(lg, []);
+            }
+          }));
+          resultsEl.insertAdjacentHTML('beforeend', cards.join(''));
+        }
+
+        setStatus(rendered ? `Loaded ${rendered} upcoming events.` : 'No upcoming events.');
+      } catch (e) {
+        console.error(e);
+        setStatus('Load failed. Check API key or network.');
+      }
+    }
+
+    // Initial availability audit
+    auditSportsAvailability(countrySel.value, API_KEY_DEFAULT, previewEl.checked);
+
+    loadBtn.addEventListener('click', load);
+  })();
+  </script>

@@ -1,0 +1,48 @@
+{
+  "apiVersion": 3,
+  "name": "child/contact",
+  "title": "Contact – Split Layout",
+  "description": "Two-column contact: form + contact info + map.",
+  "category": "widgets",
+  "icon": "email",
+  "textdomain": "vite-ttf-child-creceri",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "attributes": {
+    "title": { "type": "string", "default": "Contact Us" },
+    "lead": { "type": "string", "default": "Ready to talk? Share a few details and we’ll get back to you shortly" },
+    "buttonText": { "type": "string", "default": "Submit Inquiry" },
+    "requiredNote": { "type": "string", "default": "* Required fields" },
+    "showPhone": { "type": "boolean", "default": true },
+    "labels": {
+      "type": "object",
+      "default": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "phone": "Phone",
+        "subject": "Subject",
+        "message": "Message"
+      }
+    },
+    "info": {
+      "type": "object",
+      "default": {
+        "addressLabel": "Address",
+        "address": "123 Sample Street, City, Country",
+        "phoneLabel": "Phone",
+        "phone": "+1 (000) 000-0000",
+        "emailLabel": "Email",
+        "email": "info@creceri.com"
+      }
+    },
+    "map": {
+      "type": "object",
+      "default": {
+        "title": "Office Map",
+        "src": "https://www.openstreetmap.org/export/embed.html?bbox=-122.4394%2C37.7549%2C-122.3994%2C37.7949&layer=mapnik&marker=37.7749%2C-122.4194"
+      }
+    }
+  },
+  "supports": { "anchor": true, "align": ["wide","full"], "html": false }
+}

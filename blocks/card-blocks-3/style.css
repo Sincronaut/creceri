@@ -1,0 +1,176 @@
+:root{
+  --bg:#faf7f7;
+  --ink:#222;
+  --muted:#5d626a;
+  --card:#fff;
+  --cta:#8b2c2a;
+  --cta-hover:#6f2321;
+  --shadow:0 10px 30px rgba(0,0,0,.08);
+  --radius:16px;
+}
+
+.ecom-picks{
+  color:var(--ink);
+  padding:30px 0;
+}
+.wrap_card h2{
+  font-size:36px !important;
+  font-weight:700;
+}
+.cards h3{
+  font-size:24px !important;
+  font-weight:650;
+}
+.cards p{
+  font-size:20px !important;
+}
+.ecom-picks .wrap_card{max-width:1300px;margin:0 auto;}
+.ecom-picks h2{
+  margin:0 0 24px;
+  text-align:center;
+  font-size:34px;
+  line-height:1.2;
+  color:var(--cta);
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:29px;
+  align-items:stretch;        /* normalize card heights per row */
+  grid-auto-rows:1fr;         /* equalize row tracks */
+}
+
+.card{
+  position:relative;
+  background:var(--card);
+  border-radius:30px !important;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+  display:flex;               /* column layout to control vertical flow */
+  flex-direction:column;
+  align-items:center;
+  padding:0 20px 20px;
+  height:100%;                /* fill grid track */
+}
+
+/* Top fade band */
+.card::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto 0;
+  height:62%;
+  border-bottom-left-radius:40% 18%;
+  border-bottom-right-radius:40% 18%;
+  z-index:0;
+  pointer-events:none;
+}
+.card.magento::before{
+  background:linear-gradient(180deg,
+    rgba(242,100,43,.95) 0%,
+    rgba(242,100,43,.45) 35%,
+    rgba(242,100,43,0) 62%);
+}
+.card.shopify::before{
+  background:linear-gradient(180deg,
+    rgba(122,211,128,.95) 0%,
+    rgba(122,211,128,.45) 35%,
+    rgba(122,211,128,0) 62%);
+}
+.card.woo::before{
+  background:linear-gradient(180deg,
+    rgba(146,87,255,.95) 0%,
+    rgba(146,87,255,.45) 35%,
+    rgba(146,87,255,0) 62%);
+}
+
+/* Logo band */
+.card .hero_card{
+  position:relative;
+  z-index:1;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px 0;
+  width:100%;
+  background:transparent !important;
+}
+
+.logo{
+  background:transparent !important;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.logo img{
+  width:130px;
+  height:130px;
+  object-fit:contain;
+  display:block;
+  background:transparent !important;
+}
+
+.card h3{
+  margin:8px 0 10px;
+  font-size:22px;
+  font-weight:700;
+  text-align:center;
+}
+.card p{
+  margin:0 0 18px;
+  color:var(--muted);
+  font-size:17px;
+  line-height:1.6;
+  text-align:center;
+  min-height:86px;           /* keeps titles/paras from collapsing unevenly */
+}
+
+/* Trusted row + badges */
+.trusted{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin:4px 0 12px;         /* tighter bottom to pair with CTA */
+  flex-wrap:wrap;
+
+  /* Anchor block to the bottom; CTA follows */
+  margin-top:auto;           /* this forces trusted + following CTA to bottom */
+}
+.trusted small{color:#7a8089;font-weight:600;}
+.badge{
+  width:77px;
+  height:34px;
+  background:#e9ecef;
+  border-radius:7px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.6);
+}
+
+/* CTA: consistent spacing under trusted, centered */
+.btn-cta{
+  display:inline-block;
+  width:288px;
+  border:0;
+  cursor:pointer;
+  background:var(--cta);
+  color:#fff;
+  padding:14px 20px;
+  border-radius:999px;
+  font-weight:700;
+  font-size:16px;
+  transition:background .15s ease-in-out, transform .05s ease-in-out;
+  align-self:center;
+  margin-top:12px;           /* fixed gap below trusted */
+  text-align:center;         /* keep label centered regardless of width */
+}
+.btn-cta:hover{background:var(--cta-hover);}
+.btn-cta:active{transform:translateY(1px);}
+
+@media (max-width:1200px){
+  .trends__carouselwrap{padding:0 100px 0px !important;}
+}
+@media (max-width:960px){
+  .cards{grid-template-columns:1fr;}
+  .btn-cta{width:100%;}
+}

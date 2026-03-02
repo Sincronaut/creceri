@@ -1,0 +1,89 @@
+.card-block-editor {
+  border: 1px dashed #d7dade;
+  background: #ffffff;
+  padding: 24px;
+  border-radius: 8px;
+}
+
+.card-block-editor__header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.card-block-editor__title {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.card-block-editor__intro {
+  color: #555;
+  margin: 0 auto;
+  max-width: 60ch;
+}
+
+.card-block-editor__grid {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-bottom: 20px;
+}
+
+.card-block-editor__card {
+  background: #fdfdfd;
+  border: 1px solid #dcdfe4;
+  border-radius: 10px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.card-block-editor__card-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-block-editor__image {
+  text-align: center;
+}
+
+.card-block-editor__image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.card-block-editor__image-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 140px;
+  background: #f1f3f6;
+  border-radius: 8px;
+  color: #7e8794;
+  font-size: 13px;
+}
+
+.card-block-editor__image-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.card-block-editor__empty {
+  grid-column: 1 / -1;
+  border: 1px dashed #c8ccd3;
+  padding: 40px;
+  text-align: center;
+  color: #5c6470;
+  background: #f7f9fb;
+  border-radius: 8px;
+}
+
+.card-block-editor__add {
+  margin-top: 8px;
+}

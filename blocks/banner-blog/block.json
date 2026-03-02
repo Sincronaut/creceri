@@ -1,0 +1,22 @@
+{
+  "apiVersion": 3,
+  "name": "child/banner-blog",
+  "title": "Section · Card Image Animation",
+  "category": "widgets",
+  "description": "Section with heading, intro, and animated image cards.",
+  "icon": "screenoptions",
+  "supports": {
+    "html": false,
+    "inserter": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "title": { "type": "string", "default": "" },
+    "intro": { "type": "string", "default": "" },
+    "items": { "type": "array",  "default": [] },
+    "showReadLink": { "type": "boolean", "default": false },
+    "readLinkText": { "type": "string", "default": "Read more" }
+  },
+  "render": "file:./render.php",
+  "style":  "file:./style.css"
+}

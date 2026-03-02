@@ -1,0 +1,54 @@
+{
+  "apiVersion": 3,
+  "name": "child/card-team",
+  "title": "About · Split (Mosaic + Content)",
+  "category": "widgets",
+  "description": "Two-column section: mosaic gallery on one side, title + text + button on the other.",
+  "icon": "groups",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"],
+    "inserter": true
+  },
+  "attributes": {
+    "title":        { "type": "string",  "default": "Who We Are?" },
+    "content":      { "type": "string",  "default": "" },
+    "ctaText":      { "type": "string",  "default": "Learn More" },
+    "ctaUrl":       { "type": "string",  "default": "#" },
+    "btnClass":     { "type": "string",  "default": "btn-pill" },
+
+    "gallery": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "src": { "type": "string" },
+          "alt": { "type": "string" }
+        }
+      }
+    },
+
+    "reverse":   { "type": "boolean", "default": false },
+    "sectionId": { "type": "string",  "default": "who-title" }
+  },
+  "render": "file:./render.php",
+  "style":  "file:./style.css",
+  "example": {
+    "attributes": {
+      "title": "Who We Are?",
+      "content": "Creceri is a knowledge hub empowering SMEs to thrive through technology, insights, and real-world stories.",
+      "ctaText": "Learn More",
+      "ctaUrl": "#",
+      "btnClass": "btn-pill",
+      "reverse": false,
+      "sectionId": "who-title",
+      "gallery": [
+        { "src": "https://example.com/team-1.jpg", "alt": "" },
+        { "src": "https://example.com/team-2.jpg", "alt": "" },
+        { "src": "https://example.com/team-3.jpg", "alt": "" },
+        { "src": "https://example.com/team-4.jpg", "alt": "" }
+      ]
+    }
+  }
+}

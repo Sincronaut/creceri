@@ -1,0 +1,41 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "child/slide-gallery",
+  "title": "League List",
+  "category": "layout",
+  "description": "Custom banner section with title, text, button, and image gallery.",
+  "textdomain": "twentytwentyfive-yzhensun",
+  "attributes": {
+    "title": { "type": "string", "default": "" },
+    "content": { "type": "string", "default": "" },
+    "ctaText": { "type": "string", "default": "" },
+    "ctaUrl": { "type": "string", "default": "" },
+    "btnClass": { "type": "string", "default": "" },
+    "reverse": { "type": "boolean", "default": false },
+    "sectionId": { "type": "string", "default": "" },
+    "postsToShow": { "type": "number", "default": 6 },
+    "gallery": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "src": { "type": "string" },
+          "alt": { "type": "string" }
+        }
+      }
+    }
+  },
+  "supports": {
+    "align": ["wide", "full"],
+    "spacing": {
+      "padding": true,
+      "margin": true
+    }
+  },
+  "style": "banner-style",
+  "editorStyle": "banner-editor-style",
+  "editorScript": "banner-editor",
+  "render": "file:./render.php"
+}

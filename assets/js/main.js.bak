@@ -1,0 +1,652 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.getElementById('navbar');
+  if (!nav) return;
+
+  const isDesktop = () => window.matchMedia('(min-width: 992px)').matches;
+  // True when primary pointer is touch/pen (no reliable hover)
+  const isTouchPrimary = () => window.matchMedia('(hover: none), (pointer: coarse)').matches;
+
+  /* ---------------- Active link highlighting (unchanged) ---------------- */
+  const links = nav.querySelectorAll('a.nav-link, .dropdown-menu a.dropdown-item');
+  const norm = (href) => {
+    try {
+      const u = new URL(href, window.location.origin);
+      let p = u.pathname.toLowerCase();
+      if (p.length > 1 && p.endsWith('/')) p = p.slice(0, -1);
+      return p;
+    } catch { return href; }
+  };
+  const current = norm(window.location.pathname);
+  links.forEach(a => a.classList.remove('active'));
+
+  let best = null, bestLen = -1;
+  links.forEach(a => {
+    const p = norm(a.getAttribute('href'));
+    if (p === current) { best = a; bestLen = p.length; }
+  });
+  if (!best) {
+    links.forEach(a => {
+      const p = norm(a.getAttribute('href'));
+      if (p !== '/' && current.startsWith(p) && p.length > bestLen) {
+        best = a; bestLen = p.length;
+      }
+    });
+  }
+  if (best) {
+    best.classList.add('active');
+    const menu = best.closest('.dropdown-menu');
+    if (menu) {
+      const parentToggle = menu.parentElement?.querySelector('> a.dropdown-toggle, > .nav-link.dropdown-toggle');
+      if (parentToggle) parentToggle.classList.add('active');
+      // Also mark the top-level Destinations link active when any descendant matches
+      const topItem = menu.closest('.nav-item.dropdown');
+      const topToggle = topItem?.querySelector('> .nav-link.dropdown-toggle');
+      if (topToggle) topToggle.classList.add('active');
+    }
+  }
+
+  /* ---------------- Helpers for click-open state (desktop) ---------------- */
+  const clearClickOpens = () => {
+    // Remove custom open state on desktop
+    nav.querySelectorAll('.open-click').forEach(el => el.classList.remove('open-click'));
+    // Reset "tap once" markers so next click will open again first
+    nav.querySelectorAll('[data-tap-once="1"]').forEach(a => a.removeAttribute('data-tap-once'));
+  };
+
+  const clickOutside = (evt) => {
+    if (!nav.contains(evt.target)) clearClickOpens();
+  };
+  document.addEventListener('click', clickOutside);
+
+  // Also clear when resizing across breakpoints
+  window.addEventListener('resize', () => { if (!isDesktop()) clearClickOpens(); });
+
+  /* ---------------- Mobile: expand/collapse submenus (your logic) ---------------- */
+  nav.querySelectorAll('.dropdown-submenu > .dropdown-toggle').forEach(parentLink => {
+    parentLink.addEventListener('click', function (e) {
+      if (isDesktop()) return; // mobile only
+
+      const submenu = this.nextElementSibling;
+      if (!submenu) return;
+
+      const isOpen = submenu.classList.contains('show');
+
+      // Close siblings
+      const siblings = this.closest('.dropdown-menu')
+        .querySelectorAll(':scope > .dropdown-submenu > .dropdown-menu.show');
+      siblings.forEach(s => { if (s !== submenu) s.classList.remove('show'); });
+
+      if (!isOpen) {
+        e.preventDefault();
+        e.stopPropagation();
+        submenu.classList.add('show');
+        this.setAttribute('aria-expanded', 'true');
+      } else {
+        // Allow default to navigate on second tap
+        this.setAttribute('aria-expanded', 'false');
+      }
+    });
+  });
+
+  // When the main dropdown closes, collapse any open mobile submenus
+  nav.querySelectorAll('.nav-item.dropdown').forEach(dd => {
+    dd.addEventListener('hide.bs.dropdown', () => {
+      dd.querySelectorAll('.dropdown-menu.show').forEach(m => m.classList.remove('show'));
+      dd.querySelectorAll('.dropdown-submenu > .dropdown-toggle[aria-expanded="true"]')
+        .forEach(t => t.setAttribute('aria-expanded','false'));
+    });
+  });
+
+  /* ---------------- Desktop: tap/click to open right-flyout, 2nd tap to go ---------------- */
+  // For each region link that has a submenu (e.g., Europe, South East Asia)
+  nav.querySelectorAll('.dropdown-submenu > .dropdown-toggle').forEach(parentLink => {
+    parentLink.addEventListener('click', function (e) {
+      if (!isDesktop()) return; // desktop only
+
+      const li = this.parentElement;                 // .dropdown-submenu
+      const submenu = this.nextElementSibling;       // its .dropdown-menu
+      if (!submenu) return;
+
+      const tappedOnce = this.getAttribute('data-tap-once') === '1';
+
+      if (!tappedOnce) {
+        // First click: open the flyout and prevent navigation
+        e.preventDefault();
+        e.stopPropagation();
+
+        // Close any other open-click submenus on the same level
+        const siblings = li.parentElement?.querySelectorAll(':scope > .dropdown-submenu.open-click');
+        siblings?.forEach(s => { if (s !== li) s.classList.remove('open-click'); });
+
+        // Mark this one open
+        li.classList.add('open-click');
+        this.setAttribute('aria-expanded', 'true');
+
+        // Remember that we've tapped once; next click should follow the link
+        this.setAttribute('data-tap-once', '1');
+      } else {
+        // Second click: allow navigation to the region page
+        // Clean up open-click state so animations don’t linger
+        clearClickOpens();
+        // (No preventDefault) — proceed to href
+      }
+    });
+
+    // Optional: if pointer leaves the submenu area, reset the "tap once" so next click opens again
+    parentLink.parentElement.addEventListener('mouseleave', () => {
+      if (!isDesktop()) return;
+      parentLink.removeAttribute('data-tap-once');
+      parentLink.parentElement.classList.remove('open-click');
+    });
+  });
+
+  /* ---------------- Desktop: also allow click to hold open the top dropdown ---------------- */
+  const topDestinations = nav.querySelector('.nav-item.dropdown > .nav-link.dropdown-toggle');
+  if (topDestinations) {
+    topDestinations.addEventListener('click', function(e){
+      if (!isDesktop()) return; // Bootstrap handles mobile
+      // Toggle click-open for the first panel (under "Destinations") without navigating
+      e.preventDefault();
+      e.stopPropagation();
+      const li = this.closest('.nav-item.dropdown');
+      const open = li.classList.contains('open-click');
+      // Close all first
+      nav.querySelectorAll('.nav-item.dropdown.open-click').forEach(n => n.classList.remove('open-click'));
+      if (!open) li.classList.add('open-click');
+    });
+  }
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  const el = document.getElementById('heroBg');
+  if (el && window.bootstrap) {
+    bootstrap.Carousel.getOrCreateInstance(el, {
+      interval: 2000,   // 2s
+      ride: 'carousel',
+      pause: false,
+      touch: true,
+      wrap: true
+    });
+  }
+});
+
+(function () {
+  function debounce(fn, delay) {
+    let t;
+    return function () {
+      clearTimeout(t);
+      t = setTimeout(() => fn.apply(this, arguments), delay);
+    };
+  }
+
+  function bpCols(el) {
+    // Read per-breakpoint counts from data attributes
+    const xs = parseInt(el.getAttribute('data-cols-xs')) || 1;
+    const sm = parseInt(el.getAttribute('data-cols-sm')) || xs;
+    const lg = parseInt(el.getAttribute('data-cols-lg')) || sm;
+    const xl = parseInt(el.getAttribute('data-cols-xl')) || lg;
+
+    // Bootstrap 5 breakpoints
+    const w = window.innerWidth;
+    // <576 xs, 576–991 sm, 992–1199 lg, ≥1200 xl
+    if (w >= 1200)
+      return {
+        perSlide: xl,
+        rowColsClass: `row row-cols-${xs} row-cols-sm-${sm} row-cols-lg-${lg} row-cols-xl-${xl} g-3 g-md-4`,
+      };
+    if (w >= 992)
+      return {
+        perSlide: lg,
+        rowColsClass: `row row-cols-${xs} row-cols-sm-${sm} row-cols-lg-${lg} g-3 g-md-4`,
+      };
+    if (w >= 576)
+      return {
+        perSlide: sm,
+        rowColsClass: `row row-cols-${xs} row-cols-sm-${sm} g-3 g-md-4`,
+      };
+    return { perSlide: xs, rowColsClass: `row row-cols-${xs} g-3 g-md-4` };
+  }
+
+  function chunk(arr, n) {
+    const out = [];
+    for (let i = 0; i < arr.length; i += n) out.push(arr.slice(i, i + n));
+    return out;
+  }
+
+  function rebuildCarousel(root) {
+    // Dispose existing BS instance to avoid stale state
+    const inst = bootstrap.Carousel.getInstance(root);
+    if (inst) inst.dispose();
+
+    const inner = root.querySelector('.carousel-inner');
+    const indicators = root.parentElement.querySelector('.carousel-indicators');
+
+    // Collect ALL card columns currently present (across any slides)
+    const cols = inner.querySelectorAll('.col');
+    if (!cols.length) return;
+
+    const cards = Array.from(cols).map((col) => col.innerHTML);
+
+    // Determine perSlide for current breakpoint
+    const { perSlide, rowColsClass } = bpCols(root);
+
+    // Build new slides
+    const slides = chunk(cards, Math.max(1, perSlide));
+
+    // Rebuild indicators
+    if (indicators) {
+      indicators.innerHTML = '';
+      if (slides.length > 1) {
+        slides.forEach((_, i) => {
+          const btn = document.createElement('button');
+          btn.type = 'button';
+          btn.setAttribute('data-bs-target', '#' + root.id);
+          btn.setAttribute('data-bs-slide-to', String(i));
+          btn.setAttribute('aria-label', `Slide ${i + 1}`);
+          if (i === 0) {
+            btn.className = 'active';
+            btn.setAttribute('aria-current', 'true');
+          }
+          indicators.appendChild(btn);
+        });
+      }
+    }
+
+    // Rebuild inner
+    inner.innerHTML = '';
+    slides.forEach((group, sIdx) => {
+      const item = document.createElement('div');
+      item.className = 'carousel-item' + (sIdx === 0 ? ' active' : '');
+
+      const row = document.createElement('div');
+      row.className = rowColsClass;
+
+      group.forEach((html) => {
+        const col = document.createElement('div');
+        col.className = 'col';
+        col.innerHTML = html;
+        row.appendChild(col);
+      });
+
+      item.appendChild(row);
+      inner.appendChild(item);
+    });
+
+    const controlsPrev = root.querySelector('.carousel-control-prev');
+    const controlsNext = root.querySelector('.carousel-control-next');
+    const multi = slides.length > 1;
+    if (controlsPrev) controlsPrev.style.display = multi ? '' : 'none';
+    if (controlsNext) controlsNext.style.display = multi ? '' : 'none';
+    if (indicators) indicators.style.display = multi ? '' : 'none';
+
+    new bootstrap.Carousel(root);
+  }
+
+  function initAll() {
+    document
+      .querySelectorAll('.carousel.generic-carousel')
+      .forEach(rebuildCarousel);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+
+  window.addEventListener('resize', debounce(initAll, 150));
+})();
+
+// Travel Calling: attach swipe, arrow, and keyboard to any rendered instance
+(function () {
+  function initCarousel(carousel) {
+    if (!carousel || carousel.dataset.tcInit === '1') return;
+    carousel.dataset.tcInit = '1';
+
+    const radios = Array.from(carousel.querySelectorAll('.tc-radio'));
+    const slidesWrap = carousel.querySelector('[data-tc-slides]');
+    const prevBtn = carousel.querySelector('[data-tc-prev]');
+    const nextBtn = carousel.querySelector('[data-tc-next]');
+    if (!radios.length || !slidesWrap) return;
+
+    let index = Math.max(0, radios.findIndex(r => r.checked));
+    if (index < 0) index = 0;
+
+    function go(i) {
+      index = (i + radios.length) % radios.length;
+      radios[index].checked = true;
+      radios[index].dispatchEvent(new Event('change', { bubbles: true }));
+    }
+
+    if (prevBtn) prevBtn.addEventListener('click', () => go(index - 1));
+    if (nextBtn) nextBtn.addEventListener('click', () => go(index + 1));
+
+    radios.forEach((r, i) => r.addEventListener('change', () => { if (r.checked) index = i; }));
+
+    slidesWrap.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft')  { e.preventDefault(); go(index - 1); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(index + 1); }
+    });
+
+    let startX = null;
+    const getX = (ev) =>
+      (ev.touches && ev.touches[0]) ? ev.touches[0].clientX :
+      (ev.changedTouches && ev.changedTouches[0]) ? ev.changedTouches[0].clientX :
+      ev.clientX;
+
+    function onDown(e){ startX = getX(e); }
+    function onUp(e){
+      if (startX === null) return;
+      const dx = getX(e) - startX;
+      if (Math.abs(dx) > 50) { dx < 0 ? go(index + 1) : go(index - 1); }
+      startX = null;
+    }
+
+    slidesWrap.addEventListener('pointerdown', onDown);
+    slidesWrap.addEventListener('pointerup', onUp);
+    slidesWrap.addEventListener('touchstart', onDown, { passive:true });
+    slidesWrap.addEventListener('touchend', onUp);
+  }
+
+  function initAll() {
+    document.querySelectorAll('[data-tc-carousel]').forEach(initCarousel);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+  } else {
+    initAll();
+  }
+
+  window.TCCarousel = { initAll, init: initCarousel };
+})();
+
+
+
+// (function () {
+//   // Run fn when DOM is ready (handles defer/footers too)
+//   function onReady(fn) {
+//     if (document.readyState !== 'loading') fn();
+//     else document.addEventListener('DOMContentLoaded', fn, { once: true });
+//   }
+
+//   // Try to find #belt now; if not found, watch DOM until it appears
+//   function boot() {
+//     const existing = document.getElementById('belt');
+//     if (existing) return initBelt(existing);
+
+//     const mo = new MutationObserver(() => {
+//       const belt = document.getElementById('belt');
+//       if (belt) {
+//         mo.disconnect();
+//         initBelt(belt);
+//       }
+//     });
+//     mo.observe(document.documentElement, { childList: true, subtree: true });
+//   }
+
+//   onReady(boot);
+
+//   function initBelt(belt) {
+//     // prevent double-initialization
+//     if (belt.dataset.beltInit === '1') return;
+//     belt.dataset.beltInit = '1';
+
+//     // ---------- Settings ----------
+//     const DESK_DURATION = 800;   // desktop FLIP ms
+//     const DESK_INTERVAL = 2500;  // desktop FLIP interval
+
+//     const MOBILE_INTERVAL   = 3000; // delay between slides (ms)
+//     const MOBILE_SCROLL_MS  = 650;  // smooth scroll duration (ms)
+//     const CLONES_PER_SIDE   = 2;    // clones at each end
+
+//     // Breakpoints / a11y
+//     const mqMobile = window.matchMedia('(max-width: 740px)');
+//     const mqReduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+//     const INVERSE_MAPPING = [3, 0, 1, 4, 2]; // desktop choreography
+
+//     // ---------- Desktop FLIP ----------
+//     let desktopTimer = null;
+//     let desktopRunning = false;
+
+//     const shouldDesktop = () => !mqMobile.matches && !mqReduce.matches;
+
+//     function stepDesktop() {
+//       if (desktopRunning || !shouldDesktop()) return;
+
+//       const nodes = Array.from(belt.children);
+//       if (nodes.length < 5) return;
+
+//       desktopRunning = true;
+
+//       // BEFORE
+//       const before = new Map(nodes.map(n => [n, n.getBoundingClientRect()]));
+
+//       const frag = document.createDocumentFragment();
+//       INVERSE_MAPPING.map(i => nodes[i]).forEach(n => frag.appendChild(n));
+//       if (nodes.length > 5) nodes.slice(5).forEach(n => frag.appendChild(n));
+//       belt.appendChild(frag);
+
+//       const afterNodes = Array.from(belt.children);
+//       belt.classList.add('is-animating');
+
+//       // INVERT
+//       afterNodes.forEach(el => {
+//         const b = before.get(el);
+//         if (!b) return;
+//         const a = el.getBoundingClientRect();
+//         el.style.transition = 'none';
+//         el.style.transform  = `translate(${b.left - a.left}px, ${b.top - a.top}px)`;
+//       });
+
+//       // PLAY
+//       requestAnimationFrame(() => {
+//         afterNodes.forEach(el => {
+//           el.style.transition = `transform ${DESK_DURATION}ms ease`;
+//           el.style.transform  = 'translate(0,0)';
+//         });
+//         setTimeout(() => {
+//           afterNodes.forEach(el => { el.style.transition = ''; el.style.transform = ''; });
+//           belt.classList.remove('is-animating');
+//           desktopRunning = false;
+//         }, DESK_DURATION);
+//       });
+//     }
+
+//     function startDesktop() {
+//       if (!shouldDesktop() || desktopTimer) return;
+//       desktopTimer = setInterval(stepDesktop, DESK_INTERVAL);
+//     }
+//     function stopDesktop() {
+//       if (desktopTimer) { clearInterval(desktopTimer); desktopTimer = null; }
+//     }
+
+//     // Pause FLIP on hover (desktop)
+//     belt.addEventListener('mouseenter', stopDesktop);
+//     belt.addEventListener('mouseleave', startDesktop);
+
+//     // ---------- Mobile carousel (smooth) ----------
+//     let originals = [];
+//     let clonesPrepended = 0;
+//     let mobileIdx = 0;
+//     let mobileAnimating = false;
+//     let mobileTimer = null;   // chained timeouts (no drift)
+//     let userInteracting = false;
+//     let resumeTimer = null;
+
+//     const shouldMobile = () => mqMobile.matches && !mqReduce.matches;
+
+//     function saveOriginals() {
+//       originals = Array.from(belt.children).filter(n => !n.hasAttribute('data-clone'));
+//     }
+
+//     // easing
+//     const easeInOutCubic = t => (t < 0.5 ? 4*t*t*t : 1 - Math.pow(-2*t + 2, 3) / 2);
+
+//     // center slide in viewport
+//     function targetScrollLeftForChildIndex(childIndex) {
+//       const el = belt.children[childIndex];
+//       const slideWidth = el.clientWidth;
+//       const leftInContent = el.offsetLeft;
+//       const centerOffset = (belt.clientWidth - slideWidth) / 2;
+//       return Math.max(0, leftInContent - Math.max(0, centerOffset));
+//     }
+
+//     // rAF smooth scroll
+//     function rAFScrollTo(target, duration, cb) {
+//       const start = belt.scrollLeft;
+//       const change = target - start;
+//       const startTime = performance.now();
+
+//       function step(now) {
+//         const t = Math.min(1, (now - startTime) / duration);
+//         belt.scrollLeft = start + change * easeInOutCubic(t);
+//         if (t < 1) requestAnimationFrame(step);
+//         else if (cb) cb();
+//       }
+//       requestAnimationFrame(step);
+//     }
+
+//     function stopMobileAutoplay() {
+//       if (mobileTimer) { clearTimeout(mobileTimer); mobileTimer = null; }
+//     }
+//     function scheduleNextMobile() {
+//       stopMobileAutoplay();
+//       mobileTimer = setTimeout(mobileNext, MOBILE_INTERVAL);
+//     }
+//     function stopMobile() {
+//       stopMobileAutoplay();
+//       if (resumeTimer) { clearTimeout(resumeTimer); resumeTimer = null; }
+//     }
+
+//     function teardownMobile() {
+//       stopMobile();
+//       Array.from(belt.querySelectorAll('[data-clone="1"]')).forEach(n => n.remove());
+//       clonesPrepended = 0;
+//       mobileIdx = 0;
+//       mobileAnimating = false;
+//       belt.scrollLeft = 0;
+//     }
+
+//     function mobileNext() {
+//       if (!shouldMobile() || mobileAnimating || originals.length < 2 || userInteracting) {
+//         if (shouldMobile()) scheduleNextMobile();
+//         return;
+//       }
+//       const count = originals.length;
+//       const nextIdx = mobileIdx + 1;
+
+//       const targetNodeIndex = clonesPrepended + nextIdx;
+//       const targetLeft = targetScrollLeftForChildIndex(targetNodeIndex);
+
+//       mobileAnimating = true;
+//       rAFScrollTo(targetLeft, MOBILE_SCROLL_MS, () => {
+//         mobileIdx = nextIdx;
+
+//         if (mobileIdx >= count) {
+//           mobileIdx = 0;
+//           const realFirst = targetScrollLeftForChildIndex(clonesPrepended);
+//           belt.scrollLeft = realFirst; // snap
+//         }
+
+//         mobileAnimating = false;
+//         scheduleNextMobile();
+//       });
+//     }
+
+//     function setupMobile() {
+//       saveOriginals();
+//       if (originals.length < 2) return;
+
+//       const take = Math.min(CLONES_PER_SIDE, originals.length);
+//       const makeClone = (n) => {
+//         const c = n.cloneNode(true);
+//         c.setAttribute('data-clone', '1');
+//         c.setAttribute('aria-hidden', 'true');
+//         return c;
+//       };
+
+//       const headClones = originals.slice(0, take).map(makeClone);
+//       const tailClones = originals.slice(-take).map(makeClone);
+
+//       tailClones.forEach(c => belt.insertBefore(c, belt.firstChild));
+//       headClones.forEach(c => belt.appendChild(c));
+//       clonesPrepended = tailClones.length;
+
+//       const startLeft = targetScrollLeftForChildIndex(clonesPrepended);
+//       belt.scrollLeft = startLeft;
+
+//       mobileIdx = 0;
+//       scheduleNextMobile();
+//     }
+
+//     // Interaction handling
+//     function markInteracting() {
+//       userInteracting = true;
+//       stopMobileAutoplay();
+//       if (resumeTimer) { clearTimeout(resumeTimer); }
+//     }
+//     function scheduleResume() {
+//       if (!shouldMobile()) return;
+//       if (resumeTimer) { clearTimeout(resumeTimer); }
+//       resumeTimer = setTimeout(() => {
+//         userInteracting = false;
+//         snapToNearestSlide();
+//         scheduleNextMobile();
+//       }, 900);
+//     }
+//     function snapToNearestSlide() {
+//       if (originals.length < 1) return;
+//       let bestIdx = 0, bestDist = Infinity;
+//       for (let i = 0; i < originals.length; i++) {
+//         const idxInBelt = clonesPrepended + i;
+//         const el = belt.children[idxInBelt];
+//         const elCenter = el.offsetLeft + el.clientWidth / 2;
+//         const viewportCenter = belt.scrollLeft + belt.clientWidth / 2;
+//         const dist = Math.abs(elCenter - viewportCenter);
+//         if (dist < bestDist) { bestDist = dist; bestIdx = i; }
+//       }
+//       mobileIdx = bestIdx;
+//       belt.scrollLeft = targetScrollLeftForChildIndex(clonesPrepended + mobileIdx);
+//     }
+
+//     ['touchstart','pointerdown','wheel'].forEach(evt => {
+//       belt.addEventListener(evt, markInteracting, { passive: true });
+//     });
+//     ['touchend','pointerup'].forEach(evt => {
+//       belt.addEventListener(evt, scheduleResume, { passive: true });
+//     });
+//     let scrollDebounce = null;
+//     belt.addEventListener('scroll', () => {
+//       if (!shouldMobile()) return;
+//       markInteracting();
+//       if (scrollDebounce) clearTimeout(scrollDebounce);
+//       scrollDebounce = setTimeout(() => scheduleResume(), 120);
+//     }, { passive: true });
+
+//     // ---------- Mode switching ----------
+//     function syncMode() {
+//       if (mqReduce.matches) { stopDesktop(); teardownMobile(); return; }
+//       if (shouldMobile()) {
+//         stopDesktop();
+//         teardownMobile(); // clean state first
+//         setupMobile();
+//       } else {
+//         teardownMobile();
+//         startDesktop();
+//       }
+//     }
+
+//     mqMobile.addEventListener('change', syncMode);
+//     mqReduce.addEventListener('change', syncMode);
+//     window.addEventListener('resize', syncMode);
+//     document.addEventListener('visibilitychange', () => {
+//       if (document.hidden) { stopDesktop(); stopMobile(); }
+//       else { syncMode(); }
+//     });
+
+//     // init
+//     syncMode();
+//   }
+// })();

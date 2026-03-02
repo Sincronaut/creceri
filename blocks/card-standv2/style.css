@@ -1,0 +1,149 @@
+/* Container + heading */
+.emerging {
+  --card-min-h: 200px; /* single control for uniform card height (desktop) */
+  padding: clamp(24px, 5vw, 56px) 0;
+  background: #fff;
+}
+.emerging__container { max-width: 1200px; margin-inline: auto; padding-inline: clamp(12px, 3vw, 24px); }
+.emerging__title { text-align: center; color: #8e3b32; font-weight: 700; margin: 0 0 20px; }
+
+/* Grid */
+.emerging__grid{
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0,1fr));
+  gap: 16px;
+  grid-auto-flow: row;
+}
+
+/* Cards */
+.card{
+
+  
+  grid-column: span 4;                   /* 3-up default */
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:20px;
+  box-shadow:0 2px 12px rgba(0,0,0,.04);
+  padding:18px 20px;
+  text-align:center;
+
+  /* Uniform sizing + vertical centering */
+  min-height: var(--card-min-h);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+
+  /* Hover zoom plumbing (no layout shift) */
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  will-change: transform;
+}
+.card__title{ margin:0 0 6px; font-weight:700; color:#8e3b32; margin-inline:auto; }
+.card__copy{ margin:0; color:#333; line-height:1.45; margin-inline:auto; max-width:36ch; }
+
+/* Feature/logo (#1) — align to same height */
+.card--feature{
+  min-height: var(--card-min-h);
+  position:relative; display:grid; place-items:center;
+}
+.card--feature .card__media img{
+  max-width:220px; height:auto; opacity:.9;
+  transition: transform .25s ease;
+}
+.card--feature .card__badge{ position:absolute; top:14px; left:16px; font-weight:600; color:#444; }
+
+/* Normalize any “wide” cards to standard footprint */
+.card--wide{ grid-column: span 4; }
+
+/* CTA */
+.emerging__cta{
+  grid-column: span 4;
+  display:flex; align-items:center; justify-content:center;
+}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; gap:.5rem; padding:12px 18px;
+  border-radius:999px; text-decoration:none; font-weight:600;
+  transition: transform .12s ease, box-shadow .2s ease, background-color .2s ease;
+}
+.btn--primary{ background:#b24a3f; color:#fff; box-shadow:0 6px 16px rgba(0,0,0,.08); }
+.btn--primary:hover{ transform:translateY(-1px); }
+
+/* Hover / Focus Zoom */
+@media (hover:hover) and (pointer:fine){
+  .card:hover,
+  .card:focus-within{
+    transform: scale(1.035);
+    box-shadow: 0 10px 28px rgba(0,0,0,.14);
+    border-color: rgba(0,0,0,.12);
+  }
+  .card--feature:hover .card__media img,
+  .card--feature:focus-within .card__media img{
+    transform: scale(1.06);
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .card{ transition: box-shadow .2s ease, border-color .2s ease; }
+  .card:hover, .card:focus-within{ transform: none; box-shadow: 0 8px 20px rgba(0,0,0,.12); }
+  .card--feature .card__media img{ transition: none; }
+}
+
+/* Desktop orchestration: #7 centered, CTA to its right */
+@media (min-width: 961px){
+  /* Lock rows */
+  .emerging__grid > .card:nth-of-type(1){ grid-row:1; }
+  .emerging__grid > .card:nth-of-type(2){ grid-row:1; }
+  .emerging__grid > .card:nth-of-type(3){ grid-row:2; }
+  .emerging__grid > .card:nth-of-type(4){ grid-row:2; }
+  .emerging__grid > .card:nth-of-type(5){ grid-row:2; }
+
+  /* Centerpiece (7th card) */
+  .card--centerpiece{
+    grid-row:3;
+    grid-column: 3 / span 4; /* your chosen placement */
+  }
+  /* CTA to the right of #7 */
+  .emerging__cta{
+    grid-row:3;
+    grid-column: 7 / span 4;
+    justify-content:center;
+  }
+  /* Centerpiece (7th card) */
+  .centerpiece-1{
+    grid-row:1;
+    grid-column: 1 / span 7; /* your chosen placement */
+  }
+  .centerpiece-2{
+    grid-row:1;
+    grid-column: 8 / span 5; /* your chosen placement */
+  }
+  .centerpiece-3{
+    grid-row:2;
+    grid-column: 1 / span 4; /* your chosen placement */
+  }
+  .centerpiece-4{
+    grid-row:2;
+    grid-column: 5 / span 4; /* your chosen placement */
+  }
+  .centerpiece-5{
+    grid-row:2;
+    grid-column: 9 / span 4; /* your chosen placement */
+  }
+}
+
+/* Tablet (2-up) */
+@media (max-width: 960px){
+  .emerging { --card-min-h: 220px; } /* slight bump for typical wrap-on-tablet */
+  .card{ grid-column: span 6; }
+  .emerging__cta{ grid-column: span 6; justify-content:center; }
+}
+
+/* Mobile (1-up) */
+@media (max-width: 600px){
+  .emerging { --card-min-h: 240px; } /* keep parity when lines wrap more */
+  .card, .emerging__cta{ grid-column: span 12; }
+  .emerging__cta{ justify-content:center; }
+}

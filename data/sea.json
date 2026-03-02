@@ -1,0 +1,342 @@
+{
+  "banners": [
+    {
+      "title": "Explore Southeast Asia: Colorful Journeys Across Culture, Coastlines, and Temples",
+      "description": "Southeast Asia is a colorful mix of ancient temples, busy markets, clear waters, and cultures that feel both familiar and completely new. It’s one of the most affordable regions to explore, which makes it perfect for first-time travelers, solo adventurers, and anyone craving variety without a high price tag. If you’re planning a trip, this guide will walk you through where to go, what to eat, and how to make the most of your journey.",
+      "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/hero-banner/beach.png",
+      "hAlign": "left",
+      "vAlign": "bottom",
+      "banner_size": "large",
+      "showButton": false,
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "align": "wide",
+      "title": "Start Your Southeast Asia Journey Now",
+      "description": "There’s a reason so many travelers return here again and again. \n Southeast Asia isn’t just a destination—it’s a feeling. It’s the sound of waves, the scent of spices, the kindness of strangers, and the thrill of the unexpected. \n 👉 Start exploring Southeast Asia now. Your story begins here.",
+      "img": "",
+      "bgStart": "#ff3053",
+      "bgEnd": "#ff6982",
+      "bgDirection": "to right",
+      "banner_size": "small",
+      "showButton": true,
+      "buttonText": "Explore Now!",
+      "buttonUrl": "/blogs/"
+    },
+    {
+      "align":"full",
+      "title": "Culture & Traditions: Layered, Local, and Lively",
+      "description": "Culture here is rich, layered, and full of contrast. On one trip, you might witness a Buddhist sunrise ceremony, hear the call to prayer echo through a coastal village, or walk through a Catholic town celebrating a saint’s feast day.\nFestivals light up the calendar too. There's Songkran, Thailand’s famous water fight, Vietnam’s Tet (Lunar New Year), and Malaysia’s bright and dramatic Thaipusam. Want to be respectful? Dress modestly at temples, take off your shoes when asked, and always approach with a smile. It’ll go a long way.",
+      "footer_text": "",
+      "mode": "gradient",
+      "img": "",
+      "bgStart": "#ff3053",
+      "bgEnd": "#ff6982",
+      "bgDirection": "to right",
+      "hAlign": "left",
+      "vAlign": "bottom",
+      "category_data": [],
+      "category_list": []
+    }
+  ],
+  "carousels": [
+    {
+      "title": "Thailand",
+      "intro": "",
+      "backgroundType": "none",
+      "backgroundValue": "",
+      "cols": { "xs": 1, "sm": 2, "md": 3, "lg": 3, "xl": 4 },
+      "cardLinkBehavior": "stretched",
+      "autoplay": false,
+      "interval": 0,
+      "pauseOnHover": false,
+      "wrap": true,
+      "showControls": true,
+      "showIndicators": true,
+      "items": [
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/sea-thailand/bangkok.jpg",
+          "imageAlt": "Bangkok",
+          "heading": "Bangkok",
+          "imageOnly": true
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/sea-thailand/chiang.jpg",
+          "imageAlt": "Chiang Mai",
+          "heading": "Chiang Mai",
+          "imageOnly": true
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/sea-thailand/phuket.jpg",
+          "imageAlt": "Phuket",
+          "heading": "Phuket",
+          "imageOnly": true
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/sea-thailand/samui.jpg",
+          "imageAlt": "Koh Samui",
+          "heading": "Koh Samui",
+          "imageOnly": true
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/sea-thailand/krabi.jpg",
+          "imageAlt": "Krabi",
+          "heading": "Krabi",
+          "imageOnly": true
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/sea-thailand/pattaya.jpg",
+          "imageAlt": "Pattaya",
+          "heading": "Pattaya",
+          "imageOnly": true
+        }
+      ]
+    },
+    {
+      "title": "Affordable Tour Packages That Pack In the Adventure",
+      "intro": "Exploring Southeast Asia doesn’t have to cost a fortune. Whether you’re joining a group tour or customizing your own route, there are plenty of budget options.",
+      "backgroundType": "none",
+      "backgroundValue": "",
+      "cols": { "xs": 1, "sm": 2, "md": 3, "lg": 3, "xl": 5 },
+      "cardLinkBehavior": "stretched",
+      "autoplay": false,
+      "wrap": true,
+      "showControls": false,
+      "showIndicators": false,
+      "items": [
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/affordable-tour-packages/thailand-island.jpg",
+          "imageAlt": "Thailand island tour",
+          "heading": "Thailand island tour (7 days)",
+          "meta": "from $350"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/affordable-tour-packages/vietnam-cambodia.jpg",
+          "imageAlt": "Vietnam Cambodia combo",
+          "heading": "Vietnam & Cambodia combo (10 days)",
+          "meta": "from $700"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/affordable-tour-packages/palawan.jpg",
+          "imageAlt": "Philippines Palawan package",
+          "heading": "Philippines Palawan package (5 days)",
+          "meta": "from $450"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/affordable-tour-packages/bali-java.jpg",
+          "imageAlt": "Indonesia Bali & Java escape",
+          "heading": "Indonesia Bali & Java escape (8 days)",
+          "meta": "from $600"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/affordable-tour-packages/multi-country.jpg",
+          "imageAlt": "Multi-country backpacker pass",
+          "heading": "Multi-country backpacker pass (30 days)",
+          "meta": "from $1,400"
+        }
+      ]
+    },
+    {
+      "title": "Sample Southeast Asia Itineraries",
+      "intro": "Need help building your route? Here are a few sample itineraries based on trip length.",
+      "backgroundType": "none",
+      "backgroundValue": "",
+      "cols": { "sm": 1, "md": 2, "lg": 3, "xl": 3 },
+      "cardLinkBehavior": "none",
+      "autoplay": false,
+      "wrap": true,
+      "showControls": false,
+      "showIndicators": false,
+      "items": [
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/southeast-asia-itineraries/thailand-highlights.jpg",
+          "imageAlt": "Thailand Highlights",
+          "heading": "1-Week Thailand Highlights",
+          "text": "Bangkok’s temples and street food \n Chiang Mai’s old town and elephant rescue center \n A beach finale in Phuket or Koh Tao"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/southeast-asia-itineraries/vietnam-cambodia-combo.jpg",
+          "imageAlt": "Vietnam & Cambodia Combo",
+          "heading": "2-Week Vietnam & Cambodia Combo",
+          "text": "Start in Hanoi and cruise through Ha Long Bay \n Stroll through lantern-lit Hoi An \n Fly to Siem Reap for Angkor Wat, then visit Phnom Penh"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/southeast-asia-itineraries/backpacker-loop.jpg",
+          "imageAlt": "Backpacker Loop",
+          "heading": "1-Month Backpacker Loop",
+          "text": "Thailand → Laos → Vietnam → Cambodia → optional detour to Bali or the Philippines"
+        }
+      ]
+    }
+  ],
+  "carousel-infinite": {
+    "title": "10 Must-See Cities That Capture Europe’s Magic",
+    "paragraph": "With dozens of incredible countries and thousands of unique cities, it’s tough to narrow down where to go. But if you’re starting to plan your Europe tour, here are ten spots you shouldn’t skip:",
+    "speed": 28,
+    "cardWidth": 300,
+    "cardHeight": 180,
+    "gap": 20,
+    "items": [
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/paris.jpg",
+        "title": "Paris, France",
+        "text": "Iconic landmarks like the Eiffel Tower, world-class art, and charming cafés.",
+        "alt": "Paris skyline with Eiffel Tower"
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/rome.jpg",
+        "title": "Rome, Italy",
+        "text": "Ancient ruins, vibrant piazzas, and authentic Italian cuisine."
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/barcelona.jpg",
+        "title": "Barcelona, Spain",
+        "text": "Gaudí’s architecture, beach vibes, and a lively tapas scene."
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/amsterdam.jpg",
+        "title": "Amsterdam, Netherlands",
+        "text": "Scenic canals, bikes everywhere, and a laid-back atmosphere."
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/greece.jpg",
+        "title": "Santorini, Greece",
+        "text": "Cliffside villages, stunning sunsets, and blue-domed churches."
+      },
+      {
+        "img": "https://uceap.universityofcalifornia.edu/sites/default/files/2019-08/business-and-entrepreneurship-in-london-M2.jpg",
+        "title": "London, United Kingdom",
+        "text": "From the historic Tower of London and Buckingham Palace to the world-class museums and vibrant West End theatre scene, London is a hub of culture and history."
+      },
+      {
+        "img": "https://uceap.universityofcalifornia.edu/sites/default/files/2020-09/summer-internship-prague-m2.jpg",
+        "title": "Prague, Czech Republic",
+        "text": "This city feels like a fairy tale brought to life, with its medieval Old Town Square, the stunning Charles Bridge, and the impressive Prague Castle."
+      },
+      {
+        "img": "https://www.newmarketholidays.co.uk/media/fzvlyuy4/s%C3%A3o-jorge-castle-lisbon-portugal.jpg?format=webp&v=1dac3c487861a50",
+        "title": "Lisbon, Portugal",
+        "text": "A city of seven hills, Lisbon charms with its colorful tiled buildings, historic trams, delicious custard tarts (pastéis de nata), and breathtaking views over the Tagus River."
+      }
+    ]
+  },
+  "activities-gallery": {
+    "title": "Top Activities Across the Region",
+    "intro": "Whether you're into beach days or jungle hikes, Southeast Asia offers more than you can squeeze into one trip.",
+    "bgMode": "gradient",
+    "bgColor": "",
+    "cardAspect": "4/1",
+    "cardAspectWide": "8/1",
+    "cardAspectMobile": "16/9",
+    "items": [
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/thailand-island-hopping.jpg",
+        "image-alt": "thailand island hopping",
+        "heading": "Island hopping in Thailand or the Philippines",
+        "objectPosition": "center",
+        "subheading": ""
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/motorbiking-scenic-routes.jpg",
+        "image-alt": "motorbiking scenic routes",
+        "heading": "Motorbiking scenic routes like Vietnam's Hai Van Pass",
+        "objectPosition": "bottom",
+        "subheading": ""
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/vietnam-trekking.jpg",
+        "image-alt": "vietnam trekking",
+        "heading": "Trekking in Northern Vietnam or Laos",
+        "objectPosition": "center",
+        "subheading": ""
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/elnido-diving.jpg",
+        "image-alt": "elnido diving",
+        "heading": "Diving & snorkeling in Komodo or El Nido",
+        "objectPosition": "center",
+        "subheading": ""
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/temple-hopping.jpg",
+        "image-alt": "temple hopping bottom",
+        "heading": "Temple hopping across Cambodia, Myanmar & Indonesia",
+        "objectPosition": "center",
+        "subheading": ""
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/spending-time-with-elephants.jpg",
+        "image-alt": "spending time with elephants",
+        "heading": "Spending time with elephants in Chiang Mai",
+        "objectPosition": "center",
+        "subheading": ""
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/bangkok-night-market.jpg",
+        "image-alt": "bangkok night market",
+        "heading": "Exploring night markets in Bangkok or Ho Chi Minh City",
+        "objectPosition": "center bottom",
+        "subheading": ""
+      }
+    ]
+  },
+  "grid-three-images": {
+    "header": "When to Visit Southeast Asia",
+    "sub-title": "Timing your trip can make all the difference. Here's a quick guide:",
+    "items": [
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/grid-three-images/sun.png",
+        "text": "Dry Season (November to April): Great for most destinations"
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/grid-three-images/rain.png",
+        "text": "Wet Season (May to October): Showers, fewer tourists"
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/grid-three-images/festival.png",
+        "text": "Festival season: Thai lanterns, Filipino parades."
+      }
+    ]
+  },
+  "img-with-icon-content": {
+    "align":"wide",
+    "position":"left",
+    "title":"Smart Travel Tips Before You Go",
+    "description":"A little prep goes a long way. Keep these tips in mind as you get ready to explore.",
+    "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/train-bg.jpg",
+    "items":[
+      {
+      "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/visa.png",
+      "title":"Visas",
+      "text":"Most countries offer 15 to 30 days visa-free or easy online applications."
+      },
+      {
+      "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/men.png",
+      "title":"Health",
+      "text":"Bring repellent and check vaccine recommendations"
+      },
+      {
+      "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/cp.png",
+      "title":"Sim Cards",
+      "text":"Buy locally for cheap unlimited data"
+      },
+      {
+      "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/money.png",
+      "title":"Money",
+      "text":"Carry cash for markets and street food, but keep a card handy too"
+      },
+      {
+      "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/train.png",
+      "title":"Transport",
+      "text":"Use public transportation—it's clean, cheap, and reliable"
+      },
+
+      {
+      "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/light.png",
+      "title":"Safety",
+      "text":"Stay alert in busy areas, trust your instincts, and avoid overplanning"
+      }
+    ]
+  }
+}

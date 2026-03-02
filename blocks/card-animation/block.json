@@ -1,0 +1,124 @@
+{
+  "apiVersion": 3,
+  "name": "child/card-animation",
+  "title": "Guides & Insights · Rail Cards",
+  "category": "widgets",
+  "icon": "index-card",
+  "description": "Header + intro with a horizontal rail of image-backed cards and overlay text.",
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "anchor": true,
+    "inserter": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Guides & Insights"
+    },
+    "intro": {
+      "type": "string",
+      "default": "Explore actionable guides and expert tips covering e-commerce, design, marketing, and more. Our resources are built to help SMEs adapt, innovate, and thrive in the digital age."
+    },
+    "titleId": {
+      "type": "string"
+    },
+    "items": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "text": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean",
+            "default": false
+          },
+          "bgColor": {
+            "type": "string"
+          },
+          "image": {
+            "type": "object",
+            "properties": {
+              "src": {
+                "type": "string"
+              },
+              "alt": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "render": "file:./render.php",
+  "style": "file:./style.css",
+  "editorScript": "file:./index.js",
+  "example": {
+    "attributes": {
+      "title": "Guides & Insights",
+      "intro": "Explore actionable guides and expert tips covering e-commerce, design, marketing, and more.<br>Our resources are built to help SMEs adapt, innovate, and thrive in the digital age.",
+      "items": [
+        {
+          "title": "E-commerce Development",
+          "text": "Build, optimize, and scale your online store with practical frameworks and integrations.",
+          "url": "#",
+          "active": true,
+          "bgColor": "white",
+          "image": {
+            "src": "https://creceri.com/wp-content/themes/vite-ttf-child-creceri/assets/images/card-animation/card-animation-1.png",
+            "alt": "E-commerce development artwork"
+          }
+        },
+        {
+          "title": "UX Strategy",
+          "text": "Research-driven UX patterns to improve conversion and retention across journeys.",
+          "url": "#",
+          "image": {
+            "src": "https://creceri.com/wp-content/themes/vite-ttf-child-creceri/assets/images/card-animation/card-animation-2.png",
+            "alt": "UX strategy artwork"
+          }
+        },
+        {
+          "title": "Content Marketing",
+          "text": "Editorial workflows and SEO tips for sustainable growth.",
+          "url": "#",
+          "image": {
+            "src": "https://creceri.com/wp-content/themes/vite-ttf-child-creceri/assets/images/card-animation/card-animation-3.png",
+            "alt": "Content marketing artwork"
+          }
+        },
+        {
+          "title": "Performance & Analytics",
+          "text": "Measure, iterate, and ship faster with clear metrics.",
+          "url": "#",
+          "image": {
+            "src": "https://creceri.com/wp-content/themes/vite-ttf-child-creceri/assets/images/card-animation/card-animation-4.png",
+            "alt": "Performance and analytics artwork"
+          }
+        },
+        {
+          "title": "Case Studies",
+          "text": "Real-world lessons from product launches and redesigns.",
+          "url": "#",
+          "image": {
+            "src": "https://creceri.com/wp-content/themes/vite-ttf-child-creceri/assets/images/card-animation/card-animation-5.png",
+            "alt": "Case studies artwork"
+          }
+        }
+      ]
+    }
+  }
+}

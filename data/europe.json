@@ -1,0 +1,360 @@
+{
+  "banners": [
+    {
+      "title": "Discover Europe: One Continent, Endless Stories",
+      "description": "Whether you're sipping espresso in a Roman piazza or wandering through Prague's cobblestone streets, Europe has a way of stealing your heart. With so many countries so close together, it’s one of the easiest places in the world to tour. From historic cities to scenic coastlines, this guide covers the highlights, travel tips, and how to pick the right tour for your style and budget.",
+      "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/hero-banner/island.jpg",
+      "banner_size": "large",
+      "hAlign": "left",
+      "vAlign": "bottom",
+      "showButton": false,
+      "buttonText": "",
+      "buttonUrl": ""
+    },
+    {
+      "align": "wide",
+      "title": "Ready to Tour Europe?",
+      "description": "Whether you’re tracing history in ancient ruins or sipping wine in a vineyard at golden hour, Europe has a way of staying with you long after the flight home. \n Big cities. Small towns. Street markets. Quiet cathedrals. Your Europe tour can be anything—structured, spontaneous, luxurious, or lighthearted. \n 👉 Start exploring Europe now—your story is waiting.",
+      "img": "",
+      "banner_size": "small",
+      "showButton": true,
+      "hAlign": "left",
+      "vAlign": "center",
+      "bgStart": "#ff3053",
+      "bgEnd": "#ff6982",
+      "bgDirection": "to right",
+      "buttonText": "Explore Now!",
+      "buttonUrl": "/blogs/"
+    }
+  ],
+  "carousel-infinite": {
+    "title": "10 Must-See Cities That Capture Europe’s Magic",
+    "paragraph": "With dozens of incredible countries and thousands of unique cities, it’s tough to narrow down where to go. But if you’re starting to plan your Europe tour, here are ten spots you shouldn’t skip:",
+    "speed": 28,
+    "cardWidth": 300,
+    "cardHeight": 180,
+    "gap": 20,
+    "items": [
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/paris.jpg",
+        "title": "Paris, France",
+        "text": "Iconic landmarks like the Eiffel Tower, world-class art, and charming cafés.",
+        "alt": "Paris skyline with Eiffel Tower"
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/rome.jpg",
+        "title": "Rome, Italy",
+        "text": "Ancient ruins, vibrant piazzas, and authentic Italian cuisine."
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/barcelona.jpg",
+        "title": "Barcelona, Spain",
+        "text": "Gaudí’s architecture, beach vibes, and a lively tapas scene."
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/amsterdam.jpg",
+        "title": "Amsterdam, Netherlands",
+        "text": "Scenic canals, bikes everywhere, and a laid-back atmosphere."
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/cities-europe/greece.jpg",
+        "title": "Santorini, Greece",
+        "text": "Cliffside villages, stunning sunsets, and blue-domed churches."
+      },
+      {
+        "img": "https://uceap.universityofcalifornia.edu/sites/default/files/2019-08/business-and-entrepreneurship-in-london-M2.jpg",
+        "title": "London, United Kingdom",
+        "text": "From the historic Tower of London and Buckingham Palace to the world-class museums and vibrant West End theatre scene, London is a hub of culture and history."
+      },
+      {
+        "img": "https://uceap.universityofcalifornia.edu/sites/default/files/2020-09/summer-internship-prague-m2.jpg",
+        "title": "Prague, Czech Republic",
+        "text": "This city feels like a fairy tale brought to life, with its medieval Old Town Square, the stunning Charles Bridge, and the impressive Prague Castle."
+      },
+      {
+        "img": "https://www.newmarketholidays.co.uk/media/fzvlyuy4/s%C3%A3o-jorge-castle-lisbon-portugal.jpg?format=webp&v=1dac3c487861a50",
+        "title": "Lisbon, Portugal",
+        "text": "A city of seven hills, Lisbon charms with its colorful tiled buildings, historic trams, delicious custard tarts (pastéis de nata), and breathtaking views over the Tagus River."
+      }
+    ]
+  },
+  "carousels": [
+    {
+      "title": "Best Value Europe Tour Packages",
+      "intro": "Touring Europe doesn't have to be expensive. There are tons of affordable options, especially if you plan smart and travel in the off-season.",
+      "backgroundType": "none",
+      "backgroundValue": "",
+      "cols": { "sm": 1, "md": 2, "lg": 2, "xl": 4 },
+      "cardLinkBehavior": "none",
+      "autoplay": false,
+      "wrap": true,
+      "showControls": false,
+      "showIndicators": false,
+      "items": [
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/europe-tour-package/eastern-europe-rail-tour.jpg",
+          "imageAlt": "Eastern Europe Rail Tour",
+          "heading": "Eastern Europe Rail Tour",
+          "text": "7 days through Prague, Budapest, and Krakow starting around $599"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/europe-tour-package/greek-island-hopping.jpg",
+          "imageAlt": "Greek Island Hopping",
+          "heading": "Greek Island Hopping",
+          "text": "10 days, including Athens and Santorini, from $849"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/europe-tour-package/spain-and-portugal-group-tour.jpg",
+          "imageAlt": "Spain and Portugal Group Tour",
+          "heading": "Spain and Portugal Group Tour",
+          "text": "8 days with hotel stays and a guide, starting at $775"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/europe-tour-package/backpacker-route.jpg",
+          "imageAlt": "Backpacker Route",
+          "heading": "Backpacker Route",
+          "text": "Multi-city trips with hostel stays for about $500"
+        }
+      ]
+    },
+    {
+      "title": "Experiences You’ll Never Forget",
+      "intro": "You’ll find no shortage of “must-sees” in Europe. Some are obvious, others are hidden in plain sight.",
+      "backgroundType": "none",
+      "backgroundValue": "",
+      "cols": { "sm": 1, "md": 2, "lg": 3, "xl": 4 },
+      "cardLinkBehavior": "none",
+      "autoplay": false,
+      "wrap": true,
+      "showControls": false,
+      "showIndicators": false,
+      "items": [
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/must-sees-in-europe/art-icon-uffizi.jpg",
+          "imageAlt": "Visit art icons like the Louvre or Uffizi",
+          "heading": "Visit art icons like the Louvre or Uffizi"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/must-sees-in-europe/river-cruise-budapest.jpg",
+          "imageAlt": "Take a river cruise through Budapest",
+          "heading": "Take a river cruise through Budapest"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/must-sees-in-europe/sunset-in-santorini.jpg",
+          "imageAlt": "Watch the sunset in Santorini",
+          "heading": "Watch the sunset in Santorini"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/must-sees-in-europe/hills-of-tuscany.jpg",
+          "imageAlt": "Sip wine in the hills of Tuscany",
+          "heading": "Sip wine in the hills of Tuscany"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/must-sees-in-europe/neuschwanstein-castle.jpg",
+          "imageAlt": "Tour Neuschwanstein Castle",
+          "heading": "Tour Neuschwanstein Castle"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/must-sees-in-europe/gondola-in-venice.jpg",
+          "imageAlt": "Ride a gondola in Venice",
+          "heading": "Ride a gondola in Venice"
+        },
+        {
+          "imageURL": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/must-sees-in-europe/the-colosseum.jpg",
+          "imageAlt": "Climb the steps of the Colosseum",
+          "heading": "Climb the steps of the Colosseum"
+        }
+      ]
+    }
+  ],
+  "banner-gradient": {
+    "align": "full",
+    "title": "How to Choose the Right Tour",
+    "sub_title": "Picking a tour comes down to how you like to travel. Ask yourself a few simple questions and you’ll get a clearer picture.",
+    "footer_text": "Once you know your answers, it’s easier to filter through the thousands of options out there.",
+    "bgStart": "#ff3053",
+    "bgEnd": "#ff6982",
+    "bgDirection": "to right",
+    "hAlign": "center",
+    "vAlign": "center",
+    "category_data": [
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/sim-icons/local-SIM-card.png",
+        "h3": "Your budget",
+        "description": "How much can you spend each day, all in?"
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/sim-icons/eSIM-options.png",
+        "h3": "Your style",
+        "description": "Want to relax or squeeze in five cities in ten days?"
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/sim-icons/offline-maps.png",
+        "h3": "Your group",
+        "description": "Going solo, with friends, or your partner?"
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/sim-icons/eSIM-options.png",
+        "h3": "Your interests",
+        "description": "History, food, nature, nightlife?"
+      },
+      {
+        "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/sim-icons/offline-maps.png",
+        "h3": "Your pace",
+        "description": "Do you like full itineraries or plenty of free time?"
+      }
+    ]
+  },
+  "card-img": {
+    "title": "Eat Europe One Plate at a Time",
+    "intro": "One of the best parts of any Europe tour? The food. It’s not just about eating well—it’s about connecting with culture.",
+    "data_count": "5",
+    "ctaText": "",
+    "ctaUrl": "",
+    "showReadLink": true,
+    "readLinkText": "",
+    "items": [
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/eat-europe/pasta-in-florence.jpg",
+        "heading": "",
+        "text": "Make pasta with a local chef in Florence"
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/eat-europe/cheese-in-paris.jpg",
+        "heading": "",
+        "text": "Taste cheeses and pastries in a Paris food market"
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/eat-europe/tapas-crawl-in-barcelona.jpg",
+        "heading": "",
+        "text": "Join a tapas crawl in Barcelona"
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/eat-europe/grilled-in-greek.jpg",
+        "heading": "",
+        "text": "Learn to grill souvlaki in a Greek village"
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/eat-europe/wine-in-a-vineyard-porto.jpg",
+        "heading": "",
+        "text": "Sip port wine in a vineyard just outside Porto"
+      }
+    ]
+  },
+  "activities-gallery": {
+    "title": "Culture, Traditions & Local Flavor",
+    "intro": "Every country has its quirks and customs. That’s part of the charm.",
+    "bgMode": "gradient",
+    "bgColor": "",
+    "cardAspect": "4/1",
+    "cardAspectWide": "8/1",
+    "cardAspectMobile": "16/9",
+    "items": [
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/dance-and-drink.jpg",
+        "image-alt": "thailand island hopping",
+        "heading": "Dance and drink at Oktoberfest in Munich",
+        "objectPosition": "center",
+        "subheading": ""
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/parades-and-wear-a-mask.jpg",
+        "image-alt": "motorbiking scenic routes",
+        "heading": "Watch parades and wear a mask at Carnival in Venice",
+        "objectPosition": "bottom",
+        "subheading": ""
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/throw-tomatoes-in-spain.jpg",
+        "image-alt": "vietnam trekking",
+        "heading": "Throw tomatoes at La Tomatina in Spain (yes, really)",
+        "objectPosition": "center",
+        "subheading": ""
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/afternoon-tea-in-england.jpg",
+        "image-alt": "elnido diving",
+        "heading": "Slow down for afternoon tea in England",
+        "objectPosition": "bottom",
+        "subheading": ""
+      },
+      {
+        "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/activities-gallery/greet-local-language.jpg",
+        "image-alt": "temple hopping bottom",
+        "heading": "Say \"hello\" in the local language—it’s a small thing, but it matters",
+        "objectPosition": "center 80%",
+        "subheading": ""
+      }
+    ]
+  },
+  "img-with-icon-content": [
+    {
+      "align":"wide",
+      "position":"left",
+      "title":"Which Europe Tour Style Fits You?",
+      "description":"Not every tour looks the same. Some are structured with guides and daily plans, while others let you roam on your own. It really depends on how you like to travel.",
+      "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/eu-bg.jpg",
+      "items":[
+        {
+        "title":"Guided Group Tours",
+        "text":"✔️ Everything pre-planned \n ✔️ Beginner-friendly, stress-free"
+        },
+        {
+        "title":"Luxury Tours",
+        "text":"✔️ Boutique stays, private guides \n ✔️ Designed for comfort with character"
+        },
+        {
+        "title":"Self-Guided Itineraries",
+        "text":"✔️ Move at your own pace \n ✔️ Best for semi-independent travelers"
+        },
+        {
+        "title":"Rail Tours",
+        "text":"✔️ Efficient and scenic \n ✔️ City-hoppers’ dream across Europe"
+        },
+        {
+        "title":"Backpacking & Youth Tours",
+        "text":"✔️ Fast, budget-focused, hostel-heavy \n ✔️ Ideal for students and solo explorers"
+        },
+
+        {
+        "title":"River & Cruise Tours",
+        "text":"✔️ Danube and Mediterranean cruising \n ✔️ Relaxed travelers, cultural immersion"
+        }
+      ]
+    },
+    {
+      "align":"wide",
+      "position":"left",
+      "title":"Quick Europe Travel Tips & Tools",
+      "description":"A little planning goes a long way. These tips will help you get the most out of your tour.",
+      "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/eiffle-bg.jpg",
+      "items":[
+        {
+        "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/laptop.png",
+        "text":"Book popular attractions early (some sell out weeks ahead)"
+        },
+        {
+        "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/map.png",
+        "text":"Download an offline map and translator app"
+        },
+        {
+        "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/train-head.png",
+        "text":"Use public transportation—it’s clean, cheap, and reliable"
+        },
+        {
+        "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/ambulance-light.png",
+        "text":"Watch your bag in crowded places, especially tourist hotspots"
+        },
+        {
+        "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/backpack.png",
+        "text":"Pack light and bring comfortable shoes"
+        },
+
+        {
+        "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/img-with-icon-content/notes.png",
+        "text":"Don’t over-plan—leave space for spontaneity"
+        }
+      ]
+    }
+  ]
+}

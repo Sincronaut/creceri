@@ -1,0 +1,43 @@
+{
+  "apiVersion": 3,
+  "name": "child/grid-four",
+  "title": "Grid · Three Images",
+  "category": "widgets",
+  "description": "Header + sub-title + three timeline cards. Can auto-load from region JSON via dataKey/dataIndex.",
+  "icon": "format-gallery",
+  "supports": {
+    "html": false,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "header":      { "type": "string", "default": "" },
+    "sub-title":   { "type": "string", "default": "" },
+
+    "items": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "image": { "type": "string", "default": "" },
+          "text":  { "type": "string", "default": "" }
+        }
+      }
+    },
+
+    "backgroundType": {
+      "type": "string",
+      "default": "none",
+      "enum": ["none", "color", "gradient"]
+    },
+    "backgroundValue":   { "type": "string", "default": "" },
+    "gradientDirection": { "type": "string", "default": "to right" },
+    "gradientColors":    { "type": "array",  "default": [] },
+
+    "dataIndex": { "type": "number", "default": 0 },
+    "dataKey":   { "type": "string", "default": "banners" }
+  },
+
+  "style":  "file:./style.css",
+  "render": "file:./render.php"
+}

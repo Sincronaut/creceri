@@ -1,0 +1,269 @@
+{
+    "banners": [
+        {
+            "title": "Thailand Awaits: Temples, Beaches, Flavors, and Stories in Every Corner",
+            "description": "Thailand is one of those places that draws you in fast and keeps surprising you. With golden temples, wild island beaches, flavorful street food, and some of the warmest people you’ll meet, it’s a traveler’s dream. Whether you're here for the history, the nightlife, or the mango sticky rice, this Thailand travel guide will help you get the most out of your trip.",
+            "img": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/hero-banner/beach.png",
+            "hAlign": "left",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Affordable Tours and Travel Deals That Go a Long Way",
+            "description": "Traveling around Thailand can be surprisingly affordable. You can join local group tours for as little as $30 a day, covering transportation, guides, and sometimes meals. Backpacker routes often include Chiang Mai, Pai, and the southern islands, with discounts for booking in bundles. \n\n Use apps like Klook, GetYourGuide, or local travel shops for deals on island tours, cooking classes, or jungle treks. Booking in advance helps, but don’t worry there are deals waiting when you land too.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "full",
+            "title": "Seamless Travel: How to Move Around Thailand with Ease",
+            "description": "It’s easy to get around once you know your options. Domestic flights are cheap and fast, perfect for jumping between regions. Trains are scenic and ideal for budget travel. Buses cover just about every corner of the country, from Bangkok to border towns. \n\n For local travel, you’ll find tuk-tuks, songthaews (shared trucks), and motorbike rentals. On the islands, longtail boats and ferries are the way to go. And for booking on the fly, Grab is the go-to app for ride-hailing in cities. \n\n Plan a little, but stay flexible. That’s often how the best memories happen.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": false,
+            "buttonText": "",
+            "buttonUrl": ""
+        },
+        {
+            "align": "wide",
+            "title": "Start Your Thai Adventure. Every Step Leads to Discovery",
+            "description": "Thailand invites you to take it slow, dig deep, and enjoy the journey. Whether you're drawn to the busy streets of Bangkok, the mountains of the north, or the quiet beaches down south, there's always something new to discover. \n\n Explore Thailand today and start a journey filled with beauty, flavor, and unforgettable stories.",
+            "img": "",
+            "hAlign": "center",
+            "vAlign": "center",
+            "banner_size": "small",
+            "showButton": true,
+            "buttonText": "Explore now!",
+            "buttonUrl": "/blogs/"
+        }
+    ],
+    "carousel": [
+        { 
+            "title":"Must-See Places and Hidden Corners Beyond the Guidebooks",
+            "intro":"This country has a little bit of everything. Ancient cities, buzzing nightlife, remote beaches, and peaceful mountain towns. Let’s start with the big hitters and then slide into a few spots that stay under the radar.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/carousel/bangkok.png",
+                    "imageAlt":"Bangkok",
+                    "heading":"Bangkok",
+                    "text":"Fast-paced, full of temples, night markets, and rooftop bars."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/carousel/chiang-mai.png",
+                    "imageAlt":"Chiang Mai",
+                    "heading":"Chiang Mai",
+                    "text":"Laid-back and surrounded by mountains, with hundreds of ancient temples."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/carousel/phuket.png",
+                    "imageAlt":"Phuket",
+                    "heading":"Phuket",
+                    "text":"A mix of beach resorts, diving spots, and nightlife."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/carousel/krabi.png",
+                    "imageAlt":"Krabi",
+                    "heading":"Krabi",
+                    "text":"Home to stunning beaches like Railay and great for climbing and kayaking."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/404.png",
+                    "imageAlt":"404",
+                    "heading":"title",
+                    "text":"Lorem ipsum, dolor sit amet consectetur adipisicing elit."
+                }
+            ]
+        },
+        {
+            "title":"Celebrate Like a Local: Thailand’s Must-See Festivals",
+            "intro":"If your trip lines up with one of Thailand’s festivals, you’re in for something special.",
+            "backgroundType":"none",
+            "backgroundValue":"",
+            "cols": { "xs":1, "sm":2, "md":3, "lg":3, "xl":4 },
+            "cardLinkBehavior":"stretched",
+            "autoplay":false,
+            "interval":0,
+            "pauseOnHover":false,
+            "wrap":true,
+            "showControls":true,
+            "showIndicators":true,
+            "items":[
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/carousel/songkran.png",
+                    "imageAlt":"Songkran (April)",
+                    "heading":"Songkran (April)",
+                    "text":"A nationwide water fight to celebrate Thai New Year."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/carousel/loy-krathong.png",
+                    "imageAlt":"Loy Krathong (November)",
+                    "heading":"Loy Krathong (November)",
+                    "text":"People float lanterns and candles to honor the water spirits."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/carousel/yi-peng.png",
+                    "imageAlt":"Yi Peng (also November)",
+                    "heading":"Yi Peng (also November)",
+                    "text":"In Chiang Mai, thousands of paper lanterns fill the sky."
+                },
+                {
+                    "imageURL":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/carousel/vegetarian.png",
+                    "imageAlt":"Vegetarian Festival (September/October)",
+                    "heading":"Vegetarian Festival (September/October)",
+                    "text":"Rituals and street parades in Phuket’s Chinese community."
+                }
+            ]
+        }
+    ],
+    "card-img": {
+        "title": "Thai Dishes That Pack a Punch and Win Your Heart",
+        "intro": "Thai food isn’t just spicy or sweet, it's balanced, bold, and always memorable. Whether you’re sitting down at a market stall or a riverside restaurant, the flavors are next-level.",
+        "data_count": "5",
+        "ctaText": "",
+        "ctaUrl": "",
+        "showReadLink": true,
+        "readLinkText": "",
+        "items": [
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/card-img/pad-thai.png",
+                "heading": "Pad Thai",
+                "text": "Stir-fried noodles with shrimp or tofu, bean sprouts, peanuts, and lime."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/card-img/tom-yum-goong.png",
+                "heading": "LaTom Yum Goongksa",
+                "text": "Spicy and sour shrimp soup with lemongrass and mushrooms."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/card-img/green-curry.png",
+                "heading": "Green Curry",
+                "text": "Creamy coconut curry with chicken, green chilies, and Thai basil."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/card-img/som-tum.png",
+                "heading": "Som Tum",
+                "text": "Papaya salad with garlic, lime, chili, and peanuts."
+            },
+            {
+                "image": "https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/card-img/mango-sticky-rice.png",
+                "heading": "Mango Sticky Rice",
+                "text": "Sweet coconut rice topped with fresh mango slices."
+            }
+        ]
+    },
+    "img-with-icon-content": [
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Top Activities for Every Kind of Explorer",
+            "description":"Whether you’re here for two weeks or two months, you won’t run out of things to do.",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/img-with-icon-content/top-activities.png",
+            "items":[
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/icons/island.png",
+                "title":"Island Hopping",
+                "text":"Island hop from Phuket to Phi Phi or Koh Tao."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/icons/trek.png",
+                "title":"Trek or Zipline",
+                "text":"Trek or zipline in the northern hills near Chiang Rai or Mae Kampong."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/icons/temple.png",
+                "title":"Climbing temples",
+                "text":"Climb temple steps in Chiang Mai or wander temple ruins in Ayutthaya."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/icons/cooking.png",
+                "title":"Cooking Class",
+                "text":"Take a cooking class and learn how to make your favorite curry."
+                },
+                {
+                "icon":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/icons/thai-massage.png",
+                "title":"Thai Massage",
+                "text":"Book a Thai massage affordable, therapeutic, and found just about everywhere."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"Thailand is about balance. You can hike in the morning, relax on the beach by noon, and eat like royalty every night."
+                }
+            ]
+        },
+        {
+            "align":"wide",
+            "position":"left",
+            "title":"Smart Tips to Make Your Thai Journey Smoother",
+            "description":"",
+            "img":"https://creceri.com/wp-content/themes/viteseo-ttf-child-allinclusive/assets/images/thailand/img-with-icon-content/smart-tips.png",
+            "items":[
+                {
+                "icon":"",
+                "title":"Best time to visit",
+                "text":"November to February offers the nicest weather across most regions."
+                },
+                {
+                "icon":"",
+                "title":"Respect local norms",
+                "text":"Don’t point your feet at people or touch anyone’s head."
+                },
+                {
+                "icon":"",
+                "title":"Stay connected",
+                "text":"Get a local SIM card at the airport cheap and reliable."
+                },
+                {
+                "icon":"",
+                "title":"Keep small cash",
+                "text":"Many vendors and taxis don’t carry change for big bills."
+                },
+                {
+                "icon":"",
+                "title":"Dress modestly",
+                "text":"Especially at temples and rural villages."
+                },
+
+                {
+                "icon":"",
+                "title":"",
+                "text":"A little cultural awareness and a few smart habits can make your trip smoother and more meaningful."
+                }
+            ]
+        }
+    ]
+}

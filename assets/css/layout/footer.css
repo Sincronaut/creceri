@@ -1,0 +1,163 @@
+/* ====== Footer styles ====== */ 
+.site-footer {
+  --footer-bg: #2b0f0f;
+  --footer-ink: #ffffff;
+  --footer-muted: rgba(255,255,255,.75);
+  --footer-max: auto;
+
+  /* Logo sizing tokens */
+  --footer-logo-d: 220px;                 /* desktop/tablet */
+  --footer-logo-m: clamp(220px, 64vw, 130px); /* mobile: bigger */
+
+  background: var(--footer-bg);
+  color: var(--footer-ink);
+  font-size: 15px;
+  margin-top: -20px;
+}
+
+.footer__inner {
+  max-width: var(--footer-max);
+  margin-inline: auto;
+  padding: 48px 0 18px;
+}
+
+/* Top region */
+.footer__top {
+  display: grid;
+  grid-template-columns: 60% 20% 20%;
+  gap: 48px;
+  align-items: start;
+  padding-inline: 150px;
+}
+
+.footer__top p { font-size: 16px; }
+
+/* Brand block */
+.footer__brand .brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--footer-ink);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+/* New: responsive footer logo */
+.footer__logo{
+  display:block;
+  width: var(--footer-logo-d);
+  height:auto;
+  max-width:100%;
+  margin-bottom: 12px; /* breathing room above copy */
+}
+
+.footer__brand .brand__mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: var(--footer-ink);
+  display: inline-block;
+}
+
+.footer__desc {
+  margin: 18px 0 16px;
+  color: var(--footer-muted);
+  max-width: 620px;
+  line-height: 1.6;
+}
+
+/* Social row */
+.footer__social { display: flex; gap: 5px; }
+.footer__social .social {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform .15s ease, opacity .15s ease;
+}
+.footer__social .social img {
+  width: 36px;
+  height: 36px;
+  transition: opacity 0.3s ease;
+}
+
+/* Hover color variants */
+.footer__social .social-y:hover img { content: url('https://creceri.com/wp-content/uploads/2025/10/y-r.png'); }
+.footer__social .social-i:hover img { content: url('https://creceri.com/wp-content/uploads/2025/10/i-y.png'); }
+.footer__social .social-f:hover img { content: url('https://creceri.com/wp-content/uploads/2025/10/f-i.png'); }
+.footer__social .social-x:hover img { content: url('https://creceri.com/wp-content/uploads/2025/10/x-i.png'); }
+.footer__social .social:focus-visible { outline: 3px solid rgba(255,255,255,.35); outline-offset: 3px; }
+
+/* Nav columns */
+.footer__heading {
+  margin: 4px 0 12px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.footer__nav ul { list-style: none; margin: 0; padding: 0; }
+.footer__nav li + li { margin-top: 12px; }
+.footer__nav a { color: var(--footer-muted); text-decoration: none; }
+.footer__nav a:hover { color: var(--footer-ink); }
+
+/* Divider + bottom */
+.footer__rule {
+  border: 0;
+  border-top: 2px solid #fff;
+  margin: 28px 0 12px;
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 10px 20px 24px;
+  color: var(--footer-muted);
+}
+
+/* Tablet: 768px–1020px */
+@media (max-width:1020px) and (min-width:768px) {
+  .footer__top{
+    grid-template-columns: 50% 25% 25%;
+    gap: 30px;
+    padding: 10px 10px 24px;
+  }
+  .footer__brand{ grid-column:1/2; justify-self:start; text-align:left; }
+  .footer__nav[aria-label="Company"]{ grid-column:2/3; justify-self:center; text-align:left; }
+  .footer__nav[aria-label="Resources"]{ grid-column:3/4; text-align:left; }
+
+  .footer__bottom{ justify-content:center; text-align:center; padding:10px 20px 24px; }
+}
+
+/* Mobile ≤767px — center nav; scale logo up */
+@media (max-width:767px){
+  .footer__inner{ padding:40px 16px 14px !important; }
+
+  .footer__top{
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 10px 20px 24px;
+  }
+
+  /* Bigger logo on mobile */
+  .footer__logo{ width: var(--footer-logo-m); }
+
+  /* Brand left; nav centered */
+  .footer__brand{ text-align:left; justify-self:start; }
+
+  .footer__nav{
+    text-align:center;
+    justify-self:center;
+  }
+  .footer__nav .footer__heading{ text-align:center; }
+
+  .footer__nav ul{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:0;
+    margin:0;
+  }
+
+  .footer__bottom{ justify-content:center; text-align:center; padding:10px 20px 24px; }
+}

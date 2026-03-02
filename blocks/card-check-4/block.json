@@ -1,0 +1,40 @@
+{
+  "apiVersion": 2,
+  "name": "child/card-check-4",
+  "title": "Card Check 4",
+  "category": "child",
+  "icon": "yes",
+  "description": "Image + title/intro with two-column bullet groups and a benefits list, plus CTA.",
+  "textdomain": "vite-ttf-child-creceri",
+  "attributes": {
+    "title": { "type": "string", "default": "Team Extension Model" },
+    "intro1": { "type": "string", "default": "Scale smarter with the right talent, integrated directly into your workflow. Keep full control while adding the skills and capacity you need." },
+    "sectionId": { "type": "string", "default": "team-extension-model" },
+    "reverse": { "type": "boolean", "default": false },
+    "image": {
+      "type": "object",
+      "default": {
+        "src": "https://creceri.com/wp-content/uploads/2025/10/ca9be63a-93a5-4e05-8971-1129cae76162-2.png",
+        "alt": "Abstract gradient tile"
+      }
+    },
+    "works": {
+      "type": "array",
+      "default": []
+    },
+    "useCases": {
+      "type": "array",
+      "default": []
+    },
+    "benefits": {
+      "type": "array",
+      "default": []
+    },
+    "btnName": { "type": "string", "default": "Learn More" },
+    "btnUrl": { "type": "string", "default": "#" },
+    "btnClass": { "type": "string", "default": "btn btn-pill btn-custom" }
+  },
+  "style": "file:./style.css",
+  "render": "file:./render.php"
+}
+

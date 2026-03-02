@@ -1,0 +1,115 @@
+{
+  "apiVersion": 3,
+  "name": "child/card-blogs",
+  "title": "Tek Stories",
+  "category": "widgets",
+  "description": "Stories section with a featured item, compact list, intro text, CTA, and image overlays.",
+  "icon": "screenoptions",
+    "rightTitle": "Top Reads",
+    "rightTitlePosition": "list",
+  "supports": {
+    "html": false,
+    "inserter": true,
+    "align": ["wide", "full"]
+  },
+  "attributes": {
+    "items": {
+      "type": "array",
+      "default": [],
+      "items": {
+        "type": "object",
+        "properties": {
+          "image": { "type": "string" },
+          "heading": { "type": "string" },
+          "text": { "type": "string" },
+          "url": { "type": "string" },
+          "link": {
+            "type": "object",
+            "properties": {
+              "url": { "type": "string" }
+            }
+          },
+          "date": { "type": "string" },
+          "author": { "type": "string" },
+          "categories": {
+            "type": "array",
+            "default": [],
+            "items": {
+              "type": "object",
+              "properties": {
+                "label": { "type": "string" },
+                "url": { "type": "string" }
+              }
+            }
+          },
+          "itemButtonPosition": { "type": "string", "enum": ["top", "bottom"] },
+          "itemButtonShowArrow": { "type": "boolean" },
+          "featureButtonPosition": { "type": "string", "enum": ["top", "bottom"] },
+          "featureButtonShowArrow": { "type": "boolean" },
+          "customReadText": { "type": "string" },
+          "categoryPosition": { "type": "string", "enum": ["top", "bottom"] },
+          "hideTitle": { "type": "boolean" },
+          "hideDescription": { "type": "boolean" },
+          "hideMeta": { "type": "boolean" },
+          "hideDate": { "type": "boolean" },
+          "hideAuthor": { "type": "boolean" },
+          "hideCategory": { "type": "boolean" },
+          "hideReadLink": { "type": "boolean" },
+          "overlay": {
+            "type": "object",
+            "properties": {
+              "enabled": { "type": "boolean" },
+              "color": { "type": "string" },
+              "opacity": { "type": "number", "minimum": 0, "maximum": 1 },
+              "size": { "type": "number", "minimum": 0, "maximum": 100 },
+              "position": { "type": "string", "enum": ["top", "bottom"] }
+            }
+          }
+        }
+      }
+    },
+    "title": { "type": "string", "default": "Tek Stories" },
+    "intro": { "type": "string", "default": "" },
+    "ctaText": { "type": "string", "default": "Browse All Stories" },
+    "ctaUrl": { "type": "string", "default": "#" },
+    "showReadLink": { "type": "boolean", "default": true },
+    "readLinkText": { "type": "string", "default": "Read More" },
+    "data_count": { "type": "number", "default": 4 },
+    "animation": { "type": "string", "default": "Off", "enum": ["On", "Off"] },
+    "ctaBgColor": { "type": "string", "default": "#962E2A" },
+    "sectionBgColor": { "type": "string", "default": "" },
+    "overlayEnabled": { "type": "boolean", "default": true },
+    "overlayColor": { "type": "string", "default": "#000000" },
+    "overlayOpacity": { "type": "number", "default": 0.55, "minimum": 0, "maximum": 1 },
+    "overlaySize": { "type": "number", "default": 60, "minimum": 0, "maximum": 100 },
+    "overlayPosition": { "type": "string", "default": "bottom", "enum": ["top", "bottom"] },
+    "imagePosition": { "type": "string", "default": "center" },
+    "showTitle": { "type": "boolean", "default": true },
+    "showDescription": { "type": "boolean", "default": true },
+    "showMeta": { "type": "boolean", "default": true },
+    "showDate": { "type": "boolean", "default": true },
+    "showAuthor": { "type": "boolean", "default": true },
+    "metaSeparator": { "type": "string", "default": " | " },
+    "showCategory": { "type": "boolean", "default": true },
+    "itemButtonPosition": { "type": "string", "default": "bottom", "enum": ["top", "bottom"] },
+    "itemButtonShowArrow": { "type": "boolean", "default": true },
+    "featureButtonPosition": { "type": "string", "default": "bottom", "enum": ["top", "bottom"] },
+    "featureButtonShowArrow": { "type": "boolean", "default": true },
+    "buttonShape": { "type": "string", "default": "round", "enum": ["round", "line"] },
+    "buttonBgColor": { "type": "string", "default": "#F5E8E6" },
+    "buttonTextColor": { "type": "string", "default": "#962E2A" },
+    "buttonBorderColor": { "type": "string", "default": "#962E2A" },
+    "categoryButtonPosition": { "type": "string", "default": "top", "enum": ["top", "bottom"] },
+    "categoryVariant": { "type": "string", "default": "outline", "enum": ["filled", "outline"] },
+    "categoryBgColor": { "type": "string", "default": "#F5E8E6" },
+    "categoryTextColor": { "type": "string", "default": "#962E2A" },
+    "categoryBorderColor": { "type": "string", "default": "#962E2A" },
+    "rightTitle": { "type": "string", "default": "" },
+    "rightTitlePosition": { "type": "string", "default": "header", "enum": ["header", "list"] },
+    "taxonomy": { "type": "string", "default": "category" },
+    "term": { "type": "string", "default": "" },
+    "showTopReadsTags": { "type": "boolean", "default": true }
+  },
+  "render": "file:./render.php",
+  "style": "file:./style.css"
+}
