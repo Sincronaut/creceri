@@ -844,3 +844,338 @@ add_filter( 'robots_txt', function( $output, $public ) {
   $output = str_replace( "Content-signal: search=yes,ai-train=no", "", $output );
   return $output;
 }, 999, 2 );
+
+/* ==========================================================
+ * SCHEMA: DYNAMIC PAGE SCHEMAS (JSON-LD @graph)
+ * ========================================================== */
+add_action('wp_head', function () {
+    // Dynamic base variables (reused for all pages)
+    $site = trailingslashit(home_url('/'));
+    $org_name = 'Creceri';
+    $logo_url = $site . 'logo.png';
+
+    $schema = []; // Initialize empty schema array
+
+    // ---------------------------------------------------
+    // 1. HOMEPAGE SCHEMA
+    // ---------------------------------------------------
+    if (is_front_page()) {
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@graph'   => [
+                [
+                    '@type'       => 'Organization',
+                    '@id'         => $site . '#organization',
+                    'name'        => $org_name,
+                    'url'         => $site,
+                    'logo'        => $logo_url,
+                    'description' => 'A digital knowledge hub dedicated to researching and publishing trusted insights across the tech and digital ecosystem.',
+                    'knowsAbout'  => [
+                        'E-commerce Frameworks',
+                        'CMS Logic',
+                        'UI/UX Principles',
+                        'Search Engine Optimization',
+                        'Digital Innovation'
+                    ]
+                ],
+                [
+                    '@type'       => 'WebSite',
+                    '@id'         => $site . '#website',
+                    'url'         => $site,
+                    'name'        => 'Creceri Knowledge Hub',
+                    'publisher'   => ['@id' => $site . '#organization'],
+                    'description' => 'Explorations in digital innovation, platform reviews, and technical breakdowns.'
+                ],
+                [
+                    '@type'       => 'WebPage',
+                    '@id'         => $site . '#webpage',
+                    'url'         => $site,
+                    'name'        => 'Creceri | Digital Knowledge Hub & Tech Insights',
+                    'isPartOf'    => ['@id' => $site . '#website'],
+                    'about'       => ['@id' => $site . '#organization'],
+                    'mainEntity'  => [
+                        '@type' => 'CreativeWork',
+                        'name'  => 'Creceri Digital Research Library'
+                    ],
+                    'hasPart'     => [
+                        [
+                            '@type'       => 'WebPage',
+                            '@id'         => $site . 'about/',
+                            'name'        => 'About Creceri',
+                            'description' => 'Mission as a digital knowledge hub.'
+                        ],
+                        [
+                            '@type'       => 'WebPage',
+                            '@id'         => $site . 'ecommerce-development/',
+                            'name'        => 'E-commerce Insights',
+                            'description' => 'Magento features and backend logic research.'
+                        ],
+                        [
+                            '@type'       => 'WebPage',
+                            '@id'         => $site . 'website-cms-development/',
+                            'name'        => 'CMS Knowledge',
+                            'description' => 'Analysis of WordPress and web frameworks.'
+                        ],
+                        [
+                            '@type'       => 'WebPage',
+                            '@id'         => $site . 'ui-ux-design/',
+                            'name'        => 'UX Design Principles',
+                            'description' => 'Research on user-centered principles.'
+                        ],
+                        [
+                            '@type'       => 'WebPage',
+                            '@id'         => $site . 'digital-marketing/',
+                            'name'        => 'SEO & Marketing Logic',
+                            'description' => 'Foundations of search optimization and intent.'
+                        ],
+                        [
+                            '@type'       => 'WebPage',
+                            '@id'         => $site . 'team-extension/',
+                            'name'        => 'Industry Roles',
+                            'description' => 'Studies on digital team models.'
+                        ]
+                    ],
+                    'significantLink' => [
+                        $site . 'stories/',
+                        $site . 'whats-new/'
+                    ]
+                ]
+            ]
+        ];
+    }
+    
+    // ---------------------------------------------------
+    // 2. ABOUT US PAGE SCHEMA
+    // ---------------------------------------------------
+    elseif (is_page('about')) {
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@graph'   => [
+                [
+                    '@type'       => 'AboutPage',
+                    '@id'         => $site . 'about/#webpage',
+                    'url'         => $site . 'about/',
+                    'name'        => 'About Creceri | Learn Who We Are & What We Share',
+                    'description' => 'Explore Creceri’s mission as a digital knowledge hub. Learn how we research and publish trusted information across the web and tech ecosystem.',
+                    'mainEntity'  => ['@id' => $site . '#organization'],
+                    'isPartOf'    => ['@id' => $site . '#website'],
+                    'breadcrumb'  => ['@id' => $site . 'about/#breadcrumb']
+                ],
+                [
+                    '@type'       => 'Organization',
+                    '@id'         => $site . '#organization',
+                    'name'        => $org_name,
+                    'url'         => $site,
+                    'description' => 'A digital knowledge hub dedicated to technical research and tech ecosystem insights.',
+                    'knowsAbout'  => [
+                        'E-commerce Development',
+                        'CMS Logic',
+                        'UI/UX Design Principles',
+                        'Digital Marketing',
+                        'Staffing Models'
+                    ]
+                ],
+                [
+                    '@type'           => 'BreadcrumbList',
+                    '@id'             => $site . 'about/#breadcrumb',
+                    'itemListElement' => [
+                        [
+                            '@type'    => 'ListItem',
+                            'position' => 1,
+                            'name'     => 'Home',
+                            'item'     => $site
+                        ],
+                        [
+                            '@type'    => 'ListItem',
+                            'position' => 2,
+                            'name'     => 'About'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    // ---------------------------------------------------
+    // 3. DIGITAL MARKETING PAGE SCHEMA
+    // ---------------------------------------------------
+    elseif (is_page('digital-marketing')) {
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@graph'   => [
+                [
+                    '@type'       => 'CollectionPage',
+                    '@id'         => $site . 'digital-marketing/#webpage',
+                    'url'         => $site . 'digital-marketing/',
+                    'name'        => 'Digital Marketing & SEO Research Hub',
+                    'description' => 'Comprehensive knowledge base for Semantic SEO, search intent, and technical optimization.',
+                    'publisher'   => ['@id' => $site . '#organization'],
+                    'isPartOf'    => ['@id' => $site . '#website'],
+                    'mainEntity'  => [
+                        '@type'           => 'ItemList',
+                        'name'            => 'Vertical Knowledge Pillars',
+                        'description'     => 'Deep-dive research articles within the Digital Marketing category.',
+                        'itemListElement' => [
+                            [
+                                '@type'    => 'ListItem',
+                                'position' => 1,
+                                'item'     => [
+                                    '@type' => 'WebPage',
+                                    '@id'   => $site . 'digital-marketing/semantic-seo/',
+                                    'url'   => $site . 'digital-marketing/semantic-seo/',
+                                    'name'  => 'Semantic SEO'
+                                ]
+                            ],
+                            [
+                                '@type'    => 'ListItem',
+                                'position' => 2,
+                                'item'     => [
+                                    '@type' => 'WebPage',
+                                    '@id'   => $site . 'digital-marketing/what-is-topical-authority-seo/',
+                                    'url'   => $site . 'digital-marketing/what-is-topical-authority-seo/',
+                                    'name'  => 'Topical Authority'
+                                ]
+                            ],
+                            [
+                                '@type'    => 'ListItem',
+                                'position' => 3,
+                                'item'     => [
+                                    '@type' => 'WebPage',
+                                    '@id'   => $site . 'digital-marketing/what-is-google-knowledge-graph/',
+                                    'url'   => $site . 'digital-marketing/what-is-google-knowledge-graph/',
+                                    'name'  => 'Google Knowledge Graph'
+                                ]
+                            ]
+                        ]
+                    ],
+                    'relatedLink' => [
+                        $site . 'ecommerce-development/',
+                        $site . 'ui-ux-design/'
+                    ],
+                    'mentions' => [
+                        [
+                            '@type'  => 'Thing',
+                            'name'   => 'Semantic SEO',
+                            'sameAs' => 'https://www.wikidata.org/wiki/Q180711'
+                        ],
+                        [
+                            '@type'       => 'Thing',
+                            'name'        => 'Core Web Vitals',
+                            'description' => 'LCP, FID, CLS metrics for search ranking.'
+                        ]
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    // ---------------------------------------------------
+    // 4. ECOMMERCE DEVELOPMENT PAGE SCHEMA
+    // ---------------------------------------------------
+    elseif (is_page('ecommerce-development')) {
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@graph'   => [
+                [
+                    '@type'       => 'CollectionPage',
+                    '@id'         => $site . 'ecommerce-development/#webpage',
+                    'url'         => $site . 'ecommerce-development/',
+                    'name'        => 'E-commerce Development Hub | Systems & Strategy',
+                    'description' => 'Research hub for e-commerce architecture, platform logic, and scalability models.',
+                    'publisher'   => ['@id' => $site . '#organization'],
+                    'isPartOf'    => ['@id' => $site . '#website'],
+                    'mainEntity'  => [
+                        '@type'           => 'ItemList',
+                        'name'            => 'Platform-Specific Research Guides',
+                        'itemListElement' => [
+                            [
+                                '@type'    => 'ListItem',
+                                'position' => 1,
+                                'item'     => [
+                                    '@type' => 'WebPage',
+                                    '@id'   => $site . 'ecommerce-development-en/what-is-shopify-ecommerce-guide-2025/',
+                                    'url'   => $site . 'ecommerce-development-en/what-is-shopify-ecommerce-guide-2025/',
+                                    'name'  => 'Shopify E-commerce Guide 2025: Analysis & Features'
+                                ]
+                            ],
+                            [
+                                '@type'    => 'ListItem',
+                                'position' => 2,
+                                'item'     => [
+                                    '@type' => 'WebPage',
+                                    '@id'   => $site . 'ecommerce-development-en/what-is-woocommerce-ecommerce/',
+                                    'url'   => $site . 'ecommerce-development-en/what-is-woocommerce-ecommerce/',
+                                    'name'  => 'Understanding WooCommerce: Ecosystem & Logic'
+                                ]
+                            ]
+                        ]
+                    ],
+                    'relatedLink' => [
+                        $site . 'digital-marketing/what-is-topical-authority-seo/',
+                        $site . 'ui-ux-design/'
+                    ],
+                    'mentions' => [
+                        ['@type' => 'Thing', 'name' => 'Shopify', 'sameAs' => 'https://www.wikidata.org/wiki/Q7501238'],
+                        ['@type' => 'Thing', 'name' => 'WooCommerce', 'sameAs' => 'https://www.wikidata.org/wiki/Q13100806'],
+                        ['@type' => 'Thing', 'name' => 'Magento', 'sameAs' => 'https://www.wikidata.org/wiki/Q1163773']
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    // ---------------------------------------------------
+    // 5. UI/UX PAGE SCHEMA
+    // ---------------------------------------------------
+    elseif (is_page('ui-ux-design')) {
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@graph'   => [
+                [
+                    '@type'       => 'CollectionPage',
+                    '@id'         => $site . 'ui-ux-design/#webpage',
+                    'url'         => $site . 'ui-ux-design/',
+                    'name'        => 'UI/UX & App Design | User-Centered Principles',
+                    'description' => 'Research hub exploring user interaction, prototyping logic, and the impact of AI on the design ecosystem.',
+                    'publisher'   => ['@id' => $site . '#organization'],
+                    'isPartOf'    => ['@id' => $site . '#website'],
+                    'mainEntity'  => [
+                        '@type'           => 'ItemList',
+                        'name'            => 'UI/UX Research Articles',
+                        'itemListElement' => [
+                            [
+                                '@type'    => 'ListItem',
+                                'position' => 1,
+                                'item'     => [
+                                    '@type' => 'WebPage',
+                                    '@id'   => $site . 'ui-ux-design/are-ai-tools-expensive-for-beginners/',
+                                    'url'   => $site . 'ui-ux-design/are-ai-tools-expensive-for-beginners/',
+                                    'name'  => 'Are AI Tools Expensive for Beginners?'
+                                ]
+                            ]
+                        ]
+                    ],
+                    'relatedLink' => [
+                        $site . 'digital-marketing/user-experience-ux/',
+                        $site . 'website-cms-development/',
+                        $site . 'ecommerce-development/'
+                    ],
+                    'mentions' => [
+                        ['@type' => 'Thing', 'name' => 'User Experience', 'sameAs' => 'https://www.wikidata.org/wiki/Q1055535'],
+                        ['@type' => 'Thing', 'name' => 'Prototyping', 'sameAs' => 'https://www.wikidata.org/wiki/Q216398']
+                    ]
+                ]
+            ]
+        ];
+    }
+
+    // ---------------------------------------------------
+    // OUTPUT: Safely encode and print if a schema exists
+    // ---------------------------------------------------
+    if (!empty($schema)) {
+        echo "\n" . '<script type="application/ld+json">' . "\n" 
+             . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n" 
+             . '</script>' . "\n";
+    }
+
+}, 20); // Priority 20 prevents blocking critical CSS
