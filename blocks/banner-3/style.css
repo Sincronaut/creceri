@@ -85,6 +85,27 @@
   color: #4b2925;
 }
 
+.hero__heading {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1em;
+  margin: 0 0 .35em 0;
+}
+
+.hero__brand {
+  font-size: 96px;
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+.hero__line {
+  font-weight: 400;
+  font-size: 64px;
+  color: #962E2A;
+  line-height: 1.15;
+  margin: 0;
+}
+
 /* Grid shell */
 .hero__inner{
   height: 800px;

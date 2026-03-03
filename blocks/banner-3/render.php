@@ -138,14 +138,15 @@ if ($brand === '' && $line === '' && $lead === '' && $imgSrc === '') { return; }
     <?php endif; ?>
 
     <div class="hero__copy">
-      <?php if ($brand !== ''): ?>
-        <h1 id="<?php echo esc_attr($hero_title_id); ?>" class="<?php echo esc_attr(implode(' ', $brand_mt_classes)); ?>" <?php echo $brand_style; ?>>
-          <?php echo esc_html($brand); ?>
+      <?php if ($brand !== '' || $line !== ''): ?>
+        <h1 id="<?php echo esc_attr($hero_title_id); ?>" class="<?php echo esc_attr(implode(' ', $brand_mt_classes)); ?> hero__heading">
+          <?php if ($brand !== ''): ?>
+            <span class="hero__brand"><?php echo esc_html($brand); ?></span>
+          <?php endif; ?>
+          <?php if ($line !== ''): ?>
+            <span class="hero__line"><?php echo wp_kses_post($line); ?></span>
+          <?php endif; ?>
         </h1>
-      <?php endif; ?>
-
-      <?php if ($line !== ''): ?>
-        <h2 class="hero__line"><?php echo wp_kses_post($line); ?></h2>
       <?php endif; ?>
 
       <?php if ($lead !== ''): ?>
