@@ -40,8 +40,8 @@
   box-shadow: var(--shadow);
 }
 /* Space above the "Learn More" button */
-.about-split__content .btn-primary{
-  margin-top: 16px;      /* adjust to taste */
+.about-split__content .btn-pill{
+  margin-top: 16px;
 }
 
 /* Optional: ensure the text block leaves room above the button */
