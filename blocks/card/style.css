@@ -4,7 +4,7 @@
   padding: 30px 80px 10px;
   --title-scale: .92;
   --card-w: 280px;
-  --card-h: 340px;
+  --card-h: 420px; /* Increased from 380px to 420px */
   --media-h: 180px;
 }
 #whats-new-title{
@@ -69,7 +69,7 @@
 @media (max-width:1273px) {
   .whats-new{
     --card-w: 280px;
-    --card-h: 340px;
+    --card-h: 420px; /* Increased from 380px to 420px */
     --media-h: 180px;
   }
   .whats-new .wn-head{
@@ -138,6 +138,7 @@
   overflow: hidden;
   background: #f8f4f3;
   height: var(--media-h);
+  flex-shrink: 0; /* Prevents the image from shrinking when text is long */
 }
 
 .card-media img {
@@ -148,7 +149,7 @@
 }
 
 .card-body {
-  padding: 14px 5px 18px;
+  padding: 14px 10px 24px; /* Increased bottom padding to 24px, adjusted side padding to 10px */
   border-top: 1px solid var(--line, #eee);
   flex: 1 1 auto;
   display: flex;
@@ -161,13 +162,10 @@
   margin: 0 0 6px;
   color: var(--brand, #8b1c1c) !important;
   line-height: 1.2;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
   transform: scale(var(--title-scale));
   transform-origin: top left;
   width: calc(100% / var(--title-scale));
-  height: calc(1.2em / var(--title-scale));
+  height: auto;
   font-weight: 700;
   font-size: 24px;
 }
@@ -184,9 +182,9 @@
   line-height: 1.4;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3; /* Increased from 2 to 3 lines */
   overflow: hidden;
-  min-height: calc(1.4em * 2);
+  min-height: calc(1.4em * 3); /* Increased from 2 to 3 lines */
 }
 
 /* === Slider === */
@@ -198,10 +196,60 @@
   display: flex;
   justify-content: center;
 }
+
+/* === Dots Pagination === */
+.wn-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+  width: 100%; /* Ensures the container takes full width to center properly */
+}
+
+.wn-dot {
+  width: 12px !important;
+  height: 12px !important;
+  min-width: 12px !important;
+  min-height: 12px !important;
+  max-width: 12px !important;
+  max-height: 12px !important;
+  border-radius: 50% !important;
+  background: #ccc !important; /* Base grey */
+  border: none !important;
+  padding: 0 !important;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  display: block !important;
+  outline: none !important;
+  -webkit-tap-highlight-color: transparent !important; /* Removes mobile tap flash */
+}
+
+/* Force focus state to match the exact same inactive grey */
+.wn-dot:focus {
+  background: #ccc !important;
+  transform: none !important;
+}
+
+/* The true active state */
+.wn-dot.is-active,
+.wn-dot.is-active:focus {
+  background: #962E2A !important;
+  transform: scale(1.3) !important;
+}
+
+/* Only apply hover effects on devices with a real mouse cursor */
+@media (hover: hover) and (pointer: fine) {
+  .wn-dot:hover {
+    background: #962E2A !important;
+    transform: scale(1.3) !important;
+  }
+}
+
 /* ===== Responsive ===== */
 @media (max-width:699px) {
   
-  .whats-new { --title-scale: .88; --card-h: 300px; --media-h: 160px; --card-w: 240px; }
+  .whats-new { --title-scale: .88; --card-h: 380px; --media-h: 160px; --card-w: 240px; } /* Increased --card-h from 340px to 380px */
   .btn-pill-desk { display: none !important; }
   .btn-pill-mobile { display: inline-flex !important; align-items: center; justify-content: center; }
   .wn-container { padding-bottom: 32px; }

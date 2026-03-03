@@ -139,6 +139,14 @@ $wrapper_classes = trim( 'whats-new ' . $className );
       </ul>
     </div>
 
+    <?php if ( count( $cards ) > 1 ) : ?>
+      <div class="wn-dots" aria-hidden="true">
+        <?php for ( $d = 0; $d < count( $cards ); $d++ ) : ?>
+          <button class="wn-dot <?php echo $d === 0 ? 'is-active' : ''; ?>" aria-label="Go to slide <?php echo $d + 1; ?>" data-index="<?php echo $d; ?>"></button>
+        <?php endfor; ?>
+      </div>
+    <?php endif; ?>
+
     <?php if ( ! empty( $ctaText ) && ! empty( $ctaUrl ) ) : ?>
       <div class="wn-cta">
         <a class="btn btn-pill btn-pill-mobile" href="<?php echo esc_url( $ctaUrl ); ?>">
@@ -148,3 +156,43 @@ $wrapper_classes = trim( 'whats-new ' . $className );
     <?php endif; ?>
   </div>
 </section>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const listId = "<?php echo esc_js($listId); ?>";
+    const sliderList = document.getElementById(listId);
+    if (!sliderList) return;
+
+    const section = sliderList.closest('.whats-new');
+    const dotsContainer = section.querySelector('.wn-dots');
+    if (!dotsContainer) return;
+    
+    const dots = dotsContainer.querySelectorAll('.wn-dot');
+    const items = sliderList.querySelectorAll('li');
+    if (dots.length === 0 || items.length === 0) return;
+
+    // 1. Use IntersectionObserver to perfectly track which card is on screen
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const index = Array.from(items).indexOf(entry.target);
+          dots.forEach(d => d.classList.remove('is-active'));
+          if (dots[index]) dots[index].classList.add('is-active');
+        }
+      });
+    }, {
+      root: sliderList,
+      threshold: 0.6 // Card must be 60% visible to light up the dot
+    });
+
+    items.forEach(item => observer.observe(item));
+
+    // 2. Safely scroll completely to the card when dot is clicked
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', (e) => {
+        e.preventDefault();
+        items[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
+    });
+  });
+</script>
