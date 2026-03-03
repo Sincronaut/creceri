@@ -154,7 +154,7 @@ if ($brand === '' && $line === '' && $lead === '' && $imgSrc === '') { return; }
       <?php endif; ?>
 
       <?php if (strtolower($buttonType) !== 'none' && $buttonText !== ''): ?>
-        <a class="<?php echo esc_attr($buttonClass); ?> btn-pill" style="padding:0px !important;padding-top:5px !important;" href="<?php echo esc_url($buttonUrl); ?>">
+        <a class="<?php echo esc_attr($buttonClass); ?> btn-pill" href="<?php echo esc_url($buttonUrl); ?>">
           <?php echo esc_html($buttonText); ?>
         </a>
       <?php endif; ?>

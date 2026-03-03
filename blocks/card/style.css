@@ -18,46 +18,7 @@
   font-size:36px;
 }
 /* === Buttons === */
-.btn-pill-desk {
-  display: inline-flex !important;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  font-size: clamp(16px, calc(16px + (4 * (100vw - 320px)) / 1120), 20px) !important;
-  font-weight: 700;
-  color: #fff !important;
-  background: var(--brand, #8b1c1c) !important;
-  border-radius: 9999px;
-  min-height: 42px !important;
-  height: auto !important;
-  min-width: 230px;
-  width: auto !important;
-  padding: 0 32px !important;
-  border: none;
-  line-height: 1;
-  text-align: center;
-  white-space: nowrap;
-  box-shadow: 0 3px 0 var(--brand-700, #5e1212), var(--shadow, rgba(0,0,0,.2));
-  transition: transform .06s ease, filter .2s ease, box-shadow .2s ease;
-  margin-top: 0 !important;
-}
-
-.btn-pill-desk:hover {
-  filter: brightness(.96);
-  transform: translateY(1px);
-}
-
-.btn-pill-desk:focus-visible {
-  outline: 3px solid #caa6a2;
-  outline-offset: 2px;
-}
-
-.btn-pill-mobile {
-  display: none !important;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
+/* REMOVED — now handled globally in style.css */
 
 /* === Container & Header === */
 .wn-container {
