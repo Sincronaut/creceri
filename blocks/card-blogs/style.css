@@ -11,7 +11,12 @@
 }
 
 /* ===== Section / header ===== */
-.wrap{ margin-inline:auto; padding:30px 150px 36px; background:#fff !important; text-transform:capitalize !important;}
+.wrap{ 
+  margin-inline:auto; 
+  padding:30px 150px 36px; 
+  background: linear-gradient(0deg, #E9B79699 0%, #FFFFFF 100%);
+  text-transform:capitalize !important;
+}
 .stories-header{ margin-bottom:10px; }
 .stories-title{ margin:0 0 4px; line-height:1.15; color:var(--rose-500); letter-spacing:.2px; font-size:36px !important; font-weight:650;}
 .stories-intro{ margin-bottom:22px; }
