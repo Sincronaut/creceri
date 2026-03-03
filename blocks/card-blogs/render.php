@@ -292,38 +292,13 @@ $media_style = function($url,$item=null) use($overlay_enabled,$ov_color,$ov_opac
 };
 $visible = function(bool $global,array $item=null,string $hideKey=null){ if(!$hideKey||!is_array($item))return $global; return array_key_exists($hideKey,$item)?!(bool)$item[$hideKey]:$global; };
 
-$build_meta = function(array $item=null,string $scope='item') use($visible,$show_meta_global,$show_date_global,$show_author_global){
-  if(!$visible($show_meta_global,$item,'hideMeta')) return '';
-  $date_on   = $visible($show_date_global,$item,'hideDate');
-  $author_on = $visible($show_author_global,$item,'hideAuthor');
-  $date   = $date_on?trim(tek_str($item,'date','')):''; $author = $author_on?trim(tek_str($item,'author','')):'';
-  if($date==='' && $author==='') return '';
-  $cls = $scope==='feature'?'feature-meta':'item-meta';
-  $parts=[];
-  if($author!=='')$parts[]='<span class="meta-author">By '.esc_html($author).'</span>';
-  if($date!=='')$parts[]='<span class="meta-date">'.esc_html($date).'</span>';
-  return '<p class="meta '.$cls.'"><span class="meta-bullet" aria-hidden="true">•</span>'.implode('<span class="meta-sep" aria-hidden="true"></span>',$parts).'</p>';
-};
-
-/* Read button */
-$build_read = function(array $item=null,string $scope='item',string $pos='bottom') use($show_read_global,$read_label_global,$btn_shape,$btn_bg,$btn_text,$btn_border){
+/* Read button - Updated to simple text link */
+$build_read = function(array $item=null) use($show_read_global,$read_label_global){
   $url = tek_url_from($item ?? []);
   $label = trim(tek_str($item,'customReadText',$read_label_global));
   $hide = tek_bool($item,'hideReadLink',false);
   if(!$show_read_global || $hide || $url==='' || $label==='') return '';
-  $cls  = $scope==='feature'?'feature-read':'item-read';
-  $is_line = ($btn_shape === 'line');
-  $wrapper_cls = $cls.' '.$cls.'--'.esc_attr($pos).' '.($is_line ? 'read--line' : 'read--chip');
-  $html = '<div class="'.esc_attr($wrapper_cls).'">';
-  if($is_line){
-    $html.= '<a class="btnline" style="--btn-text:'.esc_attr($btn_text).';--btn-border:'.esc_attr($btn_border).';" href="'.esc_url($url).'">';
-    $html.= esc_html($label).'<span class="chev" aria-hidden="true">›</span></a>';
-  } else {
-    $html.= '<a class="btnchip btnchip--round" style="--btn-bg:'.esc_attr($btn_bg).';--btn-text:'.esc_attr($btn_text).';--btn-border:'.esc_attr($btn_border).';" href="'.esc_url($url).'">';
-    $html.= esc_html($label).'<span class="chev" aria-hidden="true">›</span></a>';
-  }
-  $html.= '</div>';
-  return $html;
+  return '<a class="read-more-link" href="'.esc_url($url).'">'.esc_html($label).' &rsaquo;</a>';
 };
 
 $build_tags = function(array $item=null,string $scope='item',string $pos='top',string $variant='outline',string $bg='#F5E8E6',string $text='#962E2A',string $border='#962E2A') use($visible,$show_category_global){
@@ -337,7 +312,7 @@ $build_tags = function(array $item=null,string $scope='item',string $pos='top',s
 
 /* Flags */
 $has_intro = ($show_desc_global && trim($intro)!=='' );
-$has_cta   = ($cta_text!=='' && $cta_url!=='' );
+$has_cta   = $right_cta_on; /* Use right CTA values — that's where the button data is stored */
 $has_rtitle= ($right_title!=='' );
 
 $section_classes='wrap has-rtitle--list';
@@ -348,7 +323,7 @@ $section_classes='wrap has-rtitle--list';
 
   <div class="stories-header">
     <?php if($show_title_global && $title): ?>
-      <h3 id="tek-stories-title" class="stories-title"><?php echo esc_html($title); ?></h3>
+      <h2 id="tek-stories-title" class="stories-title"><?php echo esc_html($title); ?></h2>
     <?php endif; ?>
   </div>
 
@@ -357,7 +332,7 @@ $section_classes='wrap has-rtitle--list';
       <?php if($has_intro): ?><p class="stories-sub" style="margin-bottom:0;"><?php echo esc_html($intro); ?></p><?php endif; ?>
       <?php if($has_cta): ?>
         <div class="stories-actions" style="flex-shrink:0;">
-          <a class="btn" href="<?php echo esc_url($cta_url); ?>" style="background-color:<?php echo esc_attr($cta_bg); ?>!important;color:white;"><?php echo esc_html($cta_text); ?></a>
+          <a class="btn-pill" href="<?php echo esc_url($right_cta_url); ?>"><?php echo esc_html($right_cta_text); ?></a>
         </div>
       <?php endif; ?>
     </div>
@@ -370,20 +345,13 @@ $section_classes='wrap has-rtitle--list';
     <?php
       if(is_array($feature) && !empty($feature)):
         $feature['image'] = trim(tek_str($feature,'image','')) ? $feature['image'] : $FALLBACK_IMG;
-        $feature_meta = $build_meta($feature,'feature');
-        $cat_pos_feature = tek_str($feature,'categoryPosition',$category_pos_def);
-        $tag_pos = $cat_pos_feature==='top'?'media-top':'media-bottom';
-        $feature_tags = $build_tags($feature,'feature',$tag_pos,$category_variant,$cat_bg,$cat_text,$cat_border);
-        $feature_btn_pos = tek_str($feature,'featureButtonPosition',$feature_btn_pos_def);
-        $feature_read = $build_read($feature,'feature',$feature_btn_pos);
+        $feature_read = $build_read($feature);
         $feature_text = trim(tek_str($feature,'text',''));
     ?>
       <article class="feature">
-        <div class="feature-media" <?php echo $media_style(tek_str($feature,'image',$FALLBACK_IMG),$feature); ?>>
-          <?php echo $feature_tags; ?>
-        </div>
+        <div class="feature-media" <?php echo $media_style(tek_str($feature,'image',$FALLBACK_IMG),$feature); ?>></div>
 
-        <div class="feature-body" style="background-color:#fff; border-bottom-left-radius:20px;border-bottom-right-radius:20px;">
+        <div class="feature-body">
           <?php if(trim(tek_str($feature,'heading',''))!==''): ?>
             <h3 class="feature-title"><?php echo esc_html(tek_str($feature,'heading','Coming Soon')); ?></h3>
           <?php endif; ?>
@@ -392,51 +360,95 @@ $section_classes='wrap has-rtitle--list';
             <p class="feature-excerpt"><?php echo esc_html($feature_text); ?></p>
           <?php endif; ?>
 
-          <div class="feature-footer">
-            <div class="footer-left">
-              <?php echo $feature_meta ? wp_kses_post($feature_meta) : ''; ?>
-            </div>
-            <div class="feature-actions">
-              <?php echo $feature_read; ?>
-            </div>
-          </div>
+          <?php echo $feature_read; ?>
         </div>
       </article>
     <?php endif; ?>
 
     <!-- Right column -->
     <div class="list-col">
-      <?php if ($has_rtitle): ?>
-        <h3 class="list-title"><?php echo esc_html($right_title); ?></h3>
-      <?php endif; ?>
 
-      <div class="list<?php echo $belt_enabled ? ' belt' : ''; ?>" <?php echo $belt_enabled ? 'id="belt"' : ''; ?>>
+      <?php $list_id = 'blogs-track-' . uniqid(); ?>
+      <div class="list<?php echo $belt_enabled ? ' belt' : ''; ?>" id="<?php echo esc_attr($list_id); ?>">
         <?php foreach($items as $item): 
               $item['image'] = trim(tek_str($item,'image','')) ? $item['image'] : $FALLBACK_IMG;
-              $btn_pos=tek_str($item,'itemButtonPosition',$item_btn_pos_def); 
-              $cat_pos=tek_str($item,'categoryPosition',$category_pos_def); 
-              $item_tags=$build_tags($item,'item',$cat_pos,$category_variant,$cat_bg,$cat_text,$cat_border); 
-              $item_meta=$build_meta($item,'item'); 
-              $item_read=$build_read($item,'item',$btn_pos); ?>
+              $item_read=$build_read($item);
+              $item_text = trim(tek_str($item,'text','')); ?>
           <article class="item">
             <div class="thumb" aria-hidden="true" <?php echo $media_style(tek_str($item,'image',$FALLBACK_IMG),$item); ?>></div>
             <div class="item-data">
-              <?php echo $item_tags; ?>
-              <h4><?php echo esc_html(tek_str($item,'heading','Coming Soon')); ?></h4>
-              <?php echo $item_meta ? wp_kses_post($item_meta) : ''; ?>
+              <h3><?php echo esc_html(tek_str($item,'heading','Coming Soon')); ?></h3>
+              <?php if ($item_text !== ''): ?>
+                <p class="item-excerpt"><?php echo esc_html($item_text); ?></p>
+              <?php endif; ?>
               <?php echo $item_read; ?>
             </div>
           </article>
         <?php endforeach; ?>
       </div>
 
-      <?php if ($right_cta_on): ?>
-        <!-- Bottom CTA -->
-        <div class="list-col-actions">
-          <a class="btn btn-pill" href="<?php echo esc_url($right_cta_url); ?>" style="background-color:<?php echo esc_attr($cta_bg); ?>!important;color:white;"><?php echo esc_html($right_cta_text); ?></a>
+      <?php if (count($items) > 1): ?>
+        <div class="blogs-dots" aria-hidden="true">
+          <?php for ( $d = 0; $d < count($items); $d++ ) : ?>
+            <button class="blog-dot <?php echo $d === 0 ? 'is-active' : ''; ?>" aria-label="Go to slide <?php echo $d + 1; ?>"></button>
+          <?php endfor; ?>
         </div>
       <?php endif; ?>
+
     </div>
   </div>
   <?php endif; ?>
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const sliderList = document.getElementById("<?php echo esc_js($list_id); ?>");
+      if (!sliderList) return;
+
+      const dotsContainer = sliderList.nextElementSibling;
+      if (!dotsContainer || !dotsContainer.classList.contains('blogs-dots')) return;
+      
+      const dots = dotsContainer.querySelectorAll('.blog-dot');
+      const items = sliderList.querySelectorAll('article.item');
+      if (dots.length === 0 || items.length === 0) return;
+
+      // Light up dots dynamically based on scroll position
+      sliderList.addEventListener('scroll', () => {
+        const scrollLeft = sliderList.scrollLeft;
+        const itemWidth = items[0].offsetWidth + parseInt(window.getComputedStyle(sliderList).gap || 0);
+
+        let index = Math.round(scrollLeft / itemWidth);
+
+        // Fix for the last card edge cases
+        const maxScrollLeft = sliderList.scrollWidth - sliderList.clientWidth;
+        if (Math.ceil(scrollLeft) >= maxScrollLeft - 10) { 
+          index = dots.length - 1; 
+        }
+
+        if (index >= dots.length) index = dots.length - 1;
+        if (index < 0) index = 0;
+
+        dots.forEach(d => {
+          d.classList.remove('is-active');
+          d.blur(); // Strips focus stuckness on scroll
+        });
+        if (dots[index]) dots[index].classList.add('is-active');
+      }, { passive: true });
+
+      // Scroll container cleanly when dot is clicked
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+
+          // Force state update instantly
+          dots.forEach(d => { d.classList.remove('is-active'); d.blur(); });
+          dot.classList.add('is-active');
+
+          const containerLeft = sliderList.getBoundingClientRect().left;
+          const offset = items[index].getBoundingClientRect().left - containerLeft + sliderList.scrollLeft;
+          
+          sliderList.scrollTo({ left: offset, behavior: 'smooth' });
+        });
+      });
+    });
+  </script>
 </section>
