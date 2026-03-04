@@ -88,7 +88,7 @@ if ($use_posts || empty($items)) {
       }
 
       $thumb_id  = get_post_thumbnail_id();
-      $image_src = $thumb_id ? wp_get_attachment_image_url($thumb_id,'large') : '';
+      $image_src = $thumb_id ? wp_get_attachment_image_url($thumb_id,'large') : get_stylesheet_directory_uri() . '/assets/images/fallback-image.webp';
       $image_alt = $thumb_id ? get_post_meta($thumb_id,'_wp_attachment_image_alt',true) : '';
       if ($image_alt==='') $image_alt = $p_title;
 
@@ -101,7 +101,7 @@ if ($use_posts || empty($items)) {
         'date'          => get_post_time('c'),
         'url'           => get_permalink(),
         'snippet'       => cc_clean( wp_strip_all_tags(get_the_excerpt()) ),
-        'image'         => array('src'=>$image_src ?: '','alt'=>$image_alt ?: ''),
+        'image'         => array('src'=>$image_src ?: get_stylesheet_directory_uri() . '/assets/images/fallback-image.webp','alt'=>$image_alt ?: ''),
       );
     }
     wp_reset_postdata();
@@ -221,10 +221,8 @@ $config = array(
   <template id="<?php echo esc_attr($tpl_id); ?>">
     <article class="card">
       <a class="media" href="#" aria-label="">
-        <span class="media-bg" aria-hidden="true"></span>
+        <span class="media-bg" aria-hidden="true" style="position: absolute; inset: 0; background-size: cover; background-position: center;"></span>
         <div class="badges"></div>
-        <!-- If you prefer <img>, we inject it too; CSS above keeps it under badges -->
-        <img alt="" class="card-img-top" loading="lazy" decoding="async" />
       </a>
       <div class="content">
         <h3 class="title"></h3>
@@ -334,7 +332,7 @@ $config = array(
 
           // Set both; CSS ensures either works and stays under badges
           if (mediaBg) mediaBg.style.backgroundImage = img ? `url("${img}")` : 'none';
-          if (imgEl) { imgEl.src = img || ''; imgEl.alt = alt; }
+
 
           media.href = row.url || '#';
           media.setAttribute('aria-label', row.title || '');

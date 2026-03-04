@@ -17,7 +17,7 @@ function tek_hex2rgba($hex,$alpha=1.0){ $hex=preg_replace('/[^0-9a-fA-F]/','',(s
 function tek_url_from($node){ if(!is_array($node))return ''; $link=tek_val($node,'link',[]); $u1=tek_str($link,'url',''); $u2=tek_str($node,'url',''); return $u1!==''?$u1:$u2; }
 
 /* ---------- Global fallback image ---------- */
-$FALLBACK_IMG = '/mnt/data/Untitled.jpg';
+function tek_get_fallback_image() { return get_stylesheet_directory_uri() . '/assets/images/fallback-image.webp'; }
 
 /* ---------------- Wide search plumbing ---------------- */
 function tek_get_param(string $key): string {
@@ -150,14 +150,14 @@ function tek_build_items_from_query(array $attributes): array {
   if ($search !== ''){ tek_wide_search_remove_filters(); }
   if (!$posts) return [];
 
-  global $FALLBACK_IMG;
+  
 
   $items = [];
   foreach ($posts as $p){
     $pid   = $p->ID;
     $img   = get_the_post_thumbnail_url($pid,'large')
           ?: get_the_post_thumbnail_url($pid,'medium_large')
-          ?: $FALLBACK_IMG;
+          ?: tek_get_fallback_image();
 
     $excerpt = has_excerpt($pid)
       ? get_the_excerpt($pid)
@@ -172,7 +172,7 @@ function tek_build_items_from_query(array $attributes): array {
     }
 
     $items[] = [
-      'image'      => $img ?: $FALLBACK_IMG,
+      'image'      => $img ?: tek_get_fallback_image(),
       'heading'    => get_the_title($pid),
       'text'       => wp_strip_all_tags($excerpt),
       'url'        => get_permalink($pid),
@@ -256,12 +256,12 @@ if (!empty($from_query)) {
 }
 
 /* Normalize / split + enforce fallback */
-global $FALLBACK_IMG;
+
 $items = array_values(array_filter($items,function($it){
   return is_array($it) && (trim(tek_str($it,'image'))!=='' || trim(tek_str($it,'heading'))!=='' || trim(tek_str($it,'text'))!=='' || trim(tek_str($it,'url'))!=='');
 }));
-$items = array_map(function($it) use ($FALLBACK_IMG){
-  if (trim(tek_str($it,'image',''))==='') $it['image'] = $FALLBACK_IMG;
+$items = array_map(function($it) {
+  if (trim(tek_str($it,'image',''))==='') $it['image'] = tek_get_fallback_image();
   return $it;
 }, $items);
 if($total_to_show>0) $items = array_slice($items,0,$total_to_show);
@@ -344,12 +344,12 @@ $section_classes='wrap has-rtitle--list';
   <div class="grid">
     <?php
       if(is_array($feature) && !empty($feature)):
-        $feature['image'] = trim(tek_str($feature,'image','')) ? $feature['image'] : $FALLBACK_IMG;
+        $feature['image'] = trim(tek_str($feature,'image','')) ? $feature['image'] : tek_get_fallback_image();
         $feature_read = $build_read($feature);
         $feature_text = trim(tek_str($feature,'text',''));
     ?>
       <article class="feature">
-        <div class="feature-media" <?php echo $media_style(tek_str($feature,'image',$FALLBACK_IMG),$feature); ?>></div>
+        <div class="feature-media" <?php echo $media_style(tek_str($feature,'image',tek_get_fallback_image()),$feature); ?>></div>
 
         <div class="feature-body">
           <?php if(trim(tek_str($feature,'heading',''))!==''): ?>
@@ -371,11 +371,11 @@ $section_classes='wrap has-rtitle--list';
       <?php $list_id = 'blogs-track-' . uniqid(); ?>
       <div class="list<?php echo $belt_enabled ? ' belt' : ''; ?>" id="<?php echo esc_attr($list_id); ?>">
         <?php foreach($items as $item): 
-              $item['image'] = trim(tek_str($item,'image','')) ? $item['image'] : $FALLBACK_IMG;
+              $item['image'] = trim(tek_str($item,'image','')) ? $item['image'] : tek_get_fallback_image();
               $item_read=$build_read($item);
               $item_text = trim(tek_str($item,'text','')); ?>
           <article class="item">
-            <div class="thumb" aria-hidden="true" <?php echo $media_style(tek_str($item,'image',$FALLBACK_IMG),$item); ?>></div>
+            <div class="thumb" aria-hidden="true" <?php echo $media_style(tek_str($item,'image',tek_get_fallback_image()),$item); ?>></div>
             <div class="item-data">
               <h3><?php echo esc_html(tek_str($item,'heading','Coming Soon')); ?></h3>
               <?php if ($item_text !== ''): ?>

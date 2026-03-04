@@ -58,7 +58,7 @@ if ( ! empty( $latest_posts ) && ! is_wp_error( $latest_posts ) ) {
       'text'  => wp_trim_words( wp_strip_all_tags( get_the_excerpt( $post_obj ) ), 24 ),
       'url'   => get_permalink( $post_obj ),
       'image' => array(
-        'src' => $thumb_src ? $thumb_src : '',
+        'src' => $thumb_src ? $thumb_src : get_stylesheet_directory_uri() . '/assets/images/fallback-image.webp',
         'alt' => $thumb_alt ? $thumb_alt : $p_title,
       ),
     );

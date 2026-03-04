@@ -127,12 +127,11 @@ $style_attr = implode(';', $style_vars);
   <div class="hero__inner">
     <div class="hero__copy" >
       <h1 id="<?php echo esc_attr($title_id); ?>" class="title_h1">
-       <?php echo $brand; ?>
+       <span class="hero__brand"><?php echo $brand; ?></span>
+       <?php if (!empty($line_html)) : ?>
+         <span class="hero__line"><?php echo $line_html; ?></span>
+       <?php endif; ?>
       </h1>
-
-      <?php if (!empty($line_html)) : ?>
-        <h1 class="hero__line"><?php echo $line_html; ?></h1>
-      <?php endif; ?>
 
       <?php if (!empty($lead_weight)) : ?>
         <p class="hero__lead"><b><?php echo $lead_weight; ?></b></p>
