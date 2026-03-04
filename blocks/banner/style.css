@@ -140,73 +140,10 @@ body:has(.hero--bleed-top) .wp-site-blocks > header{
    ====================== */
 .hero .text-white{ color:#fff !important; }
 
-.hero .btn,n.hero .hero__submit{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:.5rem;
-  text-decoration:none;
-  border:0;
-  cursor:pointer;
-  user-select:none;
-  padding: calc(.9rem * var(--ui-scale)) calc(1.4rem * var(--ui-scale));
-  font-weight:650;
-  line-height:1;
-  font-size: clamp(15px, 1.7vw, 18px);
-  min-width: clamp(160px, 28vw, 260px);
-  width: auto !important;
-  transition: transform .08s ease, box-shadow .2s ease, opacity .2s ease;
-}
-.hero .btn-custom,n.hero .hero__submit.btn-custom{
-  background: var(--btn-bg, var(--brand,  #962E2A)) !important;
-  color: var(--btn-color, #fff) !important;
-  box-shadow: 0 6px 16px rgba(0,0,0,.08);
-  font-size: clamp(16px, 1.8vw, 18px) !important;
-}
 .hero__image1{
   width: var(--image-fluid) !important;
   height: auto !important;
 }
-/* Base */
-.hero .btn-custom{
-  --c-start: #962E2A !important;
-  --c-end:   #FFA318 !important;
-
-  background-image: linear-gradient(90deg, var(--c-start) 0 50%, var(--c-end) 50% 100%)  !important;
-  background-size: 200% 100%  !important;
-  background-position: left center  !important;
-  border-radius:25px;
-  background-color: var(--c-start)  !important;
-  color: #fff  !important;
-  border: 0  !important;
-  padding: 10px 10px !important;
-  cursor: pointer  !important;
-
-  transition: background-position .35s ease, color .35s ease, box-shadow .2s ease, transform .2s ease  !important;
-}
-
-/* Hover — sweep to orange */
-.hero .btn-custom:hover{
-  background-position: right center  !important;
-  color: #000  !important;
-  box-shadow: 0 6px 16px rgba(0,0,0,.15)  !important;
-  transform: translateY(-1px)  !important;
-}
-
-/* Keyboard focus */
-.hero .btn-custom:focus-visible{
-  outline: none  !important;
-  box-shadow: 0 0 0 3px rgba(255,163,24,.45), 0 6px 16px rgba(0,0,0,.15)  !important;
-}
-
-/* Motion prefs */
-@media (prefers-reduced-motion: reduce){
-  .hero .btn-custom{ transition: none  !important; }
-}
-
-.hero .btn-custom:active{ transform: translateY(1px); }
-
-.hero .hero__copy .btn,\n.hero .hero__copy .btn-custom,\n.hero .hero__copy .hero__submit{ margin-right:3px; }
 
 /* ======================
    IMAGE SIZING

@@ -38,7 +38,7 @@ $section_id  = isset($A['sectionId']) ? sanitize_title($A['sectionId']) : 'who-w
 
 $btn_name  = isset($A['btnName']) ? sanitize_text_field($A['btnName']) : '';
 $btn_url   = isset($A['btnUrl'])  ? esc_url($A['btnUrl']) : '#';
-$btn_class = isset($A['btnClass']) ? sanitize_text_field($A['btnClass']) : 'btn btn-pill btn-custom';
+$btn_class = isset($A['btnClass']) ? sanitize_text_field($A['btnClass']) : 'btn btn-pill btn-pill';
 
 $image     = is_array($A['image'] ?? null) ? $A['image'] : array();
 $img_src   = isset($image['src']) ? esc_url($image['src']) : '';
@@ -199,4 +199,5 @@ if ($anchor)    { $classes[] = $anchor; }
 
   </div><!-- /.who-we-are__inner1 -->
 </section>
+
 

@@ -46,7 +46,7 @@ $lead_weight = $A['lead_weight'] ?? '';
 $buttonType = in_array(($A['buttonType'] ?? 'Button'), array('Button','Search','none'), true) ? $A['buttonType'] : 'Button';
 $btnText  = $A['buttonText'] ?? 'Search';
 $btnUrl   = $A['buttonUrl'] ?? '#explore';
-$btnClass = $A['buttonClass'] ?? 'btn btn-custom text-white btn-pill';
+$btnClass = $A['buttonClass'] ?? 'btn btn-pill text-white btn-pill';
 
 $image   = is_array($A['image'] ?? null) ? $A['image'] : array();
 $img_src = $image['src'] ?? 'wp-content/uploads/2025/10/693a7a2703163f47b412f648b6da08ad8485fd2a.webp';
@@ -165,3 +165,4 @@ $style_attr = implode(';', $style_vars);
     </div>
   </div>
 </section>
+
