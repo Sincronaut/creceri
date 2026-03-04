@@ -25,7 +25,7 @@
     /* Layout */
     .container {
       margin-inline: auto;
-      padding-inline: 20px;
+      padding-inline: 0px;
     }
 
     .title-row {
@@ -272,6 +272,15 @@
   .toc__item a:focus {
     color: #962E2A;
     text-decoration: underline;
+  }
+
+  .toc__item a.is-active {
+    background: #962E2A;
+    color: #fff !important;
+    border-radius: 6px;
+    padding: 3px 8px;
+    text-decoration: none;
+    border-left-color: transparent;
   }
 
   /* Related (if used) */
@@ -614,7 +623,7 @@
           const li = document.createElement('li');
           li.className = `toc__item toc__item--${h.tagName.toLowerCase()}`;
           const a = document.createElement('a');
-          a.href = `#${h.id}`;
+          a.setAttribute('href', `#${h.id}`);
           a.textContent = h.textContent;
           li.appendChild(a);
           tocList.appendChild(li);
@@ -624,6 +633,69 @@
         if (!tocList.children.length) {
           tocList.closest('.toc')?.classList.add('is-empty');
         }
+
+        // Highlight active TOC link on scroll
+        const allTocLinks = Array.from(tocList.querySelectorAll('a[href^="#"]'));
+        const headingEls = Array.from(content.querySelectorAll('h1[id], h2[id]'));
+
+        const setActive = (id) => {
+          allTocLinks.forEach((a) => {
+            a.classList.toggle('is-active', a.getAttribute('href') === `#${id}`);
+          });
+        };
+
+        // When a TOC link is clicked, lock the active state for long enough
+        // for the smooth scroll to finish before the scroll listener takes over.
+        let clickLock = false;
+        let clickLockTimer = null;
+
+        allTocLinks.forEach((link) => {
+          link.addEventListener('click', () => {
+            const id = link.getAttribute('href').substring(1);
+            setActive(id);
+            clickLock = true;
+            clearTimeout(clickLockTimer);
+            clickLockTimer = setTimeout(() => { clickLock = false; }, 1000);
+          });
+        });
+
+        // getBoundingClientRect gives live screen positions — far more accurate
+        // than offsetTop for nested / sticky layouts.
+        const HEADER_HEIGHT = 120; // px: adjust if your header is taller/shorter
+        let rafPending = false;
+
+        const updateActive = () => {
+          rafPending = false;
+          if (clickLock) return;
+
+          // Edge-case: already scrolled to the very bottom → last heading wins.
+          if (window.innerHeight + window.scrollY >= document.body.scrollHeight - 4) {
+            if (headingEls.length) setActive(headingEls[headingEls.length - 1].id);
+            return;
+          }
+
+          // Walk headings top-to-bottom; keep the last one whose top edge has
+          // passed the trigger line (header height + a small buffer).
+          let active = null;
+          for (const h of headingEls) {
+            if (h.getBoundingClientRect().top <= HEADER_HEIGHT + 10) {
+              active = h;
+            } else {
+              break;
+            }
+          }
+          if (active) setActive(active.id);
+        };
+
+        window.addEventListener('scroll', () => {
+          if (!rafPending) {
+            rafPending = true;
+            requestAnimationFrame(updateActive);
+          }
+        }, { passive: true });
+
+        // Run once immediately so the first heading is highlighted on load.
+        updateActive();
 
         // Sticky/fixed fallback
         const updateToc = () => {
