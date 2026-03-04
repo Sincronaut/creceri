@@ -628,3 +628,56 @@ body:has(.hero--bleed-top) .wp-site-blocks > header{
     justify-self: center !important;
   }
 }
+
+/* ====================== 
+   HOME PAGE BANNER SPECIFIC 
+   ====================== */ 
+@media (min-width:1025px) { 
+  .home-hero-banner .hero__art1 { 
+    aspect-ratio: auto !important; 
+    width: auto !important; 
+    max-width: none !important; 
+    flex: 0 0 auto !important; 
+    overflow: visible; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    justify-self: end;
+    margin-right: -50px !important;
+    transform: translateY(0px) !important;
+  }
+  .home-hero-banner .hero__image1 {
+    width: clamp(880px, 58vw, 1080px) !important; 
+    max-width: none !important; 
+    height: auto !important; 
+  } 
+  .home-hero-banner .hero__inner { 
+    padding: 0 80px; 
+  } 
+} 
+ 
+@media (max-width:1024px) { 
+  .home-hero-banner .hero__art1 { 
+    aspect-ratio: auto !important; 
+    width: auto !important; 
+    max-width: 100% !important; 
+    flex: 0 1 auto !important; 
+    margin-right: 0 !important; 
+    margin-left: 0 !important; 
+    transform: translateY(0px) !important; 
+  } 
+  .home-hero-banner .hero__image1 { 
+    width: clamp(320px, 55vw, 600px) !important; 
+    max-width: 100% !important; 
+  } 
+} 
+ 
+.home-hero-banner .title_h1 { 
+  margin-bottom: 0px !important; 
+  line-height: 1.05 !important; 
+} 
+.home-hero-banner .hero__line { 
+  margin-top: 5px !important; 
+  line-height: 1.1 !important; 
+  font-weight: 400 !important; 
+}
