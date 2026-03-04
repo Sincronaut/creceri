@@ -1179,3 +1179,30 @@ add_action('wp_head', function () {
     }
 
 }, 20); // Priority 20 prevents blocking critical CSS
+
+
+
+
+/* Custom Dynamic Breadcrumbs */
+add_shortcode('custom_breadcrumbs', function() {
+    if (is_front_page() || is_home()) return '';
+    
+    $separator = ' <span class="separator">/</span> ';
+    $home = '<a href="' . home_url('/') . '">Home</a>';
+    
+    $breadcrumbs = '<p class="breadcrumb">' . $home;
+    
+    if (is_single()) {
+        $breadcrumbs .= $separator . '<a href="' . home_url('/blogs/') . '">Blogs</a>';
+        $breadcrumbs .= $separator . '<span class="current">' . get_the_title() . '</span>';
+    } elseif (is_page()) {
+        $breadcrumbs .= $separator . '<span class="current">' . get_the_title() . '</span>';
+    } elseif (is_category()) {
+        $breadcrumbs .= $separator . '<a href="' . home_url('/blogs/') . '">Blogs</a>';
+        $breadcrumbs .= $separator . '<span class="current">' . single_cat_title('', false) . '</span>';
+    }
+    
+    $breadcrumbs .= '</p>';
+    
+    return $breadcrumbs;
+});

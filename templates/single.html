@@ -139,23 +139,26 @@
       margin-top: 0;
     }
 
-    /* Breadcrumb (Rank Math) */
-    .breadcrumb,
-    .rank-math-breadcrumb {
+    /* Breadcrumb (Custom) */
+    .breadcrumb {
       margin: 10px 0 0;
       font-size: 18px;
-      color: #8c2626;
     }
 
-    .rank-math-breadcrumb a {
+    .breadcrumb a {
       color: #353434;
       text-decoration: none;
     }
 
-    .rank-math-breadcrumb .separator {
+    .breadcrumb .separator {
       margin: 0 .4rem;
       opacity: .7;
       color: #353434;
+    }
+  
+    .breadcrumb .current {
+      color: #8c2626;
+      font-weight: 600;
     }
 
   /* Title */
@@ -436,7 +439,7 @@
     <!-- Breadcrumb -->
     <!-- wp:group {"className":"container meta-row"} -->
     <div class="wp-block-group container meta-row">
-      <!-- wp:shortcode -->[rank_math_breadcrumb]<!-- /wp:shortcode -->
+      <!-- wp:shortcode -->[custom_breadcrumbs]<!-- /wp:shortcode -->
     </div>
     <!-- /wp:group -->
 
@@ -649,3 +652,4 @@
     });
   </script>
 </body>
+

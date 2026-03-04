@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 /**
  * FAQ Accordion block.
  */
@@ -66,7 +66,7 @@ $section_id = $anchor !== '' ? $anchor : child_faq_slug( $title, 'faq-section' )
 						<?php endif; ?>
 
 						<?php if ( $a !== '' ) : ?>
-							<div class="answer"><?php echo wpautop( wp_kses( $a, $allowed_html ) ); ?></div>
+							<div class="answer-wrapper"><div class="answer"><?php echo wpautop( wp_kses( $a, $allowed_html ) ); ?></div></div>
 						<?php endif; ?>
 					</details>
 				</li>
@@ -74,3 +74,104 @@ $section_id = $anchor !== '' ? $anchor : child_faq_slug( $title, 'faq-section' )
 		</ul>
 	<?php endif; ?>
 </section>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const allItems = [];
+
+    document.querySelectorAll('.faq details').forEach((el) => {
+        const summary = el.querySelector('summary');
+        const content = el.querySelector('.answer-wrapper');
+
+        let animation = null;
+        let isClosing = false;
+        let isExpanding = false;
+
+        // expose a close function so sibling items can trigger it
+        const item = { shrink };
+        allItems.push(item);
+
+        summary.addEventListener('click', (e) => {
+            e.preventDefault();
+            el.style.overflow = 'hidden';
+            if (isClosing || !el.open) {
+                // close all other open panels first
+                allItems.forEach((other) => { if (other !== item) other.shrink(); });
+                openPanel();
+            } else if (isExpanding || el.open) {
+                shrink();
+            }
+        });
+
+        function shrink() {
+            if (!el.open) return;
+            isClosing = true;
+            const startHeight = `${el.offsetHeight}px`;
+            const endHeight = `${summary.offsetHeight}px`;
+
+            if (content) {
+                content.style.transition = 'opacity 160ms ease, transform 160ms ease';
+                content.style.opacity = '0';
+                content.style.transform = 'translateY(-6px)';
+            }
+
+            if (animation) animation.cancel();
+
+            el.style.overflow = 'hidden';
+            animation = el.animate(
+                { height: [startHeight, endHeight] },
+                { duration: 200, easing: 'ease-out' }
+            );
+
+            animation.onfinish = () => onAnimationFinish(false);
+            animation.oncancel = () => (isClosing = false);
+        }
+
+        function openPanel() {
+            el.style.height = `${el.offsetHeight}px`;
+            el.open = true;
+
+            if (content) {
+                content.style.transition = '';
+                content.style.opacity = '0';
+                content.style.transform = 'translateY(-6px)';
+            }
+
+            window.requestAnimationFrame(() => {
+                isExpanding = true;
+                const startHeight = `${el.offsetHeight}px`;
+                const endHeight = `${el.offsetHeight + content.offsetHeight}px`;
+
+                if (animation) animation.cancel();
+
+                animation = el.animate(
+                    { height: [startHeight, endHeight] },
+                    { duration: 320, easing: 'ease-out' }
+                );
+
+                animation.onfinish = () => {
+                    onAnimationFinish(true);
+                    if (content) {
+                        content.style.transition = 'opacity 140ms ease, transform 140ms ease';
+                        content.style.opacity = '1';
+                        content.style.transform = 'translateY(0)';
+                    }
+                };
+                animation.oncancel = () => (isExpanding = false);
+            });
+        }
+
+        function onAnimationFinish(isOpen) {
+            el.open = isOpen;
+            animation = null;
+            isClosing = false;
+            isExpanding = false;
+            el.style.height = el.style.overflow = '';
+            if (!isOpen && content) {
+                content.style.transition = '';
+                content.style.opacity = '';
+                content.style.transform = '';
+            }
+        }
+    });
+});
+</script>
