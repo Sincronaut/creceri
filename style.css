@@ -17,19 +17,20 @@ Requires PHP: 5.7
   --brand: #7b322c;
   --text: #652b26;
   --shadow: 0 6px 24px rgba(0, 0, 0, .06);
-  --btn-bg:         #8b1c1c;
-  --btn-bg-dark:    #5e1212;
-  --btn-color:      #ffffff;
-  --btn-shadow:     rgba(0,0,0,.2);
-  --btn-radius:     16px;
+  --btn-bg: #8b1c1c;
+  --btn-bg-dark: #5e1212;
+  --btn-color: #ffffff;
+  --btn-shadow: rgba(0, 0, 0, .2);
+  --btn-radius: 16px;
   --btn-min-height: 42px;
-  --btn-min-width:  230px;
-  --btn-padding:    0 32px;
-  --btn-font-size:  clamp(16px, calc(16px + (4 * (100vw - 320px)) / 1120), 20px);
-  --btn-font-weight:700;
+  --btn-min-width: 230px;
+  --btn-padding: 0 32px;
+  --btn-font-size: clamp(16px, calc(16px + (4 * (100vw - 320px)) / 1120), 20px);
+  --btn-font-weight: 700;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 
@@ -122,7 +123,7 @@ p strong {
   flex-direction: column;
 }
 
-.wp-site-blocks > main {
+.wp-site-blocks>main {
   flex: 1 0 auto;
 }
 
@@ -135,36 +136,36 @@ p strong {
 .btn-pill,
 .btn-pill-desk,
 .btn-pill-mobile {
-  display:          inline-flex !important;
-  align-items:      center;
-  justify-content:  center;
-  text-align:       center;
-  font-size:        var(--btn-font-size) !important;
-  font-weight:      var(--btn-font-weight) !important;
-  color:            var(--btn-color) !important;
-  background:       var(--btn-bg) !important;
-  border-radius:    var(--btn-radius) !important;
-  min-height:       var(--btn-min-height) !important;
-  min-width:        var(--btn-min-width) !important;
-  padding:          var(--btn-padding) !important;
-  border:           none !important;
-  line-height:      1 !important;
-  white-space:      nowrap;
-  text-decoration:  none !important;
-  box-shadow:       0 3px 0 var(--btn-bg-dark), 0 2px 6px var(--btn-shadow) !important;
-  transition:       transform .06s ease, filter .2s ease, box-shadow .2s ease !important;
-  cursor:           pointer;
-  margin-top:       0 !important;
-  height:           auto !important;
-  width:            auto !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: var(--btn-font-size) !important;
+  font-weight: var(--btn-font-weight) !important;
+  color: var(--btn-color) !important;
+  background: var(--btn-bg) !important;
+  border-radius: var(--btn-radius) !important;
+  min-height: var(--btn-min-height) !important;
+  min-width: var(--btn-min-width) !important;
+  padding: var(--btn-padding) !important;
+  border: none !important;
+  line-height: 1 !important;
+  white-space: nowrap;
+  text-decoration: none !important;
+  box-shadow: 0 3px 0 var(--btn-bg-dark), 0 2px 6px var(--btn-shadow) !important;
+  transition: transform .06s ease, filter .2s ease, box-shadow .2s ease !important;
+  cursor: pointer;
+  margin-top: 0 !important;
+  height: auto !important;
+  width: auto !important;
 }
 
 .btn-custom:hover,
 .btn-pill:hover,
 .btn-pill-desk:hover,
 .btn-pill-mobile:hover {
-  filter:     brightness(.96) !important;
-  transform:  translateY(1px) !important;
+  filter: brightness(.96) !important;
+  transform: translateY(1px) !important;
   box-shadow: 0 1px 0 var(--btn-bg-dark), 0 1px 3px var(--btn-shadow) !important;
 }
 
@@ -172,7 +173,7 @@ p strong {
 .btn-pill:active,
 .btn-pill-desk:active,
 .btn-pill-mobile:active {
-  transform:  translateY(2px) !important;
+  transform: translateY(2px) !important;
   box-shadow: none !important;
 }
 
@@ -180,40 +181,74 @@ p strong {
 .btn-pill:focus-visible,
 .btn-pill-desk:focus-visible,
 .btn-pill-mobile:focus-visible {
-  outline:        3px solid #caa6a2 !important;
+  outline: 3px solid #caa6a2 !important;
   outline-offset: 2px !important;
 }
 
 /* Mobile — hide desk variant, show mobile variant */
 @media (max-width: 699px) {
-  .btn-pill-desk   { display: none !important; }
-  .btn-pill-mobile { display: inline-flex !important; }
+  .btn-pill-desk {
+    display: none !important;
+  }
+
+  .btn-pill-mobile {
+    display: inline-flex !important;
+  }
 }
 
 /* Desktop — show desk variant, hide mobile variant */
 @media (min-width: 700px) {
-  .btn-pill-mobile { display: none !important; }
-  .btn-pill-desk   { display: inline-flex !important; }
+  .btn-pill-mobile {
+    display: none !important;
+  }
+
+  .btn-pill-desk {
+    display: inline-flex !important;
+  }
 }
+
 /* ===== End Global Button Styles ===== */
 
 
 /* CTA */
-.btn-pill{
+.btn-pill {
   min-width: clamp(160px, 28vw, 260px);
   width: auto !important;
-  --c-start:#962E2A !important; --c-end:#FFA318 !important;
-  text-decoration:none;
-  background-image:linear-gradient(90deg,var(--c-start) 0 50%,var(--c-end) 50% 100%) !important;
-  background-size:200% 100% !important; background-position:left center !important;
-  background-color:var(--c-start) !important; color:#fff !important;
-  border:0 !important; padding:.75rem 1.25rem !important; border-radius:999px !important;  cursor:pointer !important;
-  transition:background-position .35s ease,color .35s ease,box-shadow .2s ease,transform .2s ease !important;
-  font-size:18px !important; font-weight:650 !important;
+  --c-start: #962E2A !important;
+  --c-end: #FFA318 !important;
+  text-decoration: none;
+  background-image: linear-gradient(90deg, var(--c-start) 0 50%, var(--c-end) 50% 100%) !important;
+  background-size: 200% 100% !important;
+  background-position: left center !important;
+  background-color: var(--c-start) !important;
+  color: #fff !important;
+  border: 0 !important;
+  padding: .75rem 1.25rem !important;
+  border-radius: 999px !important;
+  cursor: pointer !important;
+  transition: background-position .35s ease, color .35s ease, box-shadow .2s ease, transform .2s ease !important;
+  font-size: 18px !important;
+  font-weight: 650 !important;
 }
-.btn-pill:hover{ background-position:right center !important; color:#000 !important; box-shadow:0 6px 16px rgba(0,0,0,.15) !important; transform:translateY(-1px) !important; }
-.btn-pill:focus-visible{ outline:none !important; box-shadow:0 0 0 3px rgba(255,163,24,.45),0 6px 16px rgba(0,0,0,.15) !important; }
-@media (prefers-reduced-motion:reduce){ .btn-pill{ transition:none !important; } }
-.btn-pill:active{ transform:translateY(1px); }
 
+.btn-pill:hover {
+  background-position: right center !important;
+  color: #000 !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .15) !important;
+  transform: translateY(-1px) !important;
+}
 
+.btn-pill:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(255, 163, 24, .45), 0 6px 16px rgba(0, 0, 0, .15) !important;
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .btn-pill {
+    transition: none !important;
+  }
+}
+
+.btn-pill:active {
+  transform: translateY(1px);
+}

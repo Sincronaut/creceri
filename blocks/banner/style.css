@@ -10,8 +10,8 @@
   --header-h: 88;
 
   /* Fluid typography + media */
-  --title-size: clamp(34px, 5.5vw, 64px);
-  --line-size: clamp(28px, 5vw, 52px);
+  --title-size: clamp(34px, 5.5vw, 96px);
+  --line-size: clamp(28px, 5vw, 64px);
   --lead-size: clamp(16px, 3.2vw, 22px);
 
   --btn-min-w: 180px;
