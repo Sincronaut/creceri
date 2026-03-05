@@ -75,9 +75,44 @@ if ($use_posts || empty($items)) {
   // Inject search term if on a search page
   if (is_search()) {
     $qargs['s'] = get_search_query();
+
+    if (!function_exists('cc_custom_search_filter')) {
+      function cc_custom_search_filter($search, $wp_query)
+      {
+        if (empty($search))
+          return $search;
+        $q = $wp_query->query_vars;
+        if (empty($q['search_terms']))
+          return $search;
+        global $wpdb;
+
+        $n = !empty($q['exact']) ? '' : '%';
+        $new_search = '';
+        $searchand = '';
+        foreach ((array)$q['search_terms'] as $term) {
+          $like = $n . $wpdb->esc_like($term) . $n;
+          $title_sql = $wpdb->prepare("{$wpdb->posts}.post_title LIKE %s", $like);
+          $author_sql = $wpdb->prepare("{$wpdb->posts}.post_author IN (SELECT ID FROM {$wpdb->users} WHERE display_name LIKE %s)", $like);
+          $new_search .= "{$searchand}({$title_sql} OR {$author_sql})";
+          $searchand = ' AND ';
+        }
+        if (!empty($new_search)) {
+          $search = " AND ({$new_search}) ";
+          if (!is_user_logged_in()) {
+            $search .= " AND ({$wpdb->posts}.post_password = '') ";
+          }
+        }
+        return $search;
+      }
+    }
+    add_filter('posts_search', 'cc_custom_search_filter', 10, 2);
   }
 
   $loop = new WP_Query($qargs);
+
+  if (is_search()) {
+    remove_filter('posts_search', 'cc_custom_search_filter', 10);
+  }
   $items = array();
 
   if ($loop->have_posts()) {

@@ -1219,34 +1219,3 @@ add_shortcode('custom_breadcrumbs', function () {
 
   return $breadcrumbs;
 });
-
-/* -----------------------  Custom Search Logic (Title and Author ONLY)  ----------------------- */
-add_filter('posts_search', function ($search, $wp_query) {
-  if (!is_admin() && $wp_query->is_search()) {
-    global $wpdb;
-    $q = $wp_query->query_vars;
-
-    if (empty($q['search_terms']))
-      return $search;
-
-    $n = !empty($q['exact']) ? '' : '%';
-    $new_search = '';
-    $searchand = '';
-
-    foreach ((array)$q['search_terms'] as $term) {
-      $like = $n . $wpdb->esc_like($term) . $n;
-      $title_sql = $wpdb->prepare("{$wpdb->posts}.post_title LIKE %s", $like);
-      $author_sql = $wpdb->prepare("{$wpdb->posts}.post_author IN (SELECT ID FROM {$wpdb->users} WHERE display_name LIKE %s)", $like);
-      $new_search .= "{$searchand}({$title_sql} OR {$author_sql})";
-      $searchand = ' AND ';
-    }
-
-    if (!empty($new_search)) {
-      $search = " AND ({$new_search}) ";
-      if (!is_user_logged_in()) {
-        $search .= " AND ({$wpdb->posts}.post_password = '') ";
-      }
-    }
-  }
-  return $search;
-}, 500, 2);
