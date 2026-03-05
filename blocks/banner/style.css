@@ -395,7 +395,8 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
   position: relative;
   display: flex;
   align-items: center;
-  min-width: clamp(260px, 38vw, 560px);
+  max-width: 460px;
+  width: 100%;
   border: 1.5px solid var(--search-color);
   border-radius: var(--search-radius);
   background: var(--search-bg);
