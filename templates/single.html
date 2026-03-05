@@ -39,11 +39,11 @@
       font-size: 13px;
     }
 
-  .content-row {
-    margin-top: 22px;
-    padding-inline: 0 20px;
-    overflow: visible;
-  }
+    .content-row {
+      margin-top: 22px;
+      padding-inline: 0 20px;
+      overflow: visible;
+    }
 
     .tags-row {
       margin-top: 14px;
@@ -155,18 +155,18 @@
       opacity: .7;
       color: #353434;
     }
-  
+
     .breadcrumb .current {
       color: #8c2626;
       font-weight: 600;
     }
 
-  /* Title */
-  .post-title {
-    font-size: 45px;
-    line-height: 1.2;
-    margin: 6px 0 0;
-  }
+    /* Title */
+    .post-title {
+      font-size: 45px;
+      line-height: 1.2;
+      margin: 6px 0 0;
+    }
 
     /* Terms */
     .post-cats a,
@@ -191,102 +191,102 @@
       line-height: 1.75;
     }
 
-  /* Nav */
-  .nav-prev a,
-  .nav-next a {
-    text-decoration: none;
-    font-weight: 600;
-  }
+    /* Nav */
+    .nav-prev a,
+    .nav-next a {
+      text-decoration: none;
+      font-weight: 600;
+    }
 
-  /* Article layout with TOC */
-  .article-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 40px;
-    align-items: start;
-    overflow: visible;
-  }
+    /* Article layout with TOC */
+    .article-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 40px;
+      align-items: start;
+      overflow: visible;
+    }
 
-  .article-body {
-    min-width: 0;
-  }
+    .article-body {
+      min-width: 0;
+    }
 
-  .toc {
-    position: sticky;
-    position: -webkit-sticky;
-    top: 100px;
-    align-self: start;
-    width: 280px;
-    background: #fff;
-    border: 1px solid #eee;
-    border-radius: 12px;
-    padding: 14px 16px;
-    box-shadow: 0 8px 22px rgba(0, 0, 0, .05);
-    max-height: calc(100vh - 160px);
-    overflow: auto;
-    z-index: 2;
-  }
+    .toc {
+      position: sticky;
+      position: -webkit-sticky;
+      top: 100px;
+      align-self: start;
+      width: 280px;
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      padding: 14px 16px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, .05);
+      max-height: calc(100vh - 160px);
+      overflow: auto;
+      z-index: 2;
+    }
 
-  .toc.is-fixed {
-    position: fixed;
-    
-    right: max(24px, calc((100vw - 1280px) / 2));
-  }
+    .toc.is-fixed {
+      position: fixed;
 
-  .toc.at-bottom {
-    position: sticky;
-    top: auto;
-  }
+      right: max(24px, calc((100vw - 1280px) / 2));
+    }
 
-  .toc__title {
-    font-weight: 700;
-    color: #962E2A;
-    margin-bottom: 10px;
-    font-size: 14px;
-    letter-spacing: .01em;
-    text-transform: uppercase;
-  }
+    .toc.at-bottom {
+      position: sticky;
+      top: auto;
+    }
 
-  .toc__list {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 8px;
-    font-size: 16px;
-    line-height: 1.35;
-  }
+    .toc__title {
+      font-weight: 700;
+      color: #962E2A;
+      margin-bottom: 10px;
+      font-size: 14px;
+      letter-spacing: .01em;
+      text-transform: uppercase;
+    }
 
-  .toc__item a {
-    color: #333;
-    text-decoration: none;
-  }
+    .toc__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 8px;
+      font-size: 16px;
+      line-height: 1.35;
+    }
 
-  .toc__item--h2 a {
-    padding-left: 14px;
-    display: block;
-    border-left: 2px solid #e8d3cf;
-  }
+    .toc__item a {
+      color: #333;
+      text-decoration: none;
+    }
 
-  .toc__item a:hover,
-  .toc__item a:focus {
-    color: #962E2A;
-    text-decoration: underline;
-  }
+    .toc__item--h2 a {
+      padding-left: 14px;
+      display: block;
+      border-left: 2px solid #e8d3cf;
+    }
 
-  .toc__item a.is-active {
-    background: #962E2A;
-    color: #fff !important;
-    border-radius: 6px;
-    padding: 3px 8px;
-    text-decoration: none;
-    border-left-color: transparent;
-  }
+    .toc__item a:hover,
+    .toc__item a:focus {
+      color: #962E2A;
+      text-decoration: underline;
+    }
 
-  /* Related (if used) */
-  .related-card {
-    background: #fff;
-    border-radius: 12px;
+    .toc__item a.is-active {
+      background: #962E2A;
+      color: #fff !important;
+      border-radius: 6px;
+      padding: 3px 8px;
+      text-decoration: none;
+      border-left-color: transparent;
+    }
+
+    /* Related (if used) */
+    .related-card {
+      background: #fff;
+      border-radius: 12px;
       padding: 10px;
       box-shadow: 0 1px 6px rgba(0, 0, 0, .05);
     }
@@ -302,24 +302,24 @@
     }
 
     /* === Floating actions (back-to-top + share) === */
-  .floating-actions {
-    position: fixed;
-    inset-block-end: 24px;
-    inset-inline-end: 24px;
-    z-index: 999;
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    grid-template-rows: repeat(2, auto);
-    gap: 10px;
-    align-items: center;
-    justify-items: center;
-    width: max-content;
-    pointer-events: none;
-  }
+    .floating-actions {
+      position: fixed;
+      inset-block-end: 24px;
+      inset-inline-end: 24px;
+      z-index: 999;
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      grid-template-rows: repeat(2, auto);
+      gap: 10px;
+      align-items: center;
+      justify-items: center;
+      width: max-content;
+      pointer-events: none;
+    }
 
     .floating-actions .fab {
-      width: 48px;
-      height: 48px;
+      width: 60px;
+      height: 60px;
       border-radius: 50%;
       border: none;
       display: inline-flex;
@@ -327,7 +327,7 @@
       justify-content: center;
       background: var(--brand, #962E2A);
       color: #fff;
-      font-size: 20px;
+      font-size: 26px;
       font-weight: 700;
       cursor: pointer;
       box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
@@ -351,46 +351,46 @@
       background: var(--brand, #962E2A);
     }
 
-  .share-menu {
-    grid-column: 1 / 4;
-    grid-row: 1 / 2;
-    display: none;
-    flex-direction: row;
-    gap: 10px;
-    pointer-events: auto;
-  }
+    .share-menu {
+      grid-column: 1 / 4;
+      grid-row: 1 / 2;
+      display: none;
+      flex-direction: row;
+      gap: 10px;
+      pointer-events: auto;
+    }
 
-  .share-menu.open {
-    display: flex;
-  }
+    .share-menu.open {
+      display: flex;
+    }
 
-  .floating-actions.share-open .share-menu {
-    display: flex;
-  }
+    .floating-actions.share-open .share-menu {
+      display: flex;
+    }
 
-  .share-toggle {
-    grid-column: 4 / 5;
-    grid-row: 1 / 2;
-  }
+    .share-toggle {
+      grid-column: 4 / 5;
+      grid-row: 1 / 2;
+    }
 
-  .back-wrapper {
-    grid-column: 4 / 5;
-    grid-row: 2 / 3;
-  }
+    .back-wrapper {
+      grid-column: 4 / 5;
+      grid-row: 2 / 3;
+    }
 
     .share-btn {
-      width: 44px;
-      height: 44px;
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       border: none;
       background: var(--brand, #962E2A);
       color: #fff;
-      box-shadow: 0 6px 18px rgba(0,0,0,.16);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, .16);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 14px;
+      font-size: 18px;
     }
 
     .share-btn:hover {
@@ -398,6 +398,18 @@
     }
 
     @media (max-width: 991px) {
+      .floating-actions .fab {
+        width: 48px;
+        height: 48px;
+        font-size: 20px;
+      }
+
+      .share-btn {
+        width: 44px;
+        height: 44px;
+        font-size: 14px;
+      }
+
       .author-name {
         font-size: 14px;
       }
@@ -416,9 +428,7 @@
       }
 
       .toc {
-        position: relative;
-        top: auto;
-        max-height: none;
+        display: none;
       }
     }
 
@@ -483,9 +493,9 @@
     </div>
     <!-- /wp:group -->
 
-  <!-- Content -->
-  <!-- wp:group {"className":"content-row container"} -->
-  <div class="wp-block-group content-row container">
+    <!-- Content -->
+    <!-- wp:group {"className":"content-row container"} -->
+    <div class="wp-block-group content-row container">
       <div class="article-grid">
         <div class="article-body">
           <!-- wp:post-content {"layout":{"type":"constrained"}} /-->
@@ -497,8 +507,8 @@
           </nav>
         </aside>
       </div>
-  </div>
-  <!-- /wp:group -->
+    </div>
+    <!-- /wp:group -->
 
     <!-- wp:group {"className":"nav-row container"} -->
     <div class="wp-block-group nav-row container">
@@ -724,4 +734,3 @@
     });
   </script>
 </body>
-
