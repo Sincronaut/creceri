@@ -334,9 +334,7 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
   margin-bottom: 0;
 }
 
-.title_h1 {
-  font-size: var(--wp--preset--font-size--h-1) !important;
-}
+.title_h1 {}
 
 .hero--brand-dynamic .hero__brand {
   font-size: inherit !important;

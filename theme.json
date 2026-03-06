@@ -124,7 +124,8 @@
     "blocks": {
       "core/paragraph": {
         "typography": {
-          "fontSize": "var(--wp--preset--font-size--body)"
+          "fontSize": "var(--wp--preset--font-size--body)",
+          "fontWeight": "400"
         }
       }
     }
