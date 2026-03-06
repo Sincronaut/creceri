@@ -69,7 +69,9 @@ h4,
 }
 
 p {
+  font-size: var(--wp--preset--font-size--body);
   font-weight: 400;
+  line-height: 1.6;
 }
 
 p b,
