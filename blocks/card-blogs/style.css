@@ -60,12 +60,18 @@
   border-radius: var(--radius);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
   min-width: 0;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .feature-media {
   position: relative;
   width: 100%;
-  flex-basis: 50%;
   flex-grow: 1;
   background-size: cover !important;
   background-position: center !important;
@@ -79,7 +85,6 @@
   flex-direction: column;
   justify-content: center;
   gap: 12px;
-  flex-basis: 50%;
   flex-shrink: 0;
 }
 
@@ -121,6 +126,9 @@
   background: var(--tag-bg, #F5E8E6);
   color: var(--tag-text, #962E2A);
   border: 1px solid var(--tag-border, #962E2A);
+  position: relative;
+  z-index: 2;
+  /* Keeps tags clickable above the stretched card link */
 }
 
 .tag--outline {
@@ -194,8 +202,9 @@
 
 .item {
   display: grid;
-  grid-template-columns: 140px 1fr;
-  align-items: stretch;
+  grid-template-columns: 180px 1fr;
+  align-items: center;
+  /* Centers both image and text side-by-side */
   gap: 18px;
   background: #ffffff !important;
   padding: 16px;
@@ -203,12 +212,20 @@
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   margin-top: 0;
   flex: 1;
+  position: relative;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
+  /* Lift effect on hover */
 }
 
 .thumb {
   width: 100%;
-  height: 100%;
-  min-height: 100px;
+  aspect-ratio: 1 / 1;
+  align-self: center;
   border-radius: 8px;
   background-size: cover !important;
   background-position: center !important;
@@ -245,6 +262,14 @@
   display: inline-block;
   margin-top: 0;
   white-space: nowrap;
+}
+
+/* Make entire card clickable via stretched pseudo-element */
+.read-more-link::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
 }
 
 .read-more-link:hover {
@@ -308,7 +333,7 @@
   }
 
   .item {
-    grid-template-columns: 190px 1fr;
+    grid-template-columns: 160px 1fr;
     gap: 16px;
     padding: 12px;
   }
@@ -338,8 +363,7 @@
   }
 
   .feature-media {
-    aspect-ratio: 16/9;
-    min-height: unset;
+    min-height: 260px;
   }
 
   /* Removed min-height to fix big overflow blowout */
