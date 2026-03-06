@@ -24,8 +24,8 @@ Requires PHP: 5.7
   --btn-radius: 16px;
   --btn-min-height: 42px;
   --btn-min-width: 230px;
-  --btn-padding: 0 32px;
-  --btn-font-size: clamp(16px, calc(16px + (4 * (100vw - 320px)) / 1120), 20px);
+  --btn-padding: 0 37px;
+  --btn-font-size: clamp(18px, 3.5vw, 24px);
   --btn-font-weight: 700;
 }
 
@@ -223,11 +223,11 @@ p strong {
   background-color: var(--c-start) !important;
   color: #fff !important;
   border: 0 !important;
-  padding: .75rem 1.25rem !important;
+  padding: .75rem 25px !important;
   border-radius: 999px !important;
   cursor: pointer !important;
   transition: background-position .35s ease, color .35s ease, box-shadow .2s ease, transform .2s ease !important;
-  font-size: 18px !important;
+  font-size: var(--btn-font-size) !important;
   font-weight: 650 !important;
 }
 

@@ -75,10 +75,7 @@
 
 }
 
-.title_h1 {
-  font-size: var(--title-size) !important;
-  font-weight: 700;
-}
+
 
 /* flip + spot presets */
 .hero--flip-none {
@@ -334,23 +331,21 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
   line-height: 1.05;
   letter-spacing: -.02em;
   color: var(--brand, #962E2A);
-  margin-bottom: .12em;
+  margin-bottom: 0;
 }
 
 .title_h1 {
-  font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: var(--wp--preset--font-size--h-1) !important;
 }
 
-/* DYNAMIC OVERRIDE — consumes --brand-size (px) when class is present */
 .hero--brand-dynamic .hero__brand {
-  font-size: var(--brand-size, 48px) !important;
-  line-height: 1.1;
+  font-size: inherit !important;
 }
 
 .hero__line {
   display: block;
-  font-weight: 700;
-  font-size: var(--line-size) !important;
+  font-weight: 400;
+  font-size: clamp(32px, 5vw, 64px) !important;
   color: var(--brand, #962E2A);
   line-height: 1.1;
 }
@@ -362,10 +357,9 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 
 .hero__lead {
   margin: .85rem 0px 1.4rem;
-  font-size: var(--lead-size);
+  font-size: var(--wp--preset--font-size--body) !important;
   line-height: 1.5;
   color: var(--text, #4b2925);
-  font-weight: 400;
   width: 80%;
 }
 
@@ -556,7 +550,7 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
   }
 
   .hero__line {
-    padding-top: 20px !important;
+    padding-top: 0 !important;
   }
 }
 
@@ -584,7 +578,7 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
   }
 
   .hero__line {
-    padding-top: 20px !important;
+    padding-top: 0 !important;
   }
 }
 
@@ -814,7 +808,7 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 }
 
 .home-hero-banner .hero__line {
-  margin-top: 5px !important;
+  margin-top: 0 !important;
   line-height: 1.1 !important;
   font-weight: 400 !important;
 }
