@@ -82,8 +82,8 @@
     "spacing": {
       "blockGap": "0px",
       "padding": {
-        "top": "clamp(3rem, 10vw, 6rem)",
-        "bottom": "clamp(3rem, 10vw, 6rem)"
+        "top": "0px",
+        "bottom": "0px"
       }
     },
     "typography": {
