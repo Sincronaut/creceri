@@ -98,7 +98,6 @@
 /* Typography */
 .form-title {
   font-weight: 700;
-  color: #9e4f44 !important;
 }
 
 .list-heading1 {
@@ -123,12 +122,10 @@
 
 .subhead1 {
   margin: 14px 0 8px;
-  color: #9e4f44 !important;
 }
 
 h4 {
   font-weight: 700 !important;
-  color: #9e4f44 !important;
   font-size: 24px !important;
 }
 
