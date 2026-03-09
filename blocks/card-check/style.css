@@ -1,6 +1,6 @@
 /* ===== Section wrapper (gradient stays on section) ===== */
 .who-we-are {
-  --brand: #9e4f44;
+  --brand: #962E2A;
   --text: #1f1f1f;
   --muted: #5a5f65;
   padding-top: var(--section-pad-y);
@@ -108,12 +108,10 @@
 }
 
 .content-tag {
-  color: var(--brand);
   margin: 0 0 6px;
 }
 
 .who-we-are h1 {
-  color: var(--brand);
   margin: 0 0 10px;
 }
 
