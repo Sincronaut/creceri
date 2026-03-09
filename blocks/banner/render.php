@@ -148,8 +148,12 @@ $style_attr = implode(';', $style_vars);
       <?php elseif ($buttonType === 'Search') : ?>
         <form class="hero__search" action="<?php echo esc_url(home_url('/')); ?>" method="get" role="search">
           <label class="screen-reader-text" for="<?php echo esc_attr($section_id . '-s'); ?>">Search</label>
-          <input id="<?php echo esc_attr($section_id . '-s'); ?>" class="hero__input" type="search" name="s" />
-          <button type="submit" class="<?php echo esc_attr($btnClass); ?>"><?php echo esc_html($btnText); ?></button>
+          <input id="<?php echo esc_attr($section_id . '-s'); ?>" class="hero__input" type="search" name="s" placeholder="<?php echo esc_attr($btnText); ?>" />
+          <button type="submit" class="hero__icon" aria-label="<?php echo esc_attr($btnText); ?>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
         </form>
       <?php endif; ?>
     </div>
