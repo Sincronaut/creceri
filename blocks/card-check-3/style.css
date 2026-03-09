@@ -346,44 +346,7 @@ h4 {
   }
 }
 
-/* Scoped icon masks */
-#case-studies .cc-icon,
-#case-studies [data-icon] .cc-icon {
-  display: inline-block;
-  width: 24px;
-  height: 24px;
-  background: currentColor;
-}
 
-#case-studies .cc-icon--book,
-#case-studies [data-icon="book"] .cc-icon {
-  -webkit-mask: url("https://creceri.com/wp-content/uploads/2025/10/octicon_book-16.png") no-repeat center/contain;
-  mask: url("https://creceri.com/wp-content/uploads/2025/10/octicon_book-16.png") no-repeat center/contain;
-}
-
-#case-studies .cc-icon--platform,
-#case-studies [data-icon="platform"] .cc-icon {
-  -webkit-mask: url("https://creceri.com/wp-content/uploads/2025/10/game-icons_platform.png") no-repeat center/contain;
-  mask: url("https://creceri.com/wp-content/uploads/2025/10/game-icons_platform.png") no-repeat center/contain;
-}
-
-#case-studies .cc-icon--ux,
-#case-studies [data-icon="ux"] .cc-icon {
-  -webkit-mask: url("https://creceri.com/wp-content/uploads/2025/10/iconoir_design-nib-solid.png") no-repeat center/contain;
-  mask: url("https://creceri.com/wp-content/uploads/2025/10/iconoir_design-nib-solid.png") no-repeat center/contain;
-}
-
-#case-studies .cc-icon--growth,
-#case-studies [data-icon="growth"] .cc-icon {
-  -webkit-mask: url("https://creceri.com/wp-content/uploads/2025/10/fluent-mdl2_market.png") no-repeat center/contain;
-  mask: url("https://creceri.com/wp-content/uploads/2025/10/fluent-mdl2_market.png") no-repeat center/contain;
-}
-
-#case-studies .cc-icon--team,
-#case-studies [data-icon="team"] .cc-icon {
-  -webkit-mask: url("https://creceri.com/wp-content/uploads/2025/10/ri_team-line.png") no-repeat center/contain;
-  mask: url("https://creceri.com/wp-content/uploads/2025/10/ri_team-line.png") no-repeat center/contain;
-}
 
 /* ===== Scoped namespace overrides (uniqueness and no bleed) ===== */
 .who-we-are-approach .title_card {
