@@ -55,16 +55,15 @@
 
 /* drive content padding via CSS var (overridden inline via --content-pad) */
 .who-we-are .content {
-  --content-pad-base: 0;
-  --content-pad: 0;
-  --content-pad-end: 0;
-  padding-inline-start: 0;
-  padding-inline-end: 0;
+  --content-pad-base: var(--content-pad, 100px);
+  padding-inline-start: clamp(24px, calc(4vw + 12px), var(--content-pad-base));
+  padding-inline-end: var(--content-pad-end, 0px);
   flex: 1 1 60%;
   max-width: 50%;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: flex-start;
   gap: 12px;
   min-height: 100%;
   height: 100%;
@@ -80,8 +79,8 @@
 }
 
 .who-we-are .image {
-  flex: 1 1 40%;
-  max-width: 40%;
+  flex: 1 1 50%;
+  max-width: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -91,7 +90,6 @@
 
 .who-we-are img {
   width: 100%;
-  max-width: 500px;
   height: 100%;
   border-radius: 16px;
   object-fit: cover;
