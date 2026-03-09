@@ -354,10 +354,6 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 
 .hero__lead {
   margin: .85rem 0px 1.4rem;
-  font-size: var(--wp--preset--font-size--body);
-  line-height: 1.5;
-  color: var(--text, #4b2925);
-  width: 80%;
 }
 
 .hero h1 {
@@ -628,7 +624,7 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 
 /* Desktop niceties */
 @media (max-width:1024px) {
-  .hero_line {}
+  /* Empty ruleset removed */
 
   .hero__inner {
     padding-top: 0px !important;
