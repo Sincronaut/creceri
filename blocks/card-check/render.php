@@ -95,15 +95,19 @@ if (!function_exists('child_cc_icon_svg')) {
       'three' => '<b>3</b>',
       'four' => '<b>4</b>',
       'five' => '<b>5</b>',
-      'book' => '<img src="https://creceri.com/wp-content/uploads/2025/10/octicon_book-16.png" alt="%s">',
-      'platform' => '<img src="https://creceri.com/wp-content/uploads/2025/10/game-icons_platform.png" alt="%s">',
-      'ux' => '<img src="https://creceri.com/wp-content/uploads/2025/10/iconoir_design-nib-solid.png" alt="%s">',
-      'growth' => '<img src="https://creceri.com/wp-content/uploads/2025/10/fluent-mdl2_market.png" alt="%s">',
-      'team' => '<img src="https://creceri.com/wp-content/uploads/2025/10/ri_team-line.png" alt="%s">',
-      'check' => '<img src="https://creceri.com/wp-content/uploads/2025/10/gg_check-o.png" alt="%s">',
-      'check-circle' => '<img src="https://creceri.com/wp-content/uploads/2025/10/gg_check-o.png" alt="%s">'
+      'book' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="%s"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"/></svg>',
+      'platform' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="%s"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>',
+      'ux' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="%s"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>',
+      'growth' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="%s"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>',
+      'team' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="%s"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
+      'check' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-label="%s"><path d="M20 6L9 17l-5-5"/></svg>',
+      'check-circle' => '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffffff" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-label="%s"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-5" stroke-width="2"/></svg>',
+      'check-plain' => '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>'
     );
-    return $icons[$key] ?? '';
+    if (!isset($icons[$key]))
+      return '';
+    $tpl = $icons[$key];
+    return str_replace('%s', esc_attr($key), $tpl);
   }
 }
 

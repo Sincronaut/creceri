@@ -337,7 +337,7 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 
 
 .hero--brand-dynamic .hero__brand {
-  font-size: var(--brand-size) !important;
+  font-size: clamp(36px, 6vw, var(--brand-size)) !important;
 }
 
 .hero__line {
