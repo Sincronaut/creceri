@@ -334,10 +334,10 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
   margin-bottom: 0;
 }
 
-.title_h1 {}
+
 
 .hero--brand-dynamic .hero__brand {
-  font-size: inherit !important;
+  font-size: var(--brand-size) !important;
 }
 
 .hero__line {
@@ -349,13 +349,12 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 }
 
 .intro_html {
-  font-size: 20px;
   font-weight: 700;
 }
 
 .hero__lead {
   margin: .85rem 0px 1.4rem;
-  font-size: var(--wp--preset--font-size--body) !important;
+  font-size: var(--wp--preset--font-size--body);
   line-height: 1.5;
   color: var(--text, #4b2925);
   width: 80%;
@@ -629,9 +628,7 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 
 /* Desktop niceties */
 @media (max-width:1024px) {
-  .hero_line {
-    font-size: 34px !important;
-  }
+  .hero_line {}
 
   .hero__inner {
     padding-top: 0px !important;
