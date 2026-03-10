@@ -241,7 +241,7 @@ function tek_build_items_from_query(array $attributes): array
     $cat_items = [];
     if ($cats) {
       foreach ($cats as $c) {
-        $cat_items[] = ['label' => $c->name, 'url' => get_category_link($c->term_id)];
+        $cat_items[] = ['label' => $c->name, 'url' => home_url('/blogs/?filter=' . urlencode($c->slug) . '#category-list')];
       }
     }
 
@@ -409,31 +409,34 @@ $has_cta = $right_cta_on; /* Use right CTA values — that's where the button da
 $has_rtitle = ($right_title !== '');
 
 $section_classes = 'wrap has-rtitle--list';
+$custom_gradient = tek_bool($attributes, 'customGradient', false);
+if ($custom_gradient) {
+  $section_classes .= ' wrap--gradient';
+}
 
 /* View */
 ?>
 <section class="<?php echo esc_attr($section_classes); ?>" aria-labelledby="tek-stories-title">
 
-  <div class="stories-header">
-    <?php if ($show_title_global && $title): ?>
-      <h2 id="tek-stories-title" class="stories-title"><?php echo esc_html($title); ?></h2>
+  <div class="stories-top-header" style="display: flex; align-items: flex-end; justify-content: space-between; gap: 2rem; margin-bottom: 26px; flex-wrap: wrap;">
+    <div class="stories-header-left">
+      <?php if ($show_title_global && $title): ?>
+        <h2 id="tek-stories-title" class="stories-title" style="margin-bottom: 0;"><?php echo esc_html($title); ?></h2>
+      <?php
+endif; ?>
+      <?php if ($has_intro): ?>
+        <p class="stories-sub" style="margin-bottom:0; margin-top:8px;"><?php echo wp_kses_post($intro); ?></p>
+      <?php
+endif; ?>
+    </div>
+
+    <?php if ($has_cta): ?>
+      <div class="stories-actions" style="flex-shrink:0;">
+        <a class="btn-pill" href="<?php echo esc_url($right_cta_url); ?>"><?php echo esc_html($right_cta_text); ?></a>
+      </div>
     <?php
 endif; ?>
   </div>
-
-  <?php if ($has_intro || $has_cta): ?>
-    <div class="stories-intro" style="display:flex;align-items:center;justify-content:space-between;gap:2rem;">
-      <?php if ($has_intro): ?><p class="stories-sub" style="margin-bottom:0;"><?php echo esc_html($intro); ?></p><?php
-  endif; ?>
-      <?php if ($has_cta): ?>
-        <div class="stories-actions" style="flex-shrink:0;">
-          <a class="btn-pill" href="<?php echo esc_url($right_cta_url); ?>"><?php echo esc_html($right_cta_text); ?></a>
-        </div>
-      <?php
-  endif; ?>
-    </div>
-  <?php
-endif; ?>
 
   <?php if ($is_empty): ?>
     <div class="coming-soon">Coming Soon</div>

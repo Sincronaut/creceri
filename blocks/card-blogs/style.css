@@ -17,12 +17,37 @@
 .wrap {
   margin-inline: auto;
   padding: clamp(3rem, 10vw, 6rem) 150px;
-  background: linear-gradient(0deg, #E9B79699 0%, #FFFFFF 100%);
+  background: #ffffff;
   text-transform: capitalize !important;
 }
 
-.stories-header {
-  margin-bottom: 10px;
+.wrap.wrap--gradient {
+  background: linear-gradient(0deg, #E9B79699 0%, #FFFFFF 100%);
+}
+
+/* Header and Intro styles */
+.stories-top-header {
+  display: flex !important;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  /* allow wrapping on super tiny screens */
+  gap: 2rem;
+  margin-bottom: 30px;
+}
+
+.stories-header-left {
+  flex: 1 1 auto;
+  /* Take up remaining space if needed */
+  max-width: calc(100% - 200px);
+  /* Leave room for CTA button */
+}
+
+.stories-actions {
+  flex-shrink: 0;
+  margin-left: auto;
+  /* Push to the right */
 }
 
 .stories-title {
@@ -31,13 +56,9 @@
   letter-spacing: .2px;
 }
 
-.stories-intro {
-  margin-bottom: 22px;
-}
-
 .stories-sub {
   color: var(--muted);
-  max-width: 65%;
+  max-width: 100%;
 }
 
 /* ===== Grid ===== */
@@ -418,10 +439,10 @@
     -webkit-line-clamp: 2;
   }
 
-  .stories-intro {
+  .stories-top-header {
     flex-direction: column;
-    align-items: flex-start;
-    gap: 16px;
+    align-items: flex-start !important;
+    gap: 16px !important;
   }
 
   /* ===== Pagination Dots for Mobile ===== */

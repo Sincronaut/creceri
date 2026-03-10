@@ -61,7 +61,7 @@ if ($use_posts || empty($items)) {
   $qargs = array(
     'post_type' => 'post',
     'post_status' => 'publish',
-    'posts_per_page' => $posts_per_page,
+    'posts_per_page' => -1, // Use -1 to get all posts so client-side pagination functions fully
     'orderby' => $order_by,
     'order' => $order,
     'ignore_sticky_posts' => true,
@@ -136,7 +136,7 @@ if ($use_posts || empty($items)) {
           $badges[] = array(
             'slug' => $t->slug,
             'label' => cc_clean($t->name),
-            'url' => get_term_link($t),
+            'url' => '?filter=' . urlencode($t->slug) . '#category-list',
           );
         }
       }
@@ -183,7 +183,7 @@ if ($category_labels) {
   uasort($category_labels, fn($a, $b) => strcasecmp($a, $b));
 }
 
-$sec_id = $attributes['anchor'] ?? ('ccard-' . wp_generate_password(6, false, false));
+$sec_id = $attributes['anchor'] ?? 'category-list';
 $tpl_id = $sec_id . '-tpl';
 $data_id = $sec_id . '-data';
 $cfg_id = $sec_id . '-cfg';
@@ -342,7 +342,8 @@ endforeach; ?>
           };
         });
         const cfg  = JSON.parse((root.querySelector('.ccard-config')?.textContent||'{}'));
-        const state = { filter:'all', sort:cfg.sort||'newest', page:1, pageSize: Math.max(1, cfg.pageSize||6) };
+        const urlParams = new URLSearchParams(window.location.search);
+        const state = { filter: urlParams.get('filter') || 'all', sort:cfg.sort||'newest', page:1, pageSize: Math.max(1, cfg.pageSize||6) };
 
         const grid = root.querySelector('.grid_category');
         const pagination = root.querySelector('.pagination');
@@ -351,10 +352,40 @@ endforeach; ?>
         buildFilters(root, data);
 
         root.addEventListener('click', e=>{
-          const f = e.target.closest('.filters .filter'); if(!f) return;
-          root.querySelectorAll('.filters .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
-          f.setAttribute('aria-pressed','true');
-          state.filter = f.dataset.filter; state.page = 1; render();
+          const f = e.target.closest('.filters .filter');
+          if(f) {
+            root.querySelectorAll('.filters .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
+            f.setAttribute('aria-pressed','true');
+            state.filter = f.dataset.filter; state.page = 1; render();
+            // Optional: update URL silently
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('filter', state.filter);
+            window.history.replaceState({}, '', newUrl);
+            return;
+          }
+
+          // Intercept badge clicks within the cards
+          const badge = e.target.closest('.badge, a[href*="?filter="]');
+          if(badge && badge.href && badge.href.includes('?filter=')) {
+            e.preventDefault();
+            const filterMatch = badge.href.match(/[\?&]filter=([^&#]+)/);
+            if(filterMatch) {
+              const filterSlug = decodeURIComponent(filterMatch[1]);
+              state.filter = filterSlug; state.page = 1;
+              const filterBtn = root.querySelector(`.filters .filter[data-filter="${filterSlug}"]`);
+              root.querySelectorAll('.filters .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
+              if(filterBtn) filterBtn.setAttribute('aria-pressed','true');
+              render();
+              
+              const newUrl = new URL(window.location);
+              newUrl.searchParams.set('filter', state.filter);
+              newUrl.hash = 'category-list';
+              window.history.replaceState({}, '', newUrl);
+              
+              // Scroll to the top of the block
+              root.scrollIntoView({behavior: 'smooth', block: 'start'});
+            }
+          }
         });
 
         const sortSelect = root.querySelector('.sort-select');
@@ -440,6 +471,13 @@ endforeach; ?>
           if(end<totalPages){ if(end<totalPages-1) pagination.appendChild(mkGhost()); pagination.appendChild(mkBtn(String(totalPages), totalPages, state.page===totalPages)); }
           pagination.appendChild(mkBtn('Next', Math.min(totalPages, state.page+1), false, state.page===totalPages));
           const goto=document.createElement('span'); goto.className='goto-wrap'; const inp=document.createElement('input'); inp.type='number'; inp.min='1'; inp.max=String(totalPages); inp.placeholder='e.g. 2'; inp.addEventListener('change', ()=>{ const v=Math.min(totalPages, Math.max(1, Number(inp.value||1))); state.page=v; render(); }); goto.append('Go to:', inp); pagination.appendChild(goto);
+        }
+
+        // Sync initial filter button state
+        const initialBtn = root.querySelector(`.filters .filter[data-filter="${state.filter}"]`);
+        if (initialBtn) {
+          root.querySelectorAll('.filters .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
+          initialBtn.setAttribute('aria-pressed','true');
         }
 
         render();
