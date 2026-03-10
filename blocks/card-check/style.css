@@ -177,8 +177,6 @@
 }
 
 .title_card {
-  font-size: clamp(24px, 4vw, 36px) !important;
-  color: var(--brand) !important;
   font-weight: 700 !important;
   margin-bottom: 12px;
 }
@@ -234,9 +232,7 @@
   margin: 18px 0 10px !important;
 }
 
-h4.title_card {
-  font-size: clamp(24px, 4vw, 36px) !important;
-}
+/* Removed h4.title_card override */
 
 @media (max-width: 640px) {
   .cc-multi-cols {

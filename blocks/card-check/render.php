@@ -157,7 +157,7 @@ endif; ?>
 endif; ?>
 
       <?php if ($title): ?>
-        <h2 class="title_card"><?php echo $title; ?></h2>
+        <p class="title_card"><?php echo $title; ?></p>
       <?php
 endif; ?>
       <?php if ($intro): ?>
