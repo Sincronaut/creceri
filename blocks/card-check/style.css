@@ -21,11 +21,7 @@
   border-radius: 12px;
 }
 
-.title_card {
-  font-size: 24px !important;
-  color: #000 !important;
-  font-weight: 600;
-}
+
 
 /* Direction */
 .who-we-are.right>.who-we-are__inner>.content {
@@ -73,9 +69,57 @@
   font-weight: 700 !important;
 }
 
+.who-we-are .btn {
+  /* Use global button styles (gradient, radius, etc.) from style.css */
+  /* Remove local overrides to ensure consistency */
+  border: none !important;
+  justify-self: flex-start;
+  width: fit-content !important;
+  min-width: auto !important;
+  /* Prevent expansion from global clamp */
+  font-size: 16px !important;
+  /* User requested specific font size change */
+}
+
+.who-we-are .btn:hover {
+  /* Use global hover effects */
+}
+
+.who-we-are .cc-arrow-svg {
+  transition: transform 0.2s ease;
+  margin-left: 8px;
+}
+
+.who-we-are .btn:hover .cc-arrow-svg {
+  transform: translateX(4px);
+}
+
 .btn-pill {
   width: auto;
   display: inline-flex;
+  align-items: center;
+}
+
+/* Floating CTA for multi-list layout */
+.cc-cta-float {
+  text-align: right;
+  margin-top: 20px;
+}
+
+@media (min-width: 981px) {
+  .cc-benefits-section {
+    position: relative;
+    padding-right: 220px;
+    /* Make room for the float */
+  }
+
+  .cc-cta-float {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    margin-top: 0;
+  }
 }
 
 .who-we-are .image {
@@ -132,17 +176,73 @@
   margin: 0 0 12px;
 }
 
-.cc-subhead {
-  margin: 14px 0 8px;
-}
-
-.subhead1 {
-  margin: 14px 0 8px;
-}
-
-h4 {
+.title_card {
+  font-size: clamp(24px, 4vw, 36px) !important;
+  color: var(--brand) !important;
   font-weight: 700 !important;
-  font-size: 24px !important;
+  margin-bottom: 12px;
+}
+
+/* Multi-list support */
+.cc-multi-cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.cc-simple-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cc-simple-list li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.cc-simple-list li p {
+  margin: 0 !important;
+  /* Remove overrides to let global theme.json/style.css take over */
+}
+
+.cc-simple-list .dot {
+  font-weight: 700;
+  color: #222;
+  line-height: 1.2;
+  display: inline-block;
+  background: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.cc-benefits-section {
+  margin-top: 20px;
+  width: 100%;
+}
+
+.cc-subhead {
+  color: var(--brand) !important;
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  margin: 18px 0 10px !important;
+}
+
+h4.title_card {
+  font-size: clamp(24px, 4vw, 36px) !important;
+}
+
+@media (max-width: 640px) {
+  .cc-multi-cols {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
 }
 
 /* Icon Feature List */
@@ -164,11 +264,28 @@ h4 {
 .feature-icon {
   width: 22px;
   height: 22px;
-  color: var(--brand);
+  background-color: var(--brand);
+  color: #fff;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 5px;
+  flex-shrink: 0;
+}
+
+/* Fix for check-circle which has its own built-in circle */
+.feature-icon.feature-icon--check-circle {
+  background: none !important;
+  color: var(--brand) !important;
+  border-radius: 0;
+}
+
+/* Exclude the specific staffing page multi-list section */
+.is-style-standard-lists .feature-icon {
+  background: none !important;
+  color: var(--brand) !important;
+  border-radius: 0;
 }
 
 .feature-copy {
@@ -179,13 +296,13 @@ h4 {
 
 .feature-title {
   font-weight: 700;
-  color: #222;
+  margin: 0 !important;
+  /* Let global theme.json handle color/size if not overridden here */
 }
 
 .feature-desc {
-  color: var(--muted);
-  font-size: var(--wp--preset--font-size--body);
-  line-height: 1.6;
+  margin: 0 !important;
+  /* Let global theme.json handle color/size */
 }
 
 /* Legacy bullet rows */
@@ -209,10 +326,19 @@ h4 {
   justify-content: center;
   width: 22px;
   height: 22px;
-  border-radius: 50%;
-  background-color: #a02020;
+  background-color: var(--brand);
+  /* Restore red background */
   color: #fff;
+  /* White icon on red background */
+  border-radius: 50%;
   flex-shrink: 0;
+}
+
+/* Exclude the specific staffing page multi-list section */
+.is-style-standard-lists .bullet-item .check-icon {
+  background: none !important;
+  color: #222 !important;
+  border-radius: 0;
 }
 
 .bullet-item p {
@@ -241,10 +367,19 @@ h4 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  background: #a02020;
+  background-color: var(--brand);
+  /* Restore red background */
   color: #fff;
+  /* White icon on red background */
   border-radius: 50%;
   flex-shrink: 0;
+}
+
+/* Exclude the specific staffing page multi-list section */
+.is-style-standard-lists .intro-list .check-icon {
+  background: none !important;
+  color: #222 !important;
+  border-radius: 0;
 }
 
 .intro-list .intro-li-text {

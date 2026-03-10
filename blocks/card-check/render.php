@@ -44,7 +44,7 @@ $section_id = isset($A['sectionId']) ? sanitize_title($A['sectionId']) : 'who-we
 
 $btn_name = isset($A['btnName']) ? sanitize_text_field($A['btnName']) : '';
 $btn_url = isset($A['btnUrl']) ? esc_url($A['btnUrl']) : '#';
-$btn_class = isset($A['btnClass']) ? sanitize_text_field($A['btnClass']) : 'btn btn-pill btn-pill';
+$btn_class = isset($A['btnClass']) ? sanitize_text_field($A['btnClass']) : 'btn btn-pill';
 
 $image = is_array($A['image'] ?? null) ? $A['image'] : array();
 $img_src = isset($image['src']) ? esc_url($image['src']) : '';
@@ -111,6 +111,13 @@ if (!function_exists('child_cc_icon_svg')) {
   }
 }
 
+if (!function_exists('child_cc_arrow_svg')) {
+  function child_cc_arrow_svg()
+  {
+    return '<svg class="cc-arrow-svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true" style="margin-left:8px; display:inline-block; vertical-align:middle;"><path d="M5 12h12M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+  }
+}
+
 /* ======================
  Classes
  ====================== */
@@ -121,6 +128,9 @@ if ($className) {
 }
 if ($anchor) {
   $classes[] = $anchor;
+}
+if (!empty($A['works']) || !empty($A['useCases'])) {
+  $classes[] = 'is-style-standard-lists';
 }
 ?>
 <section id="<?php echo esc_attr($section_id); ?>"
@@ -147,7 +157,7 @@ endif; ?>
 endif; ?>
 
       <?php if ($title): ?>
-        <p class="title_card"><?php echo $title; ?></p>
+        <h2 class="title_card"><?php echo $title; ?></h2>
       <?php
 endif; ?>
       <?php if ($intro): ?>
@@ -180,6 +190,77 @@ endif; ?>
       <?php
 endif; ?>
 
+      <?php
+/* New: multi-list support (works, useCases, benefits) */
+$works = (isset($A['works']) && is_array($A['works'])) ? $A['works'] : array();
+$useCases = (isset($A['useCases']) && is_array($A['useCases'])) ? $A['useCases'] : array();
+$benefits = (isset($A['benefits']) && is_array($A['benefits'])) ? $A['benefits'] : array();
+
+$works_heading = isset($A['worksHeading']) ? sanitize_text_field($A['worksHeading']) : 'How It Works';
+$usecases_heading = isset($A['useCasesHeading']) ? sanitize_text_field($A['useCasesHeading']) : 'Ideal Use Cases';
+$benefits_heading = isset($A['benefitsHeading']) ? sanitize_text_field($A['benefitsHeading']) : 'What You Get';
+
+if (!empty($works) || !empty($useCases)): ?>
+        <div class="cc-multi-cols">
+          <?php if (!empty($works)): ?>
+            <div class="cc-col">
+              <h3 class="cc-subhead"><?php echo esc_html($works_heading); ?></h3>
+              <ul class="cc-simple-list">
+                <?php foreach ($works as $w):
+      $txt = is_array($w) ? ($w['text'] ?? '') : $w;
+      if (!$txt)
+        continue; ?>
+                  <li><span class="dot">•</span> <p><?php echo wp_kses_post($txt); ?></p></li>
+                <?php
+    endforeach; ?>
+              </ul>
+            </div>
+          <?php
+  endif; ?>
+          <?php if (!empty($useCases)): ?>
+            <div class="cc-col">
+              <h3 class="cc-subhead"><?php echo esc_html($usecases_heading); ?></h3>
+              <ul class="cc-simple-list">
+                <?php foreach ($useCases as $u):
+      $txt = is_array($u) ? ($u['text'] ?? '') : $u;
+      if (!$txt)
+        continue; ?>
+                  <li><span class="dot">•</span> <p><?php echo wp_kses_post($txt); ?></p></li>
+                <?php
+    endforeach; ?>
+              </ul>
+            </div>
+          <?php
+  endif; ?>
+        </div>
+      <?php
+endif; ?>
+
+      <?php if (!empty($benefits)): ?>
+        <div class="cc-benefits-section">
+          <h3 class="cc-subhead"><?php echo esc_html($benefits_heading); ?></h3>
+          <ul class="cc-simple-list">
+            <?php foreach ($benefits as $b):
+    $txt = is_array($b) ? ($b['text'] ?? '') : $b;
+    if (!$txt)
+      continue; ?>
+              <li><span class="dot">•</span> <p><?php echo wp_kses_post($txt); ?></p></li>
+            <?php
+  endforeach; ?>
+          </ul>
+          <?php if ($btn_name !== ''): ?>
+            <div class="cc-cta-float">
+               <a href="<?php echo $btn_url; ?>" class="<?php echo esc_attr($btn_class); ?>">
+                 <span class="btn-label"><?php echo esc_html($btn_name); ?></span>
+                 <?php echo child_cc_arrow_svg(); ?>
+               </a>
+            </div>
+          <?php
+  endif; ?>
+        </div>
+      <?php
+endif; ?>
+
       <?php if ($render_features): ?>
         <?php if ($list_h3 !== ''): ?><h3 class="cc-subhead"><?php echo esc_html($list_h3); ?></h3><?php
   endif; ?>
@@ -193,10 +274,10 @@ endif; ?>
     }
 ?>
             <li class="feature-item">
-              <span class="feature-icon" aria-hidden="true"><?php echo child_cc_icon_svg($f_icon); ?></span>
+              <span class="feature-icon feature-icon--<?php echo esc_attr($f_icon); ?>" aria-hidden="true"><?php echo child_cc_icon_svg($f_icon); ?></span>
               <div class="feature-copy">
-                <span class="feature-title"><?php echo $f_title; ?></span>
-                <?php if ($f_desc !== ''): ?><span class="feature-desc"><?php echo $f_desc; ?></span><?php
+                <p class="feature-title"><?php echo $f_title; ?></p>
+                <?php if ($f_desc !== ''): ?><p class="feature-desc"><?php echo $f_desc; ?></p><?php
     endif; ?>
               </div>
             </li>
@@ -223,8 +304,11 @@ elseif ($render_bullets): ?>
       <?php
 endif; ?>
 
-      <?php if ($btn_name !== ''): ?><br>
-        <a href="<?php echo $btn_url; ?>" class="<?php echo esc_attr($btn_class); ?>"><?php echo esc_html($btn_name); ?></a>
+      <?php if ($btn_name !== '' && empty($benefits)): ?>
+        <a href="<?php echo $btn_url; ?>" class="<?php echo esc_attr($btn_class); ?>">
+          <span class="btn-label"><?php echo esc_html($btn_name); ?></span>
+          <?php echo child_cc_arrow_svg(); ?>
+        </a>
       <?php
 endif; ?>
     </div>
