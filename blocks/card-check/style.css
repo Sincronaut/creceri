@@ -95,6 +95,22 @@
   object-fit: cover;
 }
 
+@media (min-width: 1025px) {
+  .who-we-are.is-style-short-img .image {
+    flex: 1 1 40%;
+    max-width: 40%;
+    max-height: 450px;
+    overflow: hidden;
+    align-self: center;
+    border-radius: 16px;
+  }
+
+  .who-we-are.is-style-short-img .content {
+    flex: 1 1 60%;
+    max-width: 60%;
+  }
+}
+
 /* Typography */
 .form-title {
   font-weight: 700;
@@ -415,4 +431,20 @@ h4 {
 #case-studies [data-icon="team"] .cc-icon {
   -webkit-mask: url("https://creceri.com/wp-content/uploads/2025/10/ri_team-line.png") no-repeat center/contain;
   mask: url("https://creceri.com/wp-content/uploads/2025/10/ri_team-line.png") no-repeat center/contain;
+}
+
+@media (max-width: 1024px) {
+  .who-we-are.is-style-short-img .content {
+    align-items: center;
+    text-align: center;
+    max-width: 100%;
+    flex: 1 1 100%;
+    margin-inline: auto;
+    --content-pad: 0px !important;
+    --content-pad-end: 0px !important;
+  }
+
+  .who-we-are.is-style-short-img .image {
+    margin-inline: auto;
+  }
 }
