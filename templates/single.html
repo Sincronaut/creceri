@@ -162,10 +162,14 @@
     }
 
     /* Title */
+    h1,
+    h1.wp-block-heading,
     .post-title {
-      font-size: 45px;
+      font-size: clamp(34px, 6vw, 48px) !important;
       line-height: 1.2;
       margin: 6px 0 0;
+      scroll-margin-top: 130px;
+      /* Offset for sticky header */
     }
 
     /* Terms */
@@ -187,8 +191,26 @@
       margin-inline: auto;
     }
 
-    .wp-block-post-content p {
+    .wp-block-post-content p,
+    .wp-block-post-content li {
+      font-size: clamp(16px, 1.2vw, 18px) !important;
       line-height: 1.75;
+    }
+
+    .wp-block-post-content p b,
+    .wp-block-post-content p strong {
+      font-size: inherit !important;
+      font-weight: 800;
+    }
+
+    h2,
+    h2.wp-block-heading,
+    .wp-block-heading:not(h1) {
+      font-size: clamp(28px, 4vw, 35px) !important;
+      margin-top: 1.5em;
+      margin-bottom: 0.5em;
+      scroll-margin-top: 130px;
+      /* Offset for sticky header */
     }
 
     /* Nav */
@@ -412,10 +434,6 @@
 
       .author-name {
         font-size: 14px;
-      }
-
-      .wp-block-heading {
-        font-size: clamp(24px, 5vw, 28px);
       }
 
       .chip-dot {
