@@ -164,9 +164,6 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 /* ======================
    BUTTONS
    ====================== */
-.hero .text-white {
-  color: #fff !important;
-}
 
 .hero__image1 {
   width: var(--image-fluid) !important;
@@ -342,18 +339,19 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 
 .hero__line {
   display: block;
-  font-weight: 400;
+  font-weight: 700 !important;
   font-size: clamp(32px, 5vw, 64px) !important;
   color: var(--brand, #962E2A);
   line-height: 1.1;
 }
 
-.intro_html {
-  font-weight: 700;
+.hero__lead b,
+.hero__lead strong {
+  font-size: inherit !important;
 }
 
-.hero__lead {
-  margin: .85rem 0px 1.4rem;
+.intro_html {
+  font-weight: 700;
 }
 
 .hero h1 {
