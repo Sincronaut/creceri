@@ -1,6 +1,6 @@
 /* Container: base gradient (overridden by inline background from render.php if provided) */
 .choice-compare {
-  background: #fff !important;
+  background: #fff;
   padding-block: var(--section-pad-y, clamp(3rem, 10vw, 6rem));
   padding-inline: var(--page-gutter-left, clamp(1rem, 5vw, 2rem));
 }

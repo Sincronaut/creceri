@@ -294,7 +294,7 @@ $resolve_bullets = static function ($idx, $card, $global_style, $first_col_style
     <?php if ($title !== ''): ?>
       <h2 class="choice-compare__title"><?php echo $title; ?></h2>
       <?php if ($description !== ''): ?>
-        <div class="choice-compare__description"><?php echo $description; ?></div>
+        <p class="choice-compare__description"><?php echo $description; ?></p>
       <?php
   endif; ?>
     <?php
