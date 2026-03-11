@@ -144,6 +144,83 @@
       "postTypes": [
         "page"
       ]
+    },
+    {
+      "name": "ko-page-home",
+      "title": "Korean Home Page",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "ko-page-about",
+      "title": "Korean About Page",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "ko-page-digital",
+      "title": "Korean Digital Marketing Page",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "ko-page-ecomerce",
+      "title": "Korean E-commerce Page",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "ko-page-staffing",
+      "title": "Korean Staffing Page",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "ko-page-tek-stories",
+      "title": "Korean Tek Stories Page",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "ko-page-website",
+      "title": "Korean Website / CMS Page",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "ko-page-ui",
+      "title": "Korean UI/UX Page",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "ko-page-whatsnew",
+      "title": "Korean What's New Page",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "ko-page-contact",
+      "title": "Korean Contact Page",
+      "postTypes": [
+        "page"
+      ]
+    },
+    {
+      "name": "ko-page-blog",
+      "title": "Korean Blog List Page",
+      "postTypes": [
+        "page"
+      ]
     }
   ]
 }
