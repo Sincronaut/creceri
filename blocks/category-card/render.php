@@ -452,10 +452,18 @@ endforeach; ?>
 
         function render(){
           const rows = workingSet();
+          
+          grid.innerHTML = '';
+          
+          if (rows.length === 0) {
+            grid.innerHTML = '<div class="cc-no-results" style="grid-column: 1 / -1; text-align: center; padding: 80px 20px; font-size: 1.1rem; color: #6b6f75; background: #fff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);"><h3 style="margin-bottom: 10px; color: var(--brand, #962E2A); font-size: 1.5rem; font-weight: 700;">No results found</h3><p style="margin: 0;">We couldn\'t find anything matching your search. Please try a different keyword.</p></div>';
+            pagination.innerHTML = '';
+            return;
+          }
+
           const totalPages = Math.max(1, Math.ceil(rows.length / state.pageSize));
           state.page = Math.min(state.page, totalPages);
 
-          grid.innerHTML = '';
           const start = (state.page - 1) * state.pageSize;
           rows.slice(start, start + state.pageSize).forEach(r=> grid.appendChild(buildCard(r)));
           renderPagination(totalPages);
