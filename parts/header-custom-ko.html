@@ -445,7 +445,7 @@
     }
 
     .main-header.is-open .main-header__nav {
-      max-height: 100vh; 
+      max-height: 100vh;
       opacity: 1;
       visibility: visible;
       transform: scaleY(1) translateY(0);
@@ -492,7 +492,7 @@
       box-shadow: none;
       padding: 0;
       margin: 0;
-      background: rgba(150, 46, 42, 0.03); 
+      background: rgba(150, 46, 42, 0.03);
     }
 
     /* Indent links inside the submenu on mobile */
@@ -509,7 +509,7 @@
     }
 
     .main-header__sub-toggle:checked+.main-header__nav-button+.main-header__submenu {
-      max-height: 500px; 
+      max-height: 500px;
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
@@ -693,15 +693,16 @@
     // Canonical route map. Edit once, reuse everywhere.
     const I18N_ROUTES = {
       home: { en: '/home/', ko: '/ko/' },
-      about: { en: '/about/', ko: '/ko/about-ko/' },
-      ecom: { en: '/ecommerce-development/', ko: '/ko/ecommerce-development-ko/' },
-      cms: { en: '/website-cms-development/', ko: '/ko/website-cms-development-ko/' },
-      uiux: { en: '/ui-ux-design/', ko: '/ko/ui-ux-design-ko/' },
-      mkt: { en: '/digital-marketing/', ko: '/ko/digital-marketing-ko/' },
-      team: { en: '/team-extension/', ko: '/ko/team-extension-ko/' },
-      stories: { en: '/stories', ko: '/ko/stories-ko/' },
-      whatsnew: { en: '/whats-new', ko: '/ko/whats-new-ko/' },
-      contact: { en: '/contact-us/', ko: '/ko/contact-us-ko/' }
+      about: { en: '/about/', ko: '/ko/%EC%A0%95%EB%B3%B4/' },
+      ecom: { en: '/ecommerce-development/', ko: '/ko/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98-%EA%B0%9C%EB%B0%9C/' },
+      cms: { en: '/website-cms-development/', ko: '/ko/%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-cms-%EA%B0%9C%EB%B0%9C/' },
+      uiux: { en: '/ui-ux-design/', ko: '/ko/ui-ux-%EB%94%94%EC%9E%90%EC%9D%B8/' },
+      mkt: { en: '/digital-marketing/', ko: '/ko/%EB%94%94%EC%A7%80%ED%84%B8-%EB%A7%88%EC%BC%80%ED%8C%85/' },
+      team: { en: '/team-extension/', ko: '/ko/%ED%8C%80-%ED%99%95%EC%9E%A5/' },
+      stories: { en: '/stories/', ko: '/ko/%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%93%A4/' },
+      whatsnew: { en: '/whats-new/', ko: '/ko/%EC%83%88%EC%86%8C%EC%8B%9D/' },
+      contact: { en: '/contact-us/', ko: '/ko/%EB%AC%B8%EC%9D%98%ED%95%98%EA%B8%B0/' },
+      blogs: { en: '/blog/', ko: '/ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' }
     };
 
     /* ---------- Layout, scroll, logo ---------- */
@@ -733,7 +734,7 @@
       const open = !header.classList.contains('is-open');
       header.classList.toggle('is-open', open);
       if (burger) burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      
+
       // Reset submenus when closing
       if (!open) {
         header.querySelectorAll('.main-header__sub-toggle').forEach(t => t.checked = false);
