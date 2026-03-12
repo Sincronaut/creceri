@@ -33,7 +33,7 @@ $allowed_html = array(
         $tcls = $tiles[$i];
         ?>
         <figure class="tile <?php echo esc_attr($tcls); ?>">
-          <img src="<?php echo esc_url($src); ?>" alt="Who We Are?" loading="lazy" decoding="async" />
+          <img src="<?php echo esc_url($src); ?>" alt="<?php echo esc_attr($alt ? $alt : __('Who We Are?', 'vite-ttf-child-creceri')); ?>" loading="lazy" decoding="async" />
         </figure>
         <?php
       }

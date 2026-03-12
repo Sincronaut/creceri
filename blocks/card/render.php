@@ -122,20 +122,17 @@ foreach ($cards as $card):
               </figure>
 
               <div class="card-body">
-                <?php if ($c_title): ?> 
-                  <a href="<?php echo esc_url($c_link); ?>" style="text-decoration:none !important;">
+                <?php if ($c_title): ?>
+                  <h3 class="card-title">
                     <?php if ($c_link): ?>
-                    <h3 class="card-title" >
+                      <a href="<?php echo esc_url($c_link); ?>" style="text-decoration:none !important;">
                         <?php echo esc_html($c_title); ?>
-                      <?php
-    else: ?>
-                        <?php echo esc_html($c_title); ?>
-                      <?php
-    endif; ?>
-                    </h3>
-                  </a>
-                <?php
-  endif; ?>
+                      </a>
+                    <?php else: ?>
+                      <?php echo esc_html($c_title); ?>
+                    <?php endif; ?>
+                  </h3>
+                <?php endif; ?>
 
                 <?php if ($c_text): ?>
                   <a href="<?php echo esc_url($c_link); ?>" style="text-decoration:none !important;">
