@@ -46,7 +46,7 @@ $lead_weight = $A['lead_weight'] ?? '';
 $buttonType = in_array(($A['buttonType'] ?? 'Button'), array('Button','Search'), true) ? $A['buttonType'] : 'Button';
 $btnText  = $A['buttonText'] ?? 'Search';
 $btnUrl   = $A['buttonUrl'] ?? '#explore';
-$btnClass = $A['buttonClass'] ?? 'btn btn-pill text-white btn-pill';
+$btnClass = $A['buttonClass'] ?? 'btn btn-custom text-white btn-pill';
 
 $image   = is_array($A['image'] ?? null) ? $A['image'] : array();
 $img_src = $image['src'] ?? 'https://creceri.com/wp-content/themes/vite-ttf-child-creceri/assets/images/hero-banner/banner.png';
@@ -170,4 +170,3 @@ $style_attr = implode(';', $style_vars);
     </div>
   </div>
 </section>
-

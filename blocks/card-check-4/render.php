@@ -18,7 +18,7 @@ $section_id  = isset($A['sectionId']) ? sanitize_title($A['sectionId']) : 'team-
 
 $btn_name  = isset($A['btnName']) ? sanitize_text_field($A['btnName']) : '';
 $btn_url   = isset($A['btnUrl'])  ? esc_url($A['btnUrl']) : '#';
-$btn_class = isset($A['btnClass']) ? sanitize_text_field($A['btnClass']) : 'btn btn-pill btn-pill';
+$btn_class = isset($A['btnClass']) ? sanitize_text_field($A['btnClass']) : 'btn btn-pill btn-custom';
 
 $image     = is_array($A['image'] ?? null) ? $A['image'] : array();
 $img_src   = isset($image['src']) ? esc_url($image['src']) : '';
@@ -142,4 +142,3 @@ if ($anchor)    { $classes[] = $anchor; }
 
   </div>
 </section>
-

@@ -1,162 +1,107 @@
 <?php
-if (!defined('ABSPATH')) {
-  exit;
-}
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-function cc_val($a, $k, $d = null)
-{
-  return (is_array($a) && array_key_exists($k, $a)) ? $a[$k] : $d;
-}
-function cc_str($a, $k, $d = '')
-{
-  $v = cc_val($a, $k, $d);
-  return is_string($v) ? $v : ((is_null($v)) ? '' : strval($v));
-}
-function cc_bool($a, $k, $d = false)
-{
-  return (bool)cc_val($a, $k, $d);
-}
-function cc_clean($v)
-{
-  return html_entity_decode(wp_specialchars_decode((string)$v), ENT_QUOTES | ENT_HTML5, 'UTF-8');
+function cc_val($a,$k,$d=null){ return (is_array($a)&&array_key_exists($k,$a))?$a[$k]:$d; }
+function cc_str($a,$k,$d=''){ $v=cc_val($a,$k,$d); return is_string($v)?$v:((is_null($v))?'':strval($v)); }
+function cc_bool($a,$k,$d=false){ return (bool)cc_val($a,$k,$d); }
+function cc_clean($v){
+  return html_entity_decode( wp_specialchars_decode( (string) $v ), ENT_QUOTES | ENT_HTML5, 'UTF-8' );
 }
 
 $A = is_array($attributes ?? null) ? $attributes : array();
 
-$title = cc_str($A, 'title', 'Who We Are?');
-$content = cc_str($A, 'content', '');
-$cta_text = cc_str($A, 'ctaText', 'Learn More');
-$cta_url = cc_str($A, 'ctaUrl', '#');
-$btn_class = cc_str($A, 'btnClass', 'btn-primary');
-$reverse = cc_bool($A, 'reverse', false);
-$sectionId = cc_str($A, 'sectionId', 'who-title');
+$title     = cc_str($A,'title','Who We Are?');
+$content   = cc_str($A,'content','');
+$cta_text  = cc_str($A,'ctaText','Learn More');
+$cta_url   = cc_str($A,'ctaUrl','#');
+$btn_class = cc_str($A,'btnClass','btn-primary');
+$reverse   = cc_bool($A,'reverse',false);
+$sectionId = cc_str($A,'sectionId','who-title');
 
-$items = is_array($A['items'] ?? null) ? $A['items'] : array();
-$use_posts = cc_bool($A, 'usePosts', false);
+$items          = is_array($A['items'] ?? null) ? $A['items'] : array();
+$use_posts      = cc_bool($A,'usePosts',false);
 $posts_per_page = intval($A['postsPerPage'] ?? 12);
-$order_by_attr = cc_str($A, 'orderBy', 'date');
-$order_attr = strtolower(cc_str($A, 'order', 'desc'));
-$cat_attr = $A['categories'] ?? array();
+$order_by_attr  = cc_str($A,'orderBy','date');
+$order_attr     = strtolower(cc_str($A,'order','desc'));
+$cat_attr       = $A['categories'] ?? array();
 
-$pageSize = intval($A['pageSize'] ?? 6);
-$sort = cc_str($A, 'sort', 'newest');
+$pageSize  = intval($A['pageSize'] ?? 6);
+$sort      = cc_str($A,'sort','newest');
 
-$brand = cc_str($A, 'brand', '#962E2A');
-$bg = cc_str($A, 'bg', '#ffffff');
-$line = cc_str($A, 'line', '#E5E7EB');
-$chip = cc_str($A, 'chip', '#F5E8E6');
-$radius = floatval($A['radius'] ?? 14);
+$brand     = cc_str($A,'brand','#962E2A');
+$bg        = cc_str($A,'bg','#ffffff');
+$line      = cc_str($A,'line','#E5E7EB');
+$chip      = cc_str($A,'chip','#F5E8E6');
+$radius    = floatval($A['radius'] ?? 14);
 
-$cardW = max(260, floatval($A['cardWidth'] ?? 380));
-$gap = max(12, floatval($A['gap'] ?? 22));
+$cardW     = max(260, floatval($A['cardWidth'] ?? 380));
+$gap       = max(12, floatval($A['gap'] ?? 22));
 
-$allowed_order_by = array('date', 'title');
+$allowed_order_by = array('date','title');
 $order_by = in_array($order_by_attr, $allowed_order_by, true) ? $order_by_attr : 'date';
-$order = ($order_attr === 'asc') ? 'ASC' : 'DESC';
+$order    = ($order_attr === 'asc') ? 'ASC' : 'DESC';
 $posts_per_page = max(1, $posts_per_page);
 $cat_ids = array_filter(array_map('intval', is_array($cat_attr) ? $cat_attr : array()));
 
 /* Query + hydrate all categories for badges/filters */
 if ($use_posts || empty($items)) {
   $qargs = array(
-    'post_type' => 'post',
-    'post_status' => 'publish',
-    'posts_per_page' => -1, // Use -1 to get all posts so client-side pagination functions fully
-    'orderby' => $order_by,
-    'order' => $order,
+    'post_type'           => 'post',
+    'post_status'         => 'publish',
+    'posts_per_page'      => $posts_per_page,
+    'orderby'             => $order_by,
+    'order'               => $order,
     'ignore_sticky_posts' => true,
   );
   if (!empty($cat_ids)) {
     $qargs['tax_query'] = array(array(
-        'taxonomy' => 'category', 'field' => 'term_id', 'terms' => $cat_ids,
-      ));
-  }
-
-  // Inject search term if on a search page
-  if (is_search()) {
-    $qargs['s'] = get_search_query();
-
-    if (!function_exists('cc_custom_search_filter')) {
-      function cc_custom_search_filter($search, $wp_query)
-      {
-        if (empty($search))
-          return $search;
-        $q = $wp_query->query_vars;
-        if (empty($q['search_terms']))
-          return $search;
-        global $wpdb;
-
-        $n = !empty($q['exact']) ? '' : '%';
-        $new_search = '';
-        $searchand = '';
-        foreach ((array)$q['search_terms'] as $term) {
-          $like = $n . $wpdb->esc_like($term) . $n;
-          $title_sql = $wpdb->prepare("{$wpdb->posts}.post_title LIKE %s", $like);
-          $author_sql = $wpdb->prepare("{$wpdb->posts}.post_author IN (SELECT ID FROM {$wpdb->users} WHERE display_name LIKE %s)", $like);
-          $new_search .= "{$searchand}({$title_sql} OR {$author_sql})";
-          $searchand = ' AND ';
-        }
-        if (!empty($new_search)) {
-          $search = " AND ({$new_search}) ";
-          if (!is_user_logged_in()) {
-            $search .= " AND ({$wpdb->posts}.post_password = '') ";
-          }
-        }
-        return $search;
-      }
-    }
-    add_filter('posts_search', 'cc_custom_search_filter', 10, 2);
+      'taxonomy' => 'category','field'=>'term_id','terms'=>$cat_ids,
+    ));
   }
 
   $loop = new WP_Query($qargs);
-
-  if (is_search()) {
-    remove_filter('posts_search', 'cc_custom_search_filter', 10);
-  }
   $items = array();
 
   if ($loop->have_posts()) {
     while ($loop->have_posts()) {
       $loop->the_post();
 
-      $p_title = cc_clean(get_the_title());
+      $p_title = cc_clean( get_the_title() );
 
       $terms = get_the_category();
       $primary = (is_array($terms) && $terms) ? $terms[0] : null;
       if (!$primary) {
-        $pid = (int)get_option('default_category');
-        $primary = $pid ? get_term($pid, 'category') : null;
+        $pid = (int) get_option('default_category');
+        $primary = $pid ? get_term($pid,'category') : null;
       }
 
       $badges = array();
       if (is_array($terms)) {
         foreach ($terms as $t) {
-          if (is_wp_error($t))
-            continue;
+          if (is_wp_error($t)) continue;
           $badges[] = array(
-            'slug' => $t->slug,
-            'label' => cc_clean($t->name),
-            'url' => '?filter=' . urlencode($t->slug) . '#category-list',
+            'slug'  => $t->slug,
+            'label' => cc_clean( $t->name ),
+            'url'   => get_term_link($t),
           );
         }
       }
 
-      $thumb_id = get_post_thumbnail_id();
-      $image_src = $thumb_id ? wp_get_attachment_image_url($thumb_id, 'large') : get_stylesheet_directory_uri() . '/assets/images/fallback-image.webp';
-      $image_alt = $thumb_id ? get_post_meta($thumb_id, '_wp_attachment_image_alt', true) : '';
-      if ($image_alt === '')
-        $image_alt = $p_title;
+      $thumb_id  = get_post_thumbnail_id();
+      $image_src = $thumb_id ? wp_get_attachment_image_url($thumb_id,'large') : '';
+      $image_alt = $thumb_id ? get_post_meta($thumb_id,'_wp_attachment_image_alt',true) : '';
+      if ($image_alt==='') $image_alt = $p_title;
 
       $items[] = array(
-        'title' => $p_title,
-        'category' => ($primary && !is_wp_error($primary)) ? $primary->slug : 'uncategorized',
-        'categoryLabel' => ($primary && !is_wp_error($primary)) ? cc_clean($primary->name) : 'Uncategorized',
-        'categories' => $badges,
-        'author' => cc_clean(get_the_author()),
-        'date' => get_post_time('c'),
-        'url' => get_permalink(),
-        'snippet' => cc_clean(wp_strip_all_tags(get_the_excerpt())),
-        'image' => array('src' => $image_src ?: get_stylesheet_directory_uri() . '/assets/images/fallback-image.webp', 'alt' => $image_alt ?: ''),
+        'title'         => $p_title,
+        'category'      => ($primary && !is_wp_error($primary)) ? $primary->slug : 'uncategorized',
+        'categoryLabel' => ($primary && !is_wp_error($primary)) ? cc_clean( $primary->name ) : 'Uncategorized',
+        'categories'    => $badges,
+        'author'        => cc_clean( get_the_author() ),
+        'date'          => get_post_time('c'),
+        'url'           => get_permalink(),
+        'snippet'       => cc_clean( wp_strip_all_tags(get_the_excerpt()) ),
+        'image'         => array('src'=>$image_src ?: '','alt'=>$image_alt ?: ''),
       );
     }
     wp_reset_postdata();
@@ -167,57 +112,55 @@ if ($use_posts || empty($items)) {
 $category_labels = array();
 foreach ($items as $it) {
   if (!empty($it['category'])) {
-    $category_labels[$it['category']] = $it['categoryLabel'] ?: ucwords(str_replace('-', ' ', $it['category']));
+    $category_labels[$it['category']] = $it['categoryLabel'] ?: ucwords(str_replace('-',' ',$it['category']));
   }
   if (!empty($it['categories'])) {
     foreach ($it['categories'] as $c) {
-      $s = $c['slug'] ?? '';
-      if ($s === '')
-        continue;
-      $l = $c['label'] ?? ucwords(str_replace('-', ' ', $s));
+      $s = $c['slug'] ?? ''; if ($s==='') continue;
+      $l = $c['label'] ?? ucwords(str_replace('-',' ',$s));
       $category_labels[$s] = $l;
     }
   }
 }
 if ($category_labels) {
-  uasort($category_labels, fn($a, $b) => strcasecmp($a, $b));
+  uasort($category_labels, fn($a,$b)=>strcasecmp($a,$b));
 }
 
-$sec_id = $attributes['anchor'] ?? 'category-list';
-$tpl_id = $sec_id . '-tpl';
+$sec_id  = $attributes['anchor'] ?? ('ccard-' . wp_generate_password(6,false,false));
+$tpl_id  = $sec_id . '-tpl';
 $data_id = $sec_id . '-data';
-$cfg_id = $sec_id . '-cfg';
+$cfg_id  = $sec_id . '-cfg';
 
-$payload = array_map(function ($r) {
+$payload = array_map(function($r){
   $cats = array();
   if (!empty($r['categories'])) {
     foreach ($r['categories'] as $c) {
       $cats[] = array(
-        'slug' => cc_str($c, 'slug', ''),
-        'label' => cc_str($c, 'label', ''),
-        'url' => cc_str($c, 'url', ''),
+        'slug'  => cc_str($c,'slug',''),
+        'label' => cc_str($c,'label',''),
+        'url'   => cc_str($c,'url',''),
       );
     }
   }
   return array(
-  'title' => cc_clean(cc_str($r, 'title', '')),
-  'category' => cc_str($r, 'category', ''),
-  'categoryLabel' => cc_clean(cc_str($r, 'categoryLabel', '')),
-  'categories' => $cats,
-  'author' => cc_clean(cc_str($r, 'author', '')),
-  'date' => cc_str($r, 'date', ''),
-  'url' => cc_str($r, 'url', '#'),
-  'snippet' => cc_clean(cc_str($r, 'snippet', '')),
-  'image' => array(
-  'src' => cc_str(cc_val($r, 'image', []), 'src', ''),
-  'alt' => cc_clean(cc_str(cc_val($r, 'image', []), 'alt', ''))
-  )
+    'title'         => cc_clean(cc_str($r,'title','')),
+    'category'      => cc_str($r,'category',''),
+    'categoryLabel' => cc_clean(cc_str($r,'categoryLabel','')),
+    'categories'    => $cats,
+    'author'        => cc_clean(cc_str($r,'author','')),
+    'date'          => cc_str($r,'date',''),
+    'url'           => cc_str($r,'url','#'),
+    'snippet'       => cc_clean(cc_str($r,'snippet','')),
+    'image'         => array(
+      'src' => cc_str(cc_val($r,'image',[]),'src',''),
+      'alt' => cc_clean(cc_str(cc_val($r,'image',[]),'alt',''))
+    )
   );
 }, $items);
 
 $config = array(
-  'pageSize' => max(1, $pageSize),
-  'sort' => in_array($sort, ['newest', 'oldest', 'title-az', 'title-za'], true) ? $sort : 'newest'
+  'pageSize' => max(1,$pageSize),
+  'sort'     => in_array($sort,['newest','oldest','title-az','title-za'],true)?$sort:'newest'
 );
 ?>
 <section
@@ -256,18 +199,17 @@ $config = array(
   <div class="ccard__toolbar">
     <div class="filters" role="tablist" aria-label="Filter articles">
       <button class="filter" data-filter="all" aria-pressed="true">All</button>
-      <?php foreach ($category_labels as $cat_slug => $cat_label): ?>
+      <?php foreach($category_labels as $cat_slug => $cat_label): ?>
         <button class="filter" data-filter="<?php echo esc_attr($cat_slug); ?>"><?php echo esc_html($cat_label); ?></button>
-      <?php
-endforeach; ?>
+      <?php endforeach; ?>
     </div>
     <div class="sort">
       <label for="<?php echo esc_attr($sec_id); ?>-sort">Sort:</label>
       <select id="<?php echo esc_attr($sec_id); ?>-sort" class="sort-select" aria-label="Sort articles">
-        <option value="newest" <?php selected($config['sort'], 'newest'); ?>>Newest</option>
-        <option value="oldest" <?php selected($config['sort'], 'oldest'); ?>>Oldest</option>
-        <option value="title-az" <?php selected($config['sort'], 'title-az'); ?>>Title A - Z</option>
-        <option value="title-za" <?php selected($config['sort'], 'title-za'); ?>>Title Z - A</option>
+        <option value="newest" <?php selected($config['sort'],'newest'); ?>>Newest</option>
+        <option value="oldest" <?php selected($config['sort'],'oldest'); ?>>Oldest</option>
+        <option value="title-az" <?php selected($config['sort'],'title-az'); ?>>Title A - Z</option>
+        <option value="title-za" <?php selected($config['sort'],'title-za'); ?>>Title Z - A</option>
       </select>
     </div>
   </div>
@@ -279,8 +221,10 @@ endforeach; ?>
   <template id="<?php echo esc_attr($tpl_id); ?>">
     <article class="card">
       <a class="media" href="#" aria-label="">
-        <span class="media-bg" aria-hidden="true" style="position: absolute; inset: 0; background-size: cover; background-position: center;"></span>
+        <span class="media-bg" aria-hidden="true"></span>
         <div class="badges"></div>
+        <!-- If you prefer <img>, we inject it too; CSS above keeps it under badges -->
+        <img alt="" class="card-img-top" loading="lazy" decoding="async" />
       </a>
       <div class="content">
         <h3 class="title"></h3>
@@ -342,8 +286,7 @@ endforeach; ?>
           };
         });
         const cfg  = JSON.parse((root.querySelector('.ccard-config')?.textContent||'{}'));
-        const urlParams = new URLSearchParams(window.location.search);
-        const state = { filter: urlParams.get('filter') || 'all', sort:cfg.sort||'newest', page:1, pageSize: Math.max(1, cfg.pageSize||6) };
+        const state = { filter:'all', sort:cfg.sort||'newest', page:1, pageSize: Math.max(1, cfg.pageSize||6) };
 
         const grid = root.querySelector('.grid_category');
         const pagination = root.querySelector('.pagination');
@@ -352,40 +295,10 @@ endforeach; ?>
         buildFilters(root, data);
 
         root.addEventListener('click', e=>{
-          const f = e.target.closest('.filters .filter');
-          if(f) {
-            root.querySelectorAll('.filters .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
-            f.setAttribute('aria-pressed','true');
-            state.filter = f.dataset.filter; state.page = 1; render();
-            // Optional: update URL silently
-            const newUrl = new URL(window.location);
-            newUrl.searchParams.set('filter', state.filter);
-            window.history.replaceState({}, '', newUrl);
-            return;
-          }
-
-          // Intercept badge clicks within the cards
-          const badge = e.target.closest('.badge, a[href*="?filter="]');
-          if(badge && badge.href && badge.href.includes('?filter=')) {
-            e.preventDefault();
-            const filterMatch = badge.href.match(/[\?&]filter=([^&#]+)/);
-            if(filterMatch) {
-              const filterSlug = decodeURIComponent(filterMatch[1]);
-              state.filter = filterSlug; state.page = 1;
-              const filterBtn = root.querySelector(`.filters .filter[data-filter="${filterSlug}"]`);
-              root.querySelectorAll('.filters .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
-              if(filterBtn) filterBtn.setAttribute('aria-pressed','true');
-              render();
-              
-              const newUrl = new URL(window.location);
-              newUrl.searchParams.set('filter', state.filter);
-              newUrl.hash = 'category-list';
-              window.history.replaceState({}, '', newUrl);
-              
-              // Scroll to the top of the block
-              root.scrollIntoView({behavior: 'smooth', block: 'start'});
-            }
-          }
+          const f = e.target.closest('.filters .filter'); if(!f) return;
+          root.querySelectorAll('.filters .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
+          f.setAttribute('aria-pressed','true');
+          state.filter = f.dataset.filter; state.page = 1; render();
         });
 
         const sortSelect = root.querySelector('.sort-select');
@@ -421,7 +334,7 @@ endforeach; ?>
 
           // Set both; CSS ensures either works and stays under badges
           if (mediaBg) mediaBg.style.backgroundImage = img ? `url("${img}")` : 'none';
-
+          if (imgEl) { imgEl.src = img || ''; imgEl.alt = alt; }
 
           media.href = row.url || '#';
           media.setAttribute('aria-label', row.title || '');
@@ -452,18 +365,10 @@ endforeach; ?>
 
         function render(){
           const rows = workingSet();
-          
-          grid.innerHTML = '';
-          
-          if (rows.length === 0) {
-            grid.innerHTML = '<div class="cc-no-results" style="grid-column: 1 / -1; text-align: center; padding: 80px 20px; font-size: 1.1rem; color: #6b6f75; background: #fff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);"><h3 style="margin-bottom: 10px; color: var(--brand, #962E2A); font-size: 1.5rem; font-weight: 700;">No results found</h3><p style="margin: 0;">We couldn\'t find anything matching your search. Please try a different keyword.</p></div>';
-            pagination.innerHTML = '';
-            return;
-          }
-
           const totalPages = Math.max(1, Math.ceil(rows.length / state.pageSize));
           state.page = Math.min(state.page, totalPages);
 
+          grid.innerHTML = '';
           const start = (state.page - 1) * state.pageSize;
           rows.slice(start, start + state.pageSize).forEach(r=> grid.appendChild(buildCard(r)));
           renderPagination(totalPages);
@@ -479,13 +384,6 @@ endforeach; ?>
           if(end<totalPages){ if(end<totalPages-1) pagination.appendChild(mkGhost()); pagination.appendChild(mkBtn(String(totalPages), totalPages, state.page===totalPages)); }
           pagination.appendChild(mkBtn('Next', Math.min(totalPages, state.page+1), false, state.page===totalPages));
           const goto=document.createElement('span'); goto.className='goto-wrap'; const inp=document.createElement('input'); inp.type='number'; inp.min='1'; inp.max=String(totalPages); inp.placeholder='e.g. 2'; inp.addEventListener('change', ()=>{ const v=Math.min(totalPages, Math.max(1, Number(inp.value||1))); state.page=v; render(); }); goto.append('Go to:', inp); pagination.appendChild(goto);
-        }
-
-        // Sync initial filter button state
-        const initialBtn = root.querySelector(`.filters .filter[data-filter="${state.filter}"]`);
-        if (initialBtn) {
-          root.querySelectorAll('.filters .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
-          initialBtn.setAttribute('aria-pressed','true');
         }
 
         render();

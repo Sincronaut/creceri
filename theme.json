@@ -1,18 +1,12 @@
 {
   "version": 3,
   "$schema": "https://schemas.wp.org/wp/6.8/theme.json",
+
   "templateParts": [
-    {
-      "name": "header-custom",
-      "title": "Header (Custom)",
-      "area": "header"
-    },
-    {
-      "name": "footer-custom",
-      "title": "Footer (Custom)",
-      "area": "footer"
-    }
+    { "name": "header-custom", "title": "Header (Custom)", "area": "header" },
+    { "name": "footer-custom", "title": "Footer (Custom)", "area": "footer" }
   ],
+
   "settings": {
     "layout": {
       "contentSize": "",
@@ -24,203 +18,61 @@
       "blockGap": false
     },
     "typography": {
-      "fluid": true,
+      "fluid": false,
       "fontSizes": [
         {
           "slug": "body",
           "name": "Body",
-          "size": "20px",
-          "fluid": {
-            "min": "16px",
-            "max": "20px"
-          }
+          "size": "20px"
         },
         {
           "slug": "h-4",
           "name": "H4",
-          "size": "22px",
-          "fluid": {
-            "min": "18px",
-            "max": "22px"
-          }
+          "size": "24px"
         },
         {
           "slug": "h-3",
           "name": "H3",
-          "size": "24px",
-          "fluid": {
-            "min": "20px",
-            "max": "24px"
-          }
+          "size": "32px"
         },
         {
           "slug": "h-2",
           "name": "H2",
-          "size": "36px",
-          "fluid": {
-            "min": "28px",
-            "max": "36px"
-          }
+          "size": "45px"
         },
         {
           "slug": "h-1",
           "name": "H1",
-          "size": "96px",
-          "fluid": {
-            "min": "48px",
-            "max": "96px"
-          }
+          "size": "64px"
         }
       ]
     }
   },
+
   "styles": {
     "layout": {
       "contentSize": "100%",
       "wideSize": "100%"
     },
-    "spacing": {
-      "blockGap": "0px",
-      "padding": {
-        "top": "0px",
-        "bottom": "0px"
-      }
-    },
     "typography": {
       "fontSize": "var(--wp--preset--font-size--body)",
-      "fontWeight": "400",
       "lineHeight": "1.6"
     },
     "elements": {
-      "h1": {
-        "typography": {
-          "fontSize": "var(--wp--preset--font-size--h-1)",
-          "fontWeight": "700",
-          "lineHeight": "1.2"
-        }
-      },
-      "h2": {
-        "typography": {
-          "fontSize": "var(--wp--preset--font-size--h-2)",
-          "fontWeight": "700",
-          "lineHeight": "1.3"
-        }
-      },
-      "h3": {
-        "typography": {
-          "fontSize": "var(--wp--preset--font-size--h-3)",
-          "fontWeight": "600",
-          "lineHeight": "1.35"
-        }
-      },
-      "h4": {
-        "typography": {
-          "fontSize": "var(--wp--preset--font-size--h-4)",
-          "fontWeight": "600",
-          "lineHeight": "1.35"
-        }
-      }
+      "h1": { "typography": { "fontSize": "var(--wp--preset--font-size--h-1)", "fontWeight": "800", "lineHeight": "1.2" } },
+      "h2": { "typography": { "fontSize": "var(--wp--preset--font-size--h-2)", "fontWeight": "700", "lineHeight": "1.3" } },
+      "h3": { "typography": { "fontSize": "var(--wp--preset--font-size--h-3)", "fontWeight": "600", "lineHeight": "1.35" } },
+      "h4": { "typography": { "fontSize": "var(--wp--preset--font-size--h-4)", "fontWeight": "600", "lineHeight": "1.35" } }
     },
     "blocks": {
       "core/paragraph": {
-        "typography": {
-          "fontSize": "var(--wp--preset--font-size--body)",
-          "fontWeight": "400"
-        }
+        "typography": { "fontSize": "var(--wp--preset--font-size--body)" }
       }
     }
   },
+
   "customTemplates": [
-    {
-      "name": "home",
-      "title": "Custom Home Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "page-ui",
-      "title": "UI / Digital Marketing Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "ko-page-home",
-      "title": "Korean Home Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "ko-page-about",
-      "title": "Korean About Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "ko-page-digital",
-      "title": "Korean Digital Marketing Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "ko-page-ecomerce",
-      "title": "Korean E-commerce Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "ko-page-staffing",
-      "title": "Korean Staffing Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "ko-page-tek-stories",
-      "title": "Korean Tek Stories Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "ko-page-website",
-      "title": "Korean Website / CMS Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "ko-page-ui",
-      "title": "Korean UI/UX Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "ko-page-whatsnew",
-      "title": "Korean What's New Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "ko-page-contact",
-      "title": "Korean Contact Page",
-      "postTypes": [
-        "page"
-      ]
-    },
-    {
-      "name": "ko-page-blog",
-      "title": "Korean Blog List Page",
-      "postTypes": [
-        "page"
-      ]
-    }
-  ]
+  { "name": "home", "title": "Custom Home Page", "postTypes": ["page"] },
+  { "name": "page-ui", "title": "UI / Digital Marketing Page", "postTypes": ["page"] }
+]
 }
