@@ -21,6 +21,26 @@ function cc_clean($v)
   return html_entity_decode(wp_specialchars_decode((string)$v), ENT_QUOTES | ENT_HTML5, 'UTF-8');
 }
 
+$uri = $_SERVER['REQUEST_URI'] ?? '';
+$is_ko = (strpos($uri, '/ko/') !== false);
+
+$i18n = [
+  'no_results'      => $is_ko ? '결과를 찾을 수 없습니다' : 'No results found',
+  'no_results_desc' => $is_ko ? '검색어와 일치하는 내용을 찾을 수 없습니다. 다른 키워드를 입력해 보세요.' : "We couldn't find anything matching your search. Please try a different keyword.",
+  'all'             => $is_ko ? '전체' : 'All',
+  'all_cats'        => $is_ko ? '전체 카테고리' : 'All Categories',
+  'sort_label'      => $is_ko ? '정렬:' : 'Sort:',
+  'newest'          => $is_ko ? '최신순' : 'Newest',
+  'oldest'          => $is_ko ? '오래된순' : 'Oldest',
+  'title_az'        => $is_ko ? '제목 (A - Z)' : 'Title A - Z',
+  'title_za'        => $is_ko ? '제목 (Z - A)' : 'Title Z - A',
+  'read_more'       => $is_ko ? '자세히 보기' : 'Read More',
+  'prev'            => $is_ko ? '이전' : 'Prev',
+  'next'            => $is_ko ? '다음' : 'Next',
+  'goto'            => $is_ko ? '이동:' : 'Go to:',
+  'lang'            => $is_ko ? 'ko-KR' : 'en-US'
+];
+
 $A = is_array($attributes ?? null) ? $attributes : array();
 
 $title = cc_str($A, 'title', 'Who We Are?');
@@ -217,7 +237,9 @@ $payload = array_map(function ($r) {
 
 $config = array(
   'pageSize' => max(1, $pageSize),
-  'sort' => in_array($sort, ['newest', 'oldest', 'title-az', 'title-za'], true) ? $sort : 'newest'
+  'sort' => in_array($sort, ['newest', 'oldest', 'title-az', 'title-za'], true) ? $sort : 'newest',
+  'is_ko' => $is_ko,
+  'i18n' => $i18n
 );
 ?>
 <section
@@ -255,16 +277,16 @@ $config = array(
 
   <div class="ccard__toolbar">
     <div class="filters-container">
-      <div class="filters-desktop" role="tablist" aria-label="Filter articles">
-        <button class="filter" data-filter="all" aria-pressed="true">All</button>
+      <div class="filters-desktop" role="tablist" aria-label="<?php echo $is_ko ? '기사 필터' : 'Filter articles'; ?>">
+        <button class="filter" data-filter="all" aria-pressed="true"><?php echo esc_html($i18n['all']); ?></button>
         <?php foreach ($category_labels as $cat_slug => $cat_label): ?>
           <button class="filter" data-filter="<?php echo esc_attr($cat_slug); ?>"><?php echo esc_html($cat_label); ?></button>
         <?php endforeach; ?>
       </div>
       <div class="filters-mobile">
-        <label for="<?php echo esc_attr($sec_id); ?>-category" class="sr-only">Category:</label>
-        <select id="<?php echo esc_attr($sec_id); ?>-category" class="category-select" aria-label="Filter by category">
-          <option value="all">All Categories</option>
+        <label for="<?php echo esc_attr($sec_id); ?>-category" class="sr-only"><?php echo $is_ko ? '카테고리:' : 'Category:'; ?></label>
+        <select id="<?php echo esc_attr($sec_id); ?>-category" class="category-select" aria-label="<?php echo $is_ko ? '카테고리별 필터' : 'Filter by category'; ?>">
+          <option value="all"><?php echo esc_html($i18n['all_cats']); ?></option>
           <?php foreach ($category_labels as $cat_slug => $cat_label): ?>
             <option value="<?php echo esc_attr($cat_slug); ?>"><?php echo esc_html($cat_label); ?></option>
           <?php endforeach; ?>
@@ -272,12 +294,12 @@ $config = array(
       </div>
     </div>
     <div class="sort">
-      <label for="<?php echo esc_attr($sec_id); ?>-sort">Sort:</label>
-      <select id="<?php echo esc_attr($sec_id); ?>-sort" class="sort-select" aria-label="Sort articles">
-        <option value="newest" <?php selected($config['sort'], 'newest'); ?>>Newest</option>
-        <option value="oldest" <?php selected($config['sort'], 'oldest'); ?>>Oldest</option>
-        <option value="title-az" <?php selected($config['sort'], 'title-az'); ?>>Title A - Z</option>
-        <option value="title-za" <?php selected($config['sort'], 'title-za'); ?>>Title Z - A</option>
+      <label for="<?php echo esc_attr($sec_id); ?>-sort"><?php echo esc_html($i18n['sort_label']); ?></label>
+      <select id="<?php echo esc_attr($sec_id); ?>-sort" class="sort-select" aria-label="<?php echo $is_ko ? '기사 정렬' : 'Sort articles'; ?>">
+        <option value="newest" <?php selected($config['sort'], 'newest'); ?>><?php echo esc_html($i18n['newest']); ?></option>
+        <option value="oldest" <?php selected($config['sort'], 'oldest'); ?>><?php echo esc_html($i18n['oldest']); ?></option>
+        <option value="title-az" <?php selected($config['sort'], 'title-az'); ?>><?php echo esc_html($i18n['title_az']); ?></option>
+        <option value="title-za" <?php selected($config['sort'], 'title-za'); ?>><?php echo esc_html($i18n['title_za']); ?></option>
       </select>
     </div>
   </div>
@@ -300,7 +322,7 @@ $config = array(
         <p class="snippet"></p>
         <div class="footer">
           <span class="date">&bull; <time></time></span>
-          <a class="cta cta-stretched-link" href="#">Read More</a>
+          <a class="cta cta-stretched-link" href="#"><?php echo esc_html($i18n['read_more']); ?></a>
         </div>
       </div>
     </article>
@@ -316,8 +338,6 @@ $config = array(
         t.innerHTML = str;
         return t.value;
       };
-
-      function fmtDate(d){ try{return new Date(d).toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});}catch(e){return d||'';} }
 
       function buildFilters(root, items){
         const holder = root.querySelector('.filters-desktop'); if(!holder) return;
@@ -360,6 +380,19 @@ $config = array(
           };
         });
         const cfg  = JSON.parse((root.querySelector('.ccard-config')?.textContent||'{}'));
+        const i18n = cfg.i18n || {};
+
+        const fmtDate = (d) => {
+          try {
+            return new Date(d).toLocaleDateString(i18n.lang || undefined, {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            });
+          } catch (e) {
+            return d || '';
+          }
+        };
         const urlParams = new URLSearchParams(window.location.search);
         const state = { filter: urlParams.get('filter') || 'all', sort:cfg.sort||'newest', page:1, pageSize: Math.max(1, cfg.pageSize||6) };
 
@@ -489,7 +522,7 @@ $config = array(
           grid.innerHTML = '';
           
           if (rows.length === 0) {
-            grid.innerHTML = '<div class="cc-no-results" style="grid-column: 1 / -1; text-align: center; padding: 80px 20px; font-size: 1.1rem; color: #6b6f75; background: #fff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);"><h3 style="margin-bottom: 10px; color: var(--brand, #962E2A); font-size: 1.5rem; font-weight: 700;">No results found</h3><p style="margin: 0;">We couldn\'t find anything matching your search. Please try a different keyword.</p></div>';
+            grid.innerHTML = `<div class="cc-no-results" style="grid-column: 1 / -1; text-align: center; padding: 80px 20px; font-size: 1.1rem; color: #6b6f75; background: #fff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);"><h3 style="margin-bottom: 10px; color: var(--brand, #962E2A); font-size: 1.5rem; font-weight: 700;">${i18n.no_results}</h3><p style="margin: 0;">${i18n.no_results_desc}</p></div>`;
             pagination.innerHTML = '';
             return;
           }
@@ -505,13 +538,13 @@ $config = array(
         function renderPagination(totalPages){
           const mkBtn=(label,page,active=false,disabled=false)=>{const el=document.createElement('button'); el.className='page-btn'+(active?' active':''); el.textContent=label; el.disabled=disabled; el.addEventListener('click',()=>{state.page=page; render();}); return el;};
           const mkGhost=(t='...')=>{const s=document.createElement('span'); s.className='page-ghost'; s.textContent=t; return s;};
-          pagination.innerHTML=''; pagination.appendChild(mkBtn('Prev', Math.max(1,state.page-1), false, state.page===1));
+          pagination.innerHTML=''; pagination.appendChild(mkBtn(i18n.prev || 'Prev', Math.max(1,state.page-1), false, state.page===1));
           const windowSize=5; const start=Math.max(1, state.page-Math.floor(windowSize/2)); const end=Math.min(totalPages, start+windowSize-1); const s=Math.max(1, Math.min(start, end-windowSize+1));
           if(s>1){ pagination.appendChild(mkBtn('1',1,state.page===1)); if(s>2) pagination.appendChild(mkGhost()); }
           for(let p=s;p<=end;p++){ pagination.appendChild(mkBtn(String(p),p,p===state.page)); }
           if(end<totalPages){ if(end<totalPages-1) pagination.appendChild(mkGhost()); pagination.appendChild(mkBtn(String(totalPages), totalPages, state.page===totalPages)); }
-          pagination.appendChild(mkBtn('Next', Math.min(totalPages, state.page+1), false, state.page===totalPages));
-          const goto=document.createElement('span'); goto.className='goto-wrap'; const inp=document.createElement('input'); inp.type='number'; inp.min='1'; inp.max=String(totalPages); inp.placeholder='e.g. 2'; inp.addEventListener('change', ()=>{ const v=Math.min(totalPages, Math.max(1, Number(inp.value||1))); state.page=v; render(); }); goto.append('Go to:', inp); pagination.appendChild(goto);
+          pagination.appendChild(mkBtn(i18n.next || 'Next', Math.min(totalPages, state.page+1), false, state.page===totalPages));
+          const goto=document.createElement('span'); goto.className='goto-wrap'; const inp=document.createElement('input'); inp.type='number'; inp.min='1'; inp.max=String(totalPages); inp.placeholder='e.g. 2'; inp.addEventListener('change', ()=>{ const v=Math.min(totalPages, Math.max(1, Number(inp.value||1))); state.page=v; render(); }); goto.append((i18n.goto || 'Go to:'), inp); pagination.appendChild(goto);
         }
 
         // Sync initial filter button state
