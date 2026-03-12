@@ -345,6 +345,16 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
   line-height: 1.1;
 }
 
+.title_h1+.hero__lead {
+  margin-top: clamp(16px, 2.5vw, 24px) !important;
+}
+
+.hero__lead {
+  font-size: var(--lead-size) !important;
+  line-height: 1.5;
+  color: #000000;
+}
+
 .hero__lead b,
 .hero__lead strong {
   font-size: inherit !important;
