@@ -25,7 +25,7 @@ $imageSize    = strtolower(cban_str($A, 'imageSize', 'l'));          // s|m|l
 $buttonType   = cban_str($A, 'buttonType', 'Button');          // Button|Link|None
 $buttonText   = cban_str($A, 'buttonText', '');
 $buttonUrl    = cban_str($A, 'buttonUrl', '#');
-$buttonClass  = cban_str($A, 'buttonClass', 'btn btn-pill text-white');
+$buttonClass  = cban_str($A, 'buttonClass', 'btn btn-custom text-white');
 $textAlign    = strtolower(cban_str($A, 'textAlign', 'left'));
 $textScale    = floatval(cban_val($A, 'textScale', 1.0));
 $image        = cban_arr($A, 'image');
@@ -160,4 +160,3 @@ if ($brand === '' && $line === '' && $lead === '' && $imgSrc === '') { return; }
     </div>
   </div>
 </section>
-

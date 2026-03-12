@@ -1,85 +1,66 @@
-<?php
-
-if (!defined('ABSPATH')) {
-  exit;
-}
+<?php 
+if ( ! defined('ABSPATH') ) { exit; }
 
 /* Lightweight getters */
-function ccon_val($a, $k, $d = null)
-{
-  return (is_array($a) && array_key_exists($k, $a)) ? $a[$k] : $d;
-}
-function ccon_str($a, $k, $d = '')
-{
-  $v = ccon_val($a, $k, $d);
-  return is_string($v) ? $v : (is_null($v) ? '' : (string)$v);
-}
-function ccon_arr($a, $k)
-{
-  $v = ccon_val($a, $k, array());
-  return is_array($v) ? $v : array();
-}
-function ccon_bool($a, $k, $d = false)
-{
-  return (bool)ccon_val($a, $k, $d);
-}
+function ccon_val($a,$k,$d=null){ return (is_array($a)&&array_key_exists($k,$a))?$a[$k]:$d; }
+function ccon_str($a,$k,$d=''){ $v=ccon_val($a,$k,$d); return is_string($v)?$v:(is_null($v)?'':(string)$v); }
+function ccon_arr($a,$k){ $v=ccon_val($a,$k,array()); return is_array($v)?$v:array(); }
+function ccon_bool($a,$k,$d=false){ return (bool)ccon_val($a,$k,$d); }
 
 /* Attributes */
-$A = is_array($attributes ?? null) ? $attributes : array();
-$title = ccon_str($A, 'title', __('Contact Us', 'vite-ttf-child-creceri'));
-$lead = ccon_str($A, 'lead', __('Ready to talk? Share a few details and we’ll get back to you shortly', 'vite-ttf-child-creceri'));
-$buttonText = ccon_str($A, 'buttonText', __('Submit', 'vite-ttf-child-creceri'));
-$showPhone = ccon_bool($A, 'showPhone', true);
-$requiredNote = ccon_str($A, 'requiredNote', __('* Required fields', 'vite-ttf-child-creceri'));
-$enableParallax = ccon_bool($A, 'enableParallax', true);
+$A              = is_array($attributes ?? null) ? $attributes : array();
+$title          = ccon_str($A,'title', __('Contact Us','vite-ttf-child-creceri'));
+$lead           = ccon_str($A,'lead', __('Ready to talk? Share a few details and we’ll get back to you shortly','vite-ttf-child-creceri'));
+$buttonText     = ccon_str($A,'buttonText', __('Submit','vite-ttf-child-creceri'));
+$showPhone      = ccon_bool($A,'showPhone', true);
+$requiredNote   = ccon_str($A,'requiredNote', __('* Required fields','vite-ttf-child-creceri'));
+$enableParallax = ccon_bool($A,'enableParallax', true);
 
 $labels = array_merge(array(
-  'firstName' => __('First Name', 'vite-ttf-child-creceri'),
-  'lastName' => __('Last Name', 'vite-ttf-child-creceri'),
-  'email' => __('Email', 'vite-ttf-child-creceri'),
-  'phone' => __('Phone', 'vite-ttf-child-creceri'),
-  'subject' => __('Subject', 'vite-ttf-child-creceri'),
-  'message' => __('Message', 'vite-ttf-child-creceri'),
-), ccon_arr($A, 'labels'));
+  'firstName' => __('First Name','vite-ttf-child-creceri'),
+  'lastName'  => __('Last Name','vite-ttf-child-creceri'),
+  'email'     => __('Email','vite-ttf-child-creceri'),
+  'phone'     => __('Phone','vite-ttf-child-creceri'),
+  'subject'   => __('Subject','vite-ttf-child-creceri'),
+  'message'   => __('Message','vite-ttf-child-creceri'),
+), ccon_arr($A,'labels'));
 
 $info = array_merge(array(
-  'addressLabel' => __('Address', 'vite-ttf-child-creceri'),
-  'address' => '#123 Sample Street, City, Country',
-  'phoneLabel' => __('Phone', 'vite-ttf-child-creceri'),
-  'phone' => '(+63) 123-456-7989',
-  'emailLabel' => __('Email', 'vite-ttf-child-creceri'),
-  'email' => 'info@creceri.com',
-  'openHoursLabel' => __('Open Hours', 'vite-ttf-child-creceri'),
-  'weekdayHours' => __('Monday - Friday : 8 AM to 5 PM', 'vite-ttf-child-creceri'),
-  'weekendHours' => __('Saturday - Sunday : CLOSED', 'vite-ttf-child-creceri'),
-  'socialLabel' => __('Stay Connected', 'vite-ttf-child-creceri'),
-), ccon_arr($A, 'info'));
+  'addressLabel'   => __('Address','vite-ttf-child-creceri'),
+  'address'        => '#123 Sample Street, City, Country',
+  'phoneLabel'     => __('Phone','vite-ttf-child-creceri'),
+  'phone'          => '(+63) 123-456-7989',
+  'emailLabel'     => __('Email','vite-ttf-child-creceri'),
+  'email'          => 'info@creceri.com',
+  'openHoursLabel' => __('Open Hours','vite-ttf-child-creceri'),
+  'weekdayHours'   => __('Monday - Friday : 8 AM to 5 PM','vite-ttf-child-creceri'),
+  'weekendHours'   => __('Saturday - Sunday : CLOSED','vite-ttf-child-creceri'),
+  'socialLabel'    => __('Stay Connected','vite-ttf-child-creceri'),
+), ccon_arr($A,'info'));
 
 $social = array_merge(array(
-  'facebook' => '',
-  'x' => '',
+  'facebook'  => '',
+  'x'         => '',
   'instagram' => '',
-  'reddit' => '',
-), ccon_arr($A, 'social'));
+  'reddit'    => '',
+), ccon_arr($A,'social'));
 
 $map = array_merge(array(
-  'title' => __('Office Map', 'vite-ttf-child-creceri'),
-  'src' => 'https://www.openstreetmap.org/export/embed.html?bbox=-122.4394%2C37.7549%2C-122.3994%2C37.7949&layer=mapnik&marker=37.7749%2C-122.4194',
-), ccon_arr($A, 'map'));
+  'title' => __('Office Map','vite-ttf-child-creceri'),
+  'src'   => 'https://www.openstreetmap.org/export/embed.html?bbox=-122.4394%2C37.7549%2C-122.3994%2C37.7949&layer=mapnik&marker=37.7749%2C-122.4194',
+), ccon_arr($A,'map'));
 
 /* Instance ids */
-$instance_id = 'contact-' . wp_generate_password(6, false, false);
-$title_id = $instance_id . '-title';
-$note_id = $instance_id . '-note';
+$instance_id = 'contact-' . wp_generate_password(6,false,false);
+$title_id    = $instance_id . '-title';
+$note_id     = $instance_id . '-note';
 
 /* Helpers */
-$tel_clean = preg_replace('/[^+0-9]/', '', ccon_str($info, 'phone', ''));
-$email_safe = sanitize_email(ccon_str($info, 'email', ''));
+$tel_clean   = preg_replace('/[^+0-9]/','', ccon_str($info,'phone',''));
+$email_safe  = sanitize_email(ccon_str($info,'email',''));
 
 /* Render guard */
-if ($title === '' && $lead === '') {
-  return;
-}
+if ($title==='' && $lead==='' ) { return; }
 ?>
 <section id="<?php echo esc_attr($instance_id); ?>" class="contact-wrapper" aria-labelledby="<?php echo esc_attr($title_id); ?>">
   
@@ -90,14 +71,13 @@ if ($title === '' && $lead === '') {
     <span class="parallax__layer p2" data-speed="0.45"></span>
     <span class="parallax__layer p3" data-speed="0.15"></span>
   </div>
-  <?php
-endif; ?>
+  <?php endif; ?>
 
   <div class="contact-grid">
     <!-- Left: Form card -->
     <div class="contact-card">
-      <form class="contact-form" action="<?php echo esc_url(home_url('/')); ?>" method="post" novalidate aria-describedby="<?php echo esc_attr($note_id); ?>">
-        <?php wp_nonce_field('child_contact_submit', '_cnonce'); ?>
+      <form class="contact-form" action="<?php echo esc_url( home_url( '/' ) ); ?>" method="post" novalidate aria-describedby="<?php echo esc_attr($note_id); ?>">
+        <?php wp_nonce_field('child_contact_submit','_cnonce'); ?>
         <input type="hidden" name="action" value="child_contact_submit"/>
 
         <!-- Honeypot -->
@@ -128,8 +108,7 @@ endif; ?>
             <label for="<?php echo esc_attr($instance_id); ?>-phone"><?php echo esc_html($labels['phone']); ?> *</label>
             <input id="<?php echo esc_attr($instance_id); ?>-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(+63) 123-456-7989" />
           </div>
-          <?php
-endif; ?>
+          <?php endif; ?>
         </div>
 
         <div class="form-field">
@@ -150,7 +129,7 @@ endif; ?>
             </label>
           </div>
 
-          <button class="btn btn-pill" type="submit">
+          <button class="btn-primary" type="submit">
             <?php echo esc_html($buttonText); ?>
           </button>
         </div>
@@ -162,51 +141,48 @@ endif; ?>
     </div>
 
     <!-- Right: Info card -->
-    <aside class="contact-card contact-info" aria-label="<?php esc_attr_e('Contact details', 'vite-ttf-child-creceri'); ?>">
+    <aside class="contact-card contact-info" aria-label="<?php esc_attr_e('Contact details','vite-ttf-child-creceri'); ?>">
       <div class="info-section">
-        <span class="info-label"><?php echo esc_html(ccon_str($info, 'addressLabel', '')); ?></span>
+        <span class="info-label"><?php echo esc_html(ccon_str($info,'addressLabel','')); ?></span>
         <div class="info-text">
-          <p><?php echo esc_html(ccon_str($info, 'address', '')); ?></p>
+          <p><?php echo esc_html(ccon_str($info,'address','')); ?></p>
         </div>
       </div>
 
       <div class="info-section">
-        <span class="info-label"><?php echo esc_html(ccon_str($info, 'phoneLabel', '')); ?></span>
+        <span class="info-label"><?php echo esc_html(ccon_str($info,'phoneLabel','')); ?></span>
         <div class="info-text">
           <?php if ($tel_clean): ?>
             <a class="info-value" href="tel:<?php echo esc_attr($tel_clean); ?>">
-              <?php echo esc_html(ccon_str($info, 'phone', '')); ?>
+              <?php echo esc_html(ccon_str($info,'phone','')); ?>
             </a>
-          <?php
-else: ?>
-            <p class="info-text"><?php echo esc_html(ccon_str($info, 'phone', '')); ?></p>
-          <?php
-endif; ?>
+          <?php else: ?>
+            <p class="info-text"><?php echo esc_html(ccon_str($info,'phone','')); ?></p>
+          <?php endif; ?>
         </div>
       </div>
 
       <div class="info-section">
-        <span class="info-label"><?php echo esc_html(ccon_str($info, 'emailLabel', '')); ?></span>
+        <span class="info-label"><?php echo esc_html(ccon_str($info,'emailLabel','')); ?></span>
         <div class="info-text">
           <?php if ($email_safe): ?>
             <a class="info-value" href="mailto:<?php echo esc_attr($email_safe); ?>">
               <?php echo esc_html($email_safe); ?>
             </a>
-          <?php
-endif; ?>
+          <?php endif; ?>
         </div>
       </div>
 
       <div class="info-section">
-        <span class="info-label"><?php echo esc_html(ccon_str($info, 'openHoursLabel', '')); ?></span>
+        <span class="info-label"><?php echo esc_html(ccon_str($info,'openHoursLabel','')); ?></span>
         <div class="info-text">
-          <p><?php echo esc_html(ccon_str($info, 'weekdayHours', '')); ?></p>
-          <p><?php echo esc_html(ccon_str($info, 'weekendHours', '')); ?></p>
+          <p><?php echo esc_html(ccon_str($info,'weekdayHours','')); ?></p>
+          <p><?php echo esc_html(ccon_str($info,'weekendHours','')); ?></p>
         </div>
       </div>
 
       <div class="info-section">
-        <span class="info-label"><?php echo esc_html(ccon_str($info, 'socialLabel', '')); ?></span>
+        <span class="info-label"><?php echo esc_html(ccon_str($info,'socialLabel','')); ?></span>
         <div class="social-icons">
             <a href="#" aria-label="Facebook"><span aria-hidden="true">F</span></a>
           
@@ -223,10 +199,10 @@ endif; ?>
   </div>
 
   <!-- Map full width below cards -->
-  <div class="contact-card contact-map" role="region" aria-label="<?php echo esc_attr(ccon_str($map, 'title', '')); ?>">
+  <div class="contact-card contact-map" role="region" aria-label="<?php echo esc_attr(ccon_str($map,'title','')); ?>">
     <iframe
-      title="<?php echo esc_attr(ccon_str($map, 'title', '')); ?>"
-      src="<?php echo esc_url(ccon_str($map, 'src', '')); ?>"
+      title="<?php echo esc_attr(ccon_str($map,'title','')); ?>"
+      src="<?php echo esc_url(ccon_str($map,'src','')); ?>"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
     ></iframe>
@@ -274,5 +250,4 @@ endif; ?>
   observer.observe(root);
 })();
 </script>
-<?php
-endif; ?>
+<?php endif; ?>

@@ -1,18 +1,13 @@
 /* Container */
 .guides-chooser {
-  padding-block: var(--section-pad-y, clamp(3rem, 10vw, 6rem));
-  padding-inline: var(--page-gutter-left, clamp(1rem, 5vw, 2rem));
+  padding: 56px 16px 72px;
   background: #ffffff;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  color: #1e1e1e;
 }
-
-.guides-chooser a {
-  color: #962E2A;
-}
-
 
 .gc-inner {
-  max-width: 1480px;
-  /* wider content footprint */
+  max-width: 1480px;               /* wider content footprint */
   margin: 0 auto;
 }
 
@@ -20,34 +15,37 @@
 .gc-title {
   margin: 0 0 10px;
   text-align: center;
+  font-size: clamp(1.6rem, 2.2vw, 2.2rem);
+  line-height: 1.2;
+  font-weight: 800;
+  color: #a33a33;
 }
 
 .gc-subtitle {
   margin: 0 auto 32px;
   text-align: center;
-  max-width: 980px;
+  max-width: 980px;                /* wider subtitle line length */
+  color: #6a6a6a;
+  font-size: 1rem;
 }
 
 /* Grid */
 .gc-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(480px, 1fr));
-  /* wider cards */
+  grid-template-columns: repeat(2, minmax(480px, 1fr));  /* wider cards */
   gap: 32px;
-  align-items: stretch;
-  /* equal height rows */
+  align-items: stretch;                                    /* equal height rows */
 }
 
 /* Card (uniform layout across both) */
 .gc-card {
-  display: flex;
-  /* makes bottom CTA align consistently */
+  display: flex;                 /* makes bottom CTA align consistently */
   flex-direction: column;
   background: #fff;
   border-radius: 16px;
   padding: 24px 28px 24px;
-  box-shadow: 0 2px 0 rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.06);
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.06), 0 8px 24px rgba(0,0,0,0.06);
+  border: 1px solid rgba(0,0,0,0.08);
   height: 100%;
 }
 
@@ -55,8 +53,7 @@
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-bottom: 8px;
-  /* match both cards */
+  margin-bottom: 8px;            /* match both cards */
 }
 
 .gc-card__icon {
@@ -68,6 +65,8 @@
 
 .gc-card__title {
   margin: 0;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 /* Body grows to consume vertical space equally on both cards */
@@ -75,45 +74,46 @@
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  /* consistent spacing between lines */
-  padding-right: 8px;
-  /* tiny breathing room for text */
+  gap: 8px;                      /* consistent spacing between lines */
+  padding-right: 8px;            /* tiny breathing room for text */
 }
-
-#gc-card_strong {
+#gc-card_strong{
+  font-size: 20px;
+  font-weight: 600;
   font-weight: 700;
 }
-
 .gc-card__copy {
   margin: 0;
+  color: #3b3b3b;
+  line-height: 1.6;
+  font-size: 18px;
+  font-weight: 400;
 }
 
 .gc-card__line {
   margin: 0;
+  color: #2a2a2a;
+  line-height: 1.6;
 }
 
-.gc-card__line strong {
-  font-weight: 700;
-}
+.gc-card__line strong { font-weight: 700; }
 
 /* CTA pinned to the same location (bottom) for both cards */
 .gc-card__cta {
   margin-top: 16px;
-  align-self: flex-start;
+  align-self: flex-start;        /* left align like screenshot */
+  padding: 12px 18px;
+  border-radius: 999px;
+  background: #a33a33;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.05);
 }
-
-.gc-card__cta:hover {
-  filter: brightness(0.95);
-}
+.gc-card__cta:hover { filter: brightness(0.95); }
 
 /* Responsive */
 @media (max-width: 1040px) {
-  .gc-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .gc-card {
-    padding: 22px;
-  }
+  .gc-grid { grid-template-columns: 1fr; }
+  .gc-card { padding: 22px; }
 }

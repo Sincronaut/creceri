@@ -1,37 +1,35 @@
+
+
 .what-we-stand-for {
   background: #fff;
   text-align: center;
-  perspective: 1000px;
-  /* gives depth to the 3D effect */
-  padding-block: var(--section-pad-y);
+  perspective: 1000px; /* gives depth to the 3D effect */
+  padding-block: 80px;
 }
-
-#card-section {
-  margin-top: -20px !important;
+#card-section{
+  margin-top:-20px !important;
 }
-
 .what-we-stand-for .container {
   margin: 0;
   width: 100%;
   max-width: none;
-  padding: 0 var(--page-gutter-right) 0 var(--page-gutter-left);
+  padding:0 100px 0;
 }
+.card_title{ font-size:24px !important;font-weight: 650;}
 
-.card_title {
-  font-size: 24px !important;
-  font-weight: 650;
-}
-
-a {
+a{
   text-decoration: none !important;
 }
-
 .what-we-stand-for h2 {
-  margin-bottom: 30px;
+  color: #a02020;
+  font-size: 36px !important;
+  font-weight: 700;
+  margin-bottom: 10px;
 }
 
 .what-we-stand-for .subtitle {
   color: #333;
+  font-size: 20px;
   margin-bottom: 50px;
 }
 
@@ -44,12 +42,11 @@ a {
   grid-auto-rows: 1fr;
   padding-inline: clamp(12px, vw, 150px);
 }
-
-.values a {
-  display: block;
-  width: 100%;
-  text-decoration: none;
-  color: inherit;
+.values a{
+  display:block;
+  width:100%;
+  text-decoration:none;
+  color:inherit;
 }
 
 /* === 3D CARD === */
@@ -57,11 +54,11 @@ a {
   background: linear-gradient(145deg, #ffffff, #f3f3f3);
   border-radius: 15px;
   padding: 30px 20px;
-  box-shadow:
+  box-shadow: 
     0 10px 20px rgba(0, 0, 0, 0.05),
     0 6px 6px rgba(0, 0, 0, 0.05),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
-  transition:
+  transition: 
     transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
     box-shadow 0.3s ease,
     background 0.3s ease;
@@ -83,7 +80,7 @@ a {
 
 .value-card:hover {
   transform: translateY(-8px) scale(1.01);
-  box-shadow:
+  box-shadow: 
     0 20px 30px rgba(0, 0, 0, 0.15),
     0 10px 10px rgba(0, 0, 0, 0.05);
   background: linear-gradient(145deg, #ffffff, #f0f0f0);
@@ -98,7 +95,7 @@ a {
   width: 100%;
   height: 100%;
   border-radius: 15px;
-  background: linear-gradient(120deg, rgba(255, 255, 255, 0.3), transparent);
+  background: linear-gradient(120deg, rgba(255,255,255,0.3), transparent);
   opacity: 0;
   transition: opacity 0.4s ease;
   pointer-events: none;
@@ -125,12 +122,15 @@ a {
 
 .value-card h3 {
   color: #222;
+  font-size: 18px;
+  font-weight: 600;
   margin-bottom: 10px;
   width: 100%;
 }
 
 .value-card p {
   color: #555;
+  line-height: 1.6;
   width: 100%;
   flex-grow: 1;
 }
@@ -141,9 +141,8 @@ a {
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
   }
-
-  .container {
-    padding: 0 var(--page-gutter-right) 0 var(--page-gutter-left) !important;
+  .container{
+    padding:0 50px 0 !important;
   }
 }
 
@@ -154,40 +153,36 @@ a {
   }
 
   .what-we-stand-for {
+    padding-block: clamp(48px, 16vw, 70px);
     padding-inline: clamp(16px, 8vw, 32px);
   }
 
   .value-card img {
     max-width: 100px;
   }
-
-  .container {
-    padding: 0 !important;
+  
+  .container{
+    padding:0 0 10px !important;
   }
 }
-
 @media (max-width: 460px) {
   .values {
     padding: 5px !important;
   }
 }
-
 @media (prefers-reduced-motion: reduce) {
-
   .value-card,
   .value-card::before,
   .value-card img {
     transition: none;
   }
-
   .value-card:hover {
     transform: none;
-    box-shadow:
+    box-shadow: 
       0 10px 20px rgba(0, 0, 0, 0.05),
       0 6px 6px rgba(0, 0, 0, 0.05),
       inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
-
   .value-card:hover img {
     transform: none;
   }

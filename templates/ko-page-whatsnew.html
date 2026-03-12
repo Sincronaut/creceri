@@ -1,14 +1,14 @@
 <body>
-    <!-- wp:template-part {"slug":"header-custom-ko"} /-->
+<!-- wp:template-part {"slug":"header-custom-ko"} /-->
 
-    <!-- wp:group {"tagName":"main","className":"alignfull"} -->
-    <main class="wp-block-group alignfull" style="margin-top:-40px;">
+<!-- wp:group {"tagName":"main","className":"alignfull"} -->
+<main class="wp-block-group alignfull" style="margin-top:-40px;">
 
         <!-- wp:child/banner
         {
         "brand":"최신 소상공인 트렌드 탐색",
         "line":"",
-        "brandSize":64,
+        "brandSize":50,
         "bgSpot":"left",
         "bgAngle":180,
         "bgStatus":"On",
@@ -23,7 +23,7 @@
         "buttonType":"Button",
         "buttonText":"둘러보기",
         "buttonUrl":"#explore",
-        "buttonClass":"btn btn-pill text-white",
+        "buttonClass":"btn btn-custom text-white",
         "textAlign":"left",
         "textScale":1.1,
         "image":{
@@ -34,105 +34,24 @@
         }
         } /-->
 
-        <!-- wp:child/card-stand {
-            "anchor":"emerging-ko",
-            "className":"emerging what-s-emerging",
-            "title":"새로운 소식",
-            "intro":"단기 전략과 실행을 형성하는 우선순위 신호입니다.",
-            "items":[
-                {
-                "title":"전략으로서의 지속가능성",
-                "text":"친환경 제품과 운영은 선택이 아니라 표준으로 자리잡고 있습니다.",
-                "url":"#",
-                "active":false,
-                "bgColor":"white",
-                "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/baee5443f9116bce04574093a42b78413d2e6dbf.png",
-                    "alt":"전략으로서의 지속가능성",
-                    "loading":"lazy",
-                    "decoding":"async"
-                }
-                },
-                {
-                "title":"유연한 근무 모델",
-                "text":"원격·하이브리드 근무는 인재 확보와 유지의 핵심입니다.",
-                "url":"#",
-                "active":false,
-                "bgColor":"white",
-                "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/d11def86b0561cf7be9c70486a4c118f99c79b83.png",
-                    "alt":"유연한 근무 모델",
-                    "loading":"lazy",
-                    "decoding":"async"
-                }
-                },
-                {
-                "title":"디지털 전환",
-                "text":"디지털 도구로 운영과 고객 접점을 고도화하는 기업이 늘고 있습니다.",
-                "url":"#",
-                "active":false,
-                "bgColor":"white",
-                "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/6bcbf7d04989111270c910567fb06d37b137e7cd.png",
-                    "alt":"디지털 전환",
-                    "loading":"lazy",
-                    "decoding":"async"
-                }
-                },
-                {
-                "title":"업사이클링 & 로컬 크래프트",
-                "text":"창의적 재사용과 핸드메이드 제품이 패션·리테일 전반에서 주목받고 있습니다.",
-                "url":"#",
-                "active":false,
-                "bgColor":"white",
-                "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/bdceb4ae3fb15918e689ad0776f6c1ea00c51a42.png",
-                    "alt":"업사이클링 & 로컬 크래프트",
-                    "loading":"lazy",
-                    "decoding":"async"
-                }
-                },
-                {
-                "title":"개인화 경험",
-                "text":"맞춤형 마케팅과 서비스 모델이 충성도와 차별화를 견인합니다.",
-                "url":"#",
-                "active":false,
-                "bgColor":"white",
-                "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/baee5443f9116bce04574093a42b78413d2e6dbf.png",
-                    "alt":"개인화 경험",
-                    "loading":"lazy",
-                    "decoding":"async"
-                }
-                },
-                {
-                "title":"온라인 판매 & 사이드 허슬",
-                "text":"이커머스는 소규모 판매자와 시즌별 창업자들에게 계속해서 기회의 문을 열어주고 있습니다.",
-                "url":"#",
-                "active":false,
-                "bgColor":"white",
-                "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/d11def86b0561cf7be9c70486a4c118f99c79b83.png",
-                    "alt":"온라인 판매 & 사이드 허슬",
-                    "loading":"lazy",
-                    "decoding":"async"
-                }
-                },
-                {
-                "title":"모바일 & 팝업 컨셉",
-                "text":"푸드 트럭, 이벤트 가판대, 소형 리테일 구성이 도심 공간에서 활발히 운영되고 있습니다.",
-                "url":"#",
-                "active":true,
-                "bgColor":"white",
-                "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/6bcbf7d04989111270c910567fb06d37b137e7cd.png",
-                    "alt":"모바일 & 팝업 컨셉",
-                    "loading":"lazy",
-                    "decoding":"async"
-                }
-                }
-            ]
-            } /-->
+        <!-- wp:child/card-standv2 {
+            title="What’s Emerging"
+            sectionId="emerging"
+            ctaUrl="#learn-more"
+            ctaLabel="Learn More →"
+            ctaAria="Learn more about what’s emerging"
+            centerpieceIndex="6"
+            cards_json='[
+                {"title":"Sustainability as Strategy","copy":"Eco-conscious products and practices are becoming standard, not optional."},
+                {"title":"Flexible Work Models","copy":"Remote and hybrid setups remain key to attracting and retaining talent."},
+                {"title":"Digital Transformation","copy":"More businesses are streamlining operations and customer engagement through digital tools."},
+                {"title":"Upcycling & Local Craft","copy":"Creative reuse and handmade goods are gaining traction in both fashion and retail."},
+                {"title":"Personalized Experiences","copy":"Tailored marketing and service models are driving loyalty and differentiation."},
+                {"title":"Online Selling & Side Hustles","copy":"E-commerce continues to open doors for small-scale sellers and seasonal entrepreneurs."},
+                {"title":"Mobile & Pop-Up Concepts","copy":"Food carts, event stalls, and compact retail setups are thriving in urban spaces."}
+            ]'
+        }
+            /-->
         <!-- wp:child/table {
             "align": "wide",
             "sectionId": "smb-trends",
@@ -159,7 +78,7 @@
             } /-->
 
 
-        <!-- wp:child/card-stand-2 {
+            <!-- wp:child/card-stand-2 {
                 "contentTag": "사명",
                 "title": "명확성과 도구로 중소기업 역량 강화",
                 "intro1": "획일적 해법이 아닌 유연하고 실행 가능한 지식을 제공합니다.",
@@ -177,9 +96,9 @@
                     "src": "https://creceri.com/wp-content/uploads/2025/10/fbc9115fc301f724761693e0d052a2904b69fea1.webp",
                     "alt": "추상적인 빨간 원 일러스트"
                 }
-                } /-->
-
-        <!-- wp:child/card-check {
+                } /--> 
+            
+            <!-- wp:child/card-check {
                     "contentTag": "트렌드를 비즈니스 성장으로 전환",
                     "title": "",
                     "intro1": "",
@@ -206,7 +125,7 @@
                 }
             } /-->
 
-        <!-- wp:child/subscribe {
+            <!-- wp:child/subscribe {
                 "variant": "code",
                 "sectionId": "tech-updates",
                 "subhead": "",
@@ -226,8 +145,8 @@
                 "formMethod": "post"
                 } /-->
 
-    </main>
-    <!-- /wp:group -->
+</main>
+<!-- /wp:group -->
 
-    <!-- wp:template-part {"slug":"footer-custom-ko"} /-->
+<!-- wp:template-part {"slug":"footer-custom-ko"} /-->
 </body>

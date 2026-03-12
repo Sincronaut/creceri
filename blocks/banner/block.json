@@ -43,10 +43,6 @@
       "type": "string",
       "default": "E-commerce, UX,<br>and Digital Knowledge"
     },
-    "lineSize": {
-      "type": "number",
-      "default": 0
-    },
     "lead": {
       "type": "string",
       "default": ""
