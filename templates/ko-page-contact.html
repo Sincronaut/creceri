@@ -7,9 +7,34 @@
 <main class="wp-block-group alignfull" style="margin-top:-40px;">
 
 
+        <!-- wp:child/banner {
+                "brand":"문의하기",
+                "line":"",
+                "brandSize":96,
+                "bgSpot":"left",
+                "bgAngle":180,
+                "bgStatus":"On",
+                "imgShadow":"on",   
+                "lead_weight":"",  
+                "lead":"궁금한 점이 있으신가요? 내용을 남겨 주시면 곧 회신해 드리겠습니다.",
+                "imagePosition":"right",
+                "imageLocation":"center",
+                "imageFlip":"none",
+                "imageSize":"l",
+                "buttonType":"none",
+                "textAlign":"left",
+                "textScale":1.1,
+                "image":{
+                    "src":"https://creceri.com/wp-content/uploads/2025/10/c85ea32d0edfb02a4ec0832c4fbf6a29a7c702f8.png",
+                    "alt":"3D 일러스트레이션",
+                    "loading":"eager",
+                    "decoding":"async"
+                }
+        } /-->
+
             <!-- wp:child/contact {
                 "title": "문의하기",
-                "lead": "간단한 정보를 남겨 주세요. 빠르게 회신드리겠습니다.",
+                "lead": "궁금한 점이 있으신가요? 내용을 남겨 주시면 곧 회신해 드리겠습니다.",
                 "buttonText": "문의 보내기",
                 "requiredNote": "* 필수 입력 항목",
                 "showPhone": true,
@@ -21,19 +46,33 @@
                     "subject": "제목",
                     "message": "메시지"
                 },
+                "placeholders": {
+                    "firstName": "이름을 입력하세요",
+                    "lastName": "성을 입력하세요",
+                    "email": "이메일 주소를 입력하세요",
+                    "phone": "전화번호를 입력하세요",
+                    "subject": "어떻게 도와드릴까요?",
+                    "message": "메시지를 남겨주시면 담당자에게 연결해 드리겠습니다."
+                },
+                "privacyText": "문의에 따른 연락을 받는 것에 동의하며 개인정보 처리방침을 수락합니다.",
                 "info": {
                     "addressLabel": "주소",
                     "address": "123 샘플로, 도시, 국가",
                     "phoneLabel": "전화",
                     "phone": "+82 10-0000-0000",
                     "emailLabel": "이메일",
-                    "email": "info@creceri.com"
+                    "email": "info@creceri.com",
+                    "openHoursLabel": "운영 시간",
+                    "weekdayHours": "월요일 - 금요일 : 오전 8시 - 오후 5시",
+                    "weekendHours": "토요일 - 일요일 : 휴무",
+                    "socialLabel": "소셜 미디어"
                 },
                 "map": {
                     "title": "오피스 지도",
                     "src": "https://www.openstreetmap.org/export/embed.html?bbox=126.95%2C37.52%2C127.10%2C37.58&layer=mapnik&marker=37.55%2C127.02"
                 }
             } /-->
+
   
 
 </main>

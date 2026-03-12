@@ -67,6 +67,25 @@ $map = array_merge(array(
   'src' => 'https://www.openstreetmap.org/export/embed.html?bbox=-122.4394%2C37.7549%2C-122.3994%2C37.7949&layer=mapnik&marker=37.7749%2C-122.4194',
 ), ccon_arr($A, 'map'));
 
+$info_aria_label = ccon_str($A, 'infoAriaLabel', __('Contact details', 'vite-ttf-child-creceri'));
+$social_labels = array_merge(array(
+  'facebook' => 'Facebook',
+  'x' => 'X (Twitter)',
+  'instagram' => 'Instagram',
+  'reddit' => 'Reddit'
+), ccon_arr($A, 'socialLabels'));
+
+$placeholders = array_merge(array(
+  'firstName' => 'Enter your First name',
+  'lastName' => 'Enter your Last name',
+  'email' => 'Enter your Email address',
+  'phone' => '(+63) 123-456-7989',
+  'subject' => 'How can we help?',
+  'message' => 'Share a few details so we can route your message to the right person.'
+), ccon_arr($A, 'placeholders'));
+
+$privacyText = ccon_str($A, 'privacyText', 'I agree to be contacted about my inquiry and accept the Privacy Policy.');
+
 /* Instance ids */
 $instance_id = 'contact-' . wp_generate_password(6, false, false);
 $title_id = $instance_id . '-title';
@@ -109,24 +128,24 @@ endif; ?>
         <div class="form-row">
           <div class="form-field">
             <label for="<?php echo esc_attr($instance_id); ?>-firstName"><?php echo esc_html($labels['firstName']); ?> *</label>
-            <input id="<?php echo esc_attr($instance_id); ?>-firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Enter your First name" required />
+            <input id="<?php echo esc_attr($instance_id); ?>-firstName" name="firstName" type="text" autocomplete="given-name" placeholder="<?php echo esc_attr($placeholders['firstName']); ?>" required />
           </div>
           <div class="form-field">
             <label for="<?php echo esc_attr($instance_id); ?>-lastName"><?php echo esc_html($labels['lastName']); ?> *</label>
-            <input id="<?php echo esc_attr($instance_id); ?>-lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Enter your Last name" required />
+            <input id="<?php echo esc_attr($instance_id); ?>-lastName" name="lastName" type="text" autocomplete="family-name" placeholder="<?php echo esc_attr($placeholders['lastName']); ?>" required />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-field">
             <label for="<?php echo esc_attr($instance_id); ?>-email"><?php echo esc_html($labels['email']); ?> *</label>
-            <input id="<?php echo esc_attr($instance_id); ?>-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Enter your Email address" required />
+            <input id="<?php echo esc_attr($instance_id); ?>-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="<?php echo esc_attr($placeholders['email']); ?>" required />
           </div>
 
           <?php if ($showPhone): ?>
           <div class="form-field">
             <label for="<?php echo esc_attr($instance_id); ?>-phone"><?php echo esc_html($labels['phone']); ?> *</label>
-            <input id="<?php echo esc_attr($instance_id); ?>-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(+63) 123-456-7989" />
+            <input id="<?php echo esc_attr($instance_id); ?>-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="<?php echo esc_attr($placeholders['phone']); ?>" />
           </div>
           <?php
 endif; ?>
@@ -134,21 +153,22 @@ endif; ?>
 
         <div class="form-field">
           <label for="<?php echo esc_attr($instance_id); ?>-subject"><?php echo esc_html($labels['subject']); ?> *</label>
-          <input id="<?php echo esc_attr($instance_id); ?>-subject" name="subject" type="text" placeholder="How can we help?" required />
+          <input id="<?php echo esc_attr($instance_id); ?>-subject" name="subject" type="text" placeholder="<?php echo esc_attr($placeholders['subject']); ?>" required />
         </div>
 
         <div class="form-field">
           <label for="<?php echo esc_attr($instance_id); ?>-message"><?php echo esc_html($labels['message']); ?> *</label>
-          <textarea id="<?php echo esc_attr($instance_id); ?>-message" name="message" placeholder="Share a few details so we can route your message to the right person." required></textarea>
+          <textarea id="<?php echo esc_attr($instance_id); ?>-message" name="message" placeholder="<?php echo esc_attr($placeholders['message']); ?>" required></textarea>
         </div>
 
         <div class="form-foot">
           <div class="checkbox-wrapper">
             <input type="checkbox" id="<?php echo esc_attr($instance_id); ?>-privacy" name="privacy" required>
             <label for="<?php echo esc_attr($instance_id); ?>-privacy">
-              I agree to be contacted about my inquiry and accept the Privacy Policy.
+              <?php echo esc_html($privacyText); ?>
             </label>
           </div>
+
 
           <button class="btn btn-pill" type="submit">
             <?php echo esc_html($buttonText); ?>
@@ -162,7 +182,7 @@ endif; ?>
     </div>
 
     <!-- Right: Info card -->
-    <aside class="contact-card contact-info" aria-label="<?php esc_attr_e('Contact details', 'vite-ttf-child-creceri'); ?>">
+    <aside class="contact-card contact-info" aria-label="<?php echo esc_attr($info_aria_label); ?>">
       <div class="info-section">
         <span class="info-label"><?php echo esc_html(ccon_str($info, 'addressLabel', '')); ?></span>
         <div class="info-text">
@@ -208,14 +228,14 @@ endif; ?>
       <div class="info-section">
         <span class="info-label"><?php echo esc_html(ccon_str($info, 'socialLabel', '')); ?></span>
         <div class="social-icons">
-            <a href="#" aria-label="Facebook"><span aria-hidden="true">F</span></a>
+            <a href="#" aria-label="<?php echo esc_attr($social_labels['facebook']); ?>"><span aria-hidden="true">F</span></a>
           
           
-            <a href="#" aria-label="X (Twitter)"><span aria-hidden="true">X</span></a>
+            <a href="#" aria-label="<?php echo esc_attr($social_labels['x']); ?>"><span aria-hidden="true">X</span></a>
           
-            <a href="#" aria-label="Instagram"><span aria-hidden="true">IG</span></a>
+            <a href="#" aria-label="<?php echo esc_attr($social_labels['instagram']); ?>"><span aria-hidden="true">IG</span></a>
           
-            <a href="#" aria-label="Reddit"><span aria-hidden="true">R</span></a>
+            <a href="#" aria-label="<?php echo esc_attr($social_labels['reddit']); ?>"><span aria-hidden="true">R</span></a>
           
         </div>
       </div>
