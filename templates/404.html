@@ -1,11 +1,32 @@
-<body>
+    <style>
+        body { padding-top: 0 !important; }
+        .hero--404 { 
+            align-items: center !important; 
+        }
+        .hero--404 .hero__inner {
+            max-width: 1200px !important;
+            padding: 0 40px !important;
+            margin: 0 auto !important;
+        }
+        .hero--404 .hero__copy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .hero--404 .hero__brand {
+            font-size: clamp(100px, 20vw, 300px) !important;
+            line-height: .9;
+        }
+    </style>
     <!-- wp:template-part {"slug":"header-custom-main"} /-->
 
     <!-- wp:group {"tagName":"main","className":"alignfull"} -->
-    <main class="wp-block-group alignfull" style="margin-top:-40px;">
+    <main class="wp-block-group alignfull">
 
 
         <!-- wp:child/banner {
+            "className": "hero--404",
             "brand":"404",
             "line":"PAGE NOT FOUND",
             "brandSize": 300,
@@ -18,7 +39,7 @@
             "imageLocation":"center",
             "imageSize":"m",
             "buttonText":"Back to Home",
-            "buttonUrl":"#home",
+            "buttonUrl":"/",
             "buttonClass":"btn btn-pill text-white",
             "textScale":1.1,
             "image":{

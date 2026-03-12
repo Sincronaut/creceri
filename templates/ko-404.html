@@ -1,11 +1,33 @@
-<body>
     <!-- wp:template-part {"slug":"header-custom-ko"} /-->
 
+    <style>
+        body { padding-top: 0 !important; }
+        .hero--404 { 
+            align-items: center !important; 
+        }
+        .hero--404 .hero__inner {
+            max-width: 1200px !important;
+            padding: 0 40px !important;
+            margin: 0 auto !important;
+        }
+        .hero--404 .hero__copy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        main .hero--404 .hero__brand {
+            font-size: 300px !important;
+            line-height: .9;
+        }
+    </style>
+
     <!-- wp:group {"tagName":"main","className":"alignfull"} -->
-    <main class="wp-block-group alignfull" style="margin-top:-40px;">
+    <main class="wp-block-group alignfull">
 
 
         <!-- wp:child/banner {
+            "className": "hero--404",
             "brand":"404",
             "line":"페이지를 찾을 수 없음",
             "brandSize": 300,
