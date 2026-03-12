@@ -16,27 +16,33 @@
     let current = rail.querySelector('.g-item.active') || items[0];
     activateItem(rail, current);
 
+    // Desktop: Hover to activate
+    items.forEach(li => {
+      li.addEventListener('mouseenter', function() {
+        if (!isMobile()) {
+          activateItem(rail, li);
+        }
+      });
+    });
+
     rail.addEventListener('click', function (e) {
       const li = e.target.closest('.g-item');
-      const a  = e.target.closest('a.g-link');
       if (!li) return;
 
       if (isMobile()) {
         // Reorder deck: clicked card becomes first/top
         e.preventDefault();
         rail.insertBefore(li, rail.firstElementChild);
-        // keep overlay visible on top card
         rail.querySelectorAll('.g-item').forEach(n => n.classList.remove('active'));
         rail.firstElementChild.classList.add('active');
         return;
       }
 
-      // Desktop: first click activates; second click follows link
+      // Desktop: click follows link if already active, otherwise activates (redundant with hover but safe)
       if (!li.classList.contains('active')) {
         e.preventDefault();
         activateItem(rail, li);
       }
-      // else allow default navigation
     }, false);
   }
 

@@ -135,6 +135,17 @@ $section_uid     = 'guides-' . gi_slug($titleId);
       if (btn) btn.setAttribute('aria-expanded', 'true');
     }
 
+    // Hover support for desktop
+    rail.addEventListener('mousemove', function(e) {
+      if (isMobile()) return;
+      const btn = e.target.closest('.g-link');
+      if (!btn) return;
+      const li = btn.closest('.g-item');
+      if (li && !li.classList.contains('active')) {
+        activate(li);
+      }
+    });
+
     // Delegate activation — pointerup is friendlier on mobile than click
     const onActivate = (e) => {
       // ignore CTA taps
