@@ -1,56 +1,49 @@
-<section class="emerging" aria-labelledby="emerging-heading">
+<?php
+/**
+ * Block: Section · Card Image Animation
+ * Dynamic render for child/card-stand
+ */
+
+$title = $attributes['title'] ?? 'What’s Emerging';
+$intro = $attributes['intro'] ?? '';
+$items = $attributes['items'] ?? [];
+$anchor = $attributes['anchor'] ?? 'emerging-heading';
+
+// Design defaults
+$cta_text = $attributes['readLinkText'] ?? 'Learn More';
+?>
+<section class="emerging" aria-labelledby="<?php echo esc_attr($anchor); ?>" id="<?php echo esc_attr($anchor); ?>">
   <div class="emerging__container">
-    <h2 id="emerging-heading" class="emerging__title">What’s Emerging</h2>
+    <h2 id="<?php echo esc_attr($anchor); ?>" class="emerging__title"><?php echo esc_html($title); ?></h2>
+    <?php if ($intro): ?>
+      <p class="emerging__intro" style="text-align:center; max-width:600px; margin: 0 auto 40px; color: var(--muted);"><?php echo esc_html($intro); ?></p>
+    <?php endif; ?>
 
     <div class="emerging__grid">
-      <!-- 1) Feature / logo -->
-      <article class="card">
-        <h3 class="card__title">Sustainability as Strategy</h3>
-        <p class="card__copy">Eco-conscious products and practices are becoming standard, not optional.</p>
-      </article>
-
-      <!-- 2) -->
-      <article class="card">
-        <h3 class="card__title">Flexible Work Models</h3>
-        <p class="card__copy">Remote and hybrid setups remain key to attracting and retaining talent.</p>
-      </article>
-
-      <!-- 3) -->
-      <article class="card">
-        <h3 class="card__title">Digital Transformation</h3>
-        <p class="card__copy">More businesses are streamlining operations and customer engagement through digital tools.</p>
-      </article>
-
-      <!-- 4) -->
-      <article class="card">
-        <h3 class="card__title">Upcycling &amp; Local Craft</h3>
-        <p class="card__copy">Creative reuse and handmade goods are gaining traction in both fashion and retail.</p>
-      </article>
-
-      <!-- 5) -->
-      <article class="card">
-        <h3 class="card__title">Personalized Experiences</h3>
-        <p class="card__copy">Tailored marketing and service models are driving loyalty and differentiation.</p>
-      </article>
-
-      <!-- 6) -->
-      <article class="card">
-        <h3 class="card__title">Online Selling &amp; Side Hustles</h3>
-        <p class="card__copy">E-commerce continues to open doors for small-scale sellers and seasonal entrepreneurs.</p>
-      </article>
-
-      <!-- 7) Centerpiece -->
-      <article class="card card--centerpiece">
-        <h3 class="card__title">Mobile &amp; Pop-Up Concepts</h3>
-        <p class="card__copy">Food carts, event stalls, and compact retail setups are thriving in urban spaces.</p>
-      </article>
+      <?php 
+      $count = count($items);
+      foreach ( $items as $index => $item ) :
+        $it_title = $item['title'] ?? '';
+        $it_text  = $item['text']  ?? '';
+        $it_url   = $item['url']   ?? '#';
+        
+        // Special class for the last item (centerpiece) if there are 7 items as per original design
+        $is_centerpiece = ($index === $count - 1);
+        $card_class = 'card' . ($is_centerpiece ? ' card--centerpiece' : '');
+      ?>
+        <article class="<?php echo esc_attr($card_class); ?>">
+          <h3 class="card__title"><?php echo esc_html($it_title); ?></h3>
+          <p class="card__copy"><?php echo esc_html($it_text); ?></p>
+        </article>
+      <?php endforeach; ?>
       
-      <!-- CTA to the right of #7 on desktop -->
+      <?php if ($count > 0): ?>
       <div class="emerging__cta">
-        <a class="btn btn-pill" href="#learn-more" aria-label="Learn more about what’s emerging">
-          Learn More →
+        <a class="btn btn-pill" href="<?php echo esc_url($items[0]['url'] ?? '#'); ?>" aria-label="<?php echo esc_attr($cta_text); ?>">
+          <?php echo esc_html($cta_text); ?> →
         </a>
       </div>
+      <?php endif; ?>
     </div>
   </div>
 </section>

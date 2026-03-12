@@ -118,7 +118,7 @@ endif; ?>
     <?php if (!empty($disclaimer1)): ?><br><?php
   endif; ?>
       <label class="sr-only" for="<?php echo esc_attr($section_id); ?>-email"><?php echo child_subscribe_safe_text($email_ph); ?></label>
-      <input id="<?php echo esc_attr($section_id); ?>-email" class="customize-input" type="email" name="email" placeholder="Enter your email" autocomplete="email" required />
+      <input id="<?php echo esc_attr($section_id); ?>-email" class="customize-input" type="email" name="email" placeholder="<?php echo esc_attr($email_ph); ?>" autocomplete="email" required />
     <?php
 endif; ?>
     <?php if (!empty($disclaimer1)): ?><br><?php
