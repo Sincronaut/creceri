@@ -254,12 +254,22 @@ $config = array(
   </style>
 
   <div class="ccard__toolbar">
-    <div class="filters" role="tablist" aria-label="Filter articles">
-      <button class="filter" data-filter="all" aria-pressed="true">All</button>
-      <?php foreach ($category_labels as $cat_slug => $cat_label): ?>
-        <button class="filter" data-filter="<?php echo esc_attr($cat_slug); ?>"><?php echo esc_html($cat_label); ?></button>
-      <?php
-endforeach; ?>
+    <div class="filters-container">
+      <div class="filters-desktop" role="tablist" aria-label="Filter articles">
+        <button class="filter" data-filter="all" aria-pressed="true">All</button>
+        <?php foreach ($category_labels as $cat_slug => $cat_label): ?>
+          <button class="filter" data-filter="<?php echo esc_attr($cat_slug); ?>"><?php echo esc_html($cat_label); ?></button>
+        <?php endforeach; ?>
+      </div>
+      <div class="filters-mobile">
+        <label for="<?php echo esc_attr($sec_id); ?>-category" class="sr-only">Category:</label>
+        <select id="<?php echo esc_attr($sec_id); ?>-category" class="category-select" aria-label="Filter by category">
+          <option value="all">All Categories</option>
+          <?php foreach ($category_labels as $cat_slug => $cat_label): ?>
+            <option value="<?php echo esc_attr($cat_slug); ?>"><?php echo esc_html($cat_label); ?></option>
+          <?php endforeach; ?>
+        </select>
+      </div>
     </div>
     <div class="sort">
       <label for="<?php echo esc_attr($sec_id); ?>-sort">Sort:</label>
@@ -278,10 +288,9 @@ endforeach; ?>
   <!-- Template: supports either <img> or CSS background -->
   <template id="<?php echo esc_attr($tpl_id); ?>">
     <article class="card">
-      <a class="media" href="#" aria-label="">
+      <div class="media">
         <span class="media-bg" aria-hidden="true" style="position: absolute; inset: 0; background-size: cover; background-position: center;"></span>
-        <div class="badges"></div>
-      </a>
+      </div>
       <div class="content">
         <h3 class="title"></h3>
         <div class="meta">
@@ -291,7 +300,7 @@ endforeach; ?>
         <p class="snippet"></p>
         <div class="footer">
           <span class="date">&bull; <time></time></span>
-          <a class="cta" href="#">Read More</a>
+          <a class="cta cta-stretched-link" href="#">Read More</a>
         </div>
       </div>
     </article>
@@ -311,14 +320,23 @@ endforeach; ?>
       function fmtDate(d){ try{return new Date(d).toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'});}catch(e){return d||'';} }
 
       function buildFilters(root, items){
-        const holder = root.querySelector('.filters'); if(!holder) return;
+        const holder = root.querySelector('.filters-desktop'); if(!holder) return;
         const existing = new Set(Array.from(holder.querySelectorAll('.filter')).map(b=>b.dataset.filter));
         const labels = new Map();
         items.forEach(item=>{
           if ((item.category||'').trim()){ const s=item.category.trim(); const l=item.categoryLabel||s.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase()); labels.set(s,l); }
           if (Array.isArray(item.categories)){ item.categories.forEach(c=>{ const s=(c.slug||'').trim(); if(!s) return; const l=c.label||s.replace(/-/g,' ').replace(/\b\w/g,m=>m.toUpperCase()); labels.set(s,l); }); }
         });
-        labels.forEach((l,s)=>{ if(existing.has(s)) return; const b=document.createElement('button'); b.className='filter'; b.dataset.filter=s; b.textContent=l; holder.appendChild(b); });
+        labels.forEach((l,s)=>{ 
+          if(!existing.has(s)) {
+            const b=document.createElement('button'); b.className='filter'; b.dataset.filter=s; b.textContent=l; holder.appendChild(b); 
+          }
+          const mobileSel = root.querySelector('.category-select');
+          if (mobileSel && !mobileSel.querySelector(`option[value="${s}"]`)) {
+            const opt = document.createElement('option'); opt.value = s; opt.textContent = l;
+            mobileSel.appendChild(opt);
+          }
+        });
       }
 
       function bindBlock(root){
@@ -352,12 +370,16 @@ endforeach; ?>
         buildFilters(root, data);
 
         root.addEventListener('click', e=>{
-          const f = e.target.closest('.filters .filter');
+          const f = e.target.closest('.filters-desktop .filter');
           if(f) {
-            root.querySelectorAll('.filters .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
+            root.querySelectorAll('.filters-desktop .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
             f.setAttribute('aria-pressed','true');
-            state.filter = f.dataset.filter; state.page = 1; render();
-            // Optional: update URL silently
+            state.filter = f.dataset.filter; state.page = 1; 
+            
+            const mobileSel = root.querySelector('.category-select');
+            if(mobileSel) mobileSel.value = state.filter;
+            
+            render();
             const newUrl = new URL(window.location);
             newUrl.searchParams.set('filter', state.filter);
             window.history.replaceState({}, '', newUrl);
@@ -372,9 +394,15 @@ endforeach; ?>
             if(filterMatch) {
               const filterSlug = decodeURIComponent(filterMatch[1]);
               state.filter = filterSlug; state.page = 1;
-              const filterBtn = root.querySelector(`.filters .filter[data-filter="${filterSlug}"]`);
-              root.querySelectorAll('.filters .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
+              
+              // Sync UI components
+              const filterBtn = root.querySelector(`.filters-desktop .filter[data-filter="${filterSlug}"]`);
+              root.querySelectorAll('.filters-desktop .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
               if(filterBtn) filterBtn.setAttribute('aria-pressed','true');
+              
+              const mobileSel = root.querySelector('.category-select');
+              if(mobileSel) mobileSel.value = filterSlug;
+              
               render();
               
               const newUrl = new URL(window.location);
@@ -382,11 +410,29 @@ endforeach; ?>
               newUrl.hash = 'category-list';
               window.history.replaceState({}, '', newUrl);
               
-              // Scroll to the top of the block
               root.scrollIntoView({behavior: 'smooth', block: 'start'});
             }
           }
         });
+
+        const categorySelect = root.querySelector('.category-select');
+        if (categorySelect) {
+          categorySelect.addEventListener('change', e => {
+            state.filter = e.target.value;
+            state.page = 1;
+            
+            // Sync desktop buttons
+            const filterBtn = root.querySelector(`.filters-desktop .filter[data-filter="${state.filter}"]`);
+            root.querySelectorAll('.filters-desktop .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
+            if(filterBtn) filterBtn.setAttribute('aria-pressed','true');
+            
+            render();
+            
+            const newUrl = new URL(window.location);
+            newUrl.searchParams.set('filter', state.filter);
+            window.history.replaceState({}, '', newUrl);
+          });
+        }
 
         const sortSelect = root.querySelector('.sort-select');
         if (sortSelect){ sortSelect.value = state.sort; sortSelect.addEventListener('change', e=>{ state.sort=e.target.value; render(); }); }
@@ -419,27 +465,14 @@ endforeach; ?>
           const img = (row.image && row.image.src) ? row.image.src : '';
           const alt = (row.image && row.image.alt) ? row.image.alt : (row.title||'');
 
+          const cta = node.querySelector('.cta');
+
           // Set both; CSS ensures either works and stays under badges
           if (mediaBg) mediaBg.style.backgroundImage = img ? `url("${img}")` : 'none';
 
-
-          media.href = row.url || '#';
-          media.setAttribute('aria-label', row.title || '');
-
-          // badges
-          badgesWrap.innerHTML = '';
-          const badges = Array.isArray(row.categories) ? row.categories : [];
-          if (badges.length){
-            badges.forEach(b=>{
-              const label = (b.label||b.slug||'').trim(); if(!label) return;
-              const el = document.createElement(b.url ? 'a' : 'span');
-              el.className = 'badge'; el.textContent = label;
-              if (b.url) el.href = b.url;
-              badgesWrap.appendChild(el);
-            });
-          } else {
-            const single = (row.categoryLabel||row.category||'').trim();
-            if (single){ const s=document.createElement('span'); s.className='badge'; s.textContent=single; badgesWrap.appendChild(s); }
+          if (cta) {
+            cta.href = row.url || '#';
+            cta.setAttribute('aria-label', row.title || 'Read ' + (row.title || 'post'));
           }
 
           node.querySelector('.title').textContent = row.title || '';
@@ -482,10 +515,14 @@ endforeach; ?>
         }
 
         // Sync initial filter button state
-        const initialBtn = root.querySelector(`.filters .filter[data-filter="${state.filter}"]`);
+        const initialBtn = root.querySelector(`.filters-desktop .filter[data-filter="${state.filter}"]`);
         if (initialBtn) {
-          root.querySelectorAll('.filters .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
+          root.querySelectorAll('.filters-desktop .filter').forEach(x=>x.setAttribute('aria-pressed','false'));
           initialBtn.setAttribute('aria-pressed','true');
+        }
+        const initialMobileSel = root.querySelector('.category-select');
+        if (initialMobileSel) {
+          initialMobileSel.value = state.filter;
         }
 
         render();
