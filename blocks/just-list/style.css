@@ -1,7 +1,8 @@
 /* Container: base gradient (overridden by inline background from render.php if provided) */
 .choice-compare {
-  background: linear-gradient(180deg, #f0d8cb 0%, #ffffff 75%);
-  padding: 48px 16px 56px;
+  background: #fff;
+  padding-block: var(--section-pad-y, clamp(3rem, 10vw, 6rem));
+  padding-inline: var(--page-gutter-left, clamp(1rem, 5vw, 2rem));
 }
 
 /* Layout */
@@ -13,20 +14,12 @@
 /* Title + Description */
 .choice-compare__title {
   text-align: center;
-  color: #8e2b20;
-  font-size: 36px;
-  font-weight: 700;
   margin: 0 0 14px;
 }
 
 .choice-compare__description {
   text-align: center;
-  color: #5a3b32;
-  font-size: 20px;
-  line-height: 1.6;
   margin: 0 0 22px;
-  font-weight: 400;
-
 }
 
 /* Grid */
@@ -39,9 +32,6 @@
 /* Card */
 .choice-card__heading {
   margin: 0 0 10px;
-  font-size: 24px;
-  font-weight: 600;
-  color: #222;
 }
 
 /* List baseline: no native bullets; bullets handled via variants */
@@ -49,15 +39,15 @@
   margin: 0 0 18px;
   padding: 0;
   list-style: none;
-  font-size: 18px;
-  font-weight: 400;
-  color: #3a3a3a;
-  line-height: 1.55;
 }
 
 .choice-card__list li {
   position: relative;
-  margin: 8px 0;
+  margin: 12px 0;
+}
+
+.choice-card__list li p {
+  margin: 0;
 }
 
 /* --- Bullet variants ---
@@ -67,6 +57,7 @@
 .bullets-circle .choice-card__list li {
   padding-left: 20px;
 }
+
 .bullets-circle .choice-card__list li::before {
   content: "";
   position: absolute;
@@ -80,23 +71,30 @@
 }
 
 .bullets-check .choice-card__list li {
-  padding-left: 26px;
+  padding-left: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
 }
-.bullets-check .choice-card__list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: 0;
-  line-height: 1.55;
-  font-weight: 700;
-  font-size: 16px;
-  color: #1a7f37; /* accessible green */
+
+.bullets-check .check-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background-color: #a02020;
+  color: #fff;
+  flex-shrink: 0;
+  margin-top: 3px;
 }
 
 /* Global none: explicit reset if the section is bullets-none */
 .bullets-none .choice-card__list li {
   padding-left: 0;
 }
+
 .bullets-none .choice-card__list li::before {
   content: none;
 }
@@ -106,6 +104,7 @@
 .choice-card.bullets-circle .choice-card__list li {
   padding-left: 20px;
 }
+
 .choice-card.bullets-circle .choice-card__list li::before {
   content: "";
   position: absolute;
@@ -119,34 +118,21 @@
 }
 
 .choice-card.bullets-check .choice-card__list li {
-  padding-left: 26px;
-}
-.choice-card.bullets-check .choice-card__list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  top: 0;
-  line-height: 1.55;
-  font-weight: 700;
-  font-size: 16px;
-  color: #1a7f37;
+  padding-left: 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
 }
 
 /* Hard stop: ensure none always wins on a card even if the section is circle/check */
 .choice-card.bullets-none .choice-card__list li {
   padding-left: 0;
 }
+
 .choice-card.bullets-none .choice-card__list li::before {
   content: none;
 }
-.choice-item__title{
-  font-weight:500;
-  font-size: 20px;
-}
-.choice-item__desc{
-  font-weight:400;
-  font-size: 18px;
-}
+
 /* CTA (render.php can suppress via showCta=false) */
 .choice-card__cta {
   display: inline-block;
@@ -158,6 +144,7 @@
   border-bottom: 1px solid transparent;
   transition: border-color .15s ease, color .15s ease;
 }
+
 .choice-card__cta:hover {
   border-bottom-color: rgba(177, 42, 42, 0.6);
   color: #8e1f1f;
@@ -165,7 +152,15 @@
 
 /* Responsive */
 @media (max-width: 800px) {
-  .choice-compare__grid { grid-template-columns: 1fr; }
-  .choice-compare__title { font-size: 28px; }
-  .choice-compare__description { font-size: 16px; }
+  .choice-compare__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .choice-compare__title {
+    font-size: 28px;
+  }
+
+  .choice-compare__description {
+    font-size: 16px;
+  }
 }

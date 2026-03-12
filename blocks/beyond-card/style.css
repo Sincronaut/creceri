@@ -2,12 +2,14 @@
 .uiux-section {
   --bleed: 150px;
   position: relative;
-  overflow: visible;            /* allow overlap into 1st and 3rd sections */
-  padding-block: 72px;          /* room for content while image bleeds */
+  overflow: visible;
+  /* allow overlap into 1st and 3rd sections */
+  padding-block: var(--section-pad-y, clamp(3rem, 10vw, 6rem));
   display: flex;
   justify-content: center;
   background: linear-gradient(to bottom right, #f7f8fa, #ffffff);
-  isolation: isolate;           /* keep z-index predictable */
+  isolation: isolate;
+  /* keep z-index predictable */
 }
 
 .uiux-grid {
@@ -18,14 +20,17 @@
   max-width: 1600px;
   width: auto;
   position: relative;
-  z-index: 1;                   /* content sits above any page backgrounds */
+  z-index: 1;
+  /* content sits above any page backgrounds */
 }
 
 .uiux-image {
   position: relative;
   padding-left: 50px;
-  z-index: 2;                   /* ensure the illustration rides over neighbors */
-  pointer-events: none;         /* image overlap won’t block interactions below */
+  z-index: 2;
+  /* ensure the illustration rides over neighbors */
+  pointer-events: none;
+  /* image overlap won’t block interactions below */
 }
 
 .uiux-image img {
@@ -34,44 +39,48 @@
   height: auto;
   /* Do the “beyond 1st and 3rd section” trick */
   transform: translateY(calc(var(--bleed) * -1));
-  margin-bottom: calc(var(--bleed) * -2); /* push past the bottom as well */
+  margin-bottom: calc(var(--bleed) * -2);
+  /* push past the bottom as well */
 }
 
 .uiux-content h2 {
-  color: #b22222;
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 1.2;
   margin: 0 0 14px;
   padding-right: 50px;
 }
 
 .uiux-content p {
-  color: #333;
-  font-size: 1rem;
-  line-height: 1.6;
   max-width: auto;
   padding-right: 50px;
 }
 
 /* Responsive guardrails */
 @media (max-width: 900px) {
-  .uiux-grid { grid-template-columns: 1fr; }
+  .uiux-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .uiux-image {
+    padding-left: 0;
+  }
+
   .uiux-image img {
     transform: translateY(calc(var(--bleed) * -0.6));
     margin-bottom: calc(var(--bleed) * -0.8);
-  }
-  .uiux-image img {
-    width: 75%;
+    width: 60%;
     height: auto;
-    padding-left:50px;
+    padding-left: 0;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .uiux-content h2 {
-    padding:10px 10px 0px;
+    padding: 10px 10px 0px;
+    text-align: center;
   }
 
   .uiux-content p {
-    padding:0px 10px 0px;
+    padding: 0px 10px 0px;
+    text-align: center;
+    margin-inline: auto;
   }
 }

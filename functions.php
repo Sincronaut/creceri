@@ -5,7 +5,7 @@
 
 /* -----------------------  Assets  ----------------------- */
 
-add_action( 'wp_enqueue_scripts', function () {
+add_action('wp_enqueue_scripts', function () {
   // OPTIONAL: If you want Bootstrap to dominate and reduce block theme globals,
   // uncomment the next line. (It may affect core block styling.)
   // remove_action('wp_enqueue_scripts', 'wp_enqueue_global_styles');
@@ -14,86 +14,90 @@ add_action( 'wp_enqueue_scripts', function () {
   $uri = get_stylesheet_directory_uri();
 
   // Small helpers
-  $ver = function ( $rel ) use ( $dir ) {
-    $f = $dir . $rel;
-    return file_exists( $f ) ? filemtime( $f ) : null;
-  };
-  $add_style = function ( $handle, $rel, $deps = [] ) use ( $uri, $ver ) {
-    $file_uri = $uri . $rel;
-    $v        = $ver( $rel );
-    if ( $v !== null ) {
-      wp_enqueue_style( $handle, $file_uri, $deps, $v );
+  $ver = function ($rel) use ($dir) {
+      $f = $dir . $rel;
+      return file_exists($f) ? filemtime($f) : null;
     }
-  };
-  $add_script = function ( $handle, $rel, $deps = [], $in_footer = true ) use ( $uri, $ver ) {
-    $file_uri = $uri . $rel;
-    $v        = $ver( $rel );
-    if ( $v !== null ) {
-      wp_enqueue_script( $handle, $file_uri, $deps, $v, $in_footer );
+      ;
+    $add_style = function ($handle, $rel, $deps = []) use ($uri, $ver) {
+      $file_uri = $uri . $rel;
+      $v = $ver($rel);
+      if ($v !== null) {
+        wp_enqueue_style($handle, $file_uri, $deps, $v);
+      }
     }
-  };
+      ;
+    $add_script = function ($handle, $rel, $deps = [], $in_footer = true) use ($uri, $ver) {
+      $file_uri = $uri . $rel;
+      $v = $ver($rel);
+      if ($v !== null) {
+        wp_enqueue_script($handle, $file_uri, $deps, $v, $in_footer);
+      }
+    }
+      ;
 
-  /* ---- CSS: vendor first, then your layers ---- */
-  // Bootstrap
-  wp_enqueue_style(
-    'bootstrap',
-    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
+    /* ---- CSS: vendor first, then your layers ---- */
+    // Bootstrap
+    wp_enqueue_style(
+      'bootstrap',
+      'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
     [],
-    '5.3.3'
-  );
+      '5.3.3'
+    );
 
-  // Parent & child styles (keep light; your real CSS lives in /assets/css/*)
-  // Parent first (optional but safe), then child (style.css with theme header / tiny globals)
-  $parent_style_path    = get_template_directory() . '/style.css';
-  $parent_style_version = file_exists( $parent_style_path )
-    ? filemtime( $parent_style_path )
-    : wp_get_theme( get_template() )->get( 'Version' );
+    // Parent & child styles (keep light; your real CSS lives in /assets/css/*)
+    // Parent first (optional but safe), then child (style.css with theme header / tiny globals)
+    $parent_style_path = get_template_directory() . '/style.css';
+    $parent_style_version = file_exists($parent_style_path)
+      ? filemtime($parent_style_path)
+      : wp_get_theme(get_template())->get('Version');
 
-  wp_enqueue_style(
-    'parent-style',
-    get_template_directory_uri() . '/style.css',
-    [ 'bootstrap' ],
-    $parent_style_version
-  );
+    wp_enqueue_style(
+      'parent-style',
+      get_template_directory_uri() . '/style.css',
+    ['bootstrap'],
+      $parent_style_version
+    );
 
-  // Version the child style header file so the CDN/browser picks up updates after deploys.
-  $add_style( 'child-style', '/style.css', [ 'bootstrap', 'parent-style' ] );
+    // Version the child style header file so the CDN/browser picks up updates after deploys.
+    $add_style('child-style', '/style.css', ['bootstrap', 'parent-style']);
 
-  // Global layout CSS (site-wide)
-  $add_style( 'ai-header', '/assets/css/layout/header.css', [ 'child-style' ] );
-  $add_style( 'ai-footer', '/assets/css/layout/footer.css', [ 'ai-header' ] );
+    // Global layout CSS (site-wide)
+    $add_style('ai-header', '/assets/css/layout/header.css', ['child-style']);
+    $add_style('ai-footer', '/assets/css/layout/footer.css', ['ai-header']);
 
-  // // Page-specific CSS
-  // if ( is_front_page() ) {
-  //   $add_style( 'ai-homepage', '/assets/css/pages/homepage.css', [ 'ai-footer' ] );
-  // }
-  // if ( is_page( 'about' ) ) {
-  //   $add_style( 'ai-about', '/assets/css/pages/about.css', [ 'ai-footer' ] );
-  // }
-  // if ( is_page( 'blogs' ) || is_home() ) {
-  //   $add_style( 'ai-blogs', '/assets/css/pages/blogs.css', [ 'ai-footer' ] );
-  // }
-
-  /* ---- JS: vendor then your script(s) ---- */
-  wp_enqueue_script(
-    'bootstrap',
-    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js',
+    // // Page-specific CSS
+    // if ( is_front_page() ) {
+    //   $add_style( 'ai-homepage', '/assets/css/pages/homepage.css', [ 'ai-footer' ] );
+    // }
+    // if ( is_page( 'about' ) ) {
+    //   $add_style( 'ai-about', '/assets/css/pages/about.css', [ 'ai-footer' ] );
+    // }
+    // if ( is_page( 'blogs' ) || is_home() ) {
+    //   $add_style( 'ai-blogs', '/assets/css/pages/blogs.css', [ 'ai-footer' ] );
+    // }
+  
+    /* ---- JS: vendor then your script(s) ---- */
+    wp_enqueue_script(
+      'bootstrap',
+      'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js',
     [],
-    '5.3.3',
-    true
-  );
+      '5.3.3',
+      true
+    );
 
-  // Your main JS (menus, mobile submenu, hero bg carousel init, etc.)
-  $add_script( 'ai-main', '/assets/js/main.js', [ 'bootstrap' ], true );
-} );
+    // Your main JS (menus, mobile submenu, hero bg carousel init, etc.)
+    $add_script('ai-main', '/assets/js/main.js', ['bootstrap'], true);
+  });
 
-function enqueue_fa_icons() {
+function enqueue_fa_icons()
+{
   wp_enqueue_style(
     'font-awesome',
     'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
   );
 }
-add_action( 'wp_enqueue_scripts', 'enqueue_fa_icons' );
+add_action('wp_enqueue_scripts', 'enqueue_fa_icons');
 
 /* -------------------  Disable editor on 'home' (optional)  ------------------- */
 // function ai_disable_editor_on_home($can_edit, $post) {
@@ -123,115 +127,116 @@ require_once get_stylesheet_directory() . '/inc/region-data.php';
 require_once get_stylesheet_directory() . '/inc/image-alt.php';
 
 /* ---------- Fallback subscribe handler (if MU plugin missing) ---------- */
-if ( ! function_exists( 'child_subscribe_handle_ajax' ) ) {
-  add_action( 'init', function () {
-    if ( ! post_type_exists( 'creceri_subscriber' ) ) {
-      register_post_type( 'creceri_subscriber', array(
+if (!function_exists('child_subscribe_handle_ajax')) {
+  add_action('init', function () {
+    if (!post_type_exists('creceri_subscriber')) {
+      register_post_type('creceri_subscriber', array(
         'labels' => array(
-          'name'          => 'Subscribers',
+          'name' => 'Subscribers',
           'singular_name' => 'Subscriber',
-          'menu_name'     => 'Subscribers',
+          'menu_name' => 'Subscribers',
         ),
-        'public'              => false,
-        'show_ui'             => true,
-        'show_in_menu'        => true,
-        'show_in_admin_bar'   => false,
-        'show_in_nav_menus'   => false,
+        'public' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_admin_bar' => false,
+        'show_in_nav_menus' => false,
         'exclude_from_search' => true,
-        'publicly_queryable'  => false,
-        'has_archive'         => false,
-        'supports'            => array( 'title' ),
-        'menu_position'       => 25,
-        'menu_icon'           => 'dashicons-email-alt2',
-        'capability_type'     => 'post',
-      ) );
+        'publicly_queryable' => false,
+        'has_archive' => false,
+        'supports' => array('title'),
+        'menu_position' => 25,
+        'menu_icon' => 'dashicons-email-alt2',
+        'capability_type' => 'post',
+      ));
     }
-  } );
+  });
 
-  add_action( 'wp_ajax_child_subscribe_submit', 'child_subscribe_handle_ajax' );
-  add_action( 'wp_ajax_nopriv_child_subscribe_submit', 'child_subscribe_handle_ajax' );
+  add_action('wp_ajax_child_subscribe_submit', 'child_subscribe_handle_ajax');
+  add_action('wp_ajax_nopriv_child_subscribe_submit', 'child_subscribe_handle_ajax');
 
-  function child_subscribe_handle_ajax() {
-    $nonce = isset( $_POST['child_subscribe_nonce'] ) ? sanitize_text_field( wp_unslash( $_POST['child_subscribe_nonce'] ) ) : '';
+  function child_subscribe_handle_ajax()
+  {
+    $nonce = isset($_POST['child_subscribe_nonce']) ? sanitize_text_field(wp_unslash($_POST['child_subscribe_nonce'])) : '';
     // Soft-fail nonce to avoid user-facing errors if cache served an old nonce
-    if ( $nonce && ! wp_verify_nonce( $nonce, 'child_subscribe' ) ) {
-      wp_send_json_error( array( 'message' => 'Security check failed.' ), 400 );
+    if ($nonce && !wp_verify_nonce($nonce, 'child_subscribe')) {
+      wp_send_json_error(array('message' => 'Security check failed.'), 400);
     }
 
-    $name  = isset( $_POST['name'] ) ? sanitize_text_field( wp_unslash( $_POST['name'] ) ) : '';
-    $email = isset( $_POST['email'] ) ? sanitize_email( wp_unslash( $_POST['email'] ) ) : '';
+    $name = isset($_POST['name']) ? sanitize_text_field(wp_unslash($_POST['name'])) : '';
+    $email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
 
-    if ( empty( $email ) || ! is_email( $email ) ) {
-      wp_send_json_error( array( 'message' => 'Please enter a valid email.' ), 400 );
+    if (empty($email) || !is_email($email)) {
+      wp_send_json_error(array('message' => 'Please enter a valid email.'), 400);
     }
 
-    $post_id = wp_insert_post( array(
-      'post_type'   => 'creceri_subscriber',
+    $post_id = wp_insert_post(array(
+      'post_type' => 'creceri_subscriber',
       'post_status' => 'publish',
-      'post_title'  => $email,
-    ) );
+      'post_title' => $email,
+    ));
 
-    if ( ! is_wp_error( $post_id ) && $post_id ) {
-      update_post_meta( $post_id, '_subscriber_name', $name );
-      update_post_meta( $post_id, '_subscriber_email', $email );
+    if (!is_wp_error($post_id) && $post_id) {
+      update_post_meta($post_id, '_subscriber_name', $name);
+      update_post_meta($post_id, '_subscriber_email', $email);
     }
 
-    wp_send_json_success( array(
+    wp_send_json_success(array(
       'message' => 'Thank you for subscribing to our News Letter',
-      'email'   => $email,
-      'name'    => $name,
-    ) );
+      'email' => $email,
+      'name' => $name,
+    ));
   }
 }
 
 // 2) Register every block that has a block.json inside /blocks/*/
 //    Guard against duplicate registration and invalid names (no namespace).
-add_action( 'init', function () {
-  $base     = get_stylesheet_directory() . '/blocks';
+add_action('init', function () {
+  $base = get_stylesheet_directory() . '/blocks';
   $registry = WP_Block_Type_Registry::get_instance();
 
-  foreach ( glob( $base . '/*/block.json' ) as $json ) {
-    $data = json_decode( file_get_contents( $json ), true );
-    if ( ! is_array( $data ) || empty( $data['name'] ) ) {
+  foreach (glob($base . '/*/block.json') as $json) {
+    $data = json_decode(file_get_contents($json), true);
+    if (!is_array($data) || empty($data['name'])) {
       continue;
     }
 
     $name = $data['name'];
 
     // Skip invalid names with no namespace to avoid "must contain a namespace prefix" notice
-    if ( strpos( $name, '/' ) === false ) {
+    if (strpos($name, '/') === false) {
       // Optional: surface a debug hint for admins.
-      if ( is_admin() && current_user_can( 'manage_options' ) ) {
-        error_log( "Child theme blocks: skipped invalid block name '{$name}' in {$json}" );
+      if (is_admin() && current_user_can('manage_options')) {
+        error_log("Child theme blocks: skipped invalid block name '{$name}' in {$json}");
       }
       continue;
     }
 
-    if ( ! $registry->is_registered( $name ) ) {
-      register_block_type( dirname( $json ) );
+    if (!$registry->is_registered($name)) {
+      register_block_type(dirname($json));
     }
   }
-} );
+});
 
-add_action( 'wp_head', function () {
-  if ( ! current_user_can( 'manage_options' ) ) {
+add_action('wp_head', function () {
+  if (!current_user_can('manage_options')) {
     return;
   }
-  if ( ! function_exists( 'child_resolve_region_country' ) ) {
+  if (!function_exists('child_resolve_region_country')) {
     return;
   }
-  [ $region, $country ] = child_resolve_region_country();
+  [$region, $country] = child_resolve_region_country();
   echo "\n<!-- only-allowed debug: region={$region} country={$country} -->\n";
-} );
+});
 
-add_action( 'wp_head', function () {
-  if ( ! current_user_can( 'manage_options' ) ) {
+add_action('wp_head', function () {
+  if (!current_user_can('manage_options')) {
     return;
   }
-  [ $region, $country ] = child_resolve_region_country();
-  $file                = child_get_data_file();
+  [$region, $country] = child_resolve_region_country();
+  $file = child_get_data_file();
   echo "\n<!-- region={$region} country={$country} file={$file} -->\n";
-} );
+});
 
 /* -------- Redirect unknown front-end pages to Home and show a toast -------- */
 // add_action('template_redirect', function () {
@@ -257,10 +262,10 @@ add_action( 'wp_head', function () {
 //   }
 // });
 
-add_action( 'wp_footer', function () {
-  if ( ! isset( $_GET['notice'] ) || $_GET['notice'] !== 'missing' ) {
+add_action('wp_footer', function () {
+  if (!isset($_GET['notice']) || $_GET['notice'] !== 'missing') {
     return;
-  } ?>
+  }?>
   <div class="toast-container position-fixed top-0 end-0 p-4" style="z-index:2000">
     <div id="missingToast" class="toast text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-body">
@@ -286,10 +291,11 @@ add_action( 'wp_footer', function () {
       }
     })();
   </script>
-<?php } );
+<?php
+});
 
 // Render Gutenberg blocks inside excerpts (so SSR blocks appear).
-add_filter( 'the_excerpt', 'do_blocks', 9 );
+add_filter('the_excerpt', 'do_blocks', 9);
 
 /**
  * [travel_cat_label] – prints one mapped category label based on slug.
@@ -337,24 +343,25 @@ add_filter( 'the_excerpt', 'do_blocks', 9 );
  *   <?php if ( function_exists('child_render_toc') ) child_render_toc(); ?>
  * Optional args: ['title'=>'Table of Contents','levels'=>['h2','h3'],'intro'=>true]
  */
-if ( ! function_exists( 'child_render_toc' ) ) {
-  function child_render_toc( $args = array() ) {
+if (!function_exists('child_render_toc')) {
+  function child_render_toc($args = array())
+  {
     $attrs = wp_parse_args(
       $args,
       array(
-        'title'  => 'Table of Contents',
-        'levels' => array( 'h2', 'h3' ),
-        'intro'  => true,
-      )
+      'title' => 'Table of Contents',
+      'levels' => array('h2', 'h3'),
+      'intro' => true,
+    )
     );
 
     // Build a block comment and let WordPress render the dynamic block server-side.
     $comment = sprintf(
       '<!-- wp:child/table-of-content %s /-->',
-      wp_json_encode( $attrs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE )
+      wp_json_encode($attrs, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE)
     );
 
-    echo do_blocks( $comment ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+    echo do_blocks($comment); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
   }
 }
 
@@ -364,23 +371,23 @@ if ( ! function_exists( 'child_render_toc' ) ) {
  */
 add_shortcode(
   'child_toc',
-  function ( $atts = array() ) {
+  function ($atts = array()) {
     $atts = shortcode_atts(
       array(
-        'title'  => 'Table of Contents',
-        'levels' => 'h2,h3',
-        'intro'  => '1',
-      ),
+      'title' => 'Table of Contents',
+      'levels' => 'h2,h3',
+      'intro' => '1',
+    ),
       $atts,
       'child_toc'
     );
     $args = array(
-      'title'  => (string) $atts['title'],
-      'levels' => array_map( 'trim', explode( ',', (string) $atts['levels'] ) ),
-      'intro'  => $atts['intro'] !== '0',
+      'title' => (string)$atts['title'],
+      'levels' => array_map('trim', explode(',', (string)$atts['levels'])),
+      'intro' => $atts['intro'] !== '0',
     );
     ob_start();
-    child_render_toc( $args );
+    child_render_toc($args);
     return ob_get_clean();
   }
 );
@@ -390,44 +397,44 @@ add_shortcode(
 /* Card Block editor assets (/blocks/card-block) */
 add_action(
   'init',
-  function () {
+    function () {
     $dir_path = get_stylesheet_directory() . '/blocks/card-block';
-    $dir_uri  = get_stylesheet_directory_uri() . '/blocks/card-block';
+    $dir_uri = get_stylesheet_directory_uri() . '/blocks/card-block';
 
-    $style_file    = $dir_path . '/editor.css';
-    $script_file   = $dir_path . '/index.js';
-    $style_version = file_exists( $style_file ) ? filemtime( $style_file ) : null;
-    $script_version = file_exists( $script_file ) ? filemtime( $script_file ) : null;
+    $style_file = $dir_path . '/editor.css';
+    $script_file = $dir_path . '/index.js';
+    $style_version = file_exists($style_file) ? filemtime($style_file) : null;
+    $script_version = file_exists($script_file) ? filemtime($script_file) : null;
 
-    if ( $style_version ) {
+    if ($style_version) {
       wp_register_style(
         'card-block-editor-style',
         $dir_uri . '/editor.css',
-        array( 'wp-edit-blocks' ),
+        array('wp-edit-blocks'),
         $style_version
       );
     }
 
-    if ( $script_version ) {
+    if ($script_version) {
       wp_register_script(
         'card-block-editor',
         $dir_uri . '/index.js',
-        array( 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor' ),
+        array('wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor'),
         $script_version,
         true
       );
     }
 
-    // Block type itself is registered by the generic /blocks/*/block.json loader above.
+  // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 /* Card Update Data (/blocks/card) */
 add_action(
   'init',
-  function () {
+    function () {
     $dir_path = get_stylesheet_directory() . '/blocks/card';
-    $dir_uri  = get_stylesheet_directory_uri() . '/blocks/card';
+    $dir_uri = get_stylesheet_directory_uri() . '/blocks/card';
 
     // Register styles and script handles referenced by block.json.
     wp_register_style(
@@ -440,20 +447,20 @@ add_action(
     wp_register_style(
       'card-editor-style',
       $dir_uri . '/editor.css',
-      array( 'wp-edit-blocks' ),
+      array('wp-edit-blocks'),
       '1.0'
     );
 
     wp_register_script(
       'card-editor',
       $dir_uri . '/index.js',
-      array( 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor' ),
+      array('wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor'),
       '1.0',
       true
     );
 
     // Hide admin bar on front-end.
-    add_filter( 'show_admin_bar', '__return_false' );
+    add_filter('show_admin_bar', '__return_false');
 
     wp_register_script(
       'card-view',
@@ -463,17 +470,17 @@ add_action(
       true
     );
 
-    // Block type itself is registered by the generic /blocks/*/block.json loader above.
+  // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 add_action(
   'init',
-  function () {
+    function () {
     $dir_path = get_stylesheet_directory() . '/blocks/banner';
-    $dir_uri  = get_stylesheet_directory_uri() . '/blocks/banner';
+    $dir_uri = get_stylesheet_directory_uri() . '/blocks/banner';
 
-    $style_file  = $dir_path . '/style.css';
+    $style_file = $dir_path . '/style.css';
     $editor_file = $dir_path . '/editor.css';
     $script_file = $dir_path . '/index.js';
 
@@ -481,21 +488,21 @@ add_action(
       'banner-style',
       $dir_uri . '/style.css',
       array(),
-      file_exists( $style_file ) ? filemtime( $style_file ) : '1.0'
+      file_exists($style_file) ? filemtime($style_file) : '1.0'
     );
 
     wp_register_style(
       'banner-editor-style',
       $dir_uri . '/editor.css',
-      array( 'wp-edit-blocks' ),
-      file_exists( $editor_file ) ? filemtime( $editor_file ) : '1.0'
+      array('wp-edit-blocks'),
+      file_exists($editor_file) ? filemtime($editor_file) : '1.0'
     );
 
     wp_register_script(
       'banner-editor',
       $dir_uri . '/index.js',
-      array( 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor' ),
-      file_exists( $script_file ) ? filemtime( $script_file ) : '1.0',
+      array('wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor'),
+      file_exists($script_file) ? filemtime($script_file) : '1.0',
       true
     );
 
@@ -503,21 +510,21 @@ add_action(
       'banner-view',
       $dir_uri . '/index.js',
       array(),
-      file_exists( $script_file ) ? filemtime( $script_file ) : '1.0',
+      file_exists($script_file) ? filemtime($script_file) : '1.0',
       true
     );
 
-    // Block type itself is registered by the generic /blocks/*/block.json loader above.
+  // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 add_action(
   'init',
-  function () {
+    function () {
     $dir_path = get_stylesheet_directory() . '/blocks/banner-2';
-    $dir_uri  = get_stylesheet_directory_uri() . '/blocks/banner-2';
+    $dir_uri = get_stylesheet_directory_uri() . '/blocks/banner-2';
 
-    $style_file  = $dir_path . '/style.css';
+    $style_file = $dir_path . '/style.css';
     $editor_file = $dir_path . '/editor.css';
     $script_file = $dir_path . '/index.js';
 
@@ -525,21 +532,21 @@ add_action(
       'banner2-style',
       $dir_uri . '/style.css',
       array(),
-      file_exists( $style_file ) ? filemtime( $style_file ) : '1.0'
+      file_exists($style_file) ? filemtime($style_file) : '1.0'
     );
 
     wp_register_style(
       'banner2-editor-style',
       $dir_uri . '/editor.css',
-      array( 'wp-edit-blocks' ),
-      file_exists( $editor_file ) ? filemtime( $editor_file ) : '1.0'
+      array('wp-edit-blocks'),
+      file_exists($editor_file) ? filemtime($editor_file) : '1.0'
     );
 
     wp_register_script(
       'banner2-editor',
       $dir_uri . '/index.js',
-      array( 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor' ),
-      file_exists( $script_file ) ? filemtime( $script_file ) : '1.0',
+      array('wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor'),
+      file_exists($script_file) ? filemtime($script_file) : '1.0',
       true
     );
 
@@ -547,29 +554,29 @@ add_action(
       'banner2-view',
       $dir_uri . '/index.js',
       array(),
-      file_exists( $script_file ) ? filemtime( $script_file ) : '1.0',
+      file_exists($script_file) ? filemtime($script_file) : '1.0',
       true
     );
 
-    // Block type itself is registered by the generic /blocks/*/block.json loader above.
+  // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 add_action(
   'init',
-  function () {
+    function () {
     $dir_path = get_stylesheet_directory() . '/blocks/banner-3';
-    $dir_uri  = get_stylesheet_directory_uri() . '/blocks/banner-3';
+    $dir_uri = get_stylesheet_directory_uri() . '/blocks/banner-3';
 
-    $style_file   = $dir_path . '/style.css';
-    $editor_file  = $dir_path . '/editor.css';
-    $script_file  = $dir_path . '/index.js';
+    $style_file = $dir_path . '/style.css';
+    $editor_file = $dir_path . '/editor.css';
+    $script_file = $dir_path . '/index.js';
 
-    $style_version  = file_exists( $style_file ) ? filemtime( $style_file ) : '1.0';
-    $editor_version = file_exists( $editor_file ) ? filemtime( $editor_file ) : '1.0';
-    $script_version = file_exists( $script_file ) ? filemtime( $script_file ) : '1.0';
+    $style_version = file_exists($style_file) ? filemtime($style_file) : '1.0';
+    $editor_version = file_exists($editor_file) ? filemtime($editor_file) : '1.0';
+    $script_version = file_exists($script_file) ? filemtime($script_file) : '1.0';
 
-    if ( $style_version ) {
+    if ($style_version) {
       wp_register_style(
         'banner3-style',
         $dir_uri . '/style.css',
@@ -578,117 +585,119 @@ add_action(
       );
     }
 
-    if ( $editor_version ) {
+    if ($editor_version) {
       wp_register_style(
         'banner3-editor-style',
         $dir_uri . '/editor.css',
-        array( 'wp-edit-blocks' ),
+        array('wp-edit-blocks'),
         $editor_version
       );
     }
 
-    if ( $script_version ) {
+    if ($script_version) {
       wp_register_script(
         'banner3-editor',
         $dir_uri . '/index.js',
-        array( 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor' ),
+        array('wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor'),
         $script_version,
         true
       );
     }
 
-    // Block type itself is registered by the generic /blocks/*/block.json loader above.
+  // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 add_action(
   'init',
-  function () {
+    function () {
     $dir_path = get_stylesheet_directory() . '/blocks/blog-content';
-    $dir_uri  = get_stylesheet_directory_uri() . '/blocks/blog-content';
-    $asset    = $dir_path . '/index.js';
-    $version  = file_exists( $asset ) ? filemtime( $asset ) : null;
+    $dir_uri = get_stylesheet_directory_uri() . '/blocks/blog-content';
+    $asset = $dir_path . '/index.js';
+    $version = file_exists($asset) ? filemtime($asset) : null;
 
-    if ( $version ) {
+    if ($version) {
       wp_register_script(
         'blog-content-editor',
         $dir_uri . '/index.js',
-        array( 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor' ),
+        array('wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor'),
         $version,
         true
       );
     }
 
-    // Block type itself is registered by the generic /blocks/*/block.json loader above.
+  // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 add_action(
   'init',
-  function () {
+    function () {
     $dir_path = get_stylesheet_directory() . '/blocks/faq';
-    $dir_uri  = get_stylesheet_directory_uri() . '/blocks/faq';
-    $asset    = $dir_path . '/index.js';
-    $version  = file_exists( $asset ) ? filemtime( $asset ) : null;
+    $dir_uri = get_stylesheet_directory_uri() . '/blocks/faq';
+    $asset = $dir_path . '/index.js';
+    $version = file_exists($asset) ? filemtime($asset) : null;
 
-    if ( $version ) {
+    if ($version) {
       wp_register_script(
         'faq-editor',
         $dir_uri . '/index.js',
-        array( 'wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor' ),
+        array('wp-blocks', 'wp-element', 'wp-i18n', 'wp-components', 'wp-block-editor'),
         $version,
         true
       );
     }
 
-    // Block type itself is registered by the generic /blocks/*/block.json loader above.
+  // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 /* -----------------------  Admin-bar Clear Cache button  ----------------------- */
 
 // Add a Clear Cache button in the admin bar
-function add_clear_cache_button( $wp_admin_bar ) {
-  if ( ! current_user_can( 'manage_options' ) ) {
+function add_clear_cache_button($wp_admin_bar)
+{
+  if (!current_user_can('manage_options')) {
     return;
   }
 
   $args = array(
-    'id'    => 'clear_cache_button',
+    'id' => 'clear_cache_button',
     'title' => '🧹 Clear Cache',
-    'href'  => wp_nonce_url( admin_url( '?clear-cache=true' ), 'clear-cache' ),
-    'meta'  => array( 'class' => 'clear-cache-button' ),
+    'href' => wp_nonce_url(admin_url('?clear-cache=true'), 'clear-cache'),
+    'meta' => array('class' => 'clear-cache-button'),
   );
-  $wp_admin_bar->add_node( $args );
+  $wp_admin_bar->add_node($args);
 }
-add_action( 'admin_bar_menu', 'add_clear_cache_button', 100 );
+add_action('admin_bar_menu', 'add_clear_cache_button', 100);
 
 // Handle the cache clearing when button is clicked
-function handle_clear_cache_request() {
-  if ( ! isset( $_GET['clear-cache'] ) || ! wp_verify_nonce( $_GET['_wpnonce'] ?? '', 'clear-cache' ) ) {
+function handle_clear_cache_request()
+{
+  if (!isset($_GET['clear-cache']) || !wp_verify_nonce($_GET['_wpnonce'] ?? '', 'clear-cache')) {
     return;
   }
 
   // Clear WordPress object cache
-  if ( function_exists( 'wp_cache_flush' ) ) {
+  if (function_exists('wp_cache_flush')) {
     wp_cache_flush();
   }
 
   // Optional: clear plugin or transients cache
   global $wpdb;
-  $wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_%'" );
+  $wpdb->query("DELETE FROM $wpdb->options WHERE option_name LIKE '_transient_%'");
 
   // Redirect back with success message
-  wp_safe_redirect( remove_query_arg( array( 'clear-cache', '_wpnonce' ) ) );
+  wp_safe_redirect(remove_query_arg(array('clear-cache', '_wpnonce')));
   exit;
 }
-add_action( 'admin_init', 'handle_clear_cache_request' );
+add_action('admin_init', 'handle_clear_cache_request');
 
 /* -----------------------  Editor crash guards (polyfills)  ----------------------- */
 
 add_action(
   'enqueue_block_editor_assets',
-  function () {
+    function () {
     $inline = <<<'JS'
 (function (w) {
   var wp = w.wp || {};
@@ -750,97 +759,463 @@ add_action(
 JS;
 
     // Attach before multiple core handles to guarantee it runs ahead of the bundles that throw.
-    foreach ( array( 'wp-components', 'wp-editor', 'wp-edit-post' ) as $handle ) {
-      wp_add_inline_script( $handle, $inline, 'before' );
+    foreach (array('wp-components', 'wp-editor', 'wp-edit-post') as $handle) {
+      wp_add_inline_script($handle, $inline, 'before');
     }
   }
 );
 
 /* -----------------------  Custom Search SEO  ----------------------- */
 // 1. Standard WP Title
-add_filter( 'document_title_parts', function( $title ) {
-  if ( is_search() ) {
+add_filter('document_title_parts', function ($title) {
+  if (is_search()) {
     // Check if URL has /ko/
     $uri = $_SERVER['REQUEST_URI'] ?? '';
-    if ( strpos( $uri, '/ko/' ) !== false ) {
-       $title['title'] = '검색 결과';
-    } else {
-       $title['title'] = 'Search Results';
+    if (strpos($uri, '/ko/') !== false) {
+      $title['title'] = '검색 결과';
+    }
+    else {
+      $title['title'] = 'Search Results';
     }
   }
   return $title;
-} );
+});
 
 // 2. Rank Math Title Override
-add_filter( 'rank_math/frontend/title', function( $title ) {
-  if ( is_search() ) {
+add_filter('rank_math/frontend/title', function ($title) {
+  if (is_search()) {
     $uri = $_SERVER['REQUEST_URI'] ?? '';
-    if ( strpos( $uri, '/ko/' ) !== false ) {
-        return '검색 결과 | Creceri';
+    if (strpos($uri, '/ko/') !== false) {
+      return '검색 결과 | Creceri';
     }
     return 'Search Results | Creceri';
   }
   return $title;
-} );
+});
 
 // 3. Meta Description (Standard + Rank Math)
-add_action( 'wp_head', function() {
-  if ( is_search() ) {
+add_action('wp_head', function () {
+  if (is_search()) {
     $uri = $_SERVER['REQUEST_URI'] ?? '';
-    $is_ko = ( strpos( $uri, '/ko/' ) !== false );
+    $is_ko = (strpos($uri, '/ko/') !== false);
     $content = $is_ko
       ? "Creceri의 디지털 지식 허브에서 기사, 리소스, 인사이트를 찾아보세요. 비즈니스에 중요한 주제를 검색해 보세요."
       : "Find articles, resources, and insights across Creceri’s digital knowledge hub. Search for topics that matter to your business. ";
 
     // Note: Rank Math might output its own, so we filter that too below.
     // This direct echo is a fallback if RM is off.
-    if ( ! class_exists( 'RankMath' ) ) {
-        echo '<meta name="description" content="' . esc_attr($content) . '">' . "\n";
+    if (!class_exists('RankMath')) {
+      echo '<meta name="description" content="' . esc_attr($content) . '">' . "\n";
     }
   }
-}, 1 );
+}, 1);
 
-add_filter( 'rank_math/frontend/description', function( $desc ) {
-  if ( is_search() ) {
+add_filter('rank_math/frontend/description', function ($desc) {
+  if (is_search()) {
     $uri = $_SERVER['REQUEST_URI'] ?? '';
-    if ( strpos( $uri, '/ko/' ) !== false ) {
-        return 'Creceri의 디지털 지식 허브에서 기사, 리소스, 인사이트를 찾아보세요. 비즈니스에 중요한 주제를 검색해 보세요.';
+    if (strpos($uri, '/ko/') !== false) {
+      return 'Creceri의 디지털 지식 허브에서 기사, 리소스, 인사이트를 찾아보세요. 비즈니스에 중요한 주제를 검색해 보세요.';
     }
     return 'Find articles, resources, and insights across Creceri’s digital knowledge hub. Search for topics that matter to your business.';
   }
   return $desc;
-} );
+});
 
 /* -----------------------  Korean Search Template Routing  ----------------------- */
-add_filter( 'template_include', function( $template ) {
-  if ( is_search() ) {
+add_filter('template_include', function ($template) {
+  if (is_search()) {
     $uri = $_SERVER['REQUEST_URI'] ?? '';
-    if ( strpos( $uri, '/ko/' ) !== false ) {
-      $ko_template = locate_template( 'templates/ko-search-loader.php' );
-      if ( $ko_template ) {
+    if (strpos($uri, '/ko/') !== false) {
+      $ko_template = locate_template('templates/ko-search-loader.php');
+      if ($ko_template) {
         return $ko_template;
       }
     }
   }
 
   /* -----------------------  Korean 404 Template Routing  ----------------------- */
-  if ( is_404() ) {
+  if (is_404()) {
     $uri = $_SERVER['REQUEST_URI'] ?? '';
-    if ( strpos( $uri, '/ko/' ) !== false ) {
-      $ko_404_template = locate_template( 'templates/ko-404-loader.php' );
-      if ( $ko_404_template ) {
+    if (strpos($uri, '/ko/') !== false) {
+      $ko_404_template = locate_template('templates/ko-404-loader.php');
+      if ($ko_404_template) {
         return $ko_404_template;
       }
     }
   }
 
   return $template;
-} );
+});
 
 /* -----------------------  Robots.txt Fix  ----------------------- */
-add_filter( 'robots_txt', function( $output, $public ) {
+add_filter('robots_txt', function ($output, $public) {
   // Remove invalid "Content-signal: search=yes,ai-train=no" from RankMath
-  $output = str_replace( "Content-signal: search=yes,ai-train=no\n", "", $output );
-  $output = str_replace( "Content-signal: search=yes,ai-train=no", "", $output );
+  $output = str_replace("Content-signal: search=yes,ai-train=no\n", "", $output);
+  $output = str_replace("Content-signal: search=yes,ai-train=no", "", $output);
   return $output;
-}, 999, 2 );
+}, 999, 2);
+
+/* ==========================================================
+ * SCHEMA: DYNAMIC PAGE SCHEMAS (JSON-LD @graph)
+ * ========================================================== */
+add_action('wp_head', function () {
+  // Dynamic base variables (reused for all pages)
+  $site = trailingslashit(home_url('/'));
+  $org_name = 'Creceri';
+  $logo_url = $site . 'logo.png';
+
+  $schema = []; // Initialize empty schema array
+
+  // ---------------------------------------------------
+  // 1. HOMEPAGE SCHEMA
+  // ---------------------------------------------------
+  if (is_front_page()) {
+    $schema = [
+      '@context' => 'https://schema.org',
+      '@graph' => [
+        [
+          '@type' => 'Organization',
+          '@id' => $site . '#organization',
+          'name' => $org_name,
+          'url' => $site,
+          'logo' => $logo_url,
+          'description' => 'A digital knowledge hub dedicated to researching and publishing trusted insights across the tech and digital ecosystem.',
+          'knowsAbout' => [
+            'E-commerce Frameworks',
+            'CMS Logic',
+            'UI/UX Principles',
+            'Search Engine Optimization',
+            'Digital Innovation'
+          ]
+        ],
+        [
+          '@type' => 'WebSite',
+          '@id' => $site . '#website',
+          'url' => $site,
+          'name' => 'Creceri Knowledge Hub',
+          'publisher' => ['@id' => $site . '#organization'],
+          'description' => 'Explorations in digital innovation, platform reviews, and technical breakdowns.'
+        ],
+        [
+          '@type' => 'WebPage',
+          '@id' => $site . '#webpage',
+          'url' => $site,
+          'name' => 'Creceri | Digital Knowledge Hub & Tech Insights',
+          'isPartOf' => ['@id' => $site . '#website'],
+          'about' => ['@id' => $site . '#organization'],
+          'mainEntity' => [
+            '@type' => 'CreativeWork',
+            'name' => 'Creceri Digital Research Library'
+          ],
+          'hasPart' => [
+            [
+              '@type' => 'WebPage',
+              '@id' => $site . 'about/',
+              'name' => 'About Creceri',
+              'description' => 'Mission as a digital knowledge hub.'
+            ],
+            [
+              '@type' => 'WebPage',
+              '@id' => $site . 'ecommerce-development/',
+              'name' => 'E-commerce Insights',
+              'description' => 'Magento features and backend logic research.'
+            ],
+            [
+              '@type' => 'WebPage',
+              '@id' => $site . 'website-cms-development/',
+              'name' => 'CMS Knowledge',
+              'description' => 'Analysis of WordPress and web frameworks.'
+            ],
+            [
+              '@type' => 'WebPage',
+              '@id' => $site . 'ui-ux-design/',
+              'name' => 'UX Design Principles',
+              'description' => 'Research on user-centered principles.'
+            ],
+            [
+              '@type' => 'WebPage',
+              '@id' => $site . 'digital-marketing/',
+              'name' => 'SEO & Marketing Logic',
+              'description' => 'Foundations of search optimization and intent.'
+            ],
+            [
+              '@type' => 'WebPage',
+              '@id' => $site . 'team-extension/',
+              'name' => 'Industry Roles',
+              'description' => 'Studies on digital team models.'
+            ]
+          ],
+          'significantLink' => [
+            $site . 'stories/',
+            $site . 'whats-new/'
+          ]
+        ]
+      ]
+    ];
+  }
+
+  // ---------------------------------------------------
+  // 2. ABOUT US PAGE SCHEMA
+  // ---------------------------------------------------
+  elseif (is_page('about')) {
+    $schema = [
+      '@context' => 'https://schema.org',
+      '@graph' => [
+        [
+          '@type' => 'AboutPage',
+          '@id' => $site . 'about/#webpage',
+          'url' => $site . 'about/',
+          'name' => 'About Creceri | Learn Who We Are & What We Share',
+          'description' => 'Explore Creceri’s mission as a digital knowledge hub. Learn how we research and publish trusted information across the web and tech ecosystem.',
+          'mainEntity' => ['@id' => $site . '#organization'],
+          'isPartOf' => ['@id' => $site . '#website'],
+          'breadcrumb' => ['@id' => $site . 'about/#breadcrumb']
+        ],
+        [
+          '@type' => 'Organization',
+          '@id' => $site . '#organization',
+          'name' => $org_name,
+          'url' => $site,
+          'description' => 'A digital knowledge hub dedicated to technical research and tech ecosystem insights.',
+          'knowsAbout' => [
+            'E-commerce Development',
+            'CMS Logic',
+            'UI/UX Design Principles',
+            'Digital Marketing',
+            'Staffing Models'
+          ]
+        ],
+        [
+          '@type' => 'BreadcrumbList',
+          '@id' => $site . 'about/#breadcrumb',
+          'itemListElement' => [
+            [
+              '@type' => 'ListItem',
+              'position' => 1,
+              'name' => 'Home',
+              'item' => $site
+            ],
+            [
+              '@type' => 'ListItem',
+              'position' => 2,
+              'name' => 'About'
+            ]
+          ]
+        ]
+      ]
+    ];
+  }
+
+  // ---------------------------------------------------
+  // 3. DIGITAL MARKETING PAGE SCHEMA
+  // ---------------------------------------------------
+  elseif (is_page('digital-marketing')) {
+    $schema = [
+      '@context' => 'https://schema.org',
+      '@graph' => [
+        [
+          '@type' => 'CollectionPage',
+          '@id' => $site . 'digital-marketing/#webpage',
+          'url' => $site . 'digital-marketing/',
+          'name' => 'Digital Marketing & SEO Research Hub',
+          'description' => 'Comprehensive knowledge base for Semantic SEO, search intent, and technical optimization.',
+          'publisher' => ['@id' => $site . '#organization'],
+          'isPartOf' => ['@id' => $site . '#website'],
+          'mainEntity' => [
+            '@type' => 'ItemList',
+            'name' => 'Vertical Knowledge Pillars',
+            'description' => 'Deep-dive research articles within the Digital Marketing category.',
+            'itemListElement' => [
+              [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'item' => [
+                  '@type' => 'WebPage',
+                  '@id' => $site . 'digital-marketing/semantic-seo/',
+                  'url' => $site . 'digital-marketing/semantic-seo/',
+                  'name' => 'Semantic SEO'
+                ]
+              ],
+              [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'item' => [
+                  '@type' => 'WebPage',
+                  '@id' => $site . 'digital-marketing/what-is-topical-authority-seo/',
+                  'url' => $site . 'digital-marketing/what-is-topical-authority-seo/',
+                  'name' => 'Topical Authority'
+                ]
+              ],
+              [
+                '@type' => 'ListItem',
+                'position' => 3,
+                'item' => [
+                  '@type' => 'WebPage',
+                  '@id' => $site . 'digital-marketing/what-is-google-knowledge-graph/',
+                  'url' => $site . 'digital-marketing/what-is-google-knowledge-graph/',
+                  'name' => 'Google Knowledge Graph'
+                ]
+              ]
+            ]
+          ],
+          'relatedLink' => [
+            $site . 'ecommerce-development/',
+            $site . 'ui-ux-design/'
+          ],
+          'mentions' => [
+            [
+              '@type' => 'Thing',
+              'name' => 'Semantic SEO',
+              'sameAs' => 'https://www.wikidata.org/wiki/Q180711'
+            ],
+            [
+              '@type' => 'Thing',
+              'name' => 'Core Web Vitals',
+              'description' => 'LCP, FID, CLS metrics for search ranking.'
+            ]
+          ]
+        ]
+      ]
+    ];
+  }
+
+  // ---------------------------------------------------
+  // 4. ECOMMERCE DEVELOPMENT PAGE SCHEMA
+  // ---------------------------------------------------
+  elseif (is_page('ecommerce-development')) {
+    $schema = [
+      '@context' => 'https://schema.org',
+      '@graph' => [
+        [
+          '@type' => 'CollectionPage',
+          '@id' => $site . 'ecommerce-development/#webpage',
+          'url' => $site . 'ecommerce-development/',
+          'name' => 'E-commerce Development Hub | Systems & Strategy',
+          'description' => 'Research hub for e-commerce architecture, platform logic, and scalability models.',
+          'publisher' => ['@id' => $site . '#organization'],
+          'isPartOf' => ['@id' => $site . '#website'],
+          'mainEntity' => [
+            '@type' => 'ItemList',
+            'name' => 'Platform-Specific Research Guides',
+            'itemListElement' => [
+              [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'item' => [
+                  '@type' => 'WebPage',
+                  '@id' => $site . 'ecommerce-development-en/what-is-shopify-ecommerce-guide-2025/',
+                  'url' => $site . 'ecommerce-development-en/what-is-shopify-ecommerce-guide-2025/',
+                  'name' => 'Shopify E-commerce Guide 2025: Analysis & Features'
+                ]
+              ],
+              [
+                '@type' => 'ListItem',
+                'position' => 2,
+                'item' => [
+                  '@type' => 'WebPage',
+                  '@id' => $site . 'ecommerce-development-en/what-is-woocommerce-ecommerce/',
+                  'url' => $site . 'ecommerce-development-en/what-is-woocommerce-ecommerce/',
+                  'name' => 'Understanding WooCommerce: Ecosystem & Logic'
+                ]
+              ]
+            ]
+          ],
+          'relatedLink' => [
+            $site . 'digital-marketing/what-is-topical-authority-seo/',
+            $site . 'ui-ux-design/'
+          ],
+          'mentions' => [
+            ['@type' => 'Thing', 'name' => 'Shopify', 'sameAs' => 'https://www.wikidata.org/wiki/Q7501238'],
+            ['@type' => 'Thing', 'name' => 'WooCommerce', 'sameAs' => 'https://www.wikidata.org/wiki/Q13100806'],
+            ['@type' => 'Thing', 'name' => 'Magento', 'sameAs' => 'https://www.wikidata.org/wiki/Q1163773']
+          ]
+        ]
+      ]
+    ];
+  }
+
+  // ---------------------------------------------------
+  // 5. UI/UX PAGE SCHEMA
+  // ---------------------------------------------------
+  elseif (is_page('ui-ux-design')) {
+    $schema = [
+      '@context' => 'https://schema.org',
+      '@graph' => [
+        [
+          '@type' => 'CollectionPage',
+          '@id' => $site . 'ui-ux-design/#webpage',
+          'url' => $site . 'ui-ux-design/',
+          'name' => 'UI/UX & App Design | User-Centered Principles',
+          'description' => 'Research hub exploring user interaction, prototyping logic, and the impact of AI on the design ecosystem.',
+          'publisher' => ['@id' => $site . '#organization'],
+          'isPartOf' => ['@id' => $site . '#website'],
+          'mainEntity' => [
+            '@type' => 'ItemList',
+            'name' => 'UI/UX Research Articles',
+            'itemListElement' => [
+              [
+                '@type' => 'ListItem',
+                'position' => 1,
+                'item' => [
+                  '@type' => 'WebPage',
+                  '@id' => $site . 'ui-ux-design/are-ai-tools-expensive-for-beginners/',
+                  'url' => $site . 'ui-ux-design/are-ai-tools-expensive-for-beginners/',
+                  'name' => 'Are AI Tools Expensive for Beginners?'
+                ]
+              ]
+            ]
+          ],
+          'relatedLink' => [
+            $site . 'digital-marketing/user-experience-ux/',
+            $site . 'website-cms-development/',
+            $site . 'ecommerce-development/'
+          ],
+          'mentions' => [
+            ['@type' => 'Thing', 'name' => 'User Experience', 'sameAs' => 'https://www.wikidata.org/wiki/Q1055535'],
+            ['@type' => 'Thing', 'name' => 'Prototyping', 'sameAs' => 'https://www.wikidata.org/wiki/Q216398']
+          ]
+        ]
+      ]
+    ];
+  }
+
+  // ---------------------------------------------------
+  // OUTPUT: Safely encode and print if a schema exists
+  // ---------------------------------------------------
+  if (!empty($schema)) {
+    echo "\n" . '<script type="application/ld+json">' . "\n"
+    . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n"
+    . '</script>' . "\n";
+  }
+
+}, 20); // Priority 20 prevents blocking critical CSS
+
+
+
+
+/* Custom Dynamic Breadcrumbs */
+add_shortcode('custom_breadcrumbs', function () {
+  if (is_front_page() || is_home())
+    return '';
+
+  $separator = ' <span class="separator">/</span> ';
+  $home = '<a href="' . home_url('/') . '">Home</a>';
+
+  $breadcrumbs = '<p class="breadcrumb">' . $home;
+
+  if (is_single()) {
+    $breadcrumbs .= $separator . '<a href="' . home_url('/blogs/') . '">Blogs</a>';
+    $breadcrumbs .= $separator . '<span class="current">' . get_the_title() . '</span>';
+  }
+  elseif (is_page()) {
+    $breadcrumbs .= $separator . '<span class="current">' . get_the_title() . '</span>';
+  }
+  elseif (is_category()) {
+    $breadcrumbs .= $separator . '<a href="' . home_url('/blogs/') . '">Blogs</a>';
+    $breadcrumbs .= $separator . '<span class="current">' . single_cat_title('', false) . '</span>';
+  }
+
+  $breadcrumbs .= '</p>';
+
+  return $breadcrumbs;
+});

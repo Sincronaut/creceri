@@ -7,37 +7,68 @@
   "icon": "format-gallery",
   "supports": {
     "html": false,
-    "align": ["wide", "full"]
+    "align": [
+      "wide",
+      "full"
+    ]
   },
   "attributes": {
-    "header":      { "type": "string", "default": "" },
-    "sub-title":   { "type": "string", "default": "" },
-
+    "header": {
+      "type": "string",
+      "default": ""
+    },
+    "sub-title": {
+      "type": "string",
+      "default": ""
+    },
     "items": {
       "type": "array",
       "default": [],
       "items": {
         "type": "object",
         "properties": {
-          "image": { "type": "string", "default": "" },
-          "text":  { "type": "string", "default": "" }
+          "image": {
+            "type": "string",
+            "default": ""
+          },
+          "text": {
+            "type": "string",
+            "default": ""
+          }
         }
       }
     },
-
     "backgroundType": {
       "type": "string",
       "default": "none",
-      "enum": ["none", "color", "gradient"]
+      "enum": [
+        "none",
+        "color",
+        "gradient"
+      ]
     },
-    "backgroundValue":   { "type": "string", "default": "" },
-    "gradientDirection": { "type": "string", "default": "to right" },
-    "gradientColors":    { "type": "array",  "default": [] },
-
-    "dataIndex": { "type": "number", "default": 0 },
-    "dataKey":   { "type": "string", "default": "banners" }
+    "backgroundValue": {
+      "type": "string",
+      "default": ""
+    },
+    "gradientDirection": {
+      "type": "string",
+      "default": "to right"
+    },
+    "gradientColors": {
+      "type": "array",
+      "default": []
+    },
+    "dataIndex": {
+      "type": "number",
+      "default": 0
+    },
+    "dataKey": {
+      "type": "string",
+      "default": "banners"
+    }
   },
-
-  "style":  "file:./style.css",
+  "viewScript": "file:./view.js",
+  "style": "file:./style.css",
   "render": "file:./render.php"
 }

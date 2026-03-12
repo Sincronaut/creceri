@@ -46,7 +46,7 @@ $lead_weight = $A['lead_weight'] ?? '';
 $buttonType = in_array(($A['buttonType'] ?? 'Button'), array('Button','Search','none'), true) ? $A['buttonType'] : 'Button';
 $btnText  = $A['buttonText'] ?? 'Search';
 $btnUrl   = $A['buttonUrl'] ?? '#explore';
-$btnClass = $A['buttonClass'] ?? 'btn btn-custom text-white btn-pill';
+$btnClass = $A['buttonClass'] ?? 'btn btn-pill text-white btn-pill';
 
 $image   = is_array($A['image'] ?? null) ? $A['image'] : array();
 $img_src = $image['src'] ?? 'wp-content/uploads/2025/10/693a7a2703163f47b412f648b6da08ad8485fd2a.webp';
@@ -127,12 +127,11 @@ $style_attr = implode(';', $style_vars);
   <div class="hero__inner">
     <div class="hero__copy" >
       <h1 id="<?php echo esc_attr($title_id); ?>" class="title_h1">
-       <?php echo $brand; ?>
+       <span class="hero__brand"><?php echo $brand; ?></span>
+       <?php if (!empty($line_html)) : ?>
+         <span class="hero__line"><?php echo $line_html; ?></span>
+       <?php endif; ?>
       </h1>
-
-      <?php if (!empty($line_html)) : ?>
-        <h1 class="hero__line"><?php echo $line_html; ?></h1>
-      <?php endif; ?>
 
       <?php if (!empty($lead_weight)) : ?>
         <p class="hero__lead"><b><?php echo $lead_weight; ?></b></p>
@@ -149,8 +148,12 @@ $style_attr = implode(';', $style_vars);
       <?php elseif ($buttonType === 'Search') : ?>
         <form class="hero__search" action="<?php echo esc_url(home_url('/')); ?>" method="get" role="search">
           <label class="screen-reader-text" for="<?php echo esc_attr($section_id . '-s'); ?>">Search</label>
-          <input id="<?php echo esc_attr($section_id . '-s'); ?>" class="hero__input" type="search" name="s" />
-          <button type="submit" class="<?php echo esc_attr($btnClass); ?>"><?php echo esc_html($btnText); ?></button>
+          <input id="<?php echo esc_attr($section_id . '-s'); ?>" class="hero__input" type="search" name="s" placeholder="<?php echo esc_attr($btnText); ?>" />
+          <button type="submit" class="hero__icon" aria-label="<?php echo esc_attr($btnText); ?>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
         </form>
       <?php endif; ?>
     </div>
@@ -165,3 +168,4 @@ $style_attr = implode(';', $style_vars);
     </div>
   </div>
 </section>
+

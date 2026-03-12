@@ -12,14 +12,26 @@ Requires PHP: 5.7
 */
 
 :root {
+  --section-pad-y: clamp(3rem, 10vw, 6rem);
   --page-gutter-left: clamp(0.75rem, 8vw, 12rem);
   --page-gutter-right: clamp(0.75rem, 8vw, 12rem);
   --brand: #7b322c;
   --text: #652b26;
   --shadow: 0 6px 24px rgba(0, 0, 0, .06);
+  --btn-bg: #8b1c1c;
+  --btn-bg-dark: #5e1212;
+  --btn-color: #ffffff;
+  --btn-shadow: rgba(0, 0, 0, .2);
+  --btn-radius: 16px;
+  --btn-min-height: 42px;
+  --btn-min-width: 230px;
+  --btn-padding: 0 37px;
+  --btn-font-size: clamp(18px, 3.5vw, 24px);
+  --btn-font-weight: 700;
 }
 
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 
@@ -27,33 +39,41 @@ main.wp-block-group {
   margin-top: 0;
 }
 
-h1 {
-  font-size: 64px;
-  font-weight: 800;
+h1,
+.h1 {
+  font-size: clamp(48px, 6vw, 96px);
+  font-weight: 700;
   line-height: 1.2;
-  color: var(--brand, #962E2A);
+  color: #962E2A;
+  margin-top: 0;
 }
 
-h2 {
-  font-size: 45px;
+h2,
+.h2 {
+  font-size: clamp(28px, 4vw, 36px);
   font-weight: 700;
   line-height: 1.3;
+  color: #962E2A;
 }
 
-h3 {
-  font-size: 32px;
+h3,
+.h3 {
+  font-size: clamp(20px, 3vw, 24px);
   font-weight: 600;
   line-height: 1.35;
+  color: #962E2A;
 }
 
-h4 {
-  font-size: 24px;
+h4,
+.h4 {
+  font-size: clamp(18px, 2.5vw, 22px);
   font-weight: 600;
   line-height: 1.35;
 }
 
 p {
-  font-size: 20px;
+  font-size: var(--wp--preset--font-size--body);
+  font-weight: 400;
   line-height: 1.6;
 }
 
@@ -61,34 +81,6 @@ p b,
 p strong {
   font-size: 24px;
   font-weight: 800;
-}
-
-@media (max-width: 1199px) and (min-width: 768px) {
-  h1 {
-    font-size: 52px;
-  }
-
-  h2 {
-    font-size: 38px;
-  }
-
-  h3 {
-    font-size: 28px;
-  }
-}
-
-@media (max-width: 767px) {
-  h1 {
-    font-size: 40px;
-  }
-
-  h2 {
-    font-size: 30px;
-  }
-
-  h3 {
-    font-size: 24px;
-  }
 }
 
 @media (max-width: 575.98px) {
@@ -112,10 +104,132 @@ p strong {
   flex-direction: column;
 }
 
-.wp-site-blocks > main {
+.wp-site-blocks>main {
   flex: 1 0 auto;
 }
 
 .site-footer {
   flex-shrink: 0;
+}
+
+/* ===== Global Button Styles ===== */
+.btn-custom,
+.btn-pill,
+.btn-pill-desk,
+.btn-pill-mobile {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-size: var(--btn-font-size) !important;
+  font-weight: var(--btn-font-weight) !important;
+  color: var(--btn-color) !important;
+  background: var(--btn-bg) !important;
+  border-radius: var(--btn-radius) !important;
+  min-height: var(--btn-min-height) !important;
+  min-width: var(--btn-min-width) !important;
+  padding: var(--btn-padding) !important;
+  border: none !important;
+  line-height: 1 !important;
+  white-space: nowrap;
+  text-decoration: none !important;
+  box-shadow: 0 3px 0 var(--btn-bg-dark), 0 2px 6px var(--btn-shadow) !important;
+  transition: transform .06s ease, filter .2s ease, box-shadow .2s ease !important;
+  cursor: pointer;
+  margin-top: 0 !important;
+  height: auto !important;
+  width: auto !important;
+}
+
+.btn-custom:hover,
+.btn-pill:hover,
+.btn-pill-desk:hover,
+.btn-pill-mobile:hover {
+  filter: brightness(.96) !important;
+  transform: translateY(1px) !important;
+  box-shadow: 0 1px 0 var(--btn-bg-dark), 0 1px 3px var(--btn-shadow) !important;
+}
+
+.btn-custom:active,
+.btn-pill:active,
+.btn-pill-desk:active,
+.btn-pill-mobile:active {
+  transform: translateY(2px) !important;
+  box-shadow: none !important;
+}
+
+.btn-custom:focus-visible,
+.btn-pill:focus-visible,
+.btn-pill-desk:focus-visible,
+.btn-pill-mobile:focus-visible {
+  outline: 3px solid #caa6a2 !important;
+  outline-offset: 2px !important;
+}
+
+/* Mobile — hide desk variant, show mobile variant */
+@media (max-width: 699px) {
+  .btn-pill-desk {
+    display: none !important;
+  }
+
+  .btn-pill-mobile {
+    display: inline-flex !important;
+  }
+}
+
+/* Desktop — show desk variant, hide mobile variant */
+@media (min-width: 700px) {
+  .btn-pill-mobile {
+    display: none !important;
+  }
+
+  .btn-pill-desk {
+    display: inline-flex !important;
+  }
+}
+
+/* ===== End Global Button Styles ===== */
+
+
+/* CTA */
+.btn-pill {
+  min-width: clamp(160px, 28vw, 260px);
+  width: auto !important;
+  --c-start: #962E2A !important;
+  --c-end: #FFA318 !important;
+  text-decoration: none;
+  background-image: linear-gradient(90deg, var(--c-start) 0 50%, var(--c-end) 50% 100%) !important;
+  background-size: 200% 100% !important;
+  background-position: left center !important;
+  background-color: var(--c-start) !important;
+  color: #fff !important;
+  border: 0 !important;
+  padding: .75rem 25px !important;
+  border-radius: 999px !important;
+  cursor: pointer !important;
+  transition: background-position .35s ease, color .35s ease, box-shadow .2s ease, transform .2s ease !important;
+  font-size: var(--btn-font-size) !important;
+  font-weight: 650 !important;
+}
+
+.btn-pill:hover {
+  background-position: right center !important;
+  color: #000 !important;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .15) !important;
+  transform: translateY(-1px) !important;
+}
+
+.btn-pill:focus-visible {
+  outline: none !important;
+  box-shadow: 0 0 0 3px rgba(255, 163, 24, .45), 0 6px 16px rgba(0, 0, 0, .15) !important;
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .btn-pill {
+    transition: none !important;
+  }
+}
+
+.btn-pill:active {
+  transform: translateY(1px);
 }

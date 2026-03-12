@@ -7,16 +7,16 @@
 $attrs = $attributes ?? [];
 
 // Attributes with fallbacks
-$variant        = $attrs['variant']        ?? 'code'; // 'code' | 'image'
-$section_id     = $attrs['sectionId']      ?? 'subscribe';
-$subhead        = $attrs['subhead']        ?? '';
-$subhead1       = $attrs['subhead1']        ?? '';
-$title          = $attrs['title']          ?? '';
-$title1          = $attrs['title1']          ?? '';
-$kicker         = $attrs['kicker']         ?? '';
-$kicker1         = $attrs['kicker1']         ?? '';
+$variant = $attrs['variant'] ?? 'code'; // 'code' | 'image'
+$section_id = $attrs['sectionId'] ?? 'subscribe';
+$subhead = $attrs['subhead'] ?? '';
+$subhead1 = $attrs['subhead1'] ?? '';
+$title = $attrs['title'] ?? '';
+$title1 = $attrs['title1'] ?? '';
+$kicker = $attrs['kicker'] ?? '';
+$kicker1 = $attrs['kicker1'] ?? '';
 
-$bullets        = is_array($attrs['bullets'] ?? null) ? $attrs['bullets'] : [
+$bullets = is_array($attrs['bullets'] ?? null) ? $attrs['bullets'] : [
   ['text' => ''],
   ['text' => ''],
   ['text' => ''],
@@ -24,47 +24,53 @@ $bullets        = is_array($attrs['bullets'] ?? null) ? $attrs['bullets'] : [
   ['text' => ''],
 ];
 
-$form_heading   = $attrs['formHeading']    ?? 'Want updates delivered directly to you?';
-$name_ph        = $attrs['namePlaceholder']?? 'Name';
-$email_ph       = $attrs['emailPlaceholder']?? 'Email';
-$button_text    = $attrs['buttonText']     ?? 'Send Me Updates';
-$disclaimer     = $attrs['disclaimer']     ?? '';
-$disclaimer1     = $attrs['disclaimer1']     ?? 'No spam, just insights and trends.';
-$form_action    = $attrs['formAction']     ?? '#';
-$form_method    = $attrs['formMethod']     ?? 'post';
+$form_heading = $attrs['formHeading'] ?? 'Want updates delivered directly to you?';
+$name_ph = $attrs['namePlaceholder'] ?? 'Name';
+$email_ph = $attrs['emailPlaceholder'] ?? 'Email';
+$button_text = $attrs['buttonText'] ?? 'Send Me Updates';
+$disclaimer = $attrs['disclaimer'] ?? '';
+$disclaimer1 = $attrs['disclaimer1'] ?? 'No spam, just insights and trends.';
+$form_action = $attrs['formAction'] ?? '#';
+$form_method = $attrs['formMethod'] ?? 'post';
 
-$image          = $attrs['image']          ?? [];
-$image_src      = $image['src']            ?? '';
-$image_alt      = $image['alt']            ?? '';
-$image_loading  = $image['loading']        ?? 'lazy';
-$image_decoding = $image['decoding']       ?? 'async';
+$image = $attrs['image'] ?? [];
+$image_src = $image['src'] ?? '';
+$image_alt = $image['alt'] ?? '';
+$image_loading = $image['loading'] ?? 'lazy';
+$image_decoding = $image['decoding'] ?? 'async';
 
 // Helpers
-function child_subscribe_safe_text($v) { return esc_html( wp_strip_all_tags( (string)$v ) ); }
-function child_subscribe_bullets($items) {
-    $out = '';
-    foreach ($items as $item) {
-        $text = isset($item['text']) ? $item['text'] : '';
-        if ($text === '') continue;
-        $out .= '<li><span class="li-icon" aria-hidden="true"></span><span class="li-text">'. child_subscribe_safe_text($text) .'</span></li>';
-    }
-    return $out;
+function child_subscribe_safe_text($v)
+{
+  return esc_html(wp_strip_all_tags((string)$v));
+}
+function child_subscribe_bullets($items)
+{
+  $out = '';
+  foreach ($items as $item) {
+    $text = isset($item['text']) ? $item['text'] : '';
+    if ($text === '')
+      continue;
+    $out .= '<li><span class="li-icon" aria-hidden="true"></span><span class="li-text">' . child_subscribe_safe_text($text) . '</span></li>';
+  }
+  return $out;
 }
 
 // Variant: Image only
-if ($variant === 'image') : ?>
+if ($variant === 'image'): ?>
 <section id="<?php echo esc_attr($section_id); ?>" class="insight-section insight-section--imageonly" data-variant="image">
-  <?php if (!empty($image_src)) : ?>
+  <?php if (!empty($image_src)): ?>
     <img class="insight-image" src="<?php echo esc_url($image_src); ?>"
          alt="<?php echo esc_attr($image_alt); ?>"
          loading="<?php echo esc_attr($image_loading); ?>"
          decoding="<?php echo esc_attr($image_decoding); ?>" />
-  <?php else: ?>
+  <?php
+  else: ?>
     <div class="insight-image--placeholder" role="img" aria-label="Subscribe section image placeholder"></div>
-  <?php endif; ?>
+  <?php
+  endif; ?>
 </section>
-<?php
-return;
+<?php return;
 endif;
 // Variant: Code (designed section)
 ?>
@@ -79,7 +85,7 @@ endif;
       <p class="list-heading"><?php echo child_subscribe_safe_text($kicker); ?></p>
       <p class="list-heading1"><?php echo child_subscribe_safe_text($kicker1); ?></p>
       <ul class="value-list">
-        <?php echo wp_kses_post( child_subscribe_bullets($bullets) ); ?>
+        <?php echo wp_kses_post(child_subscribe_bullets($bullets)); ?>
       </ul>
        <p id="<?php echo esc_attr($section_id); ?>-title" class="headline"><?php echo child_subscribe_safe_text($title); ?></p>
     
@@ -97,26 +103,32 @@ endif;
       data-subscribe-form="true"
       data-success="Thank you for subscribing to our News Letter">
       <input type="hidden" name="action" value="child_subscribe_submit" />
-      <input type="hidden" name="child_subscribe_nonce" value="<?php echo esc_attr( wp_create_nonce( 'child_subscribe' ) ); ?>" />
+      <input type="hidden" name="child_subscribe_nonce" value="<?php echo esc_attr(wp_create_nonce('child_subscribe')); ?>" />
       
-    <?php if(child_subscribe_safe_text($name_ph)!=null):?>
+    <?php if (child_subscribe_safe_text($name_ph) != null): ?>
       <label class="sr-only" for="<?php echo esc_attr($section_id); ?>-name"><?php echo child_subscribe_safe_text($name_ph); ?></label>
       <input id="<?php echo esc_attr($section_id); ?>-name" type="text" name="name" placeholder="<?php echo esc_attr($name_ph); ?>" autocomplete="name" />
-    <?php endif;?>
-    <?php if (!empty($disclaimer)) : ?>
+    <?php
+endif; ?>
+    <?php if (!empty($disclaimer)): ?>
         <p class="disclaimer"><?php echo child_subscribe_safe_text($disclaimer); ?></p>
-    <?php endif; ?>
-    <?php if(child_subscribe_safe_text($email_ph)!=null):?>
-    <?php if (!empty($disclaimer1)) : ?><br><?php endif; ?>
+    <?php
+endif; ?>
+    <?php if (child_subscribe_safe_text($email_ph) != null): ?>
+    <?php if (!empty($disclaimer1)): ?><br><?php
+  endif; ?>
       <label class="sr-only" for="<?php echo esc_attr($section_id); ?>-email"><?php echo child_subscribe_safe_text($email_ph); ?></label>
       <input id="<?php echo esc_attr($section_id); ?>-email" class="customize-input" type="email" name="email" placeholder="Enter your email" autocomplete="email" required />
-    <?php endif;?>
-    <?php if (!empty($disclaimer1)) : ?><br><?php endif; ?>
-      <button type="submit" class="btn bc-acc__cta"><?php echo child_subscribe_safe_text($button_text); ?></button>
+    <?php
+endif; ?>
+    <?php if (!empty($disclaimer1)): ?><br><?php
+endif; ?>
+      <button type="submit" class="btn btn-pill"><?php echo child_subscribe_safe_text($button_text); ?></button>
      
-    <?php if (!empty($disclaimer1)) : ?>
+    <?php if (!empty($disclaimer1)): ?>
         <p class="disclaimer"><?php echo child_subscribe_safe_text($disclaimer1); ?></p>
-    <?php endif; ?>
+    <?php
+endif; ?>
       <p class="signup-box__notice" role="status" aria-live="polite"></p>
     </form>
   </div>

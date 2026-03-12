@@ -25,7 +25,7 @@ $imageSize    = strtolower(cban_str($A, 'imageSize', 'l'));          // s|m|l
 $buttonType   = cban_str($A, 'buttonType', 'Button');          // Button|Link|None
 $buttonText   = cban_str($A, 'buttonText', '');
 $buttonUrl    = cban_str($A, 'buttonUrl', '#');
-$buttonClass  = cban_str($A, 'buttonClass', 'btn btn-custom text-white');
+$buttonClass  = cban_str($A, 'buttonClass', 'btn btn-pill text-white');
 $textAlign    = strtolower(cban_str($A, 'textAlign', 'left'));
 $textScale    = floatval(cban_val($A, 'textScale', 1.0));
 $image        = cban_arr($A, 'image');
@@ -138,14 +138,15 @@ if ($brand === '' && $line === '' && $lead === '' && $imgSrc === '') { return; }
     <?php endif; ?>
 
     <div class="hero__copy">
-      <?php if ($brand !== ''): ?>
-        <h1 id="<?php echo esc_attr($hero_title_id); ?>" class="<?php echo esc_attr(implode(' ', $brand_mt_classes)); ?>" <?php echo $brand_style; ?>>
-          <?php echo esc_html($brand); ?>
+      <?php if ($brand !== '' || $line !== ''): ?>
+        <h1 id="<?php echo esc_attr($hero_title_id); ?>" class="<?php echo esc_attr(implode(' ', $brand_mt_classes)); ?> hero__heading">
+          <?php if ($brand !== ''): ?>
+            <span class="hero__brand"><?php echo esc_html($brand); ?></span>
+          <?php endif; ?>
+          <?php if ($line !== ''): ?>
+            <span class="hero__line"><?php echo wp_kses_post($line); ?></span>
+          <?php endif; ?>
         </h1>
-      <?php endif; ?>
-
-      <?php if ($line !== ''): ?>
-        <h2 class="hero__line"><?php echo wp_kses_post($line); ?></h2>
       <?php endif; ?>
 
       <?php if ($lead !== ''): ?>
@@ -153,10 +154,11 @@ if ($brand === '' && $line === '' && $lead === '' && $imgSrc === '') { return; }
       <?php endif; ?>
 
       <?php if (strtolower($buttonType) !== 'none' && $buttonText !== ''): ?>
-        <a class="<?php echo esc_attr($buttonClass); ?> btn-pill" style="padding:0px !important;padding-top:5px !important;" href="<?php echo esc_url($buttonUrl); ?>">
+        <a class="<?php echo esc_attr($buttonClass); ?> btn-pill" href="<?php echo esc_url($buttonUrl); ?>">
           <?php echo esc_html($buttonText); ?>
         </a>
       <?php endif; ?>
     </div>
   </div>
 </section>
+

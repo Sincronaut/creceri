@@ -47,7 +47,7 @@
       
       <!-- CTA to the right of #7 on desktop -->
       <div class="emerging__cta">
-        <a class="btn btn--primar btn-pill" href="#learn-more" aria-label="Learn more about what’s emerging">
+        <a class="btn btn-pill" href="#learn-more" aria-label="Learn more about what’s emerging">
           Learn More →
         </a>
       </div>
