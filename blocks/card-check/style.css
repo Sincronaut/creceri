@@ -330,6 +330,13 @@
   flex-shrink: 0;
 }
 
+/* White circle icon with red outline for .benefits variation */
+.who-we-are.benefits .bullet-item .check-icon {
+  background-color: #fff !important;
+  border: 2px solid var(--brand);
+  color: var(--brand) !important;
+}
+
 /* Exclude the specific staffing page multi-list section */
 .is-style-standard-lists .bullet-item .check-icon {
   background: none !important;

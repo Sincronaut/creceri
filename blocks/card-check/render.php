@@ -261,9 +261,9 @@ endif; ?>
       <?php
 endif; ?>
 
+      <?php if ($list_h3 !== ''): ?><h3 class="cc-subhead"><?php echo esc_html($list_h3); ?></h3><?php endif; ?>
+
       <?php if ($render_features): ?>
-        <?php if ($list_h3 !== ''): ?><h3 class="cc-subhead"><?php echo esc_html($list_h3); ?></h3><?php
-  endif; ?>
         <ul class="feature-list" role="list">
           <?php foreach ($features as $feat):
     $f_icon = sanitize_key($feat['icon'] ?? '');
