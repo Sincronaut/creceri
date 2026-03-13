@@ -49,7 +49,7 @@
           "name": "H3",
           "size": "24px",
           "fluid": {
-            "min": "20px",
+            "min": "19px",
             "max": "24px"
           }
         },

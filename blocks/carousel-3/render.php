@@ -133,7 +133,10 @@ $instance_id = function_exists('wp_unique_id') ? wp_unique_id('carousel-') : ('c
 
   <script>
   (function() {
-    var root = document.querySelector('[data-instance="<?php echo esc_js($instance_id); ?>"]');
+    var root = (function() {
+      var scripts = document.getElementsByTagName('script');
+      return scripts[scripts.length - 1].closest('[data-instance]');
+    })();
     if (!root) return;
     var track = root.querySelector('[data-track]');
     if (!track) return;

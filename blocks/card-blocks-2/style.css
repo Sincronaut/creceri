@@ -35,13 +35,14 @@
   padding: 0;
   margin: 32px auto 0;
   flex-wrap: nowrap;
-  gap: clamp(20px, 4vw, 80px);
+  gap: clamp(40px, 6vw, 120px);
   width: 100%;
   position: relative;
 }
 
 .ecom-dev__phase {
   flex: 0 0 auto;
+  min-width: clamp(220px, 18vw, 300px);
   position: relative;
   z-index: 1;
 }
@@ -161,23 +162,31 @@
   }
 }
 
-/* ===== Mobile (≤820): mirror grid, keep crosshairs ===== */
 @media (max-width:820px) {
   .ecom-dev {
-    padding-inline: clamp(16px, 6vw, 48px);
-    --icon: 100px;
+    padding-inline: clamp(12px, 4vw, 24px);
+    --icon: 90px;
   }
 
   .ecom-dev__phases {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 16px;
-    row-gap: 20px;
+    column-gap: clamp(24px, 6vw, 40px);
+    row-gap: clamp(32px, 8vw, 56px);
     margin: 24px 0 0;
   }
 
   .ecom-dev__phase {
     justify-self: center;
+    width: 100%;
+    padding-inline: 10px;
+    min-width: 0 !important; /* Reset the desktop min-width */
+  }
+
+  .ecom-dev__phase-title,
+  .ecom-dev__phase-desc {
+    max-width: 180px;
+    margin-inline: auto;
   }
 
   .ecom-dev__figure img {

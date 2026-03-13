@@ -235,7 +235,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const fRect = fromImg.getBoundingClientRect();
         const tRect = toImg.getBoundingClientRect();
 
-        const gap = 15; // Padding between image and start of dashed line
+        const gap = 20; // Padding between image and start of dashed line
         
         let x1, y1, x2, y2, cx, cy, curveHeight;
 
