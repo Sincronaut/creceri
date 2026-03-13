@@ -1,15 +1,12 @@
-<footer class="site-footer"> 
+<footer class="site-footer">
   <div class="footer__inner">
     <!-- top -->
     <div class="footer__top">
       <!-- Brand / blurb / social -->
       <div class="footer__brand">
         <span class="brand brand__text">
-          <img
-            class="footer__logo"
-            src="https://creceri.com/wp-content/uploads/2025/10/2-Transparent-scaled-1-scaled.png"
-            alt="Creceri Footer Logo"
-          />
+          <img class="footer__logo" src="/wp-content/themes/child-creceri-reyes/assets/images/creceri-logo.webp"
+            alt="Creceri Footer Logo" />
         </span>
 
         <br>
@@ -20,15 +17,19 @@
         </p>
 
         <nav class="footer__social" aria-label="Social media">
-          <a href="#" aria-label="Facebook" class="social social-f"><img src="https://creceri.com/wp-content/uploads/2025/10/f.png" alt="Facebook"></a>
-          <a href="#" aria-label="X (Twitter)" class="social social-x"><img src="https://creceri.com/wp-content/uploads/2025/10/x.png" alt="X"></a>
-          <a href="#" aria-label="Instagram" class="social social-i"><img src="https://creceri.com/wp-content/uploads/2025/10/i.png" alt="Instagram"></a>
-          <a href="#" aria-label="YouTube" class="social social-y"><img src="https://creceri.com/wp-content/uploads/2025/10/y.png" alt="YouTube"></a>
+          <a href="#" aria-label="Facebook" class="social social-f"><img
+              src="https://creceri.com/wp-content/uploads/2025/10/f.png" alt="Facebook"></a>
+          <a href="#" aria-label="X (Twitter)" class="social social-x"><img
+              src="https://creceri.com/wp-content/uploads/2025/10/x.png" alt="X"></a>
+          <a href="#" aria-label="Instagram" class="social social-i"><img
+              src="https://creceri.com/wp-content/uploads/2025/10/i.png" alt="Instagram"></a>
+          <a href="#" aria-label="YouTube" class="social social-y"><img
+              src="https://creceri.com/wp-content/uploads/2025/10/y.png" alt="YouTube"></a>
         </nav>
       </div>
 
       <!-- Nav columns -->
-      <nav class="footer__nav" aria-label="Company"> 
+      <nav class="footer__nav" aria-label="Company">
         <h3 class="footer__heading">Company</h3><br>
         <ul>
           <li><a href="/home">Home</a></li>
@@ -60,14 +61,14 @@
     </div>
   </div>
   <script>
-    (function(){
+    (function () {
       const setYear = () => {
         const els = document.querySelectorAll('.footer-year');
         const y = new Date().getFullYear();
         els.forEach(el => el.textContent = y);
       };
-      if(document.readyState === 'loading'){
-        document.addEventListener('DOMContentLoaded', setYear, {once:true});
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', setYear, { once: true });
       } else { setYear(); }
     })();
   </script>

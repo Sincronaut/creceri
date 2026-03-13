@@ -444,7 +444,7 @@
     }
 
     .main-header.is-open .main-header__nav {
-      max-height: 100vh; 
+      max-height: 100vh;
       opacity: 1;
       visibility: visible;
       transform: scaleY(1) translateY(0);
@@ -491,7 +491,7 @@
       box-shadow: none;
       padding: 0;
       margin: 0;
-      background: rgba(150, 46, 42, 0.03); 
+      background: rgba(150, 46, 42, 0.03);
     }
 
     /* Indent links inside the submenu on mobile */
@@ -508,7 +508,7 @@
     }
 
     .main-header__sub-toggle:checked+.main-header__nav-button+.main-header__submenu {
-      max-height: 500px; 
+      max-height: 500px;
       opacity: 1;
       visibility: visible;
       transform: translateY(0);
@@ -613,10 +613,9 @@
     <a class="brand main-header__brand" href="/home/">
       <span class="brand-text main-header__brand-text">
         <img class="brand-logo main-header__brand-logo"
-          src="https://creceri.com/wp-content/uploads/2025/10/2-Transparent-scaled-1-scaled.png"
-          data-logo-default="https://creceri.com/wp-content/uploads/2025/10/2-Transparent-scaled-1-scaled.png"
-          data-logo-scrolled="https://creceri.com/wp-content/uploads/2025/10/CRECERI-LOGO-1-finale_Artboard-3-scaled-2.png"
-          alt="Creceri">
+          src="/wp-content/themes/child-creceri-reyes/assets/images/creceri-logo.webp"
+          data-logo-default="/wp-content/themes/child-creceri-reyes/assets/images/creceri-logo.webp"
+          data-logo-scrolled="/wp-content/themes/child-creceri-reyes/assets/images/creceri-logo-2.webp" alt="Creceri">
       </span>
     </a>
 
@@ -732,7 +731,7 @@
       const open = !header.classList.contains('is-open');
       header.classList.toggle('is-open', open);
       if (burger) burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      
+
       // Reset submenus when closing
       if (!open) {
         header.querySelectorAll('.main-header__sub-toggle').forEach(t => t.checked = false);

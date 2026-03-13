@@ -11,7 +11,16 @@ $intro = isset($attrs['intro']) ? $attrs['intro'] : '';
 $steps = is_array($attrs['steps'] ?? null) ? $attrs['steps'] : [];
 $className = isset($attrs['className']) ? $attrs['className'] : '';
 
-$img_base = get_stylesheet_directory_uri() . '/assets/images/numbers/';
+$img_base = get_stylesheet_directory_uri() . '/assets/images/card-number/';
+
+/* Mapping for descriptive names */
+$img_map = [
+  1 => 'define-need.webp',
+  2 => 'select-talent.webp',
+  3 => 'integrate-talent.webp',
+  4 => 'maintain-control.webp',
+  5 => 'scale-talent.webp'
+];
 
 /* Fallback: if no steps provided in attributes, use defaults */
 if (empty($steps)) {
@@ -81,12 +90,29 @@ endif; ?>
   $heading = isset($step['heading']) ? $step['heading'] : '';
   $text = isset($step['text']) ? $step['text'] : '';
   $is_top = ($i % 2 === 0); /* 1,3,5 = top row; 2,4 = bottom row */
+  
+  /* Resolve image source */
+  $step_img = '';
+  if (isset($step['image']['src'])) {
+    $step_img = $step['image']['src'];
+  } elseif (isset($step['img']['src'])) {
+    $step_img = $step['img']['src'];
+  } elseif (isset($step['src'])) {
+    $step_img = $step['src'];
+  } else {
+    $img_file = isset($img_map[$num]) ? $img_map[$num] : $num . '.webp';
+    $step_img = $img_base . $img_file;
+  }
+  
+  $alt = isset($step['image']['alt']) ? $step['image']['alt'] : 
+         (isset($step['img']['alt']) ? $step['img']['alt'] : 
+         (isset($step['alt']) ? $step['alt'] : (string)$num));
 ?>
         <div class="cn-step cn-step--<?php echo $is_top ? 'top' : 'bottom'; ?>"
              data-step="<?php echo $num; ?>">
           <div class="cn-num">
-            <img src="<?php echo esc_url($img_base . $num . '.webp'); ?>"
-                 alt="<?php echo esc_attr($num); ?>"
+            <img src="<?php echo esc_url($step_img); ?>"
+                 alt="<?php echo esc_attr($alt); ?>"
                  width="100" height="100" loading="lazy" />
           </div>
           <h3 class="cn-step-title"><?php echo esc_html($heading); ?></h3>
