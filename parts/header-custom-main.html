@@ -90,9 +90,10 @@
 
   /* Active pill flip */
   .main-header .main-header__nav-link.active,
-  .main-header .main-header__nav-button.is-active {
+  .main-header .main-header__nav-button.is-active,
+  .main-header__submenu a.active {
     background: var(--brand);
-    color: #fff;
+    color: #fff !important;
     border-radius: 10px;
     padding: 8px 16px;
   }
@@ -605,6 +606,13 @@
 
   .width_menu_lang {
     min-width: 150px !important;
+  }
+
+  /* Language Selector active state */
+  .main-header__lang-menu a.is-active {
+    background: var(--rose-100) !important;
+    color: var(--brand) !important;
+    font-weight: 700;
   }
 </style>
 
