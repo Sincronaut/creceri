@@ -1198,20 +1198,42 @@ add_shortcode('custom_breadcrumbs', function () {
   if (is_front_page() || is_home())
     return '';
 
+  // Detect current language
+  $uri = $_SERVER['REQUEST_URI'] ?? '';
+  $is_ko = (strpos($uri, '/ko/') !== false);
+
   $separator = ' <span class="separator">/</span> ';
-  $home = '<a href="' . home_url('/') . '">Home</a>';
+  $home_label = $is_ko ? '홈' : 'Home';
+  $home = '<a href="' . home_url('/') . '">' . $home_label . '</a>';
 
   $breadcrumbs = '<p class="breadcrumb">' . $home;
 
   if (is_single()) {
-    $breadcrumbs .= $separator . '<a href="' . home_url('/blogs/') . '">Blogs</a>';
+    $categories = get_the_category();
+    if (!empty($categories)) {
+      $cat = $categories[0];
+      $cat_name = $cat->name;
+      $cat_slug = $cat->slug;
+
+      // EN: /blogs/  KO: /ko/블로그/
+      $blog_path = $is_ko ? 'ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' : 'blogs/';
+      $cat_url = home_url($blog_path) . '?filter=' . urlencode($cat_slug) . '#category-list';
+
+      $breadcrumbs .= $separator . '<a href="' . $cat_url . '">' . esc_html($cat_name) . '</a>';
+    } else {
+      $blog_label = $is_ko ? '블로그' : 'Blogs';
+      $blog_path = $is_ko ? 'ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' : 'blogs/';
+      $breadcrumbs .= $separator . '<a href="' . home_url($blog_path) . '">' . $blog_label . '</a>';
+    }
     $breadcrumbs .= $separator . '<span class="current">' . get_the_title() . '</span>';
   }
   elseif (is_page()) {
     $breadcrumbs .= $separator . '<span class="current">' . get_the_title() . '</span>';
   }
   elseif (is_category()) {
-    $breadcrumbs .= $separator . '<a href="' . home_url('/blogs/') . '">Blogs</a>';
+    $blog_label = $is_ko ? '블로그' : 'Blogs';
+    $blog_path = $is_ko ? 'ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' : 'blog/';
+    $breadcrumbs .= $separator . '<a href="' . home_url($blog_path) . '">' . $blog_label . '</a>';
     $breadcrumbs .= $separator . '<span class="current">' . single_cat_title('', false) . '</span>';
   }
 
