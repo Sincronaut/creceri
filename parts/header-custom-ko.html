@@ -94,7 +94,7 @@
   .main-header .main-header__nav-button.is-active,
   .main-header__submenu a.active {
     background: var(--brand);
-    color: #fff !important;
+    color: #fff;
     border-radius: 10px;
     padding: 8px 16px;
   }
@@ -102,7 +102,7 @@
   .main-header.is-scrolled .main-header__nav-link.active,
   .main-header.is-scrolled .main-header__nav-button.is-active {
     background: #fff;
-    color: var(--brand);
+    color: var(--brand) !important;
   }
 
   .main-header.is-scrolled .main-header__nav-link:hover,
@@ -476,9 +476,10 @@
     }
 
     .main-header.is-open .main-header__nav-link.active,
-    .main-header.is-open .main-header__nav-button.is-active {
-      background: #fff !important;
-      color: var(--brand) !important;
+    .main-header.is-open .main-header__nav-button.is-active,
+    .main-header__dropdown .main-header__submenu a.active {
+      background: var(--brand) !important;
+      color: #fff !important;
     }
 
     .main-header__dropdown .main-header__submenu {
