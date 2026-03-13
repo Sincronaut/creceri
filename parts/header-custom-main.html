@@ -695,21 +695,19 @@
     const DEFAULT_LANG = 'en';
     const NON_DEFAULTS = ['ko'];
 
-    // Map base (EN) slugs -> localized slugs for KO.
-    // Keep menu hrefs as EN slugs; we’ll transform them at runtime.
-    const KO_SLUG_MAP = {
-      '': '',
-      'home': '',
-      'about': '%EC%A0%95%EB%B3%B4',
-      'ecommerce-development': '%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98-%EA%B0%9C%EB%B0%9C',
-      'website-cms-development': '%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-cms-%EA%B0%9C%EB%B0%9C',
-      'ui-ux-design': 'ui-ux-%EB%94%94%EC%9E%90%EC%9D%B8',
-      'digital-marketing': '%EB%94%94%EC%A7%80%ED%84%B8-%EB%A7%88%EC%BC%80%ED%8C%85',
-      'team-extension': '%ED%8C%80-%ED%99%95%EC%9E%A5',
-      'stories': '%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%93%A4',
-      'whats-new': '%EC%83%88%EC%86%8C%EC%8B%9D',
-      'contact-us': '%EB%AC%B8%EC%9D%98%ED%95%98%EA%B8%B0',
-      'blogs': '%EB%B8%94%EB%A1%9C%EA%B7%B8'
+    // Canonical route map. Edit once, reuse everywhere.
+    const I18N_ROUTES = {
+      home: { en: '/home/', ko: '/ko/' },
+      about: { en: '/about/', ko: '/ko/%EC%A0%95%EB%B3%B4/' },
+      ecom: { en: '/ecommerce-development/', ko: '/ko/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98-%EA%B0%9C%EB%B0%9C/' },
+      cms: { en: '/website-cms-development/', ko: '/ko/%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-cms-%EA%B0%9C%EB%B0%9C/' },
+      uiux: { en: '/ui-ux-design/', ko: '/ko/ui-ux-%EB%94%94%EC%9E%90%EC%9D%B8/' },
+      mkt: { en: '/digital-marketing/', ko: '/ko/%EB%94%94%EC%A7%80%ED%84%B8-%EB%A7%88%EC%BC%80%ED%8C%85/' },
+      team: { en: '/team-extension/', ko: '/ko/%ED%8C%80-%ED%99%95%EC%9E%A5/' },
+      stories: { en: '/stories', ko: '/ko/%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%93%A4' },
+      whatsnew: { en: '/whats-new', ko: '/ko/%EC%83%88%EC%86%8C%EC%8B%9D' },
+      contact: { en: '/contact-us/', ko: '/ko/%EB%AC%B8%EC%9D%98%ED%95%98%EA%B8%B0/' },
+      blogs: { en: '/blogs/', ko: '/ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' }
     };
 
     /* ---------- Layout, scroll, logo ---------- */
@@ -753,45 +751,44 @@
       const stripped = (pathname || '/').replace(re, '');
       return stripped || '/';
     }
-    function splitPath(path) {
-      const trailing = /\/$/.test(path);
-      const parts = path.replace(/^\/+/, '').split('/');
-      return { parts, trailing };
-    }
-    function joinPath(parts, trailing) {
-      let out = '/' + parts.filter(Boolean).join('/');
-      if (trailing && out !== '/') out += '/';
-      return out || '/';
-    }
-    function firstSegBase(parts) {
-      // Remove known '-ko' suffix to get base key.
-      const seg = (parts[0] || '');
-      return seg.replace(/-ko$/i, '');
-    }
-    function applySlugMap(pathNoLang, targetLang) {
-      const { parts, trailing } = splitPath(pathNoLang);
-      const base = firstSegBase(parts);
-      if (targetLang === 'ko') {
-        const koSeg = (base in KO_SLUG_MAP) ? KO_SLUG_MAP[base] : (base ? base + '-ko' : '');
-        parts[0] = koSeg;
-      } else {
-        // EN: always de-suffix the first segment.
-        parts[0] = base;
-      }
-      return joinPath(parts, trailing);
-    }
     function getPathLang(pathname) {
       const m = (pathname || '').match(/^\/([a-z]{2})(?=\/|$)/i);
       const code = m ? m[1].toLowerCase() : DEFAULT_LANG;
       return NON_DEFAULTS.includes(code) ? code : DEFAULT_LANG;
     }
-    function getCurrentLang() {
-      return getPathLang(location.pathname);
+    function getCurrentLang() { return getPathLang(location.pathname); }
+
+    function resolveRouteByPath(pathname) {
+      const path = (pathname || '/').replace(/\/{2,}/g, '/').toLowerCase();
+
+      // Priority 1: Exact matches (prevents /ko/ matching /ko/about/)
+      for (const key in I18N_ROUTES) {
+        if (path === I18N_ROUTES[key].en.toLowerCase() || path === I18N_ROUTES[key].ko.toLowerCase()) {
+          return key;
+        }
+      }
+
+      // Priority 2: Sub-pages/Prefixes (longest match first)
+      const sortedKeys = Object.keys(I18N_ROUTES).sort((a,b) => I18N_ROUTES[b].en.length - I18N_ROUTES[a].en.length);
+      for (const key of sortedKeys) {
+        if (key === 'home') continue; // Home should only match exactly
+        const en = I18N_ROUTES[key].en.toLowerCase();
+        const ko = I18N_ROUTES[key].ko.toLowerCase();
+        if (path.startsWith(en.endsWith('/') ? en : en + '/')) return key;
+        if (path.startsWith(ko.endsWith('/') ? ko : ko + '/')) return key;
+      }
+
+      return null;
     }
+
     function buildTargetUrl(lang) {
+      const key = resolveRouteByPath(location.pathname);
+      if (key && I18N_ROUTES[key] && I18N_ROUTES[key][lang]) {
+        return location.origin + I18N_ROUTES[key][lang] + location.search + location.hash;
+      }
+      // Fallback: locale prefix strategy
       const pathNoLang = stripLangPrefix(location.pathname);
-      const mapped = applySlugMap(pathNoLang, lang);
-      let newPath = (lang === DEFAULT_LANG) ? mapped : ('/' + lang + (mapped === '/' ? '/' : mapped));
+      let newPath = (lang === DEFAULT_LANG) ? pathNoLang : ('/' + lang + (pathNoLang === '/' ? '/' : pathNoLang));
       newPath = newPath.replace(/\/{2,}/g, '/');
       return location.origin + newPath + location.search + location.hash;
     }
@@ -807,8 +804,14 @@
     function hrefWithLang(href, lang) {
       const url = new URL(href, location.origin);
       const normalized = stripLangPrefix(url.pathname);
-      const mapped = applySlugMap(normalized, lang);
-      url.pathname = (lang === DEFAULT_LANG) ? mapped : ('/' + lang + (mapped === '/' ? '/' : mapped));
+
+      const key = resolveRouteByPath(url.pathname);
+      if (key && I18N_ROUTES[key] && I18N_ROUTES[key][lang]) {
+        url.pathname = I18N_ROUTES[key][lang];
+      } else {
+        url.pathname = (lang === DEFAULT_LANG) ? normalized : ('/' + lang + (normalized === '/' ? '/' : normalized));
+      }
+
       url.pathname = url.pathname.replace(/\/{2,}/g, '/');
       return url.pathname + url.search + url.hash;
     }
@@ -824,9 +827,8 @@
 
     /* ---------- Active state (normalize suffix + prefix) ---------- */
     function normalizePathname(pathname) {
-      const stripped = stripLangPrefix(pathname || '/');
-      const { parts } = splitPath(stripped);
-      parts[0] = firstSegBase(parts); // remove '-ko' for compare
+      const stripped = stripLangPrefix(pathname || '/').replace(/\/+$/, '');
+      return (stripped || '/').toLowerCase();
       let p = '/' + parts.filter(Boolean).join('/');
       p = p.replace(/\/+$/, '');
       return p || '/';
@@ -862,6 +864,15 @@
         const trigger = dropdown && dropdown.querySelector('.main-header__nav-button');
         if (trigger) { trigger.classList.add('is-active'); }
       }
+
+      // Sync Language Menu
+      const currentLang = getCurrentLang();
+      const langLinks = header.querySelectorAll('.main-header__lang-menu [data-lang]');
+      langLinks.forEach(a => {
+        const code = (a.dataset.lang || '').toLowerCase();
+        a.classList.toggle('is-active', code === currentLang);
+        a.setAttribute('aria-current', code === currentLang ? 'true' : 'false');
+      });
     }
 
     /* ---------- Wire-up ---------- */
@@ -871,12 +882,6 @@
       setHeaderHeight();
       onScroll();
       syncNavActiveState();
-
-      langLinks.forEach(a => {
-        const code = (a.dataset.lang || '').toLowerCase();
-        a.classList.toggle('is-active', code === currentLang);
-        a.setAttribute('aria-current', code === currentLang ? 'true' : 'false');
-      });
     });
 
     window.addEventListener('resize', () => { setHeaderHeight(); onScroll(); });

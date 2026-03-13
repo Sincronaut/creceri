@@ -707,8 +707,8 @@
       uiux: { en: '/ui-ux-design/', ko: '/ko/ui-ux-%EB%94%94%EC%9E%90%EC%9D%B8/' },
       mkt: { en: '/digital-marketing/', ko: '/ko/%EB%94%94%EC%A7%80%ED%84%B8-%EB%A7%88%EC%BC%80%ED%8C%85/' },
       team: { en: '/team-extension/', ko: '/ko/%ED%8C%80-%ED%99%95%EC%9E%A5/' },
-      stories: { en: '/stories/', ko: '/ko/%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%93%A4/' },
-      whatsnew: { en: '/whats-new/', ko: '/ko/%EC%83%88%EC%86%8C%EC%8B%9D/' },
+      stories: { en: '/stories', ko: '/ko/%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%93%A4' },
+      whatsnew: { en: '/whats-new', ko: '/ko/%EC%83%88%EC%86%8C%EC%8B%9D' },
       contact: { en: '/contact-us/', ko: '/ko/%EB%AC%B8%EC%9D%98%ED%95%98%EA%B8%B0/' },
       blogs: { en: '/blogs/', ko: '/ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' }
     };
@@ -764,12 +764,24 @@
 
     function resolveRouteByPath(pathname) {
       const path = (pathname || '/').replace(/\/{2,}/g, '/').toLowerCase();
+
+      // Priority 1: Exact matches (prevents /ko/ matching /ko/about/)
       for (const key in I18N_ROUTES) {
-        const en = I18N_ROUTES[key].en.toLowerCase().replace(/\/{2,}/g, '/');
-        const ko = I18N_ROUTES[key].ko.toLowerCase().replace(/\/{2,}/g, '/');
-        if (path === en || path.startsWith(en.endsWith('/') ? en : en + '/')) return key;
-        if (path === ko || path.startsWith(ko.endsWith('/') ? ko : ko + '/')) return key;
+        if (path === I18N_ROUTES[key].en.toLowerCase() || path === I18N_ROUTES[key].ko.toLowerCase()) {
+          return key;
+        }
       }
+
+      // Priority 2: Sub-pages/Prefixes (longest match first)
+      const sortedKeys = Object.keys(I18N_ROUTES).sort((a,b) => I18N_ROUTES[b].en.length - I18N_ROUTES[a].en.length);
+      for (const key of sortedKeys) {
+        if (key === 'home') continue; // Home should only match exactly
+        const en = I18N_ROUTES[key].en.toLowerCase();
+        const ko = I18N_ROUTES[key].ko.toLowerCase();
+        if (path.startsWith(en.endsWith('/') ? en : en + '/')) return key;
+        if (path.startsWith(ko.endsWith('/') ? ko : ko + '/')) return key;
+      }
+
       return null;
     }
 
@@ -849,6 +861,15 @@
         const trigger = dropdown && dropdown.querySelector('.main-header__nav-button');
         if (trigger) { trigger.classList.add('is-active'); }
       }
+
+      // Sync Language Menu
+      const currentLang = getCurrentLang();
+      const langLinks = header.querySelectorAll('.main-header__lang-menu [data-lang]');
+      langLinks.forEach(a => {
+        const code = (a.dataset.lang || '').toLowerCase();
+        a.classList.toggle('is-active', code === currentLang);
+        a.setAttribute('aria-current', code === currentLang ? 'true' : 'false');
+      });
     }
 
     /* ---------- Wire-up ---------- */
@@ -862,13 +883,6 @@
       setHeaderHeight();
       onScroll();
       syncNavActiveState();
-
-      // Language menu affordance
-      langLinks.forEach(a => {
-        const code = (a.dataset.lang || '').toLowerCase();
-        a.classList.toggle('is-active', code === currentLang);
-        a.setAttribute('aria-current', code === currentLang ? 'true' : 'false');
-      });
     });
 
     window.addEventListener('resize', () => { setHeaderHeight(); onScroll(); });
