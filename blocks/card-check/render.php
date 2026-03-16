@@ -56,7 +56,7 @@ $bullets = (isset($A['bullets']) && is_array($A['bullets'])) ? $A['bullets'] : a
 $features = (isset($A['features']) && is_array($A['features'])) ? $A['features'] : array();
 
 $list_mode = isset($A['listMode']) ? $A['listMode'] : 'auto'; // "auto" | "bullets" | "features"
-$list_h3 = isset($A['listHeading']) ? sanitize_text_field($A['listHeading']) : 'What We Share';
+$list_h3 = isset($A['listHeading']) ? sanitize_text_field($A['listHeading']) : '';
 
 $content_style_parts = array();
 if ($padding_left !== '') {

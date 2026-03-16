@@ -1232,7 +1232,7 @@ add_shortcode('custom_breadcrumbs', function () {
   }
   elseif (is_category()) {
     $blog_label = $is_ko ? '블로그' : 'Blogs';
-    $blog_path = $is_ko ? 'ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' : 'blog/';
+    $blog_path = $is_ko ? 'ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' : 'blogs/';
     $breadcrumbs .= $separator . '<a href="' . home_url($blog_path) . '">' . $blog_label . '</a>';
     $breadcrumbs .= $separator . '<span class="current">' . single_cat_title('', false) . '</span>';
   }
