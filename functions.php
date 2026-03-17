@@ -1243,41 +1243,38 @@ add_shortcode('custom_breadcrumbs', function () {
   return $breadcrumbs;
 });
 
-/**
- * Fix Slug Collision: Page vs Category
- * Internally tells WordPress to prioritize a Page if the slug matches a Category.
- * This avoids 302 redirect loops and 429 errors on some hosted servers.
- */
-add_filter('request', function($query_vars) {
-    // 1. Only intercept if we have a category slug but NO single post/page name
-    // This ensures that clicking a blog post (which has a 'name' variable) still works.
-    if (isset($query_vars['category_name']) && !empty($query_vars['category_name'])) {
-        
-        // If "name" is set, it means WP found a specific post, so we should NOT hijack it.
-        if (!empty($query_vars['name']) || !empty($query_vars['pagename'])) {
-            return $query_vars;
-        }
 
-        $slug = $query_vars['category_name'];
-        
-        // 2. Check if a Page exists with this exact slug (English)
-        $page = get_page_by_path($slug);
-        
-        // 3. If the Page exists, load the Page instead of the Category Archive
-        if ($page && $page->post_status === 'publish') {
-            unset($query_vars['category_name']);
-            $query_vars['pagename'] = $slug;
-            return $query_vars;
-        }
+//Fix Slug Collision: Page vs Category
+//Internally tells WordPress to prioritize a Page if the slug matches a Category.
+add_filter('request', function ($query_vars) {
 
-        // 4. Korean check: Handle sub-pages in /ko/
-        $page_ko = get_page_by_path('ko/' . $slug);
-        if ($page_ko && $page_ko->post_status === 'publish') {
-            unset($query_vars['category_name']);
-            $query_vars['pagename'] = 'ko/' . $slug;
-            return $query_vars;
-        }
+  // This ensures that clicking a blog post (which has a 'name' variable) still works.
+  if (isset($query_vars['category_name']) && !empty($query_vars['category_name'])) {
+
+    // If "name" is set, it means WP found a specific post, so we should NOT hijack it.
+    if (!empty($query_vars['name']) || !empty($query_vars['pagename'])) {
+      return $query_vars;
     }
-    return $query_vars;
-});
 
+    $slug = $query_vars['category_name'];
+
+    // 2. Check if a Page exists with this exact slug (English)
+    $page = get_page_by_path($slug);
+
+    // 3. If the Page exists, load the Page instead of the Category Archive
+    if ($page && $page->post_status === 'publish') {
+      unset($query_vars['category_name']);
+      $query_vars['pagename'] = $slug;
+      return $query_vars;
+    }
+
+    // 4. Korean check: Handle sub-pages in /ko/
+    $page_ko = get_page_by_path('ko/' . $slug);
+    if ($page_ko && $page_ko->post_status === 'publish') {
+      unset($query_vars['category_name']);
+      $query_vars['pagename'] = 'ko/' . $slug;
+      return $query_vars;
+    }
+  }
+  return $query_vars;
+});
