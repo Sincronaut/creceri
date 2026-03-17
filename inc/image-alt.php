@@ -164,6 +164,11 @@ if ( ! function_exists( 'creceri_filter_rendered_block_for_alt' ) ) {
   function creceri_filter_rendered_block_for_alt( $block_content, $block ) {
     if ( ! is_string( $block_content ) || $block_content === '' ) return $block_content;
 
+    // Skip template parts (header, footer, etc.) to avoid breaking icons/flags
+    if ( isset( $block['blockName'] ) && $block['blockName'] === 'core/template-part' ) {
+      return $block_content;
+    }
+
     $block_alt = creceri_block_alt_from_attrs( $block );
 
     // Global template override (forces fixed alt on the page)
