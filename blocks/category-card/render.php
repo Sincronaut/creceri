@@ -21,27 +21,32 @@ function cc_clean($v)
   return html_entity_decode(wp_specialchars_decode((string)$v), ENT_QUOTES | ENT_HTML5, 'UTF-8');
 }
 
+$A = is_array($attributes ?? null) ? $attributes : array();
 $uri = $_SERVER['REQUEST_URI'] ?? '';
-$is_ko = (strpos($uri, '/ko/') !== false);
+
+function cc_i18n($A, $key, $fallback) {
+  $val = cc_val($A, $key);
+  return cc_clean($val ?: $fallback);
+}
+
+$is_ko = (strpos($uri, '/ko/') !== false) || (function_exists('get_locale') && strpos(get_locale(), 'ko') === 0);
 
 $i18n = [
-  'no_results'      => $is_ko ? '결과를 찾을 수 없습니다' : 'No results found',
-  'no_results_desc' => $is_ko ? '검색어와 일치하는 내용을 찾을 수 없습니다. 다른 키워드를 입력해 보세요.' : "We couldn't find anything matching your search. Please try a different keyword.",
-  'all'             => $is_ko ? '전체' : 'All',
-  'all_cats'        => $is_ko ? '전체 카테고리' : 'All Categories',
-  'sort_label'      => $is_ko ? '정렬:' : 'Sort:',
-  'newest'          => $is_ko ? '최신순' : 'Newest',
-  'oldest'          => $is_ko ? '오래된순' : 'Oldest',
-  'title_az'        => $is_ko ? '제목 (A - Z)' : 'Title A - Z',
-  'title_za'        => $is_ko ? '제목 (Z - A)' : 'Title Z - A',
-  'read_more'       => $is_ko ? '자세히 보기' : 'Read More',
-  'prev'            => $is_ko ? '이전' : 'Prev',
-  'next'            => $is_ko ? '다음' : 'Next',
-  'goto'            => $is_ko ? '이동:' : 'Go to:',
+  'no_results'      => cc_i18n($A, 'noResultsText',     $is_ko ? '결과를 찾을 수 없습니다' : 'No results found'),
+  'no_results_desc' => cc_i18n($A, 'noResultsDescText', $is_ko ? '검색어와 일치하는 내용을 찾을 수 없습니다. 다른 키워드를 입력해 보세요.' : "We couldn't find anything matching your search. Please try a different keyword."),
+  'all'             => cc_i18n($A, 'allText',           $is_ko ? '전체' : 'All'),
+  'all_cats'        => cc_i18n($A, 'allCatsText',      $is_ko ? '전체 카테고리' : 'All Categories'),
+  'sort_label'      => $is_ko ? cc_clean('정렬:') : 'Sort:',
+  'newest'          => $is_ko ? cc_clean('최신순') : 'Newest',
+  'oldest'          => $is_ko ? cc_clean('오래된순') : 'Oldest',
+  'title_az'        => $is_ko ? cc_clean('제목 (A - Z)') : 'Title A - Z',
+  'title_za'        => $is_ko ? cc_clean('제목 (Z - A)') : 'Title Z - A',
+  'read_more'       => cc_i18n($A, 'readLinkText',      $is_ko ? '자세히 보기' : 'Read More'),
+  'prev'            => cc_i18n($A, 'prevText',          $is_ko ? '이전' : 'Prev'),
+  'next'            => cc_i18n($A, 'nextText',          $is_ko ? '다음' : 'Next'),
+  'goto'            => cc_i18n($A, 'gotoText',          $is_ko ? '이동:' : 'Go to:'),
   'lang'            => $is_ko ? 'ko-KR' : 'en-US'
 ];
-
-$A = is_array($attributes ?? null) ? $attributes : array();
 
 $title = cc_str($A, 'title', 'Who We Are?');
 $content = cc_str($A, 'content', '');
@@ -522,7 +527,7 @@ $config = array(
           grid.innerHTML = '';
           
           if (rows.length === 0) {
-            grid.innerHTML = `<div class="cc-no-results" style="grid-column: 1 / -1; text-align: center; padding: 80px 20px; font-size: 1.1rem; color: #6b6f75; background: #fff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);"><h3 style="margin-bottom: 10px; color: var(--brand, #962E2A); font-size: 1.5rem; font-weight: 700;">${i18n.no_results}</h3><p style="margin: 0;">${i18n.no_results_desc}</p></div>`;
+            grid.innerHTML = `<div class="cc-no-results" style="grid-column: 1 / -1; text-align: center; padding: 80px 20px; font-size: 1.1rem; color: #6b6f75; background: #fff; border-radius: 16px; box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);"><h3 style="margin-bottom: 10px; color: var(--brand, #962E2A); font-size: 1.5rem; font-weight: 700;">${dec(i18n.no_results)}</h3><p style="margin: 0;">${dec(i18n.no_results_desc)}</p></div>`;
             pagination.innerHTML = '';
             return;
           }
@@ -536,7 +541,7 @@ $config = array(
         }
 
         function renderPagination(totalPages){
-          const mkBtn=(label,page,active=false,disabled=false)=>{const el=document.createElement('button'); el.className='page-btn'+(active?' active':''); el.textContent=label; el.disabled=disabled; el.addEventListener('click',()=>{state.page=page; render();}); return el;};
+          const mkBtn=(label,page,active=false,disabled=false)=>{const el=document.createElement('button'); el.className='page-btn'+(active?' active':''); el.textContent=dec(label); el.disabled=disabled; el.addEventListener('click',()=>{state.page=page; render();}); return el;};
           const mkGhost=(t='...')=>{const s=document.createElement('span'); s.className='page-ghost'; s.textContent=t; return s;};
           pagination.innerHTML=''; pagination.appendChild(mkBtn(i18n.prev || 'Prev', Math.max(1,state.page-1), false, state.page===1));
           const windowSize=5; const start=Math.max(1, state.page-Math.floor(windowSize/2)); const end=Math.min(totalPages, start+windowSize-1); const s=Math.max(1, Math.min(start, end-windowSize+1));
@@ -544,7 +549,7 @@ $config = array(
           for(let p=s;p<=end;p++){ pagination.appendChild(mkBtn(String(p),p,p===state.page)); }
           if(end<totalPages){ if(end<totalPages-1) pagination.appendChild(mkGhost()); pagination.appendChild(mkBtn(String(totalPages), totalPages, state.page===totalPages)); }
           pagination.appendChild(mkBtn(i18n.next || 'Next', Math.min(totalPages, state.page+1), false, state.page===totalPages));
-          const goto=document.createElement('span'); goto.className='goto-wrap'; const inp=document.createElement('input'); inp.type='number'; inp.min='1'; inp.max=String(totalPages); inp.placeholder='e.g. 2'; inp.addEventListener('change', ()=>{ const v=Math.min(totalPages, Math.max(1, Number(inp.value||1))); state.page=v; render(); }); goto.append((i18n.goto || 'Go to:'), inp); pagination.appendChild(goto);
+          const goto=document.createElement('span'); goto.className='goto-wrap'; const inp=document.createElement('input'); inp.type='number'; inp.min='1'; inp.max=String(totalPages); inp.placeholder='e.g. 2'; inp.addEventListener('change', ()=>{ const v=Math.min(totalPages, Math.max(1, Number(inp.value||1))); state.page=v; render(); }); goto.append(dec(i18n.goto || 'Go to:'), inp); pagination.appendChild(goto);
         }
 
         // Sync initial filter button state

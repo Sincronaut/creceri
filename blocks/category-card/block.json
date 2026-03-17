@@ -109,7 +109,14 @@
     "rightTitlePosition": { "type": "string", "default": "header", "enum": ["header", "list"] },
     "taxonomy": { "type": "string", "default": "category" },
     "term": { "type": "string", "default": "" },
-    "showTopReadsTags": { "type": "boolean", "default": true }
+    "showTopReadsTags": { "type": "boolean", "default": true },
+    "prevText": { "type": "string" },
+    "nextText": { "type": "string" },
+    "gotoText": { "type": "string" },
+    "noResultsText": { "type": "string" },
+    "noResultsDescText": { "type": "string" },
+    "allText": { "type": "string" },
+    "allCatsText": { "type": "string" }
   },
   "render": "file:./render.php",
   "style": "file:./style.css"
