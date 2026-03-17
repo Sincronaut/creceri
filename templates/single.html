@@ -309,13 +309,21 @@
     }
 
     .toc__item a {
+      display: block;
       color: #333;
       text-decoration: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .toc__item a:hover {
+      background: rgba(150, 46, 42, 0.05);
+      color: #962E2A;
     }
 
     .toc__item--h2 a {
-      padding-left: 14px;
-      display: block;
+      padding-left: 24px;
       border-left: 2px solid #e8d3cf;
     }
 
@@ -328,8 +336,6 @@
     .toc__item a.is-active {
       background: #962E2A;
       color: #fff !important;
-      border-radius: 6px;
-      padding: 3px 8px;
       text-decoration: none;
       border-left-color: transparent;
     }
