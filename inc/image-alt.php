@@ -92,6 +92,11 @@ if ( ! function_exists( 'creceri_inject_missing_img_alt' ) ) {
     $imgs = $doc->getElementsByTagName( 'img' );
     /** @var DOMElement $img */
     foreach ( $imgs as $img ) {
+      // Skip decorative images
+      if ( $img->getAttribute( 'aria-hidden' ) === 'true' || $img->getAttribute( 'role' ) === 'presentation' ) {
+        continue;
+      }
+
       $has = $img->hasAttribute( 'alt' );
       $val = $has ? $img->getAttribute( 'alt' ) : '';
       if ( $template_override !== '' ) {
@@ -221,6 +226,11 @@ if ( ! function_exists( 'creceri_filter_rendered_block_for_alt' ) ) {
     }
     /** @var DOMElement $img */
     foreach ( $imgs as $img ) {
+      // Skip decorative images
+      if ( $img->getAttribute( 'aria-hidden' ) === 'true' || $img->getAttribute( 'role' ) === 'presentation' ) {
+        continue;
+      }
+
       $has = $img->hasAttribute( 'alt' );
       $val = $has ? $img->getAttribute( 'alt' ) : '';
       $target_alt = $template_override !== '' ? $template_override : $block_alt;
