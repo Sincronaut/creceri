@@ -71,12 +71,8 @@
 }
 
 .who-we-are .btn {
-  /* Use global button styles (gradient, radius, etc.) from style.css */
-  border: none !important;
+  /* Let global button styles from style.css take precedence */
   justify-self: flex-start;
-  width: fit-content !important;
-  min-width: auto !important;
-  font-size: 16px !important;
 }
 
 .who-we-are .cc-arrow-svg {
@@ -88,31 +84,17 @@
   transform: translateX(4px);
 }
 
-.btn-pill {
-  width: auto;
-  display: inline-flex;
-  align-items: center;
-}
-
-/* Floating CTA for multi-list layout */
+/* Primary CTA for multi-list layout - now follows standard document flow */
 .cc-cta-float {
-  text-align: right;
-  margin-top: 20px;
+  text-align: left;
+  margin-top: 24px;
 }
 
 @media (min-width: 981px) {
   .cc-benefits-section {
     position: relative;
-    padding-right: 220px;
-    /* Make room for the float */
-  }
-
-  .cc-cta-float {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    margin-top: 0;
+    /* No longer need extra right padding since button is stacked below */
+    padding-right: 0;
   }
 }
 

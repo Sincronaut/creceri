@@ -355,6 +355,12 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
   color: #000000;
 }
 
+.hero__lead--hook {
+  font-weight: 700;
+  color: #332D2D;
+  margin-bottom: 0.5em !important;
+}
+
 .hero__lead b,
 .hero__lead strong {
   font-size: inherit !important;

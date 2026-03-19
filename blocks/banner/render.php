@@ -134,7 +134,7 @@ $style_attr = implode(';', $style_vars);
       </h1>
 
       <?php if (!empty($lead_weight)) : ?>
-        <p class="hero__lead"><b><?php echo $lead_weight; ?></b></p>
+        <p class="hero__lead hero__lead--hook"><?php echo $lead_weight; ?></p>
       <?php endif; ?>
 
       <?php if (!empty($lead)) : ?>
