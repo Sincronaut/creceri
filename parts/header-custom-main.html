@@ -674,8 +674,8 @@
                   src="/wp-content/themes/child-creceri-reyes/images-content/Animated-Flag-USA.gif" style="width:25px;"
                   alt="English flag"> English</a></li>
             <li><a href="#" data-lang="ko"><img
-                  src="/wp-content/themes/child-creceri-reyes/images-content/Animated-Flag-South-Korea.gif" style="width:25px;"
-                  alt="Korean flag"> Korean</a></li>
+                  src="/wp-content/themes/child-creceri-reyes/images-content/Animated-Flag-South-Korea.gif"
+                  style="width:25px;" alt="Korean flag"> Korean</a></li>
           </ul>
         </li>
       </ul>
@@ -769,7 +769,7 @@
       }
 
       // Priority 2: Sub-pages/Prefixes (longest match first)
-      const sortedKeys = Object.keys(I18N_ROUTES).sort((a,b) => I18N_ROUTES[b].en.length - I18N_ROUTES[a].en.length);
+      const sortedKeys = Object.keys(I18N_ROUTES).sort((a, b) => I18N_ROUTES[b].en.length - I18N_ROUTES[a].en.length);
       for (const key of sortedKeys) {
         if (key === 'home') continue; // Home should only match exactly
         const en = I18N_ROUTES[key].en.toLowerCase();
@@ -782,9 +782,39 @@
     }
 
     function buildTargetUrl(lang) {
-      const key = resolveRouteByPath(location.pathname);
+      const pathname = location.pathname.replace(/\/{2,}/g, '/');
+
+      // 1. Check for <link rel="alternate" hreflang="..."> (Best for posts with unique slugs)
+      const alt = document.querySelector('link[rel="alternate"][hreflang^="' + lang + '"]');
+      if (alt && alt.href) return alt.href + location.search + location.hash;
+
+      // 2. Category/Prefix logic (Falls back here if no explicit mapping exists)
+      const key = resolveRouteByPath(pathname);
+      const currentLang = getCurrentLang();
+
       if (key && I18N_ROUTES[key] && I18N_ROUTES[key][lang]) {
-        return location.origin + I18N_ROUTES[key][lang] + location.search + location.hash;
+        const route = I18N_ROUTES[key];
+        const currentParentPath = route[currentLang].toLowerCase();
+
+        // Match exact or prefix
+        if (pathname.toLowerCase() === currentParentPath) {
+          return location.origin + route[lang] + location.search + location.hash;
+        }
+
+        // Prefix match: preserve the trailing subpath
+        const matchPrefix = currentParentPath.endsWith('/') ? currentParentPath : currentParentPath + '/';
+        const normPath = decodeURI(pathname).toLowerCase();
+        const normPrefix = decodeURI(matchPrefix).toLowerCase();
+
+        if (normPath.startsWith(normPrefix)) {
+          const tail = decodeURI(pathname).substring(normPrefix.length);
+          const targetParent = route[lang];
+          let newPath = targetParent.endsWith('/') ? (targetParent + tail) : (targetParent + '/' + tail);
+          newPath = newPath.replace(/\/{2,}/g, '/');
+          return location.origin + newPath + location.search + location.hash;
+        }
+
+        return location.origin + route[lang] + location.search + location.hash;
       }
       // Fallback: locale prefix strategy
       const pathNoLang = stripLangPrefix(location.pathname);
