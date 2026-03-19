@@ -1281,52 +1281,77 @@ add_filter('request', function ($query_vars) {
 
 /* -----------------------  Internationalization Helpers  ----------------------- */
 /**
- * Automatically output hreflang tags for single posts by detecting translations.
- * Supports Polylang, WPML, and manual custom fields in the editor.
+ * Centralized I18N configuration for both PHP and JavaScript headers.
+ * EDIT THIS LIST to change primary URLs for both languages.
+ */
+function child_get_i18n_config()
+{
+  return array(
+    'DEFAULT_LANG' => 'en',
+    'NON_DEFAULTS' => array('ko'),
+    'ROUTES' => array(
+      'home' => array('en' => '/', 'ko' => '/ko/'),
+      'about' => array('en' => '/about/', 'ko' => '/ko/%EC%A0%95%EB%B3%B4/'),
+      'ecom' => array('en' => '/ecommerce-development/', 'ko' => '/ko/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98-%EA%B0%9C%EB%B0%9C/'),
+      'cms' => array('en' => '/website-cms-development/', 'ko' => '/ko/%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-cms-%EA%B0%9C%EB%B0%9C/'),
+      'uiux' => array('en' => '/ui-ux-design/', 'ko' => '/ko/ui-ux-%EB%94%94%EC%9E%90%EC%9D%B8/'),
+      'mkt' => array('en' => '/digital-marketing/', 'ko' => '/ko/%EB%94%94%EC%A7%80%ED%84%B8-%EB%A7%88%EC%BC%80%ED%8C%85/'),
+      'team' => array('en' => '/team-extension/', 'ko' => '/ko/%ED%8C%80-%ED%99%95%EC%9E%A5/'),
+      'stories' => array('en' => '/stories/', 'ko' => '/ko/%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%93%A4'),
+      'whatsnew' => array('en' => '/whats-new/', 'ko' => '/ko/%EC%83%88%EC%86%8C%EC%8B%9D'),
+      'contact' => array('en' => '/contact-us/', 'ko' => '/ko/%EB%AC%B8%EC%9D%98%ED%95%98%EA%B8%B0/'),
+      'blogs' => array('en' => '/blogs/', 'ko' => '/ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/')
+    )
+  );
+}
+
+/**
+ * Output the configuration for JavaScript (as window.I18N_CONFIG) 
+ * and generate <link rel="alternate"> tags for SEO and language switching.
  */
 add_action('wp_head', function () {
-  if (!is_singular('post')) {
-    return;
-  }
+  $config = child_get_i18n_config();
+  echo "\n<!-- I18N Injection -->\n";
+  echo '<script>window.I18N_CONFIG = ' . wp_json_encode($config) . ';</script>' . "\n";
 
-  global $post;
-  $uri = $_SERVER['REQUEST_URI'] ?? '';
-  $current_lang = (strpos($uri, '/ko/') !== false) ? 'ko' : 'en';
-  $target_lang = ($current_lang === 'en') ? 'ko' : 'en';
+  // Handle single post/page alternate links
+  if (is_singular('post')) {
+    global $post;
+    $uri = $_SERVER['REQUEST_URI'] ?? '';
+    $current_lang = (strpos($uri, '/ko/') !== false) ? 'ko' : 'en';
+    $target_lang = ($current_lang === 'en') ? 'ko' : 'en';
 
-  $alt_url = '';
+    $alt_url = '';
 
-  // 1. Check for manual URL in custom field (best for posts with different slugs)
-  $manual_url = get_post_meta($post->ID, '_alternate_lang_url', true);
-  if ($manual_url) {
-    $alt_url = $manual_url;
-  }
-
-  // 2. Check for manual Post ID in custom field
-  if (!$alt_url) {
-    $alt_id = get_post_meta($post->ID, '_alternate_lang_post_id', true);
-    if ($alt_id) {
-      $alt_url = get_permalink($alt_id);
+    // 1. Manual custom fields in editor
+    $manual_url = get_post_meta($post->ID, '_alternate_lang_url', true);
+    if ($manual_url) {
+      $alt_url = $manual_url;
     }
-  }
 
-  // 3. Try Polylang API if available
-  if (!$alt_url && function_exists('pll_get_post')) {
-    $alt_id = pll_get_post($post->ID, $target_lang);
-    if ($alt_id) {
-      $alt_url = get_permalink($alt_id);
+    if (!$alt_url) {
+      $alt_id = get_post_meta($post->ID, '_alternate_lang_post_id', true);
+      if ($alt_id) {
+        $alt_url = get_permalink($alt_id);
+      }
     }
-  }
 
-  // 4. Try WPML API if available
-  if (!$alt_url && function_exists('icl_object_id')) {
-    $alt_id = icl_object_id($post->ID, 'post', false, $target_lang);
-    if ($alt_id) {
-      $alt_url = get_permalink($alt_id);
+    // 2. Plugin APIs (Polylang/WPML)
+    if (!$alt_url && function_exists('pll_get_post')) {
+      $alt_id = pll_get_post($post->ID, $target_lang);
+      if ($alt_id) {
+        $alt_url = get_permalink($alt_id);
+      }
     }
-  }
+    if (!$alt_url && function_exists('icl_object_id')) {
+      $alt_id = icl_object_id($post->ID, 'post', false, $target_lang);
+      if ($alt_id) {
+        $alt_url = get_permalink($alt_id);
+      }
+    }
 
-  if ($alt_url) {
-    echo '<link rel="alternate" hreflang="' . esc_attr($target_lang) . '" href="' . esc_url($alt_url) . '" />' . "\n";
+    if ($alt_url) {
+      echo '<link rel="alternate" hreflang="' . esc_attr($target_lang) . '" href="' . esc_url($alt_url) . '" />' . "\n";
+    }
   }
 }, 1);

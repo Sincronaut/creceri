@@ -637,7 +637,7 @@
 
     <nav id="main-menu" class="main-header__nav" aria-label="Main">
       <ul class="main-header__nav-list">
-        <li><a class="main-header__nav-link" href="/home/">Home</a></li>
+        <li><a class="main-header__nav-link" href="/">Home</a></li>
         <li><a class="main-header__nav-link" href="/about/">About</a></li>
 
         <li class="main-header__dropdown">
@@ -656,8 +656,8 @@
           </ul>
         </li>
 
-        <li><a class="main-header__nav-link" href="/stories">Tek Stories</a></li>
-        <li><a class="main-header__nav-link" href="/whats-new">What's New</a></li>
+        <li><a class="main-header__nav-link" href="/stories/">Tek Stories</a></li>
+        <li><a class="main-header__nav-link" href="/whats-new/">What's New</a></li>
         <li><a class="main-header__nav-link" href="/contact-us/">Inquire Now</a></li>
 
         <!-- Language -->
@@ -692,23 +692,11 @@
     const langToggle = header.querySelector('#main-header-lang');
     const langLinks = header.querySelectorAll('.main-header__lang-menu [data-lang]');
 
-    const DEFAULT_LANG = 'en';
-    const NON_DEFAULTS = ['ko'];
-
-    // Canonical route map. Edit once, reuse everywhere.
-    const I18N_ROUTES = {
-      home: { en: '/home/', ko: '/ko/' },
-      about: { en: '/about/', ko: '/ko/%EC%A0%95%EB%B3%B4/' },
-      ecom: { en: '/ecommerce-development/', ko: '/ko/%EC%A0%84%EC%9E%90%EC%83%81%EA%B1%B0%EB%9E%98-%EA%B0%9C%EB%B0%9C/' },
-      cms: { en: '/website-cms-development/', ko: '/ko/%EC%9B%B9%EC%82%AC%EC%9D%B4%ED%8A%B8-cms-%EA%B0%9C%EB%B0%9C/' },
-      uiux: { en: '/ui-ux-design/', ko: '/ko/ui-ux-%EB%94%94%EC%9E%90%EC%9D%B8/' },
-      mkt: { en: '/digital-marketing/', ko: '/ko/%EB%94%94%EC%A7%80%ED%84%B8-%EB%A7%88%EC%BC%80%ED%8C%85/' },
-      team: { en: '/team-extension/', ko: '/ko/%ED%8C%80-%ED%99%95%EC%9E%A5/' },
-      stories: { en: '/stories', ko: '/ko/%EC%9D%B4%EC%95%BC%EA%B8%B0%EB%93%A4' },
-      whatsnew: { en: '/whats-new', ko: '/ko/%EC%83%88%EC%86%8C%EC%8B%9D' },
-      contact: { en: '/contact-us/', ko: '/ko/%EB%AC%B8%EC%9D%98%ED%95%98%EA%B8%B0/' },
-      blogs: { en: '/blogs/', ko: '/ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' }
-    };
+    /* I18N configuration (Centralized in functions.php) */
+    const I18N_CONF = window.I18N_CONFIG || { DEFAULT_LANG: 'en', NON_DEFAULTS: ['ko'], ROUTES: {} };
+    const DEFAULT_LANG = I18N_CONF.DEFAULT_LANG;
+    const NON_DEFAULTS = I18N_CONF.NON_DEFAULTS;
+    const I18N_ROUTES = I18N_CONF.ROUTES;
 
     /* ---------- Layout, scroll, logo ---------- */
     function setHeaderHeight() {
