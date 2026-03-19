@@ -18,6 +18,10 @@
       "type": "string",
       "default": ""
     },
+    "contentTag": {
+      "type": "string",
+      "default": ""
+    },
     "intro": {
       "type": "string",
       "default": ""

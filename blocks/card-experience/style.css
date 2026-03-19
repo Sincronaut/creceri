@@ -30,6 +30,11 @@
   text-align: center;
 }
 
+.ux-cards .content-tag {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
 .ux-cards__intro {
   margin: 0 0 26px;
   text-align: center;

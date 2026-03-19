@@ -51,18 +51,19 @@
 
 /* drive content padding via CSS var (overridden inline via --content-pad) */
 .who-we-are .content {
-  --content-pad-base: var(--content-pad, 100px);
+  --content-pad-base: var(--content-pad, 60px);
+  /* Reduced default padding to allow text to be wider/shorter */
   padding-inline-start: clamp(24px, calc(4vw + 12px), var(--content-pad-base));
   padding-inline-end: var(--content-pad-end, 0px);
   flex: 1 1 60%;
-  max-width: 50%;
+  max-width: 60%;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  /* Aligned with the top of the image */
   align-items: flex-start;
   gap: 12px;
   min-height: 100%;
-  height: 100%;
 }
 
 .intro_strong {
@@ -71,18 +72,11 @@
 
 .who-we-are .btn {
   /* Use global button styles (gradient, radius, etc.) from style.css */
-  /* Remove local overrides to ensure consistency */
   border: none !important;
   justify-self: flex-start;
   width: fit-content !important;
   min-width: auto !important;
-  /* Prevent expansion from global clamp */
   font-size: 16px !important;
-  /* User requested specific font size change */
-}
-
-.who-we-are .btn:hover {
-  /* Use global hover effects */
 }
 
 .who-we-are .cc-arrow-svg {
@@ -123,20 +117,39 @@
 }
 
 .who-we-are .image {
-  flex: 1 1 50%;
-  max-width: 50%;
+  flex: 1 1 40%;
+  max-width: 40%;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   text-align: center;
-  height: 100%;
+  position: relative;
+  /* Base for absolute image */
+  align-self: stretch;
 }
 
 .who-we-are img {
   width: 100%;
-  height: 100%;
   border-radius: 16px;
   object-fit: cover;
+  object-position: center;
+}
+
+@media (min-width: 972px) {
+  .who-we-are .image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+  }
+
+  /* Override: Allow image to be taller than text and define block height */
+  .who-we-are.is-style-tall-image .image img {
+    position: relative;
+    height: auto;
+    min-height: 500px;
+    max-height: 600px;
+  }
 }
 
 @media (min-width: 1025px) {

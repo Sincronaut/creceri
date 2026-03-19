@@ -9,6 +9,7 @@ if ( ! defined('ABSPATH') ) { exit; }
  * - className (string)
  * - title (string)
  * - titleId (string)  aria-labelledby target; falls back to "{$anchor}-title" or "ux-cards-title"
+ * - contentTag (string) small label above title
  * - intro (string)    supports minimal HTML via wp_kses
  * - items (array)     each: img:{src,alt,width,height,loading,decoding}, title, copy, ctaText, ctaUrl
  */
@@ -70,11 +71,12 @@ if ( ! empty($A['className']) ) {
 $title_default = __('Design That Shapes Experiences', 'vite-ttf-child-creceri');
 $intro_default = __('Every click, scroll, and tap is a touchpoint. Build outcomes users value with focused UX investments. Explore the core workstreams that move the needle:', 'vite-ttf-child-creceri');
 
-$title_has_value = isset($A['title']) && is_string($A['title']) && trim(wp_strip_all_tags($A['title'])) !== '';
-$intro_has_value = isset($A['intro']) && is_string($A['intro']) && trim(wp_strip_all_tags($A['intro'])) !== '';
+$title_has_value = isset($A['title']) && is_string($A['title']) && '' !== $A['title'];
+$intro_has_value = isset($A['intro']) && is_string($A['intro']) && '' !== $A['intro'];
 
-$title = wp_kses_post( $title_has_value ? $A['title'] : $title_default );
-$intro_raw = $intro_has_value ? $A['intro'] : $intro_default;
+$content_tag = isset($A['contentTag']) ? sanitize_text_field($A['contentTag']) : '';
+$title = wp_kses_post( $title_has_value ? $A['title'] : (isset($A['title']) ? '' : $title_default) );
+$intro_raw = $intro_has_value ? $A['intro'] : (isset($A['intro']) ? '' : $intro_default);
 $intro = $intro_raw !== '' ? wpautop( wp_kses( $intro_raw, child_uxcards_allowed_intro_tags() ) ) : '';
 
 $title_id = sanitize_html_class( $A['titleId'] ?? ( $anchor ? $anchor . '-title' : 'ux-cards-title' ) );
@@ -150,6 +152,10 @@ $items = isset($A['items']) && is_array($A['items']) && !empty($A['items'])
   aria-labelledby="<?php echo esc_attr($title_id); ?>"
 >
   <div class="ux-cards__container">
+    <?php if ( $content_tag !== '' ) : ?>
+      <h2 class="content-tag"><?php echo esc_html($content_tag); ?></h2>
+    <?php endif; ?>
+
     <?php if ( $title !== '' ) : ?>
       <h2 id="<?php echo esc_attr($title_id); ?>" class="ux-cards__title"><?php echo $title; ?></h2>
     <?php endif; ?>
