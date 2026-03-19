@@ -144,7 +144,7 @@ if ($use_posts || empty($items)) {
     while ($loop->have_posts()) {
       $loop->the_post();
 
-      $p_title = cc_clean(get_the_title());
+      $p_title = cc_clean(wp_strip_all_tags(get_the_title()));
 
       $terms = get_the_category();
       $primary = (is_array($terms) && $terms) ? $terms[0] : null;
@@ -225,7 +225,7 @@ $payload = array_map(function ($r) {
     }
   }
   return array(
-  'title' => cc_clean(cc_str($r, 'title', '')),
+  'title' => cc_clean(wp_strip_all_tags(cc_str($r, 'title', ''))),
   'category' => cc_str($r, 'category', ''),
   'categoryLabel' => cc_clean(cc_str($r, 'categoryLabel', '')),
   'categories' => $cats,
@@ -487,8 +487,8 @@ $config = array(
           switch(state.sort){
             case 'newest': rows.sort((a,b)=> new Date(b.date)-new Date(a.date)); break;
             case 'oldest': rows.sort((a,b)=> new Date(a.date)-new Date(b.date)); break;
-            case 'title-az': rows.sort((a,b)=> (a.title||'').localeCompare(b.title||'')); break;
-            case 'title-za': rows.sort((a,b)=> (b.title||'').localeCompare(a.title||'')); break;
+            case 'title-az': rows.sort((a,b)=> (a.title||'').trim().localeCompare((b.title||'').trim(), undefined, { sensitivity: 'base' })); break;
+            case 'title-za': rows.sort((a,b)=> (b.title||'').trim().localeCompare((a.title||'').trim(), undefined, { sensitivity: 'base' })); break;
           }
           return rows;
         }
