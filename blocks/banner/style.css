@@ -12,7 +12,7 @@
   /* Fluid typography + media */
   --title-size: clamp(34px, 5.5vw, 96px);
   --line-size: clamp(28px, 5vw, 64px);
-  --lead-size: clamp(16px, 3.2vw, 22px);
+  --lead-size: clamp(16px, 3.2vw, 20px);
 
   --btn-min-w: 180px;
   --btn-bg: var(--brand, #962E2A);
@@ -42,7 +42,7 @@
   --line-max: 50px;
   --lead-min: 16px;
   --lead-fluid: 1.15vw;
-  --lead-max: 22px;
+  --lead-max: 20px;
 
   --bg-angle: 230;
   --bg-spot-w: 1200;
