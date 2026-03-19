@@ -216,7 +216,7 @@
       ]
     },
     {
-      "name": "ko-page-blog",
+      "name": "ko-page-blogs",
       "title": "Korean Blog List Page",
       "postTypes": [
         "page"
