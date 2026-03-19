@@ -17,6 +17,7 @@
     "design": { "type": "string", "enum": ["left","top"], "default": "left" },
     "showReadLink": { "type": "boolean", "default": false },
     "readLinkText": { "type": "string", "default": "Read more" },
+    "ctaUrl": { "type": "string", "default": "#" },
     "dataIndex": { "type": "number", "default": 0 },
     "showIndicators": { "type": "boolean", "default": true },
     "dataKey": { "type": "string", "default": "card-img" }

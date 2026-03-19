@@ -39,7 +39,7 @@ $cta_text = $attributes['readLinkText'] ?? 'Learn More';
       
       <?php if ($count > 0): ?>
       <div class="emerging__cta">
-        <a class="btn btn-pill" href="<?php echo esc_url($items[0]['url'] ?? '#'); ?>" aria-label="<?php echo esc_attr($cta_text); ?>">
+        <a class="btn btn-pill" href="<?php echo esc_url($attributes['ctaUrl'] ?? '#'); ?>" aria-label="<?php echo esc_attr($cta_text); ?>">
           <?php echo esc_html($cta_text); ?> →
         </a>
       </div>
