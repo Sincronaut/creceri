@@ -1,5 +1,21 @@
 <style>
     body { padding-top: 0 !important; }
+    .hero--centered-layout { 
+        align-items: center !important; 
+    }
+    .hero--centered-layout .hero__inner {
+        max-width: 1200px !important;
+        padding: 0 40px !important;
+        margin: 0 auto !important;
+    }
+    .hero--centered-layout .hero__copy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
 </style>
 <body style="background:
       radial-gradient(1200px 320px at 65% -120px, #f7efee 0%, rgba(247,239,238,0) 55%),
@@ -11,13 +27,18 @@
         <!-- wp:html -->
 
         <!-- wp:child/banner {
+            "className": "hero--centered-layout",
             "brand":"감사합니다!",
             "line":"",
             "brandSize": 128,            
             "bgSpot":"top", 
             "bgAngle":230,
             "lead":"저희를 지원해 주셔서 진심으로 감사드립니다! 여러분의 참여는 저희에게 큰 의미가 있습니다. 함께 멋진 것을 계속 만들어 나가고 있습니다.",
-            "imagePosition":"left", "imageLocation":"center", "imageSize":"l", "buttonType":"Button", "imageFlip":"none",
+            "imagePosition":"left", 
+            "imageLocation":"center", 
+            "imageSize":"m", 
+            "buttonType":"Button", 
+            "imageFlip":"none",
             "buttonText":"홈으로 돌아가기",
             "buttonUrl":"#explore",
             "buttonClass":"btn btn-pill text-white",

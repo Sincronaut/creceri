@@ -1,5 +1,21 @@
 <style>
     body { padding-top: 0 !important; }
+    .hero--centered-layout { 
+        align-items: center !important; 
+    }
+    .hero--centered-layout .hero__inner {
+        max-width: 1200px !important;
+        padding: 0 40px !important;
+        margin: 0 auto !important;
+    }
+    .hero--centered-layout .hero__copy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
 </style>
 <body style="background:
       radial-gradient(1200px 320px at 65% -120px, #f7efee 0%, rgba(247,239,238,0) 55%),
@@ -11,6 +27,7 @@
         <!-- wp:html -->
 
         <!-- wp:child/banner {
+            "className": "hero--centered-layout",
             "brand":"THANK YOU!",
             "line":"",
             "brandSize": 128,            
@@ -19,7 +36,7 @@
             "lead":"We truly appreciate your support! Your engagement means the world to us as we continue building something great together.",
             "imagePosition":"left",
             "imageLocation":"center",
-            "imageSize":"l",
+            "imageSize":"m",
             "buttonType":"Button",
             "imageFlip":"none",
             "buttonText":"Back to Home",

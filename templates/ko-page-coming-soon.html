@@ -1,35 +1,52 @@
 <style>
     body { padding-top: 0 !important; }
+    .hero--centered-layout { 
+        align-items: center !important; 
+    }
+    .hero--centered-layout .hero__inner {
+        max-width: 1200px !important;
+        padding: 0 40px !important;
+        margin: 0 auto !important;
+    }
+    .hero--centered-layout .hero__copy {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
 </style>
 <body style="background:
       radial-gradient(1200px 320px at 65% -120px, #f7efee 0%, rgba(247,239,238,0) 55%),
       linear-gradient(90deg, var(--bg-left), var(--bg-right));">
-    <!-- wp:template-part {"slug":"header-custom-main"} /-->
+    <!-- wp:template-part {"slug":"header-custom-ko"} /-->
 
     <!-- wp:group {"tagName":"main","className":"alignfull"} -->
     <main class="wp-block-group alignfull">
         <!-- wp:html -->
 
         <!-- wp:child/banner {
-            "brand":"COMING SOON",
+            "className": "hero--centered-layout",
+            "brand":"곧 출시 예정",
             "line":"",
             "brandSize": 128,
             "bgSpot":"top",
             "bgAngle":150,
-            "lead":"Exciting updates are on the way! Be the first to know when we launch—just drop your email and we’ll keep you posted.",
+            "lead":"새로운 소식을 준비 중입니다! 출시 소식을 가장 먼저 받아보시려면 이메일을 남겨주세요.",
             "imagePosition":"right",
             "imageLocation":"center",
             "imageSize":"m",
-            "buttonType":"Search",
+            "buttonType":"Button",
             "imageFlip":"mirror",
-            "buttonText":"Notify Me",
-            "buttonUrl":"#explore",
+            "buttonText":"알림 받기",
+            "buttonUrl":"#",
             "buttonClass":"btn btn-pill text-white",
-            "textAlign":"left",
+            "textAlign":"center",
             "textScale":1.1,
             "image":{
                 "src":"/wp-content/themes/child-creceri-reyes/assets/images/hero-banner/coming-soon.webp",
-                "alt":"3D illustration",
+                "alt":"3D 일러스트",
                 "loading":"eager",
                 "decoding":"async"
             }
@@ -39,5 +56,5 @@
     </main>
     <!-- /wp:group -->
 
-    <!-- wp:template-part {"slug":"footer-custom"} /-->
+    <!-- wp:template-part {"slug":"footer-custom-ko"} /-->
 </body>
