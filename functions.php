@@ -88,6 +88,10 @@ add_action('wp_enqueue_scripts', function () {
 
     // Your main JS (menus, mobile submenu, hero bg carousel init, etc.)
     $add_script('ai-main', '/assets/js/main.js', ['bootstrap'], true);
+
+    /* ---- Scroll Reveal (global animations) ---- */
+    $add_style('scroll-reveal', '/assets/css/scroll-reveal.css', ['ai-footer']);
+    $add_script('scroll-reveal', '/assets/js/scroll-reveal.js', [], true);
   });
 
 function enqueue_fa_icons()

@@ -1,0 +1,87 @@
+/* ============================================
+   Scroll Reveal — Global Animation System
+   GPU-accelerated: only transforms + opacity
+   ============================================ */
+
+/* ---------- Base hidden state ---------- */
+[class*="reveal"] {
+  opacity: 0;
+  will-change: transform, opacity;
+  transition:
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ---------- Visible state ---------- */
+[class*="reveal"].is-visible {
+  opacity: 1;
+  transform: translate(0, 0) scale(1) !important;
+}
+
+/* ---------- Variants: starting positions ---------- */
+
+/* Fade only (no movement) */
+.reveal {
+  transform: none;
+}
+
+/* Fade + slide up */
+.reveal-up {
+  transform: translateY(40px);
+}
+
+/* Fade + slide down */
+.reveal-down {
+  transform: translateY(-40px);
+}
+
+/* Fade + slide from left */
+.reveal-left {
+  transform: translateX(-50px);
+}
+
+/* Fade + slide from right */
+.reveal-right {
+  transform: translateX(50px);
+}
+
+/* Fade + scale up from smaller */
+.reveal-scale {
+  transform: scale(0.92);
+}
+
+/* Fade + scale up from much smaller */
+.reveal-scale-lg {
+  transform: scale(0.8);
+}
+
+/* Fade + slide up + scale */
+.reveal-up-scale {
+  transform: translateY(30px) scale(0.95);
+}
+
+/* ---------- Stagger delays ---------- */
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+.reveal-delay-5 { transition-delay: 0.5s; }
+.reveal-delay-6 { transition-delay: 0.6s; }
+
+/* ---------- Speed modifiers ---------- */
+.reveal-fast {
+  transition-duration: 0.4s;
+}
+
+.reveal-slow {
+  transition-duration: 1s;
+}
+
+/* ---------- Accessibility ---------- */
+@media (prefers-reduced-motion: reduce) {
+  [class*="reveal"] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
