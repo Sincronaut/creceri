@@ -350,11 +350,15 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
   display: inline-block;
   position: relative;
   vertical-align: middle;
-  height: 1.5em; /* Increased for descenders */
+  height: 1.5em;
+  /* Increased for descenders */
   overflow: hidden;
   background: transparent;
   padding: 0;
-  margin-bottom: -0.1em;
+  margin-top: -0.25em;
+  /* Pull closer to brand */
+  margin-bottom: -0.5em;
+  /* Pull closer to below */
   transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   white-space: nowrap;
 }
@@ -368,8 +372,10 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 
 .rotating-text-item {
   display: block;
-  height: 1.5em; /* Sync with parent */
-  line-height: 1.5; /* More room for 'g', 'y', 'p' */
+  height: 1.5em;
+  /* Sync with parent */
+  line-height: 1.5;
+  /* More room for 'g', 'y', 'p' */
   white-space: nowrap;
   color: var(--brand, #962E2A);
   opacity: 0.2;
@@ -851,12 +857,16 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 }
 
 .home-hero-banner .title_h1 {
-  margin-bottom: 0px !important;
+  margin-bottom: -15px !important;
   line-height: 1.05 !important;
 }
 
 .home-hero-banner .hero__line {
-  margin-top: 0 !important;
+  margin-top: -1em !important;
   line-height: 1.1 !important;
   font-weight: 400 !important;
+}
+
+.home-hero-banner .title_h1 + .hero__lead {
+  margin-top: clamp(8px, 1.5vw, 16px) !important;
 }
