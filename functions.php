@@ -1359,3 +1359,60 @@ add_action('wp_head', function () {
     }
   }
 }, 1);
+
+// ---------------------------------------------------
+// Search Engine Visibility Overrides
+// ---------------------------------------------------
+
+// Add NOINDEX, NOFOLLOW meta tag to specific paths (Prevents Duplicate Tags)
+function child_custom_noindex_nofollow($robots)
+{
+  $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+
+  $noindex_paths = array(
+    '/digital-marketing/page/',
+    '/ecommerce-development/page/',
+    '/website-cms-development/page/',
+    '/ui-ux-design/page/',
+    '/team-extension/page/'
+  );
+
+  $is_noindex_page = false;
+
+  // 1. Check if it's a search results page
+  if ( is_search() || isset($_GET['s']) ) {
+    $is_noindex_page = true;
+  }
+  // 2. Check the paginated paths
+  else {
+    foreach ($noindex_paths as $path) {
+      if (strpos($request_uri, $path) !== false) {
+        $is_noindex_page = true;
+        break; // Stop the loop once a match is found
+      }
+    }
+  }
+
+  // 3. If it matches any condition, apply the noindex tags
+  if ( $is_noindex_page ) {
+    // Check if Rank Math is triggering the function
+    if (current_filter() === 'rank_math/frontend/robots') {
+      $robots['index'] = 'noindex';
+      $robots['follow'] = 'nofollow';
+      unset($robots['max-snippet'], $robots['max-video-preview'], $robots['max-image-preview']);
+    }
+    // Otherwise, it is the native WordPress trigger
+    else {
+      $robots['noindex'] = true;
+      $robots['nofollow'] = true;
+      unset($robots['max-image-preview']);
+    }
+  }
+
+  return $robots;
+}
+
+// Hook into WordPress Core
+add_filter('wp_robots', 'child_custom_noindex_nofollow', 99);
+// Hook into Rank Math specifically
+add_filter('rank_math/frontend/robots', 'child_custom_noindex_nofollow', 99);
