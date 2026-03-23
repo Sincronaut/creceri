@@ -251,8 +251,10 @@ $show_dots = !isset($attributes['show_dots']) || (bool)$attributes['show_dots'];
 $heading_top_id = $root_id . '-heading-top';
 $heading_bottom_id = $root_id . '-heading-bottom';
 $track_id = $root_id . '-track';
+$reveal = $attributes['reveal'] ?? '';
+$reveal_class = $reveal ? ' reveal-' . sanitize_html_class($reveal) : '';
 ?>
-<section class="trends<?php echo esc_attr($align_class); ?>" id="<?php echo esc_attr($root_id); ?>" aria-labelledby="<?php echo esc_attr($heading_top_id); ?>">
+<section class="trends<?php echo esc_attr($align_class . $reveal_class); ?>" id="<?php echo esc_attr($root_id); ?>" aria-labelledby="<?php echo esc_attr($heading_top_id); ?>">
   <div class="trends__container"<?php echo $inner_style_attr; ?>>
     <h2 id="<?php echo esc_attr($heading_top_id); ?>" class="trends__title"><?php echo esc_html($title_top); ?></h2>
 

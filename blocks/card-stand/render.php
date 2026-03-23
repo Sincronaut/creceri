@@ -11,8 +11,10 @@ $anchor = $attributes['anchor'] ?? 'emerging-heading';
 
 // Design defaults
 $cta_text = $attributes['readLinkText'] ?? 'Learn More';
+$reveal = $attributes['reveal'] ?? '';
+$reveal_class = $reveal ? ' reveal-' . sanitize_html_class($reveal) : '';
 ?>
-<section class="emerging" aria-labelledby="<?php echo esc_attr($anchor); ?>" id="<?php echo esc_attr($anchor); ?>">
+<section class="emerging<?php echo esc_attr($reveal_class); ?>" aria-labelledby="<?php echo esc_attr($anchor); ?>" id="<?php echo esc_attr($anchor); ?>">
   <div class="emerging__container">
     <h2 id="<?php echo esc_attr($anchor); ?>" class="emerging__title"><?php echo esc_html($title); ?></h2>
     <?php if ($intro): ?>

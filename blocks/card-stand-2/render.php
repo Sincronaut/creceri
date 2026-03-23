@@ -7,8 +7,10 @@
   $sec_id = $attributes['sectionId'] ?? 'innovation-examples';
   $heading_id = $sec_id . '-heading';
   $items  = $attributes['items'] ?? [];
+$reveal = $attributes['reveal'] ?? '';
+$reveal_class = $reveal ? ' reveal-' . sanitize_html_class($reveal) : '';
 ?>
-<section class="emerging" id="<?php echo esc_attr($sec_id); ?>" aria-labelledby="<?php echo esc_attr($heading_id); ?>">
+<section class="emerging<?php echo esc_attr($reveal_class); ?>" id="<?php echo esc_attr($sec_id); ?>" aria-labelledby="<?php echo esc_attr($heading_id); ?>">
   <div class="emerging__container">
     <h2 id="<?php echo esc_attr($heading_id); ?>" class="emerging__title">
       <?php echo esc_html($title); ?>
