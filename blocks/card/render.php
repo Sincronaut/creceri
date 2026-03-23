@@ -69,6 +69,13 @@ if (!empty($latest_posts) && !is_wp_error($latest_posts)) {
 }
 
 $wrapper_classes = trim('whats-new ' . $className);
+
+/* Reveal animation */
+$reveal = isset($attrs['reveal']) ? sanitize_html_class($attrs['reveal']) : '';
+$reveal_cards = isset($attrs['revealCards']) ? sanitize_html_class($attrs['revealCards']) : '';
+if ($reveal && $reveal !== 'none') {
+  $wrapper_classes .= ' reveal-' . $reveal;
+}
 ?>
 <section class="<?php echo esc_attr($wrapper_classes); ?>" aria-labelledby="<?php echo esc_attr($titleId); ?>" id="whats_new" style="margin-top:20px;">
   <div class="wn-container"><br>
@@ -111,7 +118,7 @@ foreach ($cards as $card):
 ?>
           <li id="<?php echo esc_attr($li_id); ?>">
             
-            <article class="card" >
+            <article class="card<?php echo ($reveal_cards && $reveal_cards !== 'none') ? ' reveal-' . esc_attr($reveal_cards) . ' reveal-delay-' . $i : ''; ?>" >
               <figure class="card-media">
                 <?php if ($img_src): ?>
                 <a href="<?php echo esc_url($c_link); ?>" >

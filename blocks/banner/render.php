@@ -40,6 +40,8 @@ $brand     = $A['brand'] ?? 'Creceri';
 $brandSize = isset($A['brandSize']) ? floatval($A['brandSize']) : 0; // px contract
 
 $line = $A['line'] ?? 'E-commerce, UX,<br>and Digital Knowledge';
+$rotatingLines = $A['rotatingLines'] ?? '';
+$rotatingBg = $A['rotatingBg'] ?? 'rgba(150, 46, 42, 0.1)';
 $lead = $A['lead'] ?? '';
 $lead_weight = $A['lead_weight'] ?? '';
 
@@ -104,6 +106,7 @@ $style_vars = array(
   '--bg-mid:'   . ($A['bgMid'] ?? '#f1f7fb'),
   '--bg-right:' . ($A['bgRight'] ?? '#e3867d'),
   '--bleed-offset:' . (float)($A['bleedOffset'] ?? 88),
+  '--rotating-bg:' . $rotatingBg,
 );
 
 /** Brand size: emit px, set enabling class */
@@ -128,7 +131,17 @@ $style_attr = implode(';', $style_vars);
     <div class="hero__copy" >
       <h1 id="<?php echo esc_attr($title_id); ?>" class="title_h1">
        <span class="hero__brand"><?php echo $brand; ?></span>
-       <?php if (!empty($line_html)) : ?>
+       <?php if (!empty($rotatingLines)) : 
+         $lines = array_map('trim', explode(',', $rotatingLines));
+       ?>
+         <span class="hero__line hero__line--rotating">
+           <span class="rotating-text-scroller">
+             <?php foreach ($lines as $index => $item) : ?>
+               <span class="rotating-text-item <?php echo $index === 0 ? 'active' : ''; ?>"><?php echo esc_html($item); ?></span>
+             <?php endforeach; ?>
+           </span>
+         </span>
+       <?php elseif (!empty($line_html)) : ?>
          <span class="hero__line"><?php echo $line_html; ?></span>
        <?php endif; ?>
       </h1>
@@ -169,3 +182,52 @@ $style_attr = implode(';', $style_vars);
   </div>
 </section>
 
+<?php if (!empty($rotatingLines)) : ?>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const section = document.getElementById('<?php echo esc_js($section_id); ?>');
+    if (!section) return;
+    
+    const items = section.querySelectorAll('.rotating-text-item');
+    const wrapper = section.querySelector('.hero__line--rotating');
+    const scroller = section.querySelector('.rotating-text-scroller');
+    if (!items.length || !wrapper || !scroller) return;
+    
+    let currentIndex = 0;
+    const itemHeight = items[0].offsetHeight || 0; // Fallback to CSS or measure
+    
+    function updateWidthAndScroll() {
+        // Clear all active classes first
+        items.forEach(item => item.classList.remove('active'));
+        
+        const currentItem = items[currentIndex];
+        if (currentItem) {
+            currentItem.classList.add('active');
+            
+            // No background so no extra padding needed, just raw width + small gap
+            const width = currentItem.offsetWidth + 5;
+            wrapper.style.width = width + 'px';
+            
+            // Scroll to the current index
+            const offset = currentIndex * 1.5; // Based on em from CSS
+            scroller.style.transform = `translateY(-${offset}em)`;
+        }
+    }
+    
+    // Initial setup
+    updateWidthAndScroll();
+    window.addEventListener('resize', updateWidthAndScroll);
+    
+    setInterval(() => {
+        currentIndex++;
+        
+        // Return to start if reached the end
+        if (currentIndex >= items.length) {
+            currentIndex = 0;
+        }
+        
+        updateWidthAndScroll();
+    }, 3000);
+});
+</script>
+<?php endif; ?>

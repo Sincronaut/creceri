@@ -38,6 +38,12 @@ if (!$has_active && !empty($items)) { $items[0]['active'] = true; }
 /* Wrapper classes + unique section id for scoping */
 $wrapper_classes = trim('guides ' . $className);
 $section_uid     = 'guides-' . gi_slug($titleId);
+
+/* Reveal animation */
+$reveal = isset($attrs['reveal']) ? sanitize_html_class($attrs['reveal']) : '';
+if ($reveal && $reveal !== 'none') {
+  $wrapper_classes .= ' reveal-' . $reveal;
+}
 ?>
 <section class="<?php echo esc_attr($wrapper_classes); ?>" aria-labelledby="<?php echo esc_attr($titleId); ?>" id="<?php echo esc_attr($section_uid); ?>" data-guides-id="<?php echo esc_attr($section_uid); ?>">
   <div class="g-wrap">

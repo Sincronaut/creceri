@@ -414,6 +414,12 @@ if ($custom_gradient) {
   $section_classes .= ' wrap--gradient';
 }
 
+/* Reveal animation */
+$reveal = tek_str($attributes, 'reveal', '');
+if ($reveal && $reveal !== 'none') {
+  $section_classes .= ' reveal-' . sanitize_html_class($reveal);
+}
+
 /* View */
 ?>
 <section class="<?php echo esc_attr($section_classes); ?>" aria-labelledby="tek-stories-title">

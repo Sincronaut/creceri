@@ -345,6 +345,49 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
   line-height: 1.1;
 }
 
+/* Rotating text specific - Vertical Scroll with Bounce */
+.hero__line--rotating {
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+  height: 1.5em; /* Increased for descenders */
+  overflow: hidden;
+  background: transparent;
+  padding: 0;
+  margin-bottom: -0.1em;
+  transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  white-space: nowrap;
+}
+
+.rotating-text-scroller {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.rotating-text-item {
+  display: block;
+  height: 1.5em; /* Sync with parent */
+  line-height: 1.5; /* More room for 'g', 'y', 'p' */
+  white-space: nowrap;
+  color: var(--brand, #962E2A);
+  opacity: 0.2;
+  transition: opacity 0.4s ease;
+  position: relative;
+}
+
+.rotating-text-item.active {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .hero__line--rotating {
+    height: 1.3em;
+    padding: 0 8px;
+  }
+}
+
 .title_h1+.hero__lead {
   margin-top: clamp(16px, 2.5vw, 24px) !important;
 }
