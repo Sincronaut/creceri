@@ -106,6 +106,10 @@ if ($className) {
 if ($anchor) {
   $classes[] = $anchor;
 }
+$reveal = $A['reveal'] ?? '';
+if ($reveal) {
+  $classes[] = 'reveal-' . sanitize_html_class($reveal);
+}
 
 /** Label id for a11y */
 $label_id = $section_id ? $section_id . '-title' : 'blog-cats-title';

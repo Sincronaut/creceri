@@ -28,6 +28,8 @@ $items  = (isset($A['items']) && is_array($A['items'])) ? $A['items'] : array(
 $classes = array('ts-value-prop');
 if ($className) { $classes[] = $className; }
 if ($anchor)    { $classes[] = $anchor; }
+$reveal = $A['reveal'] ?? '';
+if ($reveal) { $classes[] = 'reveal-' . sanitize_html_class($reveal); }
 
 /** Accessible label id */
 $label_id = $section_id ? $section_id . '-title' : 'ts-vp-title';

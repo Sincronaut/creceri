@@ -35,7 +35,8 @@
     "gradientColors":    { "type": "array",  "default": [] },
 
     "dataIndex": { "type": "number", "default": 0 },
-    "dataKey":   { "type": "string", "default": "banners" }
+    "dataKey":   { "type": "string", "default": "banners" },
+    "reveal":    { "type": "string", "default": "" }
   },
 
   "style":  "file:./style.css",
