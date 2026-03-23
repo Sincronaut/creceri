@@ -53,6 +53,10 @@
     "bullets": {
       "type": "array",
       "default": []
+    },
+    "reveal": {
+      "type": "string",
+      "default": ""
     }
   },
   "style": "file:./style.css",

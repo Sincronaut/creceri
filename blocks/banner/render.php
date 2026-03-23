@@ -77,6 +77,7 @@ $line_html  = wp_kses($line, child_banner_allowed_line_html());
 $lead_html  = wp_kses($lead, child_banner_allowed_lead_html());
 
 /** Classes */
+$reveal = $A['reveal'] ?? '';
 $classes = array(
   'hero',
   'banner-block',
@@ -91,6 +92,7 @@ $classes = array(
 );
 if ( $bgStatus === 'On' ) { $classes[] = 'hero--bleed-top'; }
 if ( $className ) { $classes[] = $className; }
+if ( $reveal && $reveal !== 'split' ) { $classes[] = 'reveal-' . sanitize_html_class($reveal); }
 
 /** Style vars */
 $style_vars = array(
@@ -121,6 +123,14 @@ $image_scale_map = array('xs' => 0.6, 's' => 0.8, 'm' => 1.0, 'l' => 1.2, 'xl' =
 $style_vars[] = '--image-scale:' . ($image_scale_map[$imageSize] ?? 1);
 
 $style_attr = implode(';', $style_vars);
+
+/** Split reveal classes */
+$copy_reveal_class = '';
+$art_reveal_class  = '';
+if ($reveal === 'split') {
+  $copy_reveal_class = ($imagePosition === 'right' ? 'reveal-left' : 'reveal-right');
+  $art_reveal_class  = ($imagePosition === 'right' ? 'reveal-right' : 'reveal-left');
+}
 ?>
 <section class="<?php echo esc_attr(implode(' ', $classes)); ?>"
          style="<?php echo esc_attr($style_attr); ?>;"
@@ -128,7 +138,7 @@ $style_attr = implode(';', $style_vars);
          id="<?php echo esc_attr($section_id); ?>">
 
   <div class="hero__inner">
-    <div class="hero__copy" >
+    <div class="hero__copy <?php echo esc_attr($copy_reveal_class); ?>" >
       <h1 id="<?php echo esc_attr($title_id); ?>" class="title_h1">
        <span class="hero__brand"><?php echo $brand; ?></span>
        <?php if (!empty($rotatingLines)) : 
@@ -171,7 +181,7 @@ $style_attr = implode(';', $style_vars);
       <?php endif; ?>
     </div>
 
-    <div class="hero__art1">
+    <div class="hero__art1 <?php echo esc_attr($art_reveal_class); ?>">
         <img
           class="hero__image1"
           src="<?php echo esc_url($img_src); ?>"

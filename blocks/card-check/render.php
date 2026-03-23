@@ -132,16 +132,28 @@ if ($anchor) {
 if (!empty($A['works']) || !empty($A['useCases'])) {
   $classes[] = 'is-style-standard-lists';
 }
+$reveal = $A['reveal'] ?? '';
+if ($reveal) {
+  $classes[] = 'reveal-' . sanitize_html_class($reveal);
+}
 ?>
 <section id="<?php echo esc_attr($section_id); ?>"
          class="<?php echo esc_attr(implode(' ', $classes)); ?>"
          <?php echo $background_style ? 'style="' . esc_attr($background_style) . '"' : ''; ?>>
 
+  <?php
+    $inner_reveal_image = '';
+    $inner_reveal_content = '';
+    if ($reveal === 'split') {
+        $inner_reveal_image = $reverse ? 'reveal-left' : 'reveal-right';
+        $inner_reveal_content = $reverse ? 'reveal-right' : 'reveal-left';
+    }
+    ?>
   <!-- Inner card: centers, constrains width, adds small radius -->
   <div class="who-we-are__inner">
 
     <?php if ($reverse): ?>
-      <div class="image">
+      <div class="image <?php echo esc_attr($inner_reveal_image); ?>">
         <?php if ($img_src): ?>
           <img src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" loading="<?php echo $img_load; ?>" decoding="<?php echo $img_dec; ?>">
         <?php
@@ -150,7 +162,7 @@ if (!empty($A['works']) || !empty($A['useCases'])) {
     <?php
 endif; ?>
 
-    <div class="content" <?php echo $content_style_attr; ?> >
+    <div class="content <?php echo esc_attr($inner_reveal_content); ?>" <?php echo $content_style_attr; ?> >
       <?php if ($content_tag !== ''): ?>
         <h2 class="content-tag"><?php echo esc_html($content_tag); ?></h2>
       <?php
@@ -314,7 +326,7 @@ endif; ?>
     </div>
 
     <?php if (!$reverse): ?>
-      <div class="image">
+      <div class="image <?php echo esc_attr($inner_reveal_image); ?>">
         <?php if ($img_src): ?>
           <img src="<?php echo $img_src; ?>" alt="<?php echo $img_alt; ?>" loading="<?php echo $img_load; ?>" decoding="<?php echo $img_dec; ?>">
         <?php

@@ -56,9 +56,13 @@ function child_subscribe_bullets($items)
   return $out;
 }
 
+// Reveal animation
+$reveal = $attrs['reveal'] ?? '';
+$reveal_class = $reveal ? ' reveal-' . sanitize_html_class($reveal) : '';
+
 // Variant: Image only
 if ($variant === 'image'): ?>
-<section id="<?php echo esc_attr($section_id); ?>" class="insight-section insight-section--imageonly" data-variant="image">
+<section id="<?php echo esc_attr($section_id); ?>" class="insight-section insight-section--imageonly<?php echo esc_attr($reveal_class); ?>" data-variant="image">
   <?php if (!empty($image_src)): ?>
     <img class="insight-image" src="<?php echo esc_url($image_src); ?>"
          alt="<?php echo esc_attr($image_alt); ?>"
@@ -74,7 +78,7 @@ if ($variant === 'image'): ?>
 endif;
 // Variant: Code (designed section)
 ?>
-<section id="<?php echo esc_attr($section_id); ?>" class="insight-section" data-variant="code" aria-labelledby="<?php echo esc_attr($section_id); ?>-title">
+<section id="<?php echo esc_attr($section_id); ?>" class="insight-section<?php echo esc_attr($reveal_class); ?>" data-variant="code" aria-labelledby="<?php echo esc_attr($section_id); ?>-title">
   <div class="content">
     <h2 class="subhead"><?php echo child_subscribe_safe_text($subhead); ?></h2>
     <h2 class="subhead1"><?php echo child_subscribe_safe_text($subhead1); ?></h2>

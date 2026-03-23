@@ -39,6 +39,10 @@
         "loading": "lazy",
         "decoding": "async"
       }
+    },
+    "reveal": {
+      "type": "string",
+      "default": ""
     }
   },
   "style": "file:./style.css",

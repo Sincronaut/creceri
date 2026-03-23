@@ -18,11 +18,8 @@
   var ROOT_MARGIN = '0px 0px -40px 0px'; // start slightly before element hits bottom edge
 
   function init() {
-    // Select all elements with a class starting with "reveal"
-    var targets = document.querySelectorAll(
-      '.reveal, .reveal-up, .reveal-down, .reveal-left, .reveal-right, ' +
-      '.reveal-scale, .reveal-scale-lg, .reveal-up-scale'
-    );
+    // Select all elements with any "reveal" class
+    var targets = document.querySelectorAll('[class*="reveal"]');
 
     if (!targets.length) return;
 
@@ -30,7 +27,7 @@
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
-          observer.unobserve(entry.target); // only animate once
+          observer.unobserve(entry.target);
         }
       });
     }, {

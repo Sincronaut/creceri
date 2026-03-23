@@ -20,9 +20,15 @@ $attrs = wp_parse_args(
 
 $items = is_array( $attrs['items'] ) ? $attrs['items'] : array();
 
+$reveal = $attributes['reveal'] ?? '';
+$extra_classes = array('what-we-stand-for');
+if ($reveal) {
+    $extra_classes[] = 'reveal-' . sanitize_html_class($reveal);
+}
+
 $wrapper_attrs = get_block_wrapper_attributes(
 	array(
-		'class' => 'what-we-stand-for',
+		'class' => implode(' ', $extra_classes),
 	)
 );
 
