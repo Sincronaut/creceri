@@ -158,9 +158,13 @@ if ($use_posts || empty($items)) {
         foreach ($terms as $t) {
           if (is_wp_error($t))
             continue;
+          $cat_label = cc_clean($t->name);
+          if ($is_ko) {
+            $cat_label = trim(preg_replace('/\s*\(.*?\)/', '', $cat_label));
+          }
           $badges[] = array(
             'slug' => $t->slug,
-            'label' => cc_clean($t->name),
+            'label' => $cat_label,
             'url' => '?filter=' . urlencode($t->slug) . '#category-list',
           );
         }
@@ -172,10 +176,15 @@ if ($use_posts || empty($items)) {
       if ($image_alt === '')
         $image_alt = $p_title;
 
+      $primary_label = ($primary && !is_wp_error($primary)) ? cc_clean($primary->name) : 'Uncategorized';
+      if ($is_ko && $primary_label !== 'Uncategorized') {
+        $primary_label = trim(preg_replace('/\s*\(.*?\)/', '', $primary_label));
+      }
+
       $items[] = array(
         'title' => $p_title,
         'category' => ($primary && !is_wp_error($primary)) ? $primary->slug : 'uncategorized',
-        'categoryLabel' => ($primary && !is_wp_error($primary)) ? cc_clean($primary->name) : 'Uncategorized',
+        'categoryLabel' => $primary_label,
         'categories' => $badges,
         'author' => cc_clean(get_the_author()),
         'date' => get_post_time('c'),
