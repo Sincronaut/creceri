@@ -1367,23 +1367,34 @@ add_action('wp_head', function () {
 // Add NOINDEX, NOFOLLOW meta tag to specific paths (Prevents Duplicate Tags)
 function child_custom_noindex_nofollow($robots)
 {
-  $request_uri = $_SERVER['REQUEST_URI'] ?? '';
+  // Decode the URI so Korean characters like '감사합니다' match properly
+  $request_uri = urldecode($_SERVER['REQUEST_URI'] ?? '');
 
   $noindex_paths = array(
     '/digital-marketing/page/',
     '/ecommerce-development/page/',
     '/website-cms-development/page/',
     '/ui-ux-design/page/',
-    '/team-extension/page/'
+    '/team-extension/page/',
+    // Korean Equivalents
+    '/ko/디지털-마케팅/page/',
+    '/ko/전자상거래-개발/page/',
+    '/ko/웹사이트-cms-개발/page/',
+    '/ko/ui-ux-디자인/page/',
+    '/ko/팀-확장/page/',
+    '/thank-you/',
+    '/ko/감사합니다/',
+    '/coming-soon/',
+    '/ko/출시-예정/'
   );
 
   $is_noindex_page = false;
 
-  // 1. Check if it's a search results page
-  if ( is_search() || isset($_GET['s']) ) {
+  // 1. Check if it's a search results page or a 404 error page
+  if ( is_search() || isset($_GET['s']) || is_404() ) {
     $is_noindex_page = true;
   }
-  // 2. Check the paginated paths
+  // 2. Check the paginated and static paths
   else {
     foreach ($noindex_paths as $path) {
       if (strpos($request_uri, $path) !== false) {
