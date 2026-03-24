@@ -240,8 +240,15 @@ function tek_build_items_from_query(array $attributes): array
     $cats = get_the_category($pid);
     $cat_items = [];
     if ($cats) {
+      $uri = $_SERVER['REQUEST_URI'] ?? '';
+      $is_ko = (strpos($uri, '/ko/') !== false);
+      $blog_base = $is_ko ? '/ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' : '/blogs/';
       foreach ($cats as $c) {
-        $cat_items[] = ['label' => $c->name, 'url' => home_url('/blogs/?filter=' . urlencode($c->slug) . '#category-list')];
+        $cat_label = $c->name;
+        if ($is_ko) {
+          $cat_label = trim(preg_replace('/\s*\(.*?\)/', '', $cat_label));
+        }
+        $cat_items[] = ['label' => $cat_label, 'url' => home_url($blog_base . '?filter=' . urlencode($c->slug) . '#category-list')];
       }
     }
 
