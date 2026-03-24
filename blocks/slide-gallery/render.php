@@ -123,11 +123,12 @@ $fallback_img = get_stylesheet_directory_uri() . '/assets/images/fallback-image.
       box-shadow:0 4px 0 rgba(15,23,42,.03),0 16px 36px rgba(15,23,42,.12);
       transform:translateY(-2px);
     }
-    /* Invisible overlay link covers the whole card */
-    .sea-local-leagues__card-link {
+    /* Stretched link pattern applied to CTA covers the whole card */
+    .sea-local-leagues__cta::after {
+      content: "";
       position:absolute;
       inset:0;
-      z-index:0;
+      z-index:10;
       border-radius:18px;
     }
 
@@ -175,8 +176,7 @@ $fallback_img = get_stylesheet_directory_uri() . '/assets/images/fallback-image.
       align-items:center;
       gap:6px;
       padding-top:6px;
-      position:relative;
-      z-index:1;
+      position:static;
     }
     .sea-local-leagues__cta-icon {
       font-size:13px;
@@ -261,7 +261,6 @@ if ($query->have_posts()):
     $excerpt = get_the_excerpt();
 ?>
           <article class="sea-local-leagues__card">
-            <a class="sea-local-leagues__card-link" href="<?php the_permalink(); ?>" aria-label="<?php echo esc_attr($title_p); ?>"></a>
             <div class="sea-local-leagues__media" style="background-image: url('<?php echo esc_url($thumb ? $thumb : $fallback_img); ?>');"></div>
             <h3 class="sea-local-leagues__sport"><?php echo esc_html($title_p); ?></h3>
             <p class="sea-local-leagues__desc">
