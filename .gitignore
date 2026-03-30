@@ -1,4 +1,12 @@
 .vscode/
 node_modules/
 .DS_Store
+Thumbs.db
+Desktop.ini
 *.log
+error_log
+*.bak
+*.sql
+*.zip
+*.gz
+temp_snip.txt
