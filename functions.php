@@ -15,84 +15,84 @@ add_action('wp_enqueue_scripts', function () {
 
   // Small helpers
   $ver = function ($rel) use ($dir) {
-      $f = $dir . $rel;
-      return file_exists($f) ? filemtime($f) : null;
+    $f = $dir . $rel;
+    return file_exists($f) ? filemtime($f) : null;
+  }
+  ;
+  $add_style = function ($handle, $rel, $deps = []) use ($uri, $ver) {
+    $file_uri = $uri . $rel;
+    $v = $ver($rel);
+    if ($v !== null) {
+      wp_enqueue_style($handle, $file_uri, $deps, $v);
     }
-      ;
-    $add_style = function ($handle, $rel, $deps = []) use ($uri, $ver) {
-      $file_uri = $uri . $rel;
-      $v = $ver($rel);
-      if ($v !== null) {
-        wp_enqueue_style($handle, $file_uri, $deps, $v);
-      }
+  }
+  ;
+  $add_script = function ($handle, $rel, $deps = [], $in_footer = true) use ($uri, $ver) {
+    $file_uri = $uri . $rel;
+    $v = $ver($rel);
+    if ($v !== null) {
+      wp_enqueue_script($handle, $file_uri, $deps, $v, $in_footer);
     }
-      ;
-    $add_script = function ($handle, $rel, $deps = [], $in_footer = true) use ($uri, $ver) {
-      $file_uri = $uri . $rel;
-      $v = $ver($rel);
-      if ($v !== null) {
-        wp_enqueue_script($handle, $file_uri, $deps, $v, $in_footer);
-      }
-    }
-      ;
+  }
+  ;
 
-    /* ---- CSS: vendor first, then your layers ---- */
-    // Bootstrap
-    wp_enqueue_style(
-      'bootstrap',
-      'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
+  /* ---- CSS: vendor first, then your layers ---- */
+  // Bootstrap
+  wp_enqueue_style(
+    'bootstrap',
+    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css',
     [],
-      '5.3.3'
-    );
+    '5.3.3'
+  );
 
-    // Parent & child styles (keep light; your real CSS lives in /assets/css/*)
-    // Parent first (optional but safe), then child (style.css with theme header / tiny globals)
-    $parent_style_path = get_template_directory() . '/style.css';
-    $parent_style_version = file_exists($parent_style_path)
-      ? filemtime($parent_style_path)
-      : wp_get_theme(get_template())->get('Version');
+  // Parent & child styles (keep light; your real CSS lives in /assets/css/*)
+  // Parent first (optional but safe), then child (style.css with theme header / tiny globals)
+  $parent_style_path = get_template_directory() . '/style.css';
+  $parent_style_version = file_exists($parent_style_path)
+    ? filemtime($parent_style_path)
+    : wp_get_theme(get_template())->get('Version');
 
-    wp_enqueue_style(
-      'parent-style',
-      get_template_directory_uri() . '/style.css',
+  wp_enqueue_style(
+    'parent-style',
+    get_template_directory_uri() . '/style.css',
     ['bootstrap'],
-      $parent_style_version
-    );
+    $parent_style_version
+  );
 
-    // Version the child style header file so the CDN/browser picks up updates after deploys.
-    $add_style('child-style', '/style.css', ['bootstrap', 'parent-style']);
+  // Version the child style header file so the CDN/browser picks up updates after deploys.
+  $add_style('child-style', '/style.css', ['bootstrap', 'parent-style']);
 
-    // Global layout CSS (site-wide)
-    $add_style('ai-header', '/assets/css/layout/header.css', ['child-style']);
-    $add_style('ai-footer', '/assets/css/layout/footer.css', ['ai-header']);
+  // Global layout CSS (site-wide)
+  $add_style('ai-header', '/assets/css/layout/header.css', ['child-style']);
+  $add_style('ai-footer', '/assets/css/layout/footer.css', ['ai-header']);
 
-    // // Page-specific CSS
-    // if ( is_front_page() ) {
-    //   $add_style( 'ai-homepage', '/assets/css/pages/homepage.css', [ 'ai-footer' ] );
-    // }
-    // if ( is_page( 'about' ) ) {
-    //   $add_style( 'ai-about', '/assets/css/pages/about.css', [ 'ai-footer' ] );
-    // }
-    // if ( is_page( 'blogs' ) || is_home() ) {
-    //   $add_style( 'ai-blogs', '/assets/css/pages/blogs.css', [ 'ai-footer' ] );
-    // }
-  
-    /* ---- JS: vendor then your script(s) ---- */
-    wp_enqueue_script(
-      'bootstrap',
-      'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js',
+  // // Page-specific CSS
+  // if ( is_front_page() ) {
+  //   $add_style( 'ai-homepage', '/assets/css/pages/homepage.css', [ 'ai-footer' ] );
+  // }
+  // if ( is_page( 'about' ) ) {
+  //   $add_style( 'ai-about', '/assets/css/pages/about.css', [ 'ai-footer' ] );
+  // }
+  // if ( is_page( 'blogs' ) || is_home() ) {
+  //   $add_style( 'ai-blogs', '/assets/css/pages/blogs.css', [ 'ai-footer' ] );
+  // }
+
+  /* ---- JS: vendor then your script(s) ---- */
+  wp_enqueue_script(
+    'bootstrap',
+    'https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js',
     [],
-      '5.3.3',
-      true
-    );
+    '5.3.3',
+    true
+  );
 
-    // Your main JS (menus, mobile submenu, hero bg carousel init, etc.)
-    $add_script('ai-main', '/assets/js/main.js', ['bootstrap'], true);
+  // Your main JS (menus, mobile submenu, hero bg carousel init, etc.)
+  $add_script('ai-main', '/assets/js/main.js', ['bootstrap'], true);
 
-    /* ---- Scroll Reveal (global animations) ---- */
-    $add_style('scroll-reveal', '/assets/css/scroll-reveal.css', ['ai-footer']);
-    $add_script('scroll-reveal', '/assets/js/scroll-reveal.js', [], true);
-  });
+  /* ---- Scroll Reveal (global animations) ---- */
+  $add_style('scroll-reveal', '/assets/css/scroll-reveal.css', ['ai-footer']);
+  $add_script('scroll-reveal', '/assets/js/scroll-reveal.js', [], true);
+});
 
 function enqueue_fa_icons()
 {
@@ -269,7 +269,7 @@ add_action('wp_head', function () {
 add_action('wp_footer', function () {
   if (!isset($_GET['notice']) || $_GET['notice'] !== 'missing') {
     return;
-  }?>
+  } ?>
   <div class="toast-container position-fixed top-0 end-0 p-4" style="z-index:2000">
     <div id="missingToast" class="toast text-bg-danger border-0" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-body">
@@ -286,7 +286,7 @@ add_action('wp_footer', function () {
         new bootstrap.Toast(el, { delay: 5000 }).show();
       } else {
         el && (el.style.display = 'block');
-        setTimeout(function(){ el && (el.style.display='none'); }, 3000);
+        setTimeout(function () { el && (el.style.display = 'none'); }, 3000);
       }
       if (history.replaceState) {
         var url = new URL(window.location.href);
@@ -295,7 +295,7 @@ add_action('wp_footer', function () {
       }
     })();
   </script>
-<?php
+  <?php
 });
 
 // Render Gutenberg blocks inside excerpts (so SSR blocks appear).
@@ -353,10 +353,10 @@ if (!function_exists('child_render_toc')) {
     $attrs = wp_parse_args(
       $args,
       array(
-      'title' => 'Table of Contents',
-      'levels' => array('h2', 'h3'),
-      'intro' => true,
-    )
+        'title' => 'Table of Contents',
+        'levels' => array('h2', 'h3'),
+        'intro' => true,
+      )
     );
 
     // Build a block comment and let WordPress render the dynamic block server-side.
@@ -375,19 +375,19 @@ if (!function_exists('child_render_toc')) {
  */
 add_shortcode(
   'child_toc',
-  function ($atts = array()) {
+  function ($atts = array ()) {
     $atts = shortcode_atts(
       array(
-      'title' => 'Table of Contents',
-      'levels' => 'h2,h3',
-      'intro' => '1',
-    ),
+        'title' => 'Table of Contents',
+        'levels' => 'h2,h3',
+        'intro' => '1',
+      ),
       $atts,
       'child_toc'
     );
     $args = array(
-      'title' => (string)$atts['title'],
-      'levels' => array_map('trim', explode(',', (string)$atts['levels'])),
+      'title' => (string) $atts['title'],
+      'levels' => array_map('trim', explode(',', (string) $atts['levels'])),
       'intro' => $atts['intro'] !== '0',
     );
     ob_start();
@@ -401,7 +401,7 @@ add_shortcode(
 /* Card Block editor assets (/blocks/card-block) */
 add_action(
   'init',
-    function () {
+  function () {
     $dir_path = get_stylesheet_directory() . '/blocks/card-block';
     $dir_uri = get_stylesheet_directory_uri() . '/blocks/card-block';
 
@@ -429,14 +429,14 @@ add_action(
       );
     }
 
-  // Block type itself is registered by the generic /blocks/*/block.json loader above.
+    // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 /* Card Update Data (/blocks/card) */
 add_action(
   'init',
-    function () {
+  function () {
     $dir_path = get_stylesheet_directory() . '/blocks/card';
     $dir_uri = get_stylesheet_directory_uri() . '/blocks/card';
 
@@ -474,13 +474,13 @@ add_action(
       true
     );
 
-  // Block type itself is registered by the generic /blocks/*/block.json loader above.
+    // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 add_action(
   'init',
-    function () {
+  function () {
     $dir_path = get_stylesheet_directory() . '/blocks/banner';
     $dir_uri = get_stylesheet_directory_uri() . '/blocks/banner';
 
@@ -518,13 +518,13 @@ add_action(
       true
     );
 
-  // Block type itself is registered by the generic /blocks/*/block.json loader above.
+    // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 add_action(
   'init',
-    function () {
+  function () {
     $dir_path = get_stylesheet_directory() . '/blocks/banner-2';
     $dir_uri = get_stylesheet_directory_uri() . '/blocks/banner-2';
 
@@ -562,13 +562,13 @@ add_action(
       true
     );
 
-  // Block type itself is registered by the generic /blocks/*/block.json loader above.
+    // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 add_action(
   'init',
-    function () {
+  function () {
     $dir_path = get_stylesheet_directory() . '/blocks/banner-3';
     $dir_uri = get_stylesheet_directory_uri() . '/blocks/banner-3';
 
@@ -608,13 +608,13 @@ add_action(
       );
     }
 
-  // Block type itself is registered by the generic /blocks/*/block.json loader above.
+    // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 add_action(
   'init',
-    function () {
+  function () {
     $dir_path = get_stylesheet_directory() . '/blocks/blog-content';
     $dir_uri = get_stylesheet_directory_uri() . '/blocks/blog-content';
     $asset = $dir_path . '/index.js';
@@ -630,13 +630,13 @@ add_action(
       );
     }
 
-  // Block type itself is registered by the generic /blocks/*/block.json loader above.
+    // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
 add_action(
   'init',
-    function () {
+  function () {
     $dir_path = get_stylesheet_directory() . '/blocks/faq';
     $dir_uri = get_stylesheet_directory_uri() . '/blocks/faq';
     $asset = $dir_path . '/index.js';
@@ -652,7 +652,7 @@ add_action(
       );
     }
 
-  // Block type itself is registered by the generic /blocks/*/block.json loader above.
+    // Block type itself is registered by the generic /blocks/*/block.json loader above.
   }
 );
 
@@ -701,7 +701,7 @@ add_action('admin_init', 'handle_clear_cache_request');
 
 add_action(
   'enqueue_block_editor_assets',
-    function () {
+  function () {
     $inline = <<<'JS'
 (function (w) {
   var wp = w.wp || {};
@@ -777,8 +777,7 @@ add_filter('document_title_parts', function ($title) {
     $uri = $_SERVER['REQUEST_URI'] ?? '';
     if (strpos($uri, '/ko/') !== false) {
       $title['title'] = '검색 결과';
-    }
-    else {
+    } else {
       $title['title'] = 'Search Results';
     }
   }
@@ -1188,8 +1187,8 @@ add_action('wp_head', function () {
   // ---------------------------------------------------
   if (!empty($schema)) {
     echo "\n" . '<script type="application/ld+json">' . "\n"
-    . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n"
-    . '</script>' . "\n";
+      . wp_json_encode($schema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) . "\n"
+      . '</script>' . "\n";
   }
 
 }, 20); // Priority 20 prevents blocking critical CSS
@@ -1224,18 +1223,15 @@ add_shortcode('custom_breadcrumbs', function () {
       $cat_url = home_url($blog_path) . '?filter=' . urlencode($cat_slug) . '#category-list';
 
       $breadcrumbs .= $separator . '<a href="' . $cat_url . '">' . esc_html($cat_name) . '</a>';
-    }
-    else {
+    } else {
       $blog_label = $is_ko ? '블로그' : 'Blogs';
       $blog_path = $is_ko ? 'ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' : 'blogs/';
       $breadcrumbs .= $separator . '<a href="' . home_url($blog_path) . '">' . $blog_label . '</a>';
     }
     $breadcrumbs .= $separator . '<span class="current">' . get_the_title() . '</span>';
-  }
-  elseif (is_page()) {
+  } elseif (is_page()) {
     $breadcrumbs .= $separator . '<span class="current">' . get_the_title() . '</span>';
-  }
-  elseif (is_category()) {
+  } elseif (is_category()) {
     $blog_label = $is_ko ? '블로그' : 'Blogs';
     $blog_path = $is_ko ? 'ko/%EB%B8%94%EB%A1%9C%EA%B7%B8/' : 'blogs/';
     $breadcrumbs .= $separator . '<a href="' . home_url($blog_path) . '">' . $blog_label . '</a>';
@@ -1391,7 +1387,7 @@ function child_custom_noindex_nofollow($robots)
   $is_noindex_page = false;
 
   // 1. Check if it's a search results page or a 404 error page
-  if ( is_search() || isset($_GET['s']) || is_404() ) {
+  if (is_search() || isset($_GET['s']) || is_404()) {
     $is_noindex_page = true;
   }
   // 2. Check the paginated and static paths
@@ -1405,7 +1401,7 @@ function child_custom_noindex_nofollow($robots)
   }
 
   // 3. If it matches any condition, apply the noindex tags
-  if ( $is_noindex_page ) {
+  if ($is_noindex_page) {
     // Check if Rank Math is triggering the function
     if (current_filter() === 'rank_math/frontend/robots') {
       $robots['index'] = 'noindex';
@@ -1427,3 +1423,27 @@ function child_custom_noindex_nofollow($robots)
 add_filter('wp_robots', 'child_custom_noindex_nofollow', 99);
 // Hook into Rank Math specifically
 add_filter('rank_math/frontend/robots', 'child_custom_noindex_nofollow', 99);
+
+/* Google Analytics */
+function creceri_add_google_analytics()
+{
+  // Only run on production
+  if (wp_get_environment_type() !== 'production') {
+    return;
+  }
+  // Don't track logged-in admins
+  if (current_user_can('manage_options')) {
+    return;
+  }
+  ?>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-K9XY08B8G8"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-K9XY08B8G8');
+  </script>
+  <?php
+}
+add_action('wp_head', 'creceri_add_google_analytics', 1);
