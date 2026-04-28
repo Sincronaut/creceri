@@ -115,14 +115,18 @@ endif; ?>
   <div class="contact-grid">
     <!-- Left: Form card -->
     <div class="contact-card">
-      <form class="contact-form" action="<?php echo esc_url(home_url('/')); ?>" method="post" novalidate aria-describedby="<?php echo esc_attr($note_id); ?>">
+      <form id="<?php echo esc_attr($instance_id); ?>-form" class="contact-form" action="<?php echo esc_url(home_url('/')); ?>" method="post" aria-describedby="<?php echo esc_attr($note_id); ?>">
         <?php wp_nonce_field('child_contact_submit', '_cnonce'); ?>
         <input type="hidden" name="action" value="child_contact_submit"/>
 
         <!-- Honeypot -->
-        <div class="hp-field" aria-hidden="true">
+        <div class="hp-field" aria-hidden="true" style="display:none;">
           <label for="<?php echo esc_attr($instance_id); ?>-website">Website</label>
           <input id="<?php echo esc_attr($instance_id); ?>-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div id="<?php echo esc_attr($instance_id); ?>-success" class="contact-success-msg" style="display:none; background:#dcfce7; color:#166534; padding:16px; border-radius:8px; margin-bottom:20px; font-weight:600;">
+          Your message has been successfully sent!
         </div>
 
         <div class="form-row">
@@ -145,7 +149,7 @@ endif; ?>
           <?php if ($showPhone): ?>
           <div class="form-field">
             <label for="<?php echo esc_attr($instance_id); ?>-phone"><?php echo esc_html($labels['phone']); ?> *</label>
-            <input id="<?php echo esc_attr($instance_id); ?>-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="<?php echo esc_attr($placeholders['phone']); ?>" />
+            <input id="<?php echo esc_attr($instance_id); ?>-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="<?php echo esc_attr($placeholders['phone']); ?>" required />
           </div>
           <?php
 endif; ?>
@@ -179,6 +183,33 @@ endif; ?>
           <?php echo esc_html($requiredNote); ?>
         </p>
       </form>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const form = document.getElementById('<?php echo esc_js($instance_id); ?>-form');
+          const successMsg = document.getElementById('<?php echo esc_js($instance_id); ?>-success');
+          
+          if (form) {
+            form.addEventListener('submit', function(e) {
+              // Only prevent default if form is valid, to allow native browser tooltips to show if invalid
+              if (!form.checkValidity()) {
+                return; // Let the browser show the native validation errors
+              }
+              
+              e.preventDefault(); // Stop page reload since we aren't sending it anywhere yet
+              
+              // Hide form contents and show success message, or just show success message at top
+              successMsg.style.display = 'block';
+              
+              // Optional: reset form
+              form.reset();
+              
+              // Optional: scroll to success message
+              successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+          }
+        });
+      </script>
     </div>
 
     <!-- Right: Info card -->
