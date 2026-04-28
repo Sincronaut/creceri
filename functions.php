@@ -850,6 +850,17 @@ add_filter('template_include', function ($template) {
     }
   }
 
+  /* -----------------------  Korean Single Template Routing  ----------------------- */
+  if (is_single()) {
+    $uri = $_SERVER['REQUEST_URI'] ?? '';
+    if (strpos($uri, '/ko/') !== false) {
+      $ko_single_template = locate_template('templates/ko-single-loader.php');
+      if ($ko_single_template) {
+        return $ko_single_template;
+      }
+    }
+  }
+
   return $template;
 });
 
@@ -1219,6 +1230,10 @@ add_shortcode('custom_breadcrumbs', function () {
     if (!empty($categories)) {
       $cat = $categories[0];
       $cat_name = $cat->name;
+      if ($is_ko && is_string($cat_name)) {
+        $cat_name = preg_replace('/\s*\([^)]*\)\s*/', ' ', $cat_name);
+        $cat_name = trim(preg_replace('/\s+/', ' ', $cat_name));
+      }
       $cat_slug = $cat->slug;
 
       // EN: /blogs/  KO: /ko/블로그/
