@@ -187,7 +187,11 @@ if ($reveal === 'split') {
           src="<?php echo esc_url($img_src); ?>"
           alt="<?php echo esc_attr($img_alt); ?>"
           loading="<?php echo esc_attr($img_load); ?>"
-          decoding="<?php echo esc_attr($img_dec); ?>" />
+          decoding="<?php echo esc_attr($img_dec); ?>"
+          <?php if ( $img_load === 'eager' ) { echo 'fetchpriority="high"'; } ?>
+          <?php if ( ! empty( $image['id'] ) ) { $srcset = wp_get_attachment_image_srcset( (int) $image['id'] ); if ($srcset) { echo 'srcset="' . esc_attr($srcset) . '"'; } } ?>
+          <?php if ( ! empty( $image['id'] ) ) { $sizes = wp_get_attachment_image_sizes( (int) $image['id'] ); if ($sizes) { echo 'sizes="' . esc_attr($sizes) . '"'; } } ?>
+        />
     </div>
   </div>
 </section>
@@ -198,67 +202,73 @@ document.addEventListener("DOMContentLoaded", function() {
     const section = document.getElementById('<?php echo esc_js($section_id); ?>');
     if (!section) return;
     
-    const items = section.querySelectorAll('.rotating-text-item');
-    const wrapper = section.querySelector('.hero__line--rotating');
-    const scroller = section.querySelector('.rotating-text-scroller');
-    if (!items.length || !wrapper || !scroller) return;
-    
-    let currentIndex = 0;
-    const itemHeight = items[0].offsetHeight || 0; // Fallback to CSS or measure
-    const getWrapperWidth = () => {
-      const widths = Array.from(items).map(item => item.scrollWidth || item.offsetWidth || 0);
-      const maxItemWidth = widths.length ? Math.max(...widths) : 0;
-      const availableWidth = wrapper.parentElement ? wrapper.parentElement.clientWidth : section.clientWidth;
+    // Optimize performance by removing blocking synchronous layouts, use requestAnimationFrame
+    requestAnimationFrame(() => {
+      const items = section.querySelectorAll('.rotating-text-item');
+      const wrapper = section.querySelector('.hero__line--rotating');
+      const scroller = section.querySelector('.rotating-text-scroller');
+      if (!items.length || !wrapper || !scroller) return;
+      
+      let currentIndex = 0;
+      const getWrapperWidth = () => {
+        const widths = Array.from(items).map(item => item.scrollWidth || item.offsetWidth || 0);
+        const maxItemWidth = widths.length ? Math.max(...widths) : 0;
+        const availableWidth = wrapper.parentElement ? wrapper.parentElement.clientWidth : section.clientWidth;
 
-      return Math.min(maxItemWidth + 12, availableWidth || maxItemWidth || 0);
-    };
-    
-    function updateWidthAndScroll() {
-        // Clear all active classes first
-        items.forEach(item => item.classList.remove('active'));
-        
-        const currentItem = items[currentIndex];
-        if (currentItem) {
-            currentItem.classList.add('active');
-            
-            const isHome = section.classList.contains('home-hero-banner');
-            
-            if (!isHome) {
-                // Original logic for non-home banners: dynamic width
-                const width = currentItem.offsetWidth + 5;
-                wrapper.style.width = width + 'px';
-            }
+        return Math.min(maxItemWidth + 12, availableWidth || maxItemWidth || 0);
+      };
+      
+      function updateWidthAndScroll() {
+          // Clear all active classes first
+          items.forEach(item => item.classList.remove('active'));
+          
+          const currentItem = items[currentIndex];
+          if (currentItem) {
+              currentItem.classList.add('active');
+              
+              const isHome = section.classList.contains('home-hero-banner');
+              
+              if (!isHome) {
+                  // Original logic for non-home banners: dynamic width
+                  const width = currentItem.offsetWidth + 5;
+                  wrapper.style.width = width + 'px';
+              }
 
-            // Scroll to the current index
-            const offsetFactor = isHome ? 1.6 : 1.5;
-            const offset = currentIndex * offsetFactor; // Based on em from CSS
-            scroller.style.transform = `translateY(-${offset}em)`;
-        }
-    }
-    
-    // Initial setup
-    const isHome = section.classList.contains('home-hero-banner');
-    if (isHome) {
-        wrapper.style.width = getWrapperWidth() + 'px';
-    }
-    updateWidthAndScroll();
-    window.addEventListener('resize', () => {
+              // Scroll to the current index
+              const offsetFactor = isHome ? 1.6 : 1.5;
+              const offset = currentIndex * offsetFactor; // Based on em from CSS
+              scroller.style.transform = `translateY(-${offset}em)`;
+          }
+      }
+      
+      // Initial setup
+      const isHome = section.classList.contains('home-hero-banner');
       if (isHome) {
           wrapper.style.width = getWrapperWidth() + 'px';
       }
       updateWidthAndScroll();
+      window.addEventListener('resize', () => {
+        requestAnimationFrame(() => {
+          if (isHome) {
+              wrapper.style.width = getWrapperWidth() + 'px';
+          }
+          updateWidthAndScroll();
+        });
+      }, { passive: true });
+      
+      setInterval(() => {
+          requestAnimationFrame(() => {
+            currentIndex++;
+            
+            // Return to start if reached the end
+            if (currentIndex >= items.length) {
+                currentIndex = 0;
+            }
+            
+            updateWidthAndScroll();
+          });
+      }, 3000);
     });
-    
-    setInterval(() => {
-        currentIndex++;
-        
-        // Return to start if reached the end
-        if (currentIndex >= items.length) {
-            currentIndex = 0;
-        }
-        
-        updateWidthAndScroll();
-    }, 3000);
 });
 </script>
 <?php endif; ?>

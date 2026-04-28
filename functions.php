@@ -103,6 +103,20 @@ function enqueue_fa_icons()
 }
 add_action('wp_enqueue_scripts', 'enqueue_fa_icons');
 
+add_action('wp_head', function () {
+  echo "<link rel=\"preconnect\" href=\"https://cdn.jsdelivr.net\" crossorigin>\n";
+  echo "<link rel=\"preconnect\" href=\"https://cdnjs.cloudflare.com\" crossorigin>\n";
+  
+  // Preload home LCP image (adjust if need dynamic logic)
+  if ( is_front_page() ) {
+    // Basic preload for the primary hero banner on the home page
+    $home_lcp_url = esc_url( get_stylesheet_directory_uri() . '/wp-content/uploads/2025/10/693a7a2703163f47b412f648b6da08ad8485fd2a.webp' );
+    // Note: since this is relative to home url, we use site_url
+    $home_lcp_url = esc_url( site_url('/wp-content/uploads/2025/10/693a7a2703163f47b412f648b6da08ad8485fd2a.webp') );
+    echo "<link rel=\"preload\" href=\"{$home_lcp_url}\" as=\"image\" fetchpriority=\"high\">\n";
+  }
+}, 1);
+
 /* -------------------  Disable editor on 'home' (optional)  ------------------- */
 // function ai_disable_editor_on_home($can_edit, $post) {
 //   if (is_admin() && $post && $post->post_name === 'home') return false;
@@ -1465,3 +1479,82 @@ function creceri_add_google_analytics()
   <?php
 }
 add_action('wp_head', 'creceri_add_google_analytics', 1);
+
+/* -------------------  Performance Optimizations  ------------------- */
+
+// 3. Defer non-critical JavaScript
+add_filter('script_loader_tag', function($tag, $handle) {
+  // Add 'defer' attribute to these script handles if not already present
+  $defer_scripts = ['bootstrap', 'ai-main', 'scroll-reveal', 'wp-block-library'];
+  
+  if (in_array($handle, $defer_scripts, true)) {
+    if (strpos($tag, 'defer="defer"') === false && strpos($tag, ' defer') === false) {
+      $tag = str_replace(' src', ' defer="defer" src', $tag);
+    }
+  }
+  
+  return $tag;
+}, 10, 2);
+
+// 4. Asynchronously load non-critical CSS
+add_filter('style_loader_tag', function($html, $handle, $href, $media) {
+  // Styles to load asynchronously via 'print' media trick
+  $async_styles = ['font-awesome', 'scroll-reveal'];
+  
+  if (in_array($handle, $async_styles, true)) {
+    // Modify the <link> tag to load non-blocking CSS
+    $html = sprintf(
+      "<link rel='stylesheet' id='%s' href='%s' media='print' onload=\"this.media='all'\">\n<noscript><link rel='stylesheet' id='%s-noscript' href='%s' media='%s'></noscript>\n",
+      esc_attr($handle),
+      esc_url($href),
+      esc_attr($handle),
+      esc_url($href),
+      esc_attr($media)
+    );
+  }
+  
+  return $html;
+}, 10, 4);
+
+// 5. Automatically add loading="lazy" to all custom block images (except the banner)
+add_filter('render_block', function($block_content, $block) {
+  // We only want to process custom child theme blocks
+  if (isset($block['blockName']) && strpos($block['blockName'], 'child/') === 0) {
+    // Skip the banner blocks since those should be eager loaded for LCP
+    if ($block['blockName'] === 'child/banner' || $block['blockName'] === 'child/banner-2' || $block['blockName'] === 'child/banner-3') {
+      return $block_content;
+    }
+    
+    // Inject loading="lazy" into any <img> tag that doesn't already have it
+    if (preg_match('/<img[^>]+>/i', $block_content)) {
+      $block_content = preg_replace('/(<img\b(?![^>]*\bloading=)[^>]*)(>)/i', '$1 loading="lazy"$2', $block_content);
+    }
+  }
+  return $block_content;
+}, 10, 2);
+
+// 6. Clean up WordPress <head> bloat
+add_action('init', function() {
+  // Disable Emojis
+  remove_action('wp_head', 'print_emoji_detection_script', 7);
+  remove_action('wp_print_styles', 'print_emoji_styles');
+  remove_action('admin_print_scripts', 'print_emoji_detection_script');
+  remove_action('admin_print_styles', 'print_emoji_styles');
+  remove_filter('the_content_feed', 'wp_staticize_emoji');
+  remove_filter('comment_text_rss', 'wp_staticize_emoji');
+  remove_filter('wp_mail', 'wp_staticize_emoji_for_email');
+  
+  // Remove unnecessary links
+  remove_action('wp_head', 'wp_generator'); 
+  remove_action('wp_head', 'wlwmanifest_link');
+  remove_action('wp_head', 'rsd_link');
+  remove_action('wp_head', 'rest_output_link_wp_head', 10);
+  remove_action('wp_head', 'wp_oembed_add_discovery_links', 10);
+  
+  // Deregister oEmbed script
+  wp_deregister_script('wp-embed');
+});
+
+// 7. Load separate core block assets
+// Forces WP to only load CSS for blocks currently active on the page, instead of all blocks globly.
+add_filter('should_load_separate_core_block_assets', '__return_true');
