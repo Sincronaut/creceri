@@ -416,6 +416,10 @@ $has_cta = $right_cta_on; /* Use right CTA values — that's where the button da
 $has_rtitle = ($right_title !== '');
 
 $section_classes = 'wrap has-rtitle--list';
+$custom_class = tek_str($attributes, 'className', '');
+if ($custom_class !== '') {
+  $section_classes .= ' ' . sanitize_html_class($custom_class);
+}
 $custom_gradient = tek_bool($attributes, 'customGradient', false);
 if ($custom_gradient) {
   $section_classes .= ' wrap--gradient';

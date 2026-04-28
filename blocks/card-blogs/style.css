@@ -523,3 +523,33 @@
     margin-left: 0px;
   }
 }
+
+/* Home Page specific overrides for iPad Air (1180x820) */
+@media (max-width:1200px) {
+  .home-card-blogs .wrap {
+    padding: clamp(3rem, 10vw, 6rem) 100px;
+  }
+
+  .home-card-blogs .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-card-blogs .feature-media {
+    min-height: 340px;
+  }
+
+  .home-card-blogs .list-col {
+    margin-top: 20px;
+  }
+
+  .home-card-blogs .thumb {
+    width: 100%;
+    min-height: 160px;
+  }
+
+  .home-card-blogs .item {
+    grid-template-columns: 160px 1fr;
+    gap: 16px;
+    padding: 12px;
+  }
+}

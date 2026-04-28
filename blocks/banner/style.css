@@ -885,25 +885,36 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 
 /* Home Page Scoped Overrides */
 @media (max-width: 1415px) and (min-width: 768px) {
+  .home-hero-banner .hero__copy {
+    align-items: flex-start !important;
+    text-align: left !important;
+    padding-left: 30px !important;
+  }
+
+  .home-hero-banner .hero__copy > * {
+    margin-inline: 0 !important;
+  }
+
   .home-hero-banner .title_h1 {
-    text-align: center !important;
-    width: 100%;
-    margin-inline: auto;
+    text-align: left !important;
+    width: max-content;
+    max-width: 100%;
+    margin-inline: 0;
   }
 
   .home-hero-banner .hero__brand {
-    align-self: center !important;
-    text-align: center !important;
-    margin-inline: auto !important;
+    align-self: flex-start !important;
+    text-align: left !important;
+    margin-inline: 0 !important;
     margin-top: 10px !important;
   }
 
   .home-hero-banner .rotating-text-scroller {
-    align-items: center !important;
+    align-items: flex-start !important;
   }
 
   .home-hero-banner .rotating-text-item {
-    text-align: center !important;
+    text-align: left !important;
   }
 }
 
@@ -940,21 +951,21 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 
 @media (min-width:768px) and (max-width:1024px) {
   .home-hero-banner .hero__brand {
-    align-self: center;
-    text-align: center;
+    align-self: flex-start;
+    text-align: left;
     margin-top: 10px;
   }
   
   .home-hero-banner .hero__line--rotating {
     margin-top: 10px !important;
-    margin-inline: auto;
+    margin-inline: 0;
   }
 
   .home-hero-banner .rotating-text-scroller {
-    align-items: center !important;
+    align-items: flex-start !important;
   }
 
   .home-hero-banner .rotating-text-item {
-    text-align: center !important;
+    text-align: left !important;
   }
 }
