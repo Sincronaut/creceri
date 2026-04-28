@@ -681,6 +681,9 @@ function handle_clear_cache_request()
   if (!isset($_GET['clear-cache']) || !wp_verify_nonce($_GET['_wpnonce'] ?? '', 'clear-cache')) {
     return;
   }
+  if (!current_user_can('manage_options')) {
+    return;
+  }
 
   // Clear WordPress object cache
   if (function_exists('wp_cache_flush')) {

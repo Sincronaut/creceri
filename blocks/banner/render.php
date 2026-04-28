@@ -140,7 +140,7 @@ if ($reveal === 'split') {
   <div class="hero__inner">
     <div class="hero__copy <?php echo esc_attr($copy_reveal_class); ?>" >
       <h1 id="<?php echo esc_attr($title_id); ?>" class="title_h1">
-       <span class="hero__brand"><?php echo $brand; ?></span>
+      <span class="hero__brand"><?php echo esc_html($brand); ?></span>
        <?php if (!empty($rotatingLines)) : 
          $lines = array_map('trim', explode(',', $rotatingLines));
        ?>
@@ -157,7 +157,7 @@ if ($reveal === 'split') {
       </h1>
 
       <?php if (!empty($lead_weight)) : ?>
-        <p class="hero__lead hero__lead--hook"><?php echo $lead_weight; ?></p>
+        <p class="hero__lead hero__lead--hook"><?php echo esc_html($lead_weight); ?></p>
       <?php endif; ?>
 
       <?php if (!empty($lead)) : ?>

@@ -14,16 +14,16 @@
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   // Config
-  var THRESHOLD = 0.12;   // 12% of element visible triggers animation
-  var ROOT_MARGIN = '0px 0px -40px 0px'; // start slightly before element hits bottom edge
+  const THRESHOLD = 0.12;   // 12% of element visible triggers animation
+  const ROOT_MARGIN = '0px 0px -40px 0px'; // start slightly before element hits bottom edge
 
   function init() {
     // Select all elements with any "reveal" class
-    var targets = document.querySelectorAll('[class*="reveal"]');
+    const targets = document.querySelectorAll('[class*="reveal"]');
 
     if (!targets.length) return;
 
-    var observer = new IntersectionObserver(function (entries) {
+    const observer = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('is-visible');
