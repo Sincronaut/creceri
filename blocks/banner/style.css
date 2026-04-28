@@ -383,6 +383,8 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
   position: relative;
 }
 
+
+
 .rotating-text-item.active {
   opacity: 1;
 }
@@ -393,6 +395,8 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
     padding: 0 8px;
   }
 }
+
+
 
 .title_h1+.hero__lead {
   margin-top: clamp(16px, 2.5vw, 24px) !important;
@@ -678,6 +682,8 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
     align-self: center;
   }
 
+
+
   .hero--img-right .hero__art1,
   .hero--img-left .hero__art1 {
     justify-self: center;
@@ -789,6 +795,10 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 
 /* === OVERRIDE: center copy up to 1415px === */
 @media (max-width: 1415px) {
+  .hero {
+    --hero-height: clamp(550px, 85vh, 750px) !important;
+  }
+
   .hero__copy {
     display: flex;
     flex-direction: column;
@@ -809,6 +819,8 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
     justify-self: center !important;
   }
 }
+
+
 
 /* ====================== 
    HOME PAGE BANNER SPECIFIC 
@@ -869,4 +881,80 @@ body:has(.hero--bleed-top) .wp-site-blocks>header {
 
 .home-hero-banner .title_h1 + .hero__lead {
   margin-top: clamp(8px, 1.5vw, 16px) !important;
+}
+
+/* Home Page Scoped Overrides */
+@media (max-width: 1415px) and (min-width: 768px) {
+  .home-hero-banner .title_h1 {
+    text-align: center !important;
+    width: 100%;
+    margin-inline: auto;
+  }
+
+  .home-hero-banner .hero__brand {
+    align-self: center !important;
+    text-align: center !important;
+    margin-inline: auto !important;
+    margin-top: 10px !important;
+  }
+
+  .home-hero-banner .rotating-text-scroller {
+    align-items: center !important;
+  }
+
+  .home-hero-banner .rotating-text-item {
+    text-align: center !important;
+  }
+}
+
+.home-hero-banner .hero__line--rotating {
+  height: 1.6em;
+  margin-bottom: 0.15em;
+}
+
+.home-hero-banner .rotating-text-scroller {
+  width: 100%;
+  align-items: flex-start;
+}
+
+.home-hero-banner .rotating-text-item {
+  width: 100%;
+  height: 1.6em;
+  line-height: 1.6;
+  text-align: left;
+}
+
+@media (max-width: 767px) {
+  .home-hero-banner .rotating-text-scroller {
+    align-items: center;
+  }
+
+  .home-hero-banner .rotating-text-item {
+    text-align: center;
+  }
+  
+  .home-hero-banner .hero__line--rotating {
+    height: 1.6em; /* Keep home page height */
+  }
+}
+
+@media (min-width:768px) and (max-width:1024px) {
+  .home-hero-banner .hero__brand {
+    align-self: center;
+    text-align: center;
+    margin-top: 10px;
+  }
+  
+  .home-hero-banner .hero__line--rotating {
+    margin-top: 10px !important;
+    margin-inline: auto;
+  }
+
+  .home-hero-banner .rotating-text-scroller {
+    align-items: center !important;
+  }
+
+  .home-hero-banner .rotating-text-item {
+    text-align: center !important;
+  }
 }

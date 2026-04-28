@@ -205,6 +205,13 @@ document.addEventListener("DOMContentLoaded", function() {
     
     let currentIndex = 0;
     const itemHeight = items[0].offsetHeight || 0; // Fallback to CSS or measure
+    const getWrapperWidth = () => {
+      const widths = Array.from(items).map(item => item.scrollWidth || item.offsetWidth || 0);
+      const maxItemWidth = widths.length ? Math.max(...widths) : 0;
+      const availableWidth = wrapper.parentElement ? wrapper.parentElement.clientWidth : section.clientWidth;
+
+      return Math.min(maxItemWidth + 12, availableWidth || maxItemWidth || 0);
+    };
     
     function updateWidthAndScroll() {
         // Clear all active classes first
@@ -214,19 +221,33 @@ document.addEventListener("DOMContentLoaded", function() {
         if (currentItem) {
             currentItem.classList.add('active');
             
-            // No background so no extra padding needed, just raw width + small gap
-            const width = currentItem.offsetWidth + 5;
-            wrapper.style.width = width + 'px';
+            const isHome = section.classList.contains('home-hero-banner');
             
+            if (!isHome) {
+                // Original logic for non-home banners: dynamic width
+                const width = currentItem.offsetWidth + 5;
+                wrapper.style.width = width + 'px';
+            }
+
             // Scroll to the current index
-            const offset = currentIndex * 1.5; // Based on em from CSS
+            const offsetFactor = isHome ? 1.6 : 1.5;
+            const offset = currentIndex * offsetFactor; // Based on em from CSS
             scroller.style.transform = `translateY(-${offset}em)`;
         }
     }
     
     // Initial setup
+    const isHome = section.classList.contains('home-hero-banner');
+    if (isHome) {
+        wrapper.style.width = getWrapperWidth() + 'px';
+    }
     updateWidthAndScroll();
-    window.addEventListener('resize', updateWidthAndScroll);
+    window.addEventListener('resize', () => {
+      if (isHome) {
+          wrapper.style.width = getWrapperWidth() + 'px';
+      }
+      updateWidthAndScroll();
+    });
     
     setInterval(() => {
         currentIndex++;
