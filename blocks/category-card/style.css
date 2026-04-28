@@ -16,7 +16,7 @@
   /* restored desktop gutters */
   background: linear-gradient(to bottom, #fff, #fff0);
   /* Default media height for all cards, can be overridden per block via inline --media-h */
-  --media-h: 260px;
+  --media-h: 320px;
 }
 
 /* Header and toolbar */
@@ -132,7 +132,7 @@
 
 /* Ensure card grows with media height */
 .ccard .card {
-  min-height: calc(var(--media-h, 300px) + 180px) !important;
+  min-height: calc(var(--media-h, 300px) + 230px) !important;
 }
 
 /* Media */
@@ -222,7 +222,7 @@
   border: none;
   background: var(--brand);
   color: #fff;
-  padding: 8px 14px;
+  padding: 12px 18px;
   border-radius: 999px;
   font-weight: 800;
   cursor: pointer;
@@ -355,7 +355,7 @@
 
   .ccard {
     padding: var(--section-pad-y, 40px) 15px !important;
-    --media-h: 140px !important; /* Shorter images for mobile 2-col */
+    --media-h: 180px !important; /* Shorter images for mobile 2-col */
   }
 
   .card {
@@ -402,13 +402,28 @@
   .cta {
     width: 100%;
     text-align: center;
-    padding: 6px 10px;
+    padding: 10px 14px;
     font-size: 12px;
   }
 }
 
 @media (max-width:480px) {
   .grid_category {
-    grid-template-columns: 1fr; /* Single column on very small phones */
+    grid-template-columns: 1fr !important; /* Single column on very small phones */
+  }
+}
+
+/* Blog Page Specific Overrides */
+@media (max-width: 767px) {
+  .blog-page-category-card .grid_category {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .blog-page-category-card .card {
+    min-height: 420px !important;
+  }
+
+  .blog-page-category-card .ccard {
+    --media-h: 240px !important; /* Make image taller too so it looks balanced */
   }
 }

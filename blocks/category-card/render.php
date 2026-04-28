@@ -256,9 +256,19 @@ $config = array(
   'i18n' => $i18n
 );
 ?>
+<?php
+$custom_class = cc_str($A, 'className', '');
+$ccard_classes = "ccard";
+if ($reverse) {
+  $ccard_classes .= " ccard--reverse";
+}
+if ($custom_class !== '') {
+  $ccard_classes .= ' ' . sanitize_html_class($custom_class);
+}
+?>
 <section
   id="<?php echo esc_attr($sec_id); ?>"
-  class="ccard<?php echo $reverse ? ' ccard--reverse' : ''; ?>"
+  class="<?php echo esc_attr($ccard_classes); ?>"
   style="--brand: <?php echo esc_attr($brand); ?>; --bg: <?php echo esc_attr($bg); ?>; --line: <?php echo esc_attr($line); ?>; --chip: <?php echo esc_attr($chip); ?>; --radius: <?php echo esc_attr($radius); ?>px; --card-w: <?php echo esc_attr($cardW); ?>px; --gap: <?php echo esc_attr($gap); ?>px;"
 >
   <!-- Hardening: z-index/flex-wrap so multiple tags never sit behind the image -->
