@@ -1,66 +1,104 @@
-<?php 
-if ( ! defined('ABSPATH') ) { exit; }
+<?php
+
+if (!defined('ABSPATH')) {
+  exit;
+}
 
 /* Lightweight getters */
-function ccon_val($a,$k,$d=null){ return (is_array($a)&&array_key_exists($k,$a))?$a[$k]:$d; }
-function ccon_str($a,$k,$d=''){ $v=ccon_val($a,$k,$d); return is_string($v)?$v:(is_null($v)?'':(string)$v); }
-function ccon_arr($a,$k){ $v=ccon_val($a,$k,array()); return is_array($v)?$v:array(); }
-function ccon_bool($a,$k,$d=false){ return (bool)ccon_val($a,$k,$d); }
+function ccon_val($a, $k, $d = null)
+{
+  return (is_array($a) && array_key_exists($k, $a)) ? $a[$k] : $d;
+}
+function ccon_str($a, $k, $d = '')
+{
+  $v = ccon_val($a, $k, $d);
+  return is_string($v) ? $v : (is_null($v) ? '' : (string)$v);
+}
+function ccon_arr($a, $k)
+{
+  $v = ccon_val($a, $k, array());
+  return is_array($v) ? $v : array();
+}
+function ccon_bool($a, $k, $d = false)
+{
+  return (bool)ccon_val($a, $k, $d);
+}
 
 /* Attributes */
-$A              = is_array($attributes ?? null) ? $attributes : array();
-$title          = ccon_str($A,'title', __('Contact Us','vite-ttf-child-creceri'));
-$lead           = ccon_str($A,'lead', __('Ready to talk? Share a few details and we’ll get back to you shortly','vite-ttf-child-creceri'));
-$buttonText     = ccon_str($A,'buttonText', __('Submit','vite-ttf-child-creceri'));
-$showPhone      = ccon_bool($A,'showPhone', true);
-$requiredNote   = ccon_str($A,'requiredNote', __('* Required fields','vite-ttf-child-creceri'));
-$enableParallax = ccon_bool($A,'enableParallax', true);
+$A = is_array($attributes ?? null) ? $attributes : array();
+$title = ccon_str($A, 'title', __('Contact Us', 'vite-ttf-child-creceri'));
+$lead = ccon_str($A, 'lead', __('Ready to talk? Share a few details and we’ll get back to you shortly', 'vite-ttf-child-creceri'));
+$buttonText = ccon_str($A, 'buttonText', __('Submit', 'vite-ttf-child-creceri'));
+$showPhone = ccon_bool($A, 'showPhone', true);
+$requiredNote = ccon_str($A, 'requiredNote', __('* Required fields', 'vite-ttf-child-creceri'));
+$enableParallax = ccon_bool($A, 'enableParallax', true);
 
 $labels = array_merge(array(
-  'firstName' => __('First Name','vite-ttf-child-creceri'),
-  'lastName'  => __('Last Name','vite-ttf-child-creceri'),
-  'email'     => __('Email','vite-ttf-child-creceri'),
-  'phone'     => __('Phone','vite-ttf-child-creceri'),
-  'subject'   => __('Subject','vite-ttf-child-creceri'),
-  'message'   => __('Message','vite-ttf-child-creceri'),
-), ccon_arr($A,'labels'));
+  'firstName' => __('First Name', 'vite-ttf-child-creceri'),
+  'lastName' => __('Last Name', 'vite-ttf-child-creceri'),
+  'email' => __('Email', 'vite-ttf-child-creceri'),
+  'phone' => __('Phone', 'vite-ttf-child-creceri'),
+  'subject' => __('Subject', 'vite-ttf-child-creceri'),
+  'message' => __('Message', 'vite-ttf-child-creceri'),
+), ccon_arr($A, 'labels'));
 
 $info = array_merge(array(
-  'addressLabel'   => __('Address','vite-ttf-child-creceri'),
-  'address'        => '#123 Sample Street, City, Country',
-  'phoneLabel'     => __('Phone','vite-ttf-child-creceri'),
-  'phone'          => '(+63) 123-456-7989',
-  'emailLabel'     => __('Email','vite-ttf-child-creceri'),
-  'email'          => 'info@creceri.com',
-  'openHoursLabel' => __('Open Hours','vite-ttf-child-creceri'),
-  'weekdayHours'   => __('Monday - Friday : 8 AM to 5 PM','vite-ttf-child-creceri'),
-  'weekendHours'   => __('Saturday - Sunday : CLOSED','vite-ttf-child-creceri'),
-  'socialLabel'    => __('Stay Connected','vite-ttf-child-creceri'),
-), ccon_arr($A,'info'));
+  'addressLabel' => __('Address', 'vite-ttf-child-creceri'),
+  'address' => '#123 Sample Street, City, Country',
+  'phoneLabel' => __('Phone', 'vite-ttf-child-creceri'),
+  'phone' => '(+63) 123-456-7989',
+  'emailLabel' => __('Email', 'vite-ttf-child-creceri'),
+  'email' => 'info@creceri.com',
+  'openHoursLabel' => __('Open Hours', 'vite-ttf-child-creceri'),
+  'weekdayHours' => __('Monday - Friday : 8 AM to 5 PM', 'vite-ttf-child-creceri'),
+  'weekendHours' => __('Saturday - Sunday : CLOSED', 'vite-ttf-child-creceri'),
+  'socialLabel' => __('Stay Connected', 'vite-ttf-child-creceri'),
+), ccon_arr($A, 'info'));
 
 $social = array_merge(array(
-  'facebook'  => '',
-  'x'         => '',
+  'facebook' => '',
+  'x' => '',
   'instagram' => '',
-  'reddit'    => '',
-), ccon_arr($A,'social'));
+  'reddit' => '',
+), ccon_arr($A, 'social'));
 
 $map = array_merge(array(
-  'title' => __('Office Map','vite-ttf-child-creceri'),
-  'src'   => 'https://www.openstreetmap.org/export/embed.html?bbox=-122.4394%2C37.7549%2C-122.3994%2C37.7949&layer=mapnik&marker=37.7749%2C-122.4194',
-), ccon_arr($A,'map'));
+  'title' => __('Office Map', 'vite-ttf-child-creceri'),
+  'src' => 'https://www.openstreetmap.org/export/embed.html?bbox=-122.4394%2C37.7549%2C-122.3994%2C37.7949&layer=mapnik&marker=37.7749%2C-122.4194',
+), ccon_arr($A, 'map'));
+
+$info_aria_label = ccon_str($A, 'infoAriaLabel', __('Contact details', 'vite-ttf-child-creceri'));
+$social_labels = array_merge(array(
+  'facebook' => 'Facebook',
+  'x' => 'X (Twitter)',
+  'instagram' => 'Instagram',
+  'reddit' => 'Reddit'
+), ccon_arr($A, 'socialLabels'));
+
+$placeholders = array_merge(array(
+  'firstName' => 'Enter your First name',
+  'lastName' => 'Enter your Last name',
+  'email' => 'Enter your Email address',
+  'phone' => '(+63) 123-456-7989',
+  'subject' => 'How can we help?',
+  'message' => 'Share a few details so we can route your message to the right person.'
+), ccon_arr($A, 'placeholders'));
+
+$privacyText = ccon_str($A, 'privacyText', 'I agree to be contacted about my inquiry and accept the Privacy Policy.');
 
 /* Instance ids */
-$instance_id = 'contact-' . wp_generate_password(6,false,false);
-$title_id    = $instance_id . '-title';
-$note_id     = $instance_id . '-note';
+$instance_id = 'contact-' . wp_generate_password(6, false, false);
+$title_id = $instance_id . '-title';
+$note_id = $instance_id . '-note';
 
 /* Helpers */
-$tel_clean   = preg_replace('/[^+0-9]/','', ccon_str($info,'phone',''));
-$email_safe  = sanitize_email(ccon_str($info,'email',''));
+$tel_clean = preg_replace('/[^+0-9]/', '', ccon_str($info, 'phone', ''));
+$email_safe = sanitize_email(ccon_str($info, 'email', ''));
 
 /* Render guard */
-if ($title==='' && $lead==='' ) { return; }
+if ($title === '' && $lead === '') {
+  return;
+}
 ?>
 <section id="<?php echo esc_attr($instance_id); ?>" class="contact-wrapper" aria-labelledby="<?php echo esc_attr($title_id); ?>">
   
@@ -71,65 +109,72 @@ if ($title==='' && $lead==='' ) { return; }
     <span class="parallax__layer p2" data-speed="0.45"></span>
     <span class="parallax__layer p3" data-speed="0.15"></span>
   </div>
-  <?php endif; ?>
+  <?php
+endif; ?>
 
   <div class="contact-grid">
     <!-- Left: Form card -->
     <div class="contact-card">
-      <form class="contact-form" action="<?php echo esc_url( home_url( '/' ) ); ?>" method="post" novalidate aria-describedby="<?php echo esc_attr($note_id); ?>">
-        <?php wp_nonce_field('child_contact_submit','_cnonce'); ?>
+      <form id="<?php echo esc_attr($instance_id); ?>-form" class="contact-form" action="<?php echo esc_url(home_url('/')); ?>" method="post" aria-describedby="<?php echo esc_attr($note_id); ?>">
+        <?php wp_nonce_field('child_contact_submit', '_cnonce'); ?>
         <input type="hidden" name="action" value="child_contact_submit"/>
 
         <!-- Honeypot -->
-        <div class="hp-field" aria-hidden="true">
+        <div class="hp-field" aria-hidden="true" style="display:none;">
           <label for="<?php echo esc_attr($instance_id); ?>-website">Website</label>
           <input id="<?php echo esc_attr($instance_id); ?>-website" name="website" type="text" tabindex="-1" autocomplete="off" />
+        </div>
+
+        <div id="<?php echo esc_attr($instance_id); ?>-success" class="contact-success-msg" style="display:none; background:#dcfce7; color:#166534; padding:16px; border-radius:8px; margin-bottom:20px; font-weight:600;">
+          Your message has been successfully sent!
         </div>
 
         <div class="form-row">
           <div class="form-field">
             <label for="<?php echo esc_attr($instance_id); ?>-firstName"><?php echo esc_html($labels['firstName']); ?> *</label>
-            <input id="<?php echo esc_attr($instance_id); ?>-firstName" name="firstName" type="text" autocomplete="given-name" placeholder="Enter your First name" required />
+            <input id="<?php echo esc_attr($instance_id); ?>-firstName" name="firstName" type="text" autocomplete="given-name" placeholder="<?php echo esc_attr($placeholders['firstName']); ?>" required />
           </div>
           <div class="form-field">
             <label for="<?php echo esc_attr($instance_id); ?>-lastName"><?php echo esc_html($labels['lastName']); ?> *</label>
-            <input id="<?php echo esc_attr($instance_id); ?>-lastName" name="lastName" type="text" autocomplete="family-name" placeholder="Enter your Last name" required />
+            <input id="<?php echo esc_attr($instance_id); ?>-lastName" name="lastName" type="text" autocomplete="family-name" placeholder="<?php echo esc_attr($placeholders['lastName']); ?>" required />
           </div>
         </div>
 
         <div class="form-row">
           <div class="form-field">
             <label for="<?php echo esc_attr($instance_id); ?>-email"><?php echo esc_html($labels['email']); ?> *</label>
-            <input id="<?php echo esc_attr($instance_id); ?>-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="Enter your Email address" required />
+            <input id="<?php echo esc_attr($instance_id); ?>-email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="<?php echo esc_attr($placeholders['email']); ?>" required />
           </div>
 
           <?php if ($showPhone): ?>
           <div class="form-field">
             <label for="<?php echo esc_attr($instance_id); ?>-phone"><?php echo esc_html($labels['phone']); ?> *</label>
-            <input id="<?php echo esc_attr($instance_id); ?>-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="(+63) 123-456-7989" />
+            <input id="<?php echo esc_attr($instance_id); ?>-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="<?php echo esc_attr($placeholders['phone']); ?>" required />
           </div>
-          <?php endif; ?>
+          <?php
+endif; ?>
         </div>
 
         <div class="form-field">
           <label for="<?php echo esc_attr($instance_id); ?>-subject"><?php echo esc_html($labels['subject']); ?> *</label>
-          <input id="<?php echo esc_attr($instance_id); ?>-subject" name="subject" type="text" placeholder="How can we help?" required />
+          <input id="<?php echo esc_attr($instance_id); ?>-subject" name="subject" type="text" placeholder="<?php echo esc_attr($placeholders['subject']); ?>" required />
         </div>
 
         <div class="form-field">
           <label for="<?php echo esc_attr($instance_id); ?>-message"><?php echo esc_html($labels['message']); ?> *</label>
-          <textarea id="<?php echo esc_attr($instance_id); ?>-message" name="message" placeholder="Share a few details so we can route your message to the right person." required></textarea>
+          <textarea id="<?php echo esc_attr($instance_id); ?>-message" name="message" placeholder="<?php echo esc_attr($placeholders['message']); ?>" required></textarea>
         </div>
 
         <div class="form-foot">
           <div class="checkbox-wrapper">
             <input type="checkbox" id="<?php echo esc_attr($instance_id); ?>-privacy" name="privacy" required>
             <label for="<?php echo esc_attr($instance_id); ?>-privacy">
-              I agree to be contacted about my inquiry and accept the Privacy Policy.
+              <?php echo esc_html($privacyText); ?>
             </label>
           </div>
 
-          <button class="btn-primary" type="submit">
+
+          <button class="btn btn-pill" type="submit">
             <?php echo esc_html($buttonText); ?>
           </button>
         </div>
@@ -138,60 +183,90 @@ if ($title==='' && $lead==='' ) { return; }
           <?php echo esc_html($requiredNote); ?>
         </p>
       </form>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const form = document.getElementById('<?php echo esc_js($instance_id); ?>-form');
+          const successMsg = document.getElementById('<?php echo esc_js($instance_id); ?>-success');
+          
+          if (form) {
+            form.addEventListener('submit', function(e) {
+              // Only prevent default if form is valid, to allow native browser tooltips to show if invalid
+              if (!form.checkValidity()) {
+                return; // Let the browser show the native validation errors
+              }
+              
+              e.preventDefault(); // Stop page reload since we aren't sending it anywhere yet
+              
+              // Hide form contents and show success message, or just show success message at top
+              successMsg.style.display = 'block';
+              
+              // Optional: reset form
+              form.reset();
+              
+              // Optional: scroll to success message
+              successMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            });
+          }
+        });
+      </script>
     </div>
 
     <!-- Right: Info card -->
-    <aside class="contact-card contact-info" aria-label="<?php esc_attr_e('Contact details','vite-ttf-child-creceri'); ?>">
+    <aside class="contact-card contact-info" aria-label="<?php echo esc_attr($info_aria_label); ?>">
       <div class="info-section">
-        <span class="info-label"><?php echo esc_html(ccon_str($info,'addressLabel','')); ?></span>
+        <span class="info-label"><?php echo esc_html(ccon_str($info, 'addressLabel', '')); ?></span>
         <div class="info-text">
-          <p><?php echo esc_html(ccon_str($info,'address','')); ?></p>
+          <p><?php echo esc_html(ccon_str($info, 'address', '')); ?></p>
         </div>
       </div>
 
       <div class="info-section">
-        <span class="info-label"><?php echo esc_html(ccon_str($info,'phoneLabel','')); ?></span>
+        <span class="info-label"><?php echo esc_html(ccon_str($info, 'phoneLabel', '')); ?></span>
         <div class="info-text">
           <?php if ($tel_clean): ?>
             <a class="info-value" href="tel:<?php echo esc_attr($tel_clean); ?>">
-              <?php echo esc_html(ccon_str($info,'phone','')); ?>
+              <?php echo esc_html(ccon_str($info, 'phone', '')); ?>
             </a>
-          <?php else: ?>
-            <p class="info-text"><?php echo esc_html(ccon_str($info,'phone','')); ?></p>
-          <?php endif; ?>
+          <?php
+else: ?>
+            <p class="info-text"><?php echo esc_html(ccon_str($info, 'phone', '')); ?></p>
+          <?php
+endif; ?>
         </div>
       </div>
 
       <div class="info-section">
-        <span class="info-label"><?php echo esc_html(ccon_str($info,'emailLabel','')); ?></span>
+        <span class="info-label"><?php echo esc_html(ccon_str($info, 'emailLabel', '')); ?></span>
         <div class="info-text">
           <?php if ($email_safe): ?>
             <a class="info-value" href="mailto:<?php echo esc_attr($email_safe); ?>">
               <?php echo esc_html($email_safe); ?>
             </a>
-          <?php endif; ?>
+          <?php
+endif; ?>
         </div>
       </div>
 
       <div class="info-section">
-        <span class="info-label"><?php echo esc_html(ccon_str($info,'openHoursLabel','')); ?></span>
+        <span class="info-label"><?php echo esc_html(ccon_str($info, 'openHoursLabel', '')); ?></span>
         <div class="info-text">
-          <p><?php echo esc_html(ccon_str($info,'weekdayHours','')); ?></p>
-          <p><?php echo esc_html(ccon_str($info,'weekendHours','')); ?></p>
+          <p><?php echo esc_html(ccon_str($info, 'weekdayHours', '')); ?></p>
+          <p><?php echo esc_html(ccon_str($info, 'weekendHours', '')); ?></p>
         </div>
       </div>
 
       <div class="info-section">
-        <span class="info-label"><?php echo esc_html(ccon_str($info,'socialLabel','')); ?></span>
+        <span class="info-label"><?php echo esc_html(ccon_str($info, 'socialLabel', '')); ?></span>
         <div class="social-icons">
-            <a href="#" aria-label="Facebook"><span aria-hidden="true">F</span></a>
+            <a href="#" aria-label="<?php echo esc_attr($social_labels['facebook']); ?>"><span aria-hidden="true">F</span></a>
           
           
-            <a href="#" aria-label="X (Twitter)"><span aria-hidden="true">X</span></a>
+            <a href="#" aria-label="<?php echo esc_attr($social_labels['x']); ?>"><span aria-hidden="true">X</span></a>
           
-            <a href="#" aria-label="Instagram"><span aria-hidden="true">IG</span></a>
+            <a href="#" aria-label="<?php echo esc_attr($social_labels['instagram']); ?>"><span aria-hidden="true">IG</span></a>
           
-            <a href="#" aria-label="Reddit"><span aria-hidden="true">R</span></a>
+            <a href="#" aria-label="<?php echo esc_attr($social_labels['reddit']); ?>"><span aria-hidden="true">R</span></a>
           
         </div>
       </div>
@@ -199,10 +274,10 @@ if ($title==='' && $lead==='' ) { return; }
   </div>
 
   <!-- Map full width below cards -->
-  <div class="contact-card contact-map" role="region" aria-label="<?php echo esc_attr(ccon_str($map,'title','')); ?>">
+  <div class="contact-card contact-map" role="region" aria-label="<?php echo esc_attr(ccon_str($map, 'title', '')); ?>">
     <iframe
-      title="<?php echo esc_attr(ccon_str($map,'title','')); ?>"
-      src="<?php echo esc_url(ccon_str($map,'src','')); ?>"
+      title="<?php echo esc_attr(ccon_str($map, 'title', '')); ?>"
+      src="<?php echo esc_url(ccon_str($map, 'src', '')); ?>"
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
     ></iframe>
@@ -250,4 +325,5 @@ if ($title==='' && $lead==='' ) { return; }
   observer.observe(root);
 })();
 </script>
-<?php endif; ?>
+<?php
+endif; ?>

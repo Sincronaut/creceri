@@ -33,7 +33,11 @@
         "phoneLabel": "Phone",
         "phone": "+1 (000) 000-0000",
         "emailLabel": "Email",
-        "email": "info@creceri.com"
+        "email": "info@creceri.com",
+        "openHoursLabel": "Open Hours",
+        "weekdayHours": "Monday - Friday : 8 AM to 5 PM",
+        "weekendHours": "Saturday - Sunday : CLOSED",
+        "socialLabel": "Stay Connected"
       }
     },
     "map": {
@@ -42,6 +46,21 @@
         "title": "Office Map",
         "src": "https://www.openstreetmap.org/export/embed.html?bbox=-122.4394%2C37.7549%2C-122.3994%2C37.7949&layer=mapnik&marker=37.7749%2C-122.4194"
       }
+    },
+    "placeholders": {
+      "type": "object",
+      "default": {
+        "firstName": "Enter your First name",
+        "lastName": "Enter your Last name",
+        "email": "Enter your Email address",
+        "phone": "(+63) 123-456-7989",
+        "subject": "How can we help?",
+        "message": "Share a few details so we can route your message to the right person."
+      }
+    },
+    "privacyText": {
+      "type": "string",
+      "default": "I agree to be contacted about my inquiry and accept the Privacy Policy."
     }
   },
   "supports": { "anchor": true, "align": ["wide","full"], "html": false }

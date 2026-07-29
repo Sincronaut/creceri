@@ -1,14 +1,38 @@
-<body>
     <!-- wp:template-part {"slug":"header-custom-ko"} /-->
 
+    <style>
+        body { padding-top: 0 !important; }
+        .hero--404 { 
+            align-items: center !important; 
+        }
+        .hero--404 .hero__inner {
+            max-width: 1200px !important;
+            padding: 0 40px !important;
+            margin: 0 auto !important;
+        }
+        .hero--404 .hero__copy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        main .hero--404 .hero__brand {
+            font-size: clamp(100px, 20vw, 300px) !important;
+            line-height: .9;
+        }
+    </style>
+
     <!-- wp:group {"tagName":"main","className":"alignfull"} -->
-    <main class="wp-block-group alignfull" style="margin-top:-40px;">
+    <main class="wp-block-group alignfull">
 
 
-        <!-- wp:child/banner-2 {
+        <!-- wp:child/banner {
+            "className": "hero--404",
             "brand":"404",
             "line":"페이지를 찾을 수 없음",
             "brandSize": 300,
+            "lineSize": 48,
+            "textAlign": "center",
             "bgSpot":"top",
             "bgAngle":150,
             "lead":"죄송합니다. 요청하신 페이지를 찾을 수 없습니다. 메인 페이지로 돌아가시겠습니까?",
@@ -17,11 +41,10 @@
             "imageSize":"m",
             "buttonText":"홈으로 돌아가기",
             "buttonUrl":"/ko/",
-            "buttonClass":"btn btn-custom text-white",
-            "textAlign":"left",
+            "buttonClass":"btn btn-pill text-white",
             "textScale":1.1,
             "image":{
-                "src":"https://creceri.com/wp-content/uploads/2025/10/404.webp",
+                "src":"/wp-content/themes/child-creceri-reyes/assets/images/hero-banner/404.webp",
                 "alt":"3D illustration",
                 "loading":"eager",
                 "decoding":"async"

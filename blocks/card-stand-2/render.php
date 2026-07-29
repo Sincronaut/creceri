@@ -1,54 +1,36 @@
-<section class="emerging" aria-labelledby="emerging-heading">
+<?php 
+  $title = $attributes['title'] ?? '';
+  if (!$title) {
+    $is_ko = preg_match('~/ko(/|$)~', $_SERVER['REQUEST_URI'] ?? '');
+    $title = $is_ko ? '중소기업 혁신의 실제 사례' : 'Real-World Examples of Small Business Innovation';
+  }
+  $sec_id = $attributes['sectionId'] ?? 'innovation-examples';
+  $heading_id = $sec_id . '-heading';
+  $items  = $attributes['items'] ?? [];
+$reveal = $attributes['reveal'] ?? '';
+$reveal_class = $reveal ? ' reveal-' . sanitize_html_class($reveal) : '';
+?>
+<section class="emerging<?php echo esc_attr($reveal_class); ?>" id="<?php echo esc_attr($sec_id); ?>" aria-labelledby="<?php echo esc_attr($heading_id); ?>">
   <div class="emerging__container">
-    <h2 id="emerging-heading" class="emerging__title">
-      <?php 
-        // Title strings
-$text_ko = '중소기업 혁신의 실제 사례';
-$text_en = 'Real-World Examples of Small Business Innovation';
-
-// Fallback: sniff URL for `/ko/` segment.
-$req = $_SERVER['REQUEST_URI'] ?? '';
-echo esc_html(preg_match('~/ko(/|$)~', $req) ? $text_ko : $text_en);
-      ?>
+    <h2 id="<?php echo esc_attr($heading_id); ?>" class="emerging__title">
+      <?php echo esc_html($title); ?>
     </h2>
 
     <div class="emerging__grid">
-      <!-- 1) Feature / logo -->
-      <article class="card card--feature centerpiece-1">
-        <div class="card__media" aria-hidden="true">
-          <img src="https://creceri.com/wp-content/uploads/2025/10/Screenshot-2025-10-10-102256-1.png" alt="" />
-        </div>
-      </article>
-
-      <!-- 2) -->
-      <article class="card card--feature centerpiece-2">
-        <div class="card__media" aria-hidden="true">
-          <img src="https://creceri.com/wp-content/uploads/2025/10/Screenshot-2025-10-10-102301-1.png" alt="" />
-        </div>
-      </article>
-
-      <!-- 3) -->
-      <article class="card card--feature centerpiece-3">
-        <div class="card__media" aria-hidden="true">
-          <img src="https://creceri.com/wp-content/uploads/2025/10/Screenshot-2025-10-10-102326-1.png" alt="" />
-        </div>
-      </article>
-
-      <!-- 4) -->
-      <article class="card card--feature centerpiece-4">
-        <div class="card__media" aria-hidden="true">
-          <img src="https://creceri.com/wp-content/uploads/2025/10/9d4c66168fca7fec93d4fcd2a3823245e211d20b.png" alt="" />
-        </div>
-      </article>
-
-      <!-- 5) -->
-      <article class="card card--feature centerpiece-5">
-        <div class="card__media" aria-hidden="true">
-          <img src="https://creceri.com/wp-content/uploads/2025/10/Screenshot-2025-10-10-102335-1.png" alt="" />
-        </div>
-      </article>
-
-      <!-- CTA to the right of #7 on desktop -->
+      <?php foreach ($items as $index => $item): 
+        $img = $item['image'] ?? [];
+        $src = $img['src'] ?? '';
+        $alt = $img['alt'] ?? '';
+        $class = $item['className'] ?? 'centerpiece-' . ($index + 1);
+      ?>
+        <article class="card card--feature <?php echo esc_attr($class); ?>">
+          <div class="card__media" aria-hidden="true">
+            <?php if ($src): ?>
+              <img src="<?php echo esc_url($src); ?>" alt="<?php echo esc_attr($alt); ?>" />
+            <?php endif; ?>
+          </div>
+        </article>
+      <?php endforeach; ?>
     </div>
   </div>
 </section>

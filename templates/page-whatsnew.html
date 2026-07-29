@@ -1,16 +1,15 @@
-
 <body>
-<!-- wp:template-part {"slug":"header-custom-main"} /-->
+    <!-- wp:template-part {"slug":"header-custom-main"} /-->
 
-<!-- wp:group {"tagName":"main","className":"alignfull"} -->
-<main class="wp-block-group alignfull" style="margin-top:-40px;">
+    <!-- wp:group {"tagName":"main","className":"alignfull"} -->
+    <main class="wp-block-group alignfull" style="margin-top:-40px;">
 
 
         <!-- wp:child/banner
         {
         "brand":"Discover the Latest Small Business Trends",
         "line":"",
-        "brandSize":50,
+        "brandSize":64,
         "bgSpot":"left",
         "bgAngle":180,
         "bgStatus":"On",
@@ -24,23 +23,26 @@
         "margin-right":"0px",
         "buttonType":"Button",
         "buttonText":"Explore",
-        "buttonUrl":"#explore",
-        "buttonClass":"btn btn-custom text-white",
+        "buttonUrl":"#innovation-examples",
+        "buttonClass":"btn btn-pill text-white",
         "textAlign":"left",
         "textScale":1.1,
         "image":{
-            "src":"https://creceri.com/wp-content/uploads/2025/10/5d02150da4cd36bb5bf6c2f41c68303e5b88d573.png",
+            "src":"/wp-content/themes/child-creceri-reyes/assets/images/hero-banner/whats-new.webp",
             "alt":"3D illustration",
             "loading":"eager",
             "decoding":"async"
-        }
+        },
+        "reveal": "split"
         } /-->
 
-       <!-- wp:child/card-stand {
+        <!-- wp:child/card-stand {
             "anchor":"emerging-en",
             "className":"emerging what-s-emerging",
             "title":"What’s Emerging",
             "intro":"Priority signals shaping near-term strategy and execution.",
+            "ctaUrl": "/blogs/?filter=whats-new#category-list",
+            "reveal": "up",
             "items":[
                 {
                 "title":"Sustainability as Strategy",
@@ -49,7 +51,7 @@
                 "active":false,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/baee5443f9116bce04574093a42b78413d2e6dbf.png",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/sustainability.webp",
                     "alt":"Sustainability as Strategy",
                     "loading":"lazy",
                     "decoding":"async"
@@ -62,7 +64,7 @@
                 "active":false,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/d11def86b0561cf7be9c70486a4c118f99c79b83.png",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/flexible-work.webp",
                     "alt":"Flexible Work Models",
                     "loading":"lazy",
                     "decoding":"async"
@@ -75,7 +77,7 @@
                 "active":false,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/6bcbf7d04989111270c910567fb06d37b137e7cd.png",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/digital-transformation.webp",
                     "alt":"Digital Transformation",
                     "loading":"lazy",
                     "decoding":"async"
@@ -88,7 +90,7 @@
                 "active":false,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/bdceb4ae3fb15918e689ad0776f6c1ea00c51a42.png",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/upcycling-craft.webp",
                     "alt":"Upcycling & Local Craft",
                     "loading":"lazy",
                     "decoding":"async"
@@ -101,7 +103,7 @@
                 "active":false,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/baee5443f9116bce04574093a42b78413d2e6dbf.png",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/sustainability.webp",
                     "alt":"Personalized Experiences",
                     "loading":"lazy",
                     "decoding":"async"
@@ -114,7 +116,7 @@
                 "active":false,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/d11def86b0561cf7be9c70486a4c118f99c79b83.png",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/flexible-work.webp",
                     "alt":"Online Selling & Side Hustles",
                     "loading":"lazy",
                     "decoding":"async"
@@ -127,7 +129,7 @@
                 "active":true,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/6bcbf7d04989111270c910567fb06d37b137e7cd.png",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/digital-transformation.webp",
                     "alt":"Mobile & Pop-Up Concepts",
                     "loading":"lazy",
                     "decoding":"async"
@@ -146,6 +148,7 @@
             "title_bottom": "Current Small Business Trends You Need to Know",
             "col_driver": "Trend Driver",
             "col_reason": "Why It Matters",
+            "reveal": "up",
             "drivers": [
                 { "driver": "Economic Pressure", "reason": "Forces small businesses to rethink cash flow, pricing, and operational efficiency." },
                 { "driver": "Technology Acceleration", "reason": "Digital tools are now central to how businesses operate, market, and grow." },
@@ -163,27 +166,20 @@
             } /-->
 
 
-            <!-- wp:child/card-stand-2 {
-                "contentTag": "OUR MISSION",
-                "title": "Empowering SMEs with clarity and tools",
-                "intro1": "We provide flexible, actionable knowledge, not one size fits all.",
-                "intro2": "Every business faces unique challenges. We focus on practical guidance that fits your context so digital transformation feels achievable and not overwhelming. By combining strategic insight with real-world solutions, we help simplify complexity, embrace innovation, and build sustainable growth.",
-                "reverse": false,
-                "sectionId": "our-mission",
-                "btnName": "",
-                "bullets": [
-                    { "text": "Flexible, practical guidance" },
-                    { "text": "Strategic and hands-on" },
-                    { "text": "Built for real-world use" },
-                    { "text": "Growth you can sustain" }
-                ],
-                "image": {
-                    "src": "https://creceri.com/wp-content/uploads/2025/10/fbc9115fc301f724761693e0d052a2904b69fea1.webp",
-                    "alt": "Abstract red circles illustration"
-                }
-                } /--> 
-            
-            <!-- wp:child/card-check {
+        <!-- wp:child/card-stand-2 {
+                "title": "Real-World Examples of Small Business Innovation",
+                "sectionId": "innovation-examples",
+                "reveal": "up",
+                "items": [
+                    { "image": { "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-stand-2/case-1.webp", "alt": "Case 1" } },
+                    { "image": { "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-stand-2/case-2.webp", "alt": "Case 2" } },
+                    { "image": { "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-stand-2/case-3.webp", "alt": "Case 3" } },
+                    { "image": { "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-stand-2/case-4.webp", "alt": "Case 4" } },
+                    { "image": { "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-stand-2/case-5.webp", "alt": "Case 5" } }
+                ]
+                } /-->
+
+        <!-- wp:child/card-check {
                     "contentTag": "Turn Trends Into Business Growth",
                     "title": "",
                     "intro1": "",
@@ -191,10 +187,11 @@
                     "reverse": false,
                     "sectionId": "case-studies",
                     "btnName": "Read Case Studies",
-                    "btnUrl": "#",
+                    "btnUrl": "/blogs/?filter=case-studies#category-list",
                     "padding_left": "250px",
                     "listMode": "features",
                     "listHeading": "",
+                    "reveal": "split",
                     "features": [
                         { "icon": "check-circle", "title": "Focus on What Moves the Needle",    "desc": "Only act on trends that directly impact your customers, operations, or revenue. The right moves drive measurable results." },
                         { "icon": "check-circle", "title": "Build Flexible Systems",            "desc": "Adapt workflows, pricing, and staffing quickly. Flexibility lets your business grow without friction." },
@@ -203,14 +200,14 @@
                         { "icon": "check-circle", "title": "Spot Opportunities Early",          "desc": "Small shifts in customer behavior or policy can create big advantages. Acting early gives you the edge over competitors." }
                     ],
                     "image": {
-                        "src": "https://creceri.com/wp-content/uploads/2025/10/Screenshot-2025-10-10-102822-1.png",
+                        "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-check/whatsnew-page-1.webp",
                         "alt": "Abstract red circles illustration",
                         "loading": "lazy",
                         "decoding": "async"
                 }
             } /-->
 
-            <!-- wp:child/subscribe {
+        <!-- wp:child/subscribe {
                 "variant": "code",
                 "sectionId": "tech-updates",
                 "subhead": "",
@@ -219,6 +216,7 @@
                 "title1": "Small businesses are evolving fast ,driven by digital tools, shifting consumer behavior, and policy changes. Staying updated helps founders and teams make smarter decisions, faster.",
                 "kicker": " ",
                 "kicker1": "",
+                "reveal": "scale",
                 "bullets": [],
                 "formHeading": "Get new insights in your inbox",
                 "namePlaceholder": "",
@@ -230,8 +228,8 @@
                 "formMethod": "post"
                 } /-->
 
-</main>
-<!-- /wp:group -->
+    </main>
+    <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer-custom"} /-->
+    <!-- wp:template-part {"slug":"footer-custom"} /-->
 </body>

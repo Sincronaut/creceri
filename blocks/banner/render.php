@@ -40,13 +40,15 @@ $brand     = $A['brand'] ?? 'Creceri';
 $brandSize = isset($A['brandSize']) ? floatval($A['brandSize']) : 0; // px contract
 
 $line = $A['line'] ?? 'E-commerce, UX,<br>and Digital Knowledge';
+$rotatingLines = $A['rotatingLines'] ?? '';
+$rotatingBg = $A['rotatingBg'] ?? 'rgba(150, 46, 42, 0.1)';
 $lead = $A['lead'] ?? '';
 $lead_weight = $A['lead_weight'] ?? '';
 
 $buttonType = in_array(($A['buttonType'] ?? 'Button'), array('Button','Search','none'), true) ? $A['buttonType'] : 'Button';
 $btnText  = $A['buttonText'] ?? 'Search';
 $btnUrl   = $A['buttonUrl'] ?? '#explore';
-$btnClass = $A['buttonClass'] ?? 'btn btn-custom text-white btn-pill';
+$btnClass = $A['buttonClass'] ?? 'btn btn-pill text-white btn-pill';
 
 $image   = is_array($A['image'] ?? null) ? $A['image'] : array();
 $img_src = $image['src'] ?? 'wp-content/uploads/2025/10/693a7a2703163f47b412f648b6da08ad8485fd2a.webp';
@@ -75,6 +77,7 @@ $line_html  = wp_kses($line, child_banner_allowed_line_html());
 $lead_html  = wp_kses($lead, child_banner_allowed_lead_html());
 
 /** Classes */
+$reveal = $A['reveal'] ?? '';
 $classes = array(
   'hero',
   'banner-block',
@@ -89,6 +92,7 @@ $classes = array(
 );
 if ( $bgStatus === 'On' ) { $classes[] = 'hero--bleed-top'; }
 if ( $className ) { $classes[] = $className; }
+if ( $reveal && $reveal !== 'split' ) { $classes[] = 'reveal-' . sanitize_html_class($reveal); }
 
 /** Style vars */
 $style_vars = array(
@@ -104,6 +108,7 @@ $style_vars = array(
   '--bg-mid:'   . ($A['bgMid'] ?? '#f1f7fb'),
   '--bg-right:' . ($A['bgRight'] ?? '#e3867d'),
   '--bleed-offset:' . (float)($A['bleedOffset'] ?? 88),
+  '--rotating-bg:' . $rotatingBg,
 );
 
 /** Brand size: emit px, set enabling class */
@@ -118,6 +123,14 @@ $image_scale_map = array('xs' => 0.6, 's' => 0.8, 'm' => 1.0, 'l' => 1.2, 'xl' =
 $style_vars[] = '--image-scale:' . ($image_scale_map[$imageSize] ?? 1);
 
 $style_attr = implode(';', $style_vars);
+
+/** Split reveal classes */
+$copy_reveal_class = '';
+$art_reveal_class  = '';
+if ($reveal === 'split') {
+  $copy_reveal_class = ($imagePosition === 'right' ? 'reveal-left' : 'reveal-right');
+  $art_reveal_class  = ($imagePosition === 'right' ? 'reveal-right' : 'reveal-left');
+}
 ?>
 <section class="<?php echo esc_attr(implode(' ', $classes)); ?>"
          style="<?php echo esc_attr($style_attr); ?>;"
@@ -125,17 +138,26 @@ $style_attr = implode(';', $style_vars);
          id="<?php echo esc_attr($section_id); ?>">
 
   <div class="hero__inner">
-    <div class="hero__copy" >
+    <div class="hero__copy <?php echo esc_attr($copy_reveal_class); ?>" >
       <h1 id="<?php echo esc_attr($title_id); ?>" class="title_h1">
-       <?php echo $brand; ?>
+      <span class="hero__brand"><?php echo esc_html($brand); ?></span>
+       <?php if (!empty($rotatingLines)) : 
+         $lines = array_map('trim', explode(',', $rotatingLines));
+       ?>
+         <span class="hero__line hero__line--rotating">
+           <span class="rotating-text-scroller">
+             <?php foreach ($lines as $index => $item) : ?>
+               <span class="rotating-text-item <?php echo $index === 0 ? 'active' : ''; ?>"><?php echo esc_html($item); ?></span>
+             <?php endforeach; ?>
+           </span>
+         </span>
+       <?php elseif (!empty($line_html)) : ?>
+         <span class="hero__line"><?php echo $line_html; ?></span>
+       <?php endif; ?>
       </h1>
 
-      <?php if (!empty($line_html)) : ?>
-        <h1 class="hero__line"><?php echo $line_html; ?></h1>
-      <?php endif; ?>
-
       <?php if (!empty($lead_weight)) : ?>
-        <p class="hero__lead"><b><?php echo $lead_weight; ?></b></p>
+        <p class="hero__lead hero__lead--hook"><?php echo esc_html($lead_weight); ?></p>
       <?php endif; ?>
 
       <?php if (!empty($lead)) : ?>
@@ -149,19 +171,104 @@ $style_attr = implode(';', $style_vars);
       <?php elseif ($buttonType === 'Search') : ?>
         <form class="hero__search" action="<?php echo esc_url(home_url('/')); ?>" method="get" role="search">
           <label class="screen-reader-text" for="<?php echo esc_attr($section_id . '-s'); ?>">Search</label>
-          <input id="<?php echo esc_attr($section_id . '-s'); ?>" class="hero__input" type="search" name="s" />
-          <button type="submit" class="<?php echo esc_attr($btnClass); ?>"><?php echo esc_html($btnText); ?></button>
+          <input id="<?php echo esc_attr($section_id . '-s'); ?>" class="hero__input" type="search" name="s" placeholder="<?php echo esc_attr($btnText); ?>" />
+          <button type="submit" class="hero__icon" aria-label="<?php echo esc_attr($btnText); ?>">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false">
+              <circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/>
+            </svg>
+          </button>
         </form>
       <?php endif; ?>
     </div>
 
-    <div class="hero__art1">
+    <div class="hero__art1 <?php echo esc_attr($art_reveal_class); ?>">
         <img
           class="hero__image1"
           src="<?php echo esc_url($img_src); ?>"
           alt="<?php echo esc_attr($img_alt); ?>"
           loading="<?php echo esc_attr($img_load); ?>"
-          decoding="<?php echo esc_attr($img_dec); ?>" />
+          decoding="<?php echo esc_attr($img_dec); ?>"
+          <?php if ( $img_load === 'eager' ) { echo 'fetchpriority="high"'; } ?>
+          <?php if ( ! empty( $image['id'] ) ) { $srcset = wp_get_attachment_image_srcset( (int) $image['id'] ); if ($srcset) { echo 'srcset="' . esc_attr($srcset) . '"'; } } ?>
+          <?php if ( ! empty( $image['id'] ) ) { $sizes = wp_get_attachment_image_sizes( (int) $image['id'] ); if ($sizes) { echo 'sizes="' . esc_attr($sizes) . '"'; } } ?>
+        />
     </div>
   </div>
 </section>
+
+<?php if (!empty($rotatingLines)) : ?>
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const section = document.getElementById('<?php echo esc_js($section_id); ?>');
+    if (!section) return;
+    
+    // Optimize performance by removing blocking synchronous layouts, use requestAnimationFrame
+    requestAnimationFrame(() => {
+      const items = section.querySelectorAll('.rotating-text-item');
+      const wrapper = section.querySelector('.hero__line--rotating');
+      const scroller = section.querySelector('.rotating-text-scroller');
+      if (!items.length || !wrapper || !scroller) return;
+      
+      let currentIndex = 0;
+      const getWrapperWidth = () => {
+        const widths = Array.from(items).map(item => item.scrollWidth || item.offsetWidth || 0);
+        const maxItemWidth = widths.length ? Math.max(...widths) : 0;
+        const availableWidth = wrapper.parentElement ? wrapper.parentElement.clientWidth : section.clientWidth;
+
+        return Math.min(maxItemWidth + 12, availableWidth || maxItemWidth || 0);
+      };
+      
+      function updateWidthAndScroll() {
+          // Clear all active classes first
+          items.forEach(item => item.classList.remove('active'));
+          
+          const currentItem = items[currentIndex];
+          if (currentItem) {
+              currentItem.classList.add('active');
+              
+              const isHome = section.classList.contains('home-hero-banner');
+              
+              if (!isHome) {
+                  // Original logic for non-home banners: dynamic width
+                  const width = currentItem.offsetWidth + 5;
+                  wrapper.style.width = width + 'px';
+              }
+
+              // Scroll to the current index
+              const offsetFactor = isHome ? 1.6 : 1.5;
+              const offset = currentIndex * offsetFactor; // Based on em from CSS
+              scroller.style.transform = `translateY(-${offset}em)`;
+          }
+      }
+      
+      // Initial setup
+      const isHome = section.classList.contains('home-hero-banner');
+      if (isHome) {
+          wrapper.style.width = getWrapperWidth() + 'px';
+      }
+      updateWidthAndScroll();
+      window.addEventListener('resize', () => {
+        requestAnimationFrame(() => {
+          if (isHome) {
+              wrapper.style.width = getWrapperWidth() + 'px';
+          }
+          updateWidthAndScroll();
+        });
+      }, { passive: true });
+      
+      setInterval(() => {
+          requestAnimationFrame(() => {
+            currentIndex++;
+            
+            // Return to start if reached the end
+            if (currentIndex >= items.length) {
+                currentIndex = 0;
+            }
+            
+            updateWidthAndScroll();
+          });
+      }, 3000);
+    });
+});
+</script>
+<?php endif; ?>

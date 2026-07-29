@@ -1,14 +1,14 @@
 <body>
-<!-- wp:template-part {"slug":"header-custom-ko"} /-->
+    <!-- wp:template-part {"slug":"header-custom-ko"} /-->
 
-<!-- wp:group {"tagName":"main","className":"alignfull"} -->
-<main class="wp-block-group alignfull" style="margin-top:-40px;">
+    <!-- wp:group {"tagName":"main","className":"alignfull"} -->
+    <main class="wp-block-group alignfull" style="margin-top:-40px;">
 
 
         <!-- wp:child/banner {
             "brand":"디지털 혁신 기술 블로그 탐색",
             "line":"",
-            "brandSize":60,
+            "brandSize":64,
             "bgSpot":"left",
             "bgAngle":180,
             "bgStatus":"On",
@@ -19,28 +19,30 @@
             "imageFlip":"none",
             "margin-top":"50px",
             "margin-right":"0px",
-            "imageSize":"l",
+            "imageSize":"xl",
             "buttonType":"Button",
             "buttonText":"둘러보기",
-            "buttonUrl":"#explore",
-            "buttonClass":"btn btn-custom text-white",
+            "buttonUrl":"#blog-categories",
+            "buttonClass":"btn btn-pill text-white",
             "textAlign":"left",
             "textScale":1.1,
             "image":{
-                "src":"https://creceri.com/wp-content/uploads/2025/10/f52afde204b88dfde38b4e5bca93eb10d438bf59.webp",
+                "src":"/wp-content/themes/child-creceri-reyes/assets/images/hero-banner/tek-stories.webp",
                 "alt":"3D 일러스트레이션",
                 "loading":"eager",
                 "decoding":"async"
-            }
+            },
+            "reveal": "split"
             } /-->
 
-        
+
         <!-- wp:child/card-block {
-            "anchor":"what-we-stand-for",
-            "background":"on",
+            "anchor":"what-youll-find",
+            "background":"off",
             "className":"what-we-stand-for",
             "title":"우리가 지향하는 바",
-            "intro":"Ceceiri는 우리가 서비스하는 모든 기업의 변화와 성장을 견인하는 가치 위에 기반을 둡니다.",
+            "intro":"",
+            "reveal": "up",
             "items":[
                 {
                 "title":"전문가 인사이트",
@@ -49,7 +51,7 @@
                 "active":true,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/baee5443f9116bce04574093a42b78413d2e6dbf.png",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/insights.webp",
                     "alt":"전문가 인사이트",
                     "loading":"lazy",
                     "decoding":"async"
@@ -62,7 +64,7 @@
                 "active":false,
                 "bgColor":"white",
                     "image":{
-                        "src":"https://creceri.com/wp-content/uploads/2025/10/d11def86b0561cf7be9c70486a4c118f99c79b83.png",
+                        "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/spotlight.webp",
                     "alt":"주요 특집",
                     "loading":"lazy",
                     "decoding":"async"
@@ -75,7 +77,7 @@
                 "active":false,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/about-3.webp",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/practical.webp",
                     "alt":"실무 가이드",
                     "loading":"lazy",
                     "decoding":"async"
@@ -88,7 +90,7 @@
                 "active":false,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/bdceb4ae3fb15918e689ad0776f6c1ea00c51a42.png",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/future.webp",
                     "alt":"미래 전망",
                     "loading":"lazy",
                     "decoding":"async"
@@ -103,6 +105,7 @@
             "title":"Tek Stories가 선도적 기술 블로그 플랫폼인 이유",
             "intro":"빠르게 변화하는 디지털 세계에서 정보 파악은 선택이 아니라 선도와 추격을 가르는 분기점입니다. Tek Stories는 헤드라인을 넘어 혁신을 실제 임팩트와 연결하는 맥락 속에서 기술을 이해하려는 독자를 위해 존재합니다.",
             "kicker":"독자가 우리를 신뢰하는 이유",
+            "reveal": "up",
             "items":[
                 { "title":"복잡함 속 명확성", "text":"기술 변화를 해석해 자신 있게 실행할 수 있도록 돕습니다." },
                 { "title":"폭넓고 유의미한 커버리지", "text":"제품 디자인과 소프트웨어부터 디지털 문화와 산업 트렌드까지." },
@@ -111,15 +114,16 @@
             ]
             } /-->
 
-            <!-- wp:child/ladder {"sectionId":"blog-categories",
+        <!-- wp:child/ladder {"sectionId":"blog-categories",
                 "title":"기술 블로그에서 다루는 카테고리",
                 "intro":"당사의 기술 블로그는 오늘의 디지털 환경을 형성하는 도구·플랫폼·전략을 폭넓게 다룹니다. 각 카테고리는 새로 구축하든, 기존을 개선하든, 아이디어를 탐색하든 명확하고 실용적인 인사이트를 제공합니다.",
+                "reveal": "up",
                 "items":[
                     {
                     "heading":"이커머스 개발",
                     "open":true,
                     "ctaLabel":"둘러보기",
-                    "ctaUrl":"#",
+                    "ctaUrl":"/ko/블로그/?filter=전자상거래-개발#category-list",
                     "bullets":[
                         {"title":"Magento 개발","desc":"복잡한 온라인 스토어를 위한 확장성과 커스터마이징"},
                         {"title":"Shopify 개발","desc":"매끄러운 쇼핑 경험을 위한 간결한 스토어프론트"},
@@ -132,7 +136,7 @@
                     "heading":"웹 & 커스텀 개발",
                     "open":false,
                     "ctaLabel":"둘러보기",
-                    "ctaUrl":"#",
+                    "ctaUrl":"/ko/블로그/?filter=웹사이트-및-cms-개발#category-list",
                     "bullets":[
                         {"title":"CMS 개발","desc":"WordPress·Shopify·Magento 같은 CMS로 코딩 부담 없이 웹사이트 구축·운영"},
                         {"title":"커스텀 웹 개발","desc":"요구사항에 맞춘 제로베이스 맞춤 개발"}
@@ -142,7 +146,7 @@
                     "heading":"디자인 & 프로토타이핑",
                     "open":false,
                     "ctaLabel":"둘러보기",
-                    "ctaUrl":"#",
+                    "ctaUrl":"/ko/블로그/?filter=ui-ux-디자인#category-list",
                     "bullets":[
                         {"title":"UI/UX 디자인 & 프로토타이핑","desc":"와이어프레임·프로토타입으로 사용자 여정을 인터랙티브하게 검증"},
                         {"title":"UI/UX 디자인","desc":"직관적이고 사용자 중심의 인터페이스로 기억에 남는 경험 제공"},
@@ -154,7 +158,7 @@
                     "heading":"디지털 마케팅 & 그로스",
                     "open":false,
                     "ctaLabel":"둘러보기",
-                    "ctaUrl":"#",
+                    "ctaUrl":"/ko/블로그/?filter=디지털-마케팅#category-list",
                     "bullets":[
                         {"title":"검색엔진최적화(SEO)","desc":"구글 등 검색 결과 노출 향상"},
                         {"title":"소셜 미디어 마케팅","desc":"관계 구축, 대화 촉발, 참여 확산"},
@@ -166,14 +170,14 @@
                     "heading":"팀 & 인재 솔루션",
                     "open":false,
                     "ctaLabel":"둘러보기",
-                    "ctaUrl":"#",
+                    "ctaUrl":"/ko/블로그/?filter=인력-및-팀-확장#category-list",
                     "bullets":[
                         {"title":"팀 확장 모델","desc":"워크플로에 직접 통합되는 적합 인재로 스마트하게 확장"}
                     ]
                     }
                 ]
-                } /--> 
-                <!-- wp:child/card-check-3 {
+            } /-->
+        <!-- wp:child/card-check {
                     "contentTag": "실제 스토리 & 케이스 스터디",
                     "title": "",
                     "intro1": "",
@@ -182,9 +186,10 @@
                     "padding_left": "200px",
                     "sectionId": "case-studies",
                     "btnName": "케이스 스터디 읽기",
-                    "btnUrl": "#",
+                    "btnUrl": "/ko/블로그/?filter=사례-연구#category-list",
                     "listMode": "features",
                     "listHeading": "공유하는 내용",
+                    "reveal": "split",
                     "features": [
                         { "icon": "book",     "title": "비하인드 빌드 과정",       "desc": "팀의 개발·디자인·딜리버리 접근 방식" },
                         { "icon": "platform", "title": "플랫폼 선택과 트레이드오프",  "desc": "스택·CMS·프레임워크 선택 이유와 그 효과" },
@@ -193,14 +198,14 @@
                         { "icon": "team",     "title": "팀 확장의 실제",     "desc": "문화 저해 없이 스태프 증원이 딜리버리를 지원한 방식" }
                     ],
                     "image": {
-                        "src": "https://creceri.com/wp-content/uploads/2025/10/b789ce02-521f-49d1-8681-9148550c2dc8-2.png",
+                        "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-check/tek-stories-page-1.webp",
                         "alt": "추상적인 빨간 원 일러스트",
                         "loading": "lazy",
                         "decoding": "async"
                     }
                     } /-->
 
-                 <!-- wp:child/card-check-3 {
+        <!-- wp:child/card-check {
                     "contentTag": "우리 기술 블로그가 돋보이는 이유",
                     "title": "",
                     "intro1": "소음이 넘치는 공간에서 우리는 본질에 집중합니다: 명확성, 관련성, 그리고 실무적 유용성.<br>우리는 스치듯 읽는 독자가 아닌, 이해를 중시하고 과장보다 인사이트를 가치 있게 여기는 독자를 위해 씁니다.",
@@ -212,6 +217,7 @@
                     "listMode": "features",
                     "padding_right": "20px",
                     "listHeading": "차별점",
+                    "reveal": "split",
                     "features": [
                         { "icon": "check-circle", "title": "명확하고 접근 가능한 글쓰기",       "desc": "복잡한 주제를 희석하지 않고 풀어냅니다." },
                         { "icon": "check-circle", "title": "실무적 관련성",             "desc": "모든 글이 실제 의사결정·도구·워크플로와 연결됩니다." },
@@ -220,14 +226,14 @@
                         { "icon": "check-circle", "title": "독자를 위한 설계",            "desc": "훑어보기와 심층 읽기를 모두 지원하는 레이아웃." }
                     ],
                     "image": {
-                        "src": "https://creceri.com/wp-content/uploads/2025/10/b789ce02-521f-49d1-8681-9148550c2dc8-2.png",
+                        "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-check/home-about-4.webp",
                         "alt": "추상적인 빨간 원 일러스트",
                         "loading": "lazy",
                         "decoding": "async"
                     }
                     } /-->
-   
-                <!-- wp:child/subscribe {
+
+        <!-- wp:child/subscribe {
                 "variant": "code",
                 "sectionId": "tech-updates",
                 "subhead": "",
@@ -236,6 +242,7 @@
                 "title1": "디지털 혁신은 기다려주지 않습니다. 당사의 기술 블로그는 전자상거래와 디자인부터 마케팅과 개발까지 오늘의 환경을 좌우하는 도구·플랫폼·아이디어의 흐름을 따라갑니다.",
                 "kicker": " ",
                 "kicker1": "제공 내용",
+                "reveal": "scale",
                 "bullets": [
                     { "text": "새로운 플랫폼과 프레임워크에 대한 시의적절한 업데이트" },
                     { "text": "디자인·프로토타이핑·사용자 경험에 대한 실무 인사이트" },
@@ -253,8 +260,8 @@
                 "formMethod": "post"
                 } /-->
 
-</main>
-<!-- /wp:group -->
+    </main>
+    <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer-custom-ko"} /-->
+    <!-- wp:template-part {"slug":"footer-custom-ko"} /-->
 </body>

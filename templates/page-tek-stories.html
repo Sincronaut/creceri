@@ -1,15 +1,14 @@
-﻿
 <body>
-<!-- wp:template-part {"slug":"header-custom-main"} /-->
+    <!-- wp:template-part {"slug":"header-custom-main"} /-->
 
-<!-- wp:group {"tagName":"main","className":"alignfull"} -->
-<main class="wp-block-group alignfull" style="margin-top:-40px;">
+    <!-- wp:group {"tagName":"main","className":"alignfull"} -->
+    <main class="wp-block-group alignfull" style="margin-top:-40px;">
 
 
         <!-- wp:child/banner {
             "brand":"Explore Our Technology Blogs on Digital Innovation",
             "line":"",
-            "brandSize":60,
+            "brandSize":64,
             "bgSpot":"left",
             "bgAngle":180,
             "bgStatus":"On",
@@ -24,24 +23,26 @@
             "buttonType":"Button",
             "buttonText":"Explore",
             "buttonUrl":"#blog-categories",
-            "buttonClass":"btn btn-custom text-white",
+            "buttonClass":"btn btn-pill text-white",
             "textAlign":"left",
             "textScale":1.1,
             "image":{
-                "src":"https://creceri.com/wp-content/uploads/2025/10/f52afde204b88dfde38b4e5bca93eb10d438bf59.webp",
+                "src":"/wp-content/themes/child-creceri-reyes/assets/images/hero-banner/tek-stories.webp",
                 "alt":"3D illustration",
                 "loading":"eager",
                 "decoding":"async"
-            }
+            },
+            "reveal": "split"
             } /-->
 
-        
+
         <!-- wp:child/card-block {
-            "anchor":"what-we-stand-for",
-            "background":"on",
+            "anchor":"what-youll-find",
+            "background":"off",
             "className":"what-we-stand-for",
-            "title":"What We Stand For",
-            "intro":"At Ceceiri, our foundation is built on values that drive transformation and growth for every business we serve.",
+            "title":"What You'll Find",
+            "intro":"",
+            "reveal": "up",
             "items":[
                 {
                 "title":"Expert Insights",
@@ -50,7 +51,7 @@
                 "active":true,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/baee5443f9116bce04574093a42b78413d2e6dbf.png",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/insights.webp",
                     "alt":"Expert Insights",
                     "loading":"lazy",
                     "decoding":"async"
@@ -63,7 +64,7 @@
                 "active":false,
                 "bgColor":"white",
                     "image":{
-                        "src":"https://creceri.com/wp-content/uploads/2025/10/d11def86b0561cf7be9c70486a4c118f99c79b83.png",
+                        "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/spotlight.webp",
                     "alt":"Spotlight Features",
                     "loading":"lazy",
                     "decoding":"async"
@@ -76,7 +77,7 @@
                 "active":false,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/about-3.webp",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/practical.webp",
                     "alt":"Practical Guides",
                     "loading":"lazy",
                     "decoding":"async"
@@ -89,7 +90,7 @@
                 "active":false,
                 "bgColor":"white",
                 "image":{
-                    "src":"https://creceri.com/wp-content/uploads/2025/10/bdceb4ae3fb15918e689ad0776f6c1ea00c51a42.png",
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/future.webp",
                     "alt":"Future Outlooks",
                     "loading":"lazy",
                     "decoding":"async"
@@ -102,25 +103,27 @@
         <!-- wp:child/grid-four {
             "sectionId":"tek-stories-value-prop",
             "title":"What Makes Tek Stories a Leading Technology Blog Platform",
-            "intro":"In a fast-moving digital world, staying informed isn’t optional — it’s the difference between leading and catching up. Tek Stories exists for those who want to understand technology beyond the headlines, with context that connects innovation to real-world impact.",
+            "intro":"In a fast-moving digital world, staying informed isn't optional - it's the difference between leading and catching up. Tek Stories exists for those who want to understand technology beyond the headlines, with context that connects innovation to real-world impact.",
             "kicker":"Why Readers Rely on Us",
+            "reveal": "up",
             "items":[
                 { "title":"Clarity in Complexity", "text":"We make sense of technical shifts so you can act with confidence." },
                 { "title":"Broad, Relevant Coverage", "text":"From product design and software to digital culture and industry trends." },
-                { "title":"Original, Informed Perspectives", "text":"Written by people who’ve worked in and around the technologies they cover." },
-                { "title":"Reader-Centric Structure", "text":"Designed for quick scanning when you’re busy, and depth when you have time." }
+                { "title":"Original, Informed Perspectives", "text":"Written by people who've worked in and around the technologies they cover." },
+                { "title":"Reader-Centric Structure", "text":"Designed for quick scanning when you're busy, and depth when you have time." }
             ]
             } /-->
 
-            <!-- wp:child/ladder {"sectionId":"blog-categories",
+        <!-- wp:child/ladder {"sectionId":"blog-categories",
                 "title":"Categories We Cover in Our Technology Blogs",
-                "intro":"Our technology blogs cover a wide range of topics that reflect the tools, platforms, and strategies shaping today’s digital landscape. Each category is written to offer clear, practical takeaways, whether you’re building something new, improving what you have, or exploring fresh ideas.",
+                "intro":"Our technology blogs cover a wide range of topics that reflect the tools, platforms, and strategies shaping today's digital landscape. Each category is written to offer clear, practical takeaways, whether you're building something new, improving what you have, or exploring fresh ideas.",
+                "reveal": "up",
                 "items":[
                     {
                     "heading":"E-Commerce Development",
                     "open":true,
                     "ctaLabel":"Explore",
-                    "ctaUrl":"https://creceri.com/?s=ecommerce+development",
+                    "ctaUrl":"/blogs/?filter=ecommerce-development#category-list",
                     "bullets":[
                         {"title":"Magento Development","desc":"Scalable, customizable setups for complex online stores"},
                         {"title":"Shopify Development","desc":"Streamlined storefronts built for smooth shopping experiences"},
@@ -133,7 +136,7 @@
                     "heading":"Web & Custom Development",
                     "open":false,
                     "ctaLabel":"Explore",
-                    "ctaUrl":"https://creceri.com/?s=website+cms+development",
+                    "ctaUrl":"/blogs/?filter=website-cms-development#category-list",
                     "bullets":[
                         {"title":"CMS Development","desc":"A CMS (like WordPress, Shopify, or Magento) helps you build and manage a website without heavy coding."},
                         {"title":"Custom Web Development","desc":"Custom development means building your site from scratch to fit your exact needs."}
@@ -143,7 +146,7 @@
                     "heading":"Design & Prototyping",
                     "open":false,
                     "ctaLabel":"Explore",
-                    "ctaUrl":"https://creceri.com/?s=ui+ux+design",
+                    "ctaUrl":"/blogs/?filter=ui-ux-design#category-list",
                     "bullets":[
                         {"title":"UI/UX Design & Prototyping","desc":"Turn ideas into interactive journeys with wireframes and prototypes that reveal how users really move through your product."},
                         {"title":"UI/UX Design","desc":"Craft interfaces that are clean, intuitive, and user-first. Strong design makes navigation effortless and experiences memorable."},
@@ -155,7 +158,7 @@
                     "heading":"Digital Marketing & Growth",
                     "open":false,
                     "ctaLabel":"Explore",
-                    "ctaUrl":"https://creceri.com/?s=Digital+Marketing",
+                    "ctaUrl":"/blogs/?filter=digital-marketing#category-list",
                     "bullets":[
                         {"title":"Search Engine Optimization (SEO)","desc":"Helps websites show up on Google and other search engines"},
                         {"title":"Social Media Marketing","desc":"Build relationships, spark conversations, and create engagement"},
@@ -167,25 +170,26 @@
                     "heading":"Team & Talent Solutions",
                     "open":false,
                     "ctaLabel":"Explore",
-                    "ctaUrl":"https://creceri.com/?s=team+extension",
+                    "ctaUrl":"/blogs/?filter=staffing-team-extension#category-list",
                     "bullets":[
                         {"title":"Team Extension Model","desc":"Scale smarter with the right talent integrated directly into your workflow."}
                     ]
                     }
                 ]
-            } /--> 
-                <!-- wp:child/card-check-3 {
+            } /-->
+        <!-- wp:child/card-check {
                     "contentTag": "Real-World Stories & Case Studies",
                     "title": "",
                     "intro1": "",
-                    "intro2": "Technology is best understood through the people and projects that use it.Our case studies and real-world stories highlight how digital tools, platforms, and strategies come to life across industries, teams, and outcomes.",
+                    "intro2": "Technology is best understood through the people and projects that use it. Our case studies and real-world stories highlight how digital tools, platforms, and strategies come to life across industries, teams, and outcomes.",
                     "reverse": false,
                     "padding_left": "200px",
                     "sectionId": "case-studies",
                     "btnName": "Read Case Studies",
-                    "btnUrl": "#",
+                    "btnUrl": "/blogs/?filter=case-studies#category-list",
                     "listMode": "features",
                     "listHeading": "What We Share",
+                    "reveal": "split",
                     "features": [
                         { "icon": "book",     "title": "Behind-the-Scenes Builds",       "desc": "How teams approached development, design, and delivery" },
                         { "icon": "platform", "title": "Platform Choices & Trade-Offs",  "desc": "Why stacks, CMSs, or frameworks were chosen, and what they enabled" },
@@ -194,17 +198,17 @@
                         { "icon": "team",     "title": "Team Extension in Practice",     "desc": "How staff augmentation supported delivery without disrupting culture" }
                     ],
                     "image": {
-                        "src": "https://creceri.com/wp-content/uploads/2025/10/b789ce02-521f-49d1-8681-9148550c2dc8-2.png",
+                        "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-check/tek-stories-page-1.webp",
                         "alt": "Abstract red circles illustration",
                         "loading": "lazy",
                         "decoding": "async"
                     }
                     } /-->
 
-                 <!-- wp:child/card-check-3 {
+        <!-- wp:child/card-check {
                     "contentTag": "Why Our Technology Blogs Stand Out",
                     "title": "",
-                    "intro1": "In a space crowded with noise, our technology blogs focus on what matters: clarity, relevance, and real-world usefulness.<br>We write for readers who want to understand, not just skim,and who value insight over hype.",
+                    "intro1": "In a space crowded with noise, our technology blogs focus on what matters: clarity, relevance, and real-world usefulness.<br>We write for readers who want to understand, not just skim, and who value insight over hype.",
                     "intro2": "",
                     "reverse": true,
                     "sectionId": "why-blogs-stand-out",
@@ -213,22 +217,23 @@
                     "listMode": "features",
                     "padding_right": "20px",
                     "listHeading": "What Sets Us Apart",
+                    "reveal": "split",
                     "features": [
                         { "icon": "check-circle", "title": "Clear, Accessible Writing",       "desc": "We break down complex topics without watering them down." },
                         { "icon": "check-circle", "title": "Practical Relevance",             "desc": "Every article connects to real decisions, tools, or workflows." },
-                        { "icon": "check-circle", "title": "Consistent Editorial Standards",  "desc": "No fluff, no filler , just thoughtful, well-structured content." },
+                        { "icon": "check-circle", "title": "Consistent Editorial Standards",  "desc": "No fluff, no filler, just thoughtful, well-structured content." },
                         { "icon": "check-circle", "title": "Grounded in Experience",          "desc": "Topics are shaped by actual builds, launches, and lessons learned." },
                         { "icon": "check-circle", "title": "Designed for Readers",            "desc": "Whether you're scanning or diving deep, our layout supports both." }
                     ],
                     "image": {
-                        "src": "https://creceri.com/wp-content/uploads/2025/10/b789ce02-521f-49d1-8681-9148550c2dc8-2.png",
+                        "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-check/home-about-4.webp",
                         "alt": "Abstract red circles illustration",
                         "loading": "lazy",
                         "decoding": "async"
                     }
                     } /-->
-   
-                <!-- wp:child/subscribe {
+
+        <!-- wp:child/subscribe {
                 "variant": "code",
                 "sectionId": "tech-updates",
                 "subhead": "",
@@ -237,6 +242,7 @@
                 "title1": "Digital innovation doesn't wait , and neither should you. Our technology blogs keep pace with the tools, platforms, and ideas shaping today's landscape, from eCommerce and design to marketing and development.",
                 "kicker": " ",
                 "kicker1": "What You'll Find",
+                "reveal": "scale",
                 "bullets": [
                     { "text": "Timely updates on emerging platforms and frameworks" },
                     { "text": "Practical insights into design, prototyping, and user experience" },
@@ -254,8 +260,8 @@
                 "formMethod": "post"
                 } /-->
 
-</main>
-<!-- /wp:group -->
+    </main>
+    <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer-custom"} /-->
+    <!-- wp:template-part {"slug":"footer-custom"} /-->
 </body>

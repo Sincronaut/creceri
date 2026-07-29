@@ -12,6 +12,10 @@ $gallery   = (isset($attributes['gallery']) && is_array($attributes['gallery']))
 $reverse   = !empty($attributes['reverse']);
 $sectionId = !empty($attributes['sectionId']) ? $attributes['sectionId'] : 'who-title';
 
+/* Reveal animation */
+$revealGallery = isset($attributes['revealGallery']) ? sanitize_html_class($attributes['revealGallery']) : '';
+$revealContent = isset($attributes['revealContent']) ? sanitize_html_class($attributes['revealContent']) : '';
+
 $tiles = array('tile-a','tile-b','tile-c','tile-d');
 
 /** allow simple formatting in content */
@@ -24,7 +28,7 @@ $allowed_html = array(
 <section class="about-split" aria-labelledby="<?php echo esc_attr($sectionId); ?>">
   <div class="about-split__inner<?php echo $reverse ? ' is-reversed' : ''; ?>">
     <!-- Left/Right: mosaic gallery -->
-    <div class="about-split__gallery">
+    <div class="about-split__gallery<?php echo ($revealGallery && $revealGallery !== 'none') ? ' reveal-' . esc_attr($revealGallery) : ''; ?>">
       <?php
       for ($i = 0; $i < 4; $i++) {
         if (empty($gallery[$i]['src'])) { continue; }
@@ -33,7 +37,7 @@ $allowed_html = array(
         $tcls = $tiles[$i];
         ?>
         <figure class="tile <?php echo esc_attr($tcls); ?>">
-          <img src="<?php echo esc_url($src); ?>" alt="Who We Are?" loading="lazy" decoding="async" />
+          <img src="<?php echo esc_url($src); ?>" alt="<?php echo esc_attr($alt ? $alt : __('Who We Are?', 'vite-ttf-child-creceri')); ?>" loading="lazy" decoding="async" />
         </figure>
         <?php
       }
@@ -41,7 +45,7 @@ $allowed_html = array(
     </div>
 
     <!-- Content -->
-    <div class="about-split__content">
+    <div class="about-split__content<?php echo ($revealContent && $revealContent !== 'none') ? ' reveal-' . esc_attr($revealContent) : ''; ?>">
       <?php if ($title) : ?>
         <h2 id="<?php echo esc_attr($sectionId); ?>"><?php echo esc_html($title); ?></h2>
       <?php endif; ?>

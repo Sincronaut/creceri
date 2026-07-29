@@ -127,14 +127,14 @@
                   el(MediaUploadCheck, null,
                     el(MediaUpload, {
                       onSelect: function (media) {
-                        var src = (media && (media.url || (media.sizes && media.sizes.full && media.sizes.full.url))) || '';
-                        var alt = (media && (media.alt || media.title || '')) || '';
+                        const src = (media && (media.url || (media.sizes && media.sizes.full && media.sizes.full.url))) || '';
+                        const alt = (media && (media.alt || media.title || '')) || '';
                         updateCard(index, { image: { src: src, alt: alt } });
                       },
                       allowedTypes: ['image'],
                       value: null,
                       render: function (args) {
-                        var open = args.open;
+                        const open = args.open;
                         return el('div', null,
                           image.src
                             ? el('div', { className: 'wn-card-thumb' },

@@ -30,7 +30,8 @@
     },
 
     "reverse":   { "type": "boolean", "default": false },
-    "sectionId": { "type": "string",  "default": "who-title" }
+    "sectionId": { "type": "string",  "default": "who-title" },
+    "reveal": { "type": "string", "default": "" }
   },
   "render": "file:./render.php",
   "style":  "file:./style.css",

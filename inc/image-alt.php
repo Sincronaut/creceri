@@ -92,6 +92,11 @@ if ( ! function_exists( 'creceri_inject_missing_img_alt' ) ) {
     $imgs = $doc->getElementsByTagName( 'img' );
     /** @var DOMElement $img */
     foreach ( $imgs as $img ) {
+      // Skip decorative images
+      if ( $img->getAttribute( 'aria-hidden' ) === 'true' || $img->getAttribute( 'role' ) === 'presentation' ) {
+        continue;
+      }
+
       $has = $img->hasAttribute( 'alt' );
       $val = $has ? $img->getAttribute( 'alt' ) : '';
       if ( $template_override !== '' ) {
@@ -159,6 +164,11 @@ if ( ! function_exists( 'creceri_filter_rendered_block_for_alt' ) ) {
   function creceri_filter_rendered_block_for_alt( $block_content, $block ) {
     if ( ! is_string( $block_content ) || $block_content === '' ) return $block_content;
 
+    // Skip template parts (header, footer, etc.) to avoid breaking icons/flags
+    if ( isset( $block['blockName'] ) && $block['blockName'] === 'core/template-part' ) {
+      return $block_content;
+    }
+
     $block_alt = creceri_block_alt_from_attrs( $block );
 
     // Global template override (forces fixed alt on the page)
@@ -221,6 +231,11 @@ if ( ! function_exists( 'creceri_filter_rendered_block_for_alt' ) ) {
     }
     /** @var DOMElement $img */
     foreach ( $imgs as $img ) {
+      // Skip decorative images
+      if ( $img->getAttribute( 'aria-hidden' ) === 'true' || $img->getAttribute( 'role' ) === 'presentation' ) {
+        continue;
+      }
+
       $has = $img->hasAttribute( 'alt' );
       $val = $has ? $img->getAttribute( 'alt' ) : '';
       $target_alt = $template_override !== '' ? $template_override : $block_alt;

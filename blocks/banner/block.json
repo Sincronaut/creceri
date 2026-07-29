@@ -43,6 +43,10 @@
       "type": "string",
       "default": "E-commerce, UX,<br>and Digital Knowledge"
     },
+    "lineSize": {
+      "type": "number",
+      "default": 0
+    },
     "lead": {
       "type": "string",
       "default": ""
@@ -258,6 +262,18 @@
     "leadMax": {
       "type": "number",
       "default": 22
+    },
+    "rotatingLines": {
+      "type": "string",
+      "default": ""
+    },
+    "rotatingBg": {
+      "type": "string",
+      "default": "rgba(150, 46, 42, 0.1)"
+    },
+    "reveal": {
+      "type": "string",
+      "default": ""
     }
   }
 }

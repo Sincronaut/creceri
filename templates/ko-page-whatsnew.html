@@ -1,14 +1,14 @@
 <body>
-<!-- wp:template-part {"slug":"header-custom-ko"} /-->
+    <!-- wp:template-part {"slug":"header-custom-ko"} /-->
 
-<!-- wp:group {"tagName":"main","className":"alignfull"} -->
-<main class="wp-block-group alignfull" style="margin-top:-40px;">
+    <!-- wp:group {"tagName":"main","className":"alignfull"} -->
+    <main class="wp-block-group alignfull" style="margin-top:-40px;">
 
         <!-- wp:child/banner
         {
         "brand":"최신 소상공인 트렌드 탐색",
         "line":"",
-        "brandSize":50,
+        "brandSize":64,
         "bgSpot":"left",
         "bgAngle":180,
         "bgStatus":"On",
@@ -22,36 +22,121 @@
         "margin-right":"0px",
         "buttonType":"Button",
         "buttonText":"둘러보기",
-        "buttonUrl":"#explore",
-        "buttonClass":"btn btn-custom text-white",
+        "buttonUrl":"#innovation-examples",
+        "buttonClass":"btn btn-pill text-white",
         "textAlign":"left",
         "textScale":1.1,
         "image":{
-            "src":"https://creceri.com/wp-content/uploads/2025/10/5d02150da4cd36bb5bf6c2f41c68303e5b88d573.png",
+            "src":"/wp-content/themes/child-creceri-reyes/assets/images/hero-banner/whats-new.webp",
             "alt":"3D 일러스트레이션",
             "loading":"eager",
             "decoding":"async"
-        }
+        },
+        "reveal": "split"
         } /-->
 
-        <!-- wp:child/card-standv2 {
-            title="What’s Emerging"
-            sectionId="emerging"
-            ctaUrl="#learn-more"
-            ctaLabel="Learn More →"
-            ctaAria="Learn more about what’s emerging"
-            centerpieceIndex="6"
-            cards_json='[
-                {"title":"Sustainability as Strategy","copy":"Eco-conscious products and practices are becoming standard, not optional."},
-                {"title":"Flexible Work Models","copy":"Remote and hybrid setups remain key to attracting and retaining talent."},
-                {"title":"Digital Transformation","copy":"More businesses are streamlining operations and customer engagement through digital tools."},
-                {"title":"Upcycling & Local Craft","copy":"Creative reuse and handmade goods are gaining traction in both fashion and retail."},
-                {"title":"Personalized Experiences","copy":"Tailored marketing and service models are driving loyalty and differentiation."},
-                {"title":"Online Selling & Side Hustles","copy":"E-commerce continues to open doors for small-scale sellers and seasonal entrepreneurs."},
-                {"title":"Mobile & Pop-Up Concepts","copy":"Food carts, event stalls, and compact retail setups are thriving in urban spaces."}
-            ]'
-        }
-            /-->
+        <!-- wp:child/card-stand {
+            "anchor":"emerging-ko",
+            "className":"emerging what-s-emerging",
+            "title":"새로운 소식",
+            "intro":"단기 전략과 실행을 형성하는 우선순위 신호입니다.",
+            "readLinkText": "자세히 보기",
+            "ctaUrl": "/ko/블로그/?filter=새로운-기능#category-list",
+            "reveal": "up",
+            "items":[
+                {
+                "title":"전략으로서의 지속가능성",
+                "text":"친환경 제품과 운영은 선택이 아니라 표준으로 자리잡고 있습니다.",
+                "url":"#",
+                "active":false,
+                "bgColor":"white",
+                "image":{
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/sustainability.webp",
+                    "alt":"전략으로서의 지속가능성",
+                    "loading":"lazy",
+                    "decoding":"async"
+                }
+                },
+                {
+                "title":"유연한 근무 모델",
+                "text":"원격·하이브리드 근무는 인재 확보와 유지의 핵심입니다.",
+                "url":"#",
+                "active":false,
+                "bgColor":"white",
+                "image":{
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/flexible-work.webp",
+                    "alt":"유연한 근무 모델",
+                    "loading":"lazy",
+                    "decoding":"async"
+                }
+                },
+                {
+                "title":"디지털 전환",
+                "text":"디지털 도구로 운영과 고객 접점을 고도화하는 기업이 늘고 있습니다.",
+                "url":"#",
+                "active":false,
+                "bgColor":"white",
+                "image":{
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/digital-transformation.webp",
+                    "alt":"디지털 전환",
+                    "loading":"lazy",
+                    "decoding":"async"
+                }
+                },
+                {
+                "title":"업사이클링 & 로컬 크래프트",
+                "text":"창의적 재사용과 핸드메이드 제품이 패션·리테일 전반에서 주목받고 있습니다.",
+                "url":"#",
+                "active":false,
+                "bgColor":"white",
+                "image":{
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/upcycling-craft.webp",
+                    "alt":"업사이클링 & 로컬 크래프트",
+                    "loading":"lazy",
+                    "decoding":"async"
+                }
+                },
+                {
+                "title":"개인화 경험",
+                "text":"맞춤형 마케팅과 서비스 모델이 충성도와 차별화를 견인합니다.",
+                "url":"#",
+                "active":false,
+                "bgColor":"white",
+                "image":{
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/sustainability.webp",
+                    "alt":"개인화 경험",
+                    "loading":"lazy",
+                    "decoding":"async"
+                }
+                },
+                {
+                "title":"온라인 판매 & 사이드 허슬",
+                "text":"이커머스는 소규모 판매자와 시즌별 창업자들에게 계속해서 기회의 문을 열어주고 있습니다.",
+                "url":"#",
+                "active":false,
+                "bgColor":"white",
+                "image":{
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/flexible-work.webp",
+                    "alt":"온라인 판매 & 사이드 허슬",
+                    "loading":"lazy",
+                    "decoding":"async"
+                }
+                },
+                {
+                "title":"모바일 & 팝업 컨셉",
+                "text":"푸드 트럭, 이벤트 가판대, 소형 리테일 구성이 도심 공간에서 활발히 운영되고 있습니다.",
+                "url":"#",
+                "active":true,
+                "bgColor":"white",
+                "image":{
+                    "src":"/wp-content/themes/child-creceri-reyes/assets/images/card-block/digital-transformation.webp",
+                    "alt":"모바일 & 팝업 컨셉",
+                    "loading":"lazy",
+                    "decoding":"async"
+                }
+                }
+            ]
+            } /-->
         <!-- wp:child/table {
             "align": "wide",
             "sectionId": "smb-trends",
@@ -61,6 +146,7 @@
             "title_bottom": "알아두어야 할 최신 중소기업 트렌드",
             "col_driver": "트렌드 동인",
             "col_reason": "중요한 이유",
+            "reveal": "up",
             "drivers": [
                 { "driver": "경제적 압력", "reason": "중소기업이 현금흐름, 가격 전략, 운영 효율성을 재설계하도록 압박합니다." },
                 { "driver": "기술 가속화", "reason": "디지털 도구가 운영·마케팅·성장 전반의 핵심이 되었습니다." },
@@ -78,27 +164,20 @@
             } /-->
 
 
-            <!-- wp:child/card-stand-2 {
-                "contentTag": "사명",
-                "title": "명확성과 도구로 중소기업 역량 강화",
-                "intro1": "획일적 해법이 아닌 유연하고 실행 가능한 지식을 제공합니다.",
-                "intro2": "모든 비즈니스는 고유한 과제를 안고 있습니다. 우리는 귀사의 맥락에 맞는 실용적 가이드를 제공하여 디지털 전환이 과하지 않고 충분히 실행 가능하도록 지원합니다. 전략적 통찰과 현실 기반 솔루션을 결합해 복잡성을 단순화하고, 혁신을 수용하며, 지속 가능한 성장을 구축합니다.",
-                "reverse": false,
-                "sectionId": "our-mission",
-                "btnName": "",
-                "bullets": [
-                    { "text": "유연하고 실용적인 가이드" },
-                    { "text": "전략적이면서도 핸즈온" },
-                    { "text": "현업 적용을 전제로 설계" },
-                    { "text": "지속 가능한 성장" }
-                ],
-                "image": {
-                    "src": "https://creceri.com/wp-content/uploads/2025/10/fbc9115fc301f724761693e0d052a2904b69fea1.webp",
-                    "alt": "추상적인 빨간 원 일러스트"
-                }
-                } /--> 
-            
-            <!-- wp:child/card-check {
+        <!-- wp:child/card-stand-2 {
+                "title": "중소기업 혁신의 실제 사례",
+                "sectionId": "innovation-examples",
+                "reveal": "up",
+                "items": [
+                    { "image": { "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-stand-2/case-1.webp", "alt": "사례 1" } },
+                    { "image": { "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-stand-2/case-2.webp", "alt": "사례 2" } },
+                    { "image": { "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-stand-2/case-3.webp", "alt": "사례 3" } },
+                    { "image": { "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-stand-2/case-4.webp", "alt": "사례 4" } },
+                    { "image": { "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-stand-2/case-5.webp", "alt": "사례 5" } }
+                ]
+                } /-->
+
+        <!-- wp:child/card-check {
                     "contentTag": "트렌드를 비즈니스 성장으로 전환",
                     "title": "",
                     "intro1": "",
@@ -106,10 +185,11 @@
                     "reverse": false,
                     "sectionId": "case-studies",
                     "btnName": "케이스 스터디 읽기",
-                    "btnUrl": "#",
+                    "btnUrl": "/ko/블로그/?filter=사례-연구#category-list",
                     "padding_left": "250px",
                     "listMode": "features",
                     "listHeading": "",
+                    "reveal": "split",
                     "features": [
                         { "icon": "check-circle", "title": "임팩트를 만드는 것에 집중", "desc": "고객·운영·매출에 직접 영향을 주는 트렌드에만 대응하세요. 옳은 선택이 측정 가능한 성과를 만듭니다." },
                         { "icon": "check-circle", "title": "유연한 시스템 구축", "desc": "워크플로·가격·인력을 빠르게 조정하세요. 유연성은 마찰 없이 성장을 가능하게 합니다." },
@@ -118,14 +198,14 @@
                         { "icon": "check-circle", "title": "기회를 일찍 포착", "desc": "고객 행동이나 정책의 작은 변화가 큰 기회가 됩니다. 선제 대응이 경쟁우위를 만듭니다." }
                     ],
                     "image": {
-                        "src": "https://creceri.com/wp-content/uploads/2025/10/Screenshot-2025-10-10-102822-1.png",
+                        "src": "/wp-content/themes/child-creceri-reyes/assets/images/card-check/whatsnew-page-1.webp",
                         "alt": "추상적인 빨간 원 일러스트",
                         "loading": "lazy",
                         "decoding": "async"
                 }
             } /-->
 
-            <!-- wp:child/subscribe {
+        <!-- wp:child/subscribe {
                 "variant": "code",
                 "sectionId": "tech-updates",
                 "subhead": "",
@@ -134,6 +214,7 @@
                 "title1": "소규모 기업은 디지털 도구, 변화하는 소비자 행동, 정책 변화에 힘입어 빠르게 진화하고 있습니다. 최신 정보를 파악하면 창업자와 팀이 더 빠르고 똑똑하게 의사결정할 수 있습니다.",
                 "kicker": " ",
                 "kicker1": "",
+                "reveal": "scale",
                 "bullets": [],
                 "formHeading": "새 인사이트를 이메일로 받아보기",
                 "namePlaceholder": "",
@@ -145,8 +226,8 @@
                 "formMethod": "post"
                 } /-->
 
-</main>
-<!-- /wp:group -->
+    </main>
+    <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer-custom-ko"} /-->
+    <!-- wp:template-part {"slug":"footer-custom-ko"} /-->
 </body>

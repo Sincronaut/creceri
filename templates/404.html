@@ -1,16 +1,37 @@
+    <style>
+        body { padding-top: 0 !important; }
+        .hero--404 { 
+            align-items: center !important; 
+        }
+        .hero--404 .hero__inner {
+            max-width: 1200px !important;
+            padding: 0 40px !important;
+            margin: 0 auto !important;
+        }
+        .hero--404 .hero__copy {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .hero--404 .hero__brand {
+            font-size: clamp(100px, 20vw, 300px) !important;
+            line-height: .9;
+        }
+    </style>
+    <!-- wp:template-part {"slug":"header-custom-main"} /-->
+
+    <!-- wp:group {"tagName":"main","className":"alignfull"} -->
+    <main class="wp-block-group alignfull">
 
 
-<body>
-<!-- wp:template-part {"slug":"header-custom-main"} /-->
-
-<!-- wp:group {"tagName":"main","className":"alignfull"} -->
-<main class="wp-block-group alignfull" style="margin-top:-40px;">
-
-
-        <!-- wp:child/banner-2 {
+        <!-- wp:child/banner {
+            "className": "hero--404",
             "brand":"404",
             "line":"PAGE NOT FOUND",
             "brandSize": 300,
+            "lineSize": 48,
+            "textAlign": "center",
             "bgSpot":"top",
             "bgAngle":150,
             "lead":"Looks like this page is missing — let’s get you back on track.",
@@ -18,20 +39,19 @@
             "imageLocation":"center",
             "imageSize":"m",
             "buttonText":"Back to Home",
-            "buttonUrl":"#home",
-            "buttonClass":"btn btn-custom text-white",
-            "textAlign":"left",
+            "buttonUrl":"/",
+            "buttonClass":"btn btn-pill text-white",
             "textScale":1.1,
             "image":{
-                "src":"https://creceri.com/wp-content/uploads/2025/10/404.webp",
+                "src":"/wp-content/themes/child-creceri-reyes/assets/images/hero-banner/404.webp",
                 "alt":"3D illustration",
                 "loading":"eager",
                 "decoding":"async"
             }
         } /-->
 
-</main>
-<!-- /wp:group -->
+    </main>
+    <!-- /wp:group -->
 
-<!-- wp:template-part {"slug":"footer-custom"} /-->
+    <!-- wp:template-part {"slug":"footer-custom"} /-->
 </body>
